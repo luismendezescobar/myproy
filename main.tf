@@ -19,7 +19,7 @@ module "network" {
 locals {
   instances_to_build = { for server in var.server_vm_info : server.name => server }
 
-  myip = module.create_internal_ip.create_ip
+  #myip = module.create_internal_ip.create_ip
 }
 /*
 module "vm_instances_creation" {
@@ -50,8 +50,8 @@ module "vm_instances_creation" {
 */
 
 module "create_internal_ip" {
-  for_each            = var.internal_ips
-  
+  #for_each            = var.internal_ips
+  internal_ips=var.internal_ips
   source = "./modules/create-ip"
   name_internal_ip    = each.value.name
   project_id          = var.project_id
@@ -64,6 +64,6 @@ module "create_internal_ip" {
 }
 
 output "internal_ip_out" {
-  value = local.myip
+  value = module.create_internal_ip.create_ip
 
 }

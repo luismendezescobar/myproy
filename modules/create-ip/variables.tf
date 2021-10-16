@@ -16,3 +16,7 @@ variable "subnet_name" {
 variable "name_internal_ip" {
   type=string
 }
+
+variable "internal_ips" {
+  type=map
+}
