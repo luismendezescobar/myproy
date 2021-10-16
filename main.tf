@@ -18,10 +18,8 @@ module "network" {
 
 locals {
   instances_to_build = { for server in var.server_vm_info : server.name => server }
-
-  #myip = module.create_internal_ip.create_ip
 }
-/*
+
 module "vm_instances_creation" {
   for_each                  = local.instances_to_build
 
@@ -43,38 +41,23 @@ module "vm_instances_creation" {
   boot_disk_type            = each.value.boot_disk_type
   additional_disks          = each.value.additional_disks
   
-
   depends_on = [module.network]
 }
 
-*/
+
 
 module "create_internal_ip" {
-  #for_each            = var.internal_ips
-  internal_ips=var.internal_ips
-  source = "./modules/create-ip"
-  //name_internal_ip    = each.value.name
-  project_id          = var.project_id
-  vpc_name            = var.vpc_name
-  subnet_name         = var.subnet_name
-  region              = var.region  
+  source        = "./modules/create-ip"  
   
+  internal_ips  = var.internal_ips
+  project_id    = var.project_id
+  vpc_name      = var.vpc_name
+  subnet_name   = var.subnet_name
+  region        = var.region  
   
-  //depends_on = [module.vm_instances_creation]
-  depends_on = [module.network]
+  depends_on = [module.vm_instances_creation]
 }
 
-/*
-output "internal_ip_out" {
-  value = module.create_internal_ip.create_ip
-
-}
-*/
-
-output "tacos"{
-  value = "give me my taco"
-}
-
-output "name" {
+output "internal_ip" {
   value=module.create_internal_ip.testout
 }
