@@ -26,7 +26,8 @@ resource "google_compute_address" "static_internal_address" {
 
 
 output "create-ip" {
-  value = google_compute_address.static_internal_address.id
+  value = "tacos"
+  #google_compute_address.static_internal_address.id
   
 }
 
