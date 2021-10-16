@@ -1,0 +1,353 @@
+export region=us-east1
+export zone_1=${region}-b
+export zone_2=${region}-c
+export vpc_name=webappnet
+export project_id=playground-s-11-86cf0e9f           #you must change this part
+
+export SUBNET_NAME=zone-1
+
+gcloud config set compute/region ${region}
+gcloud config set project ${project_id}
+
+#to create the VPC network:
+gcloud compute networks create ${vpc_name}  \
+    --description "VPC network to deploy all the infrastructure" \
+    --subnet-mode custom
+
+#Add 1 subnets to the VPC network:
+gcloud compute networks subnets create ${SUBNET_NAME} \
+    --network ${vpc_name} \
+    --range 10.1.0.0/24
+
+
+
+#Create a firewall rule to allow an RDP connection on port 3389 from any location:
+gcloud compute firewall-rules create allow-rdp \
+    --network ${vpc_name} \
+    --allow tcp:3389 \
+    --source-ranges 0.0.0.0/0
+
+#Create a Compute Engine instance of Windows Server 2016 to use as the first domain controller:
+gcloud compute instances create ad-dc1 --machine-type e2-small \
+    --boot-disk-type pd-ssd \
+    --boot-disk-size 50GB \
+    --image-family windows-2016 --image-project windows-cloud \
+    --network ${vpc_name} \
+    --zone ${zone_1} --subnet zone-1 \
+    --private-network-ip=10.1.0.100 \
+    --tags wsfc
+
+#follow these instructions
+0. check that the machine is up by running this command:
+gcloud compute instances tail-serial-port-output ad-dc1
+
+#Wait about 3 minutes until you see the output Instance setup finished, then press Ctrl+C. 
+#At this point, the VM instance is ready to be used.
+
+#1.reset the user password from the cloud console
+#2.use RDP to connect to the domain controller instance with the credentials you created in the previous step.
+#3.Open a PowerShell terminal as Administrator. (Click Start, type PowerShell, and then press Shift+Ctrl+Enter.)
+#4.Set the Windows credentials for the Administrator account:
+
+net user Administrator *
+
+#Enable the account:
+net user Administrator /active:yes
+
+#Set the following variables:
+$LocalStaticIp = "10.1.0.100"
+$DNSPrimary = "10.1.0.100"
+$DefaultGateway = "10.1.0.1"
+
+#Set the IP address and default gateway:
+netsh interface ip set address name=Ethernet static `
+    $LocalStaticIp 255.255.255.0 $DefaultGateway 1
+
+#Configure the primary DNS server:
+netsh interface ip set dns Ethernet static $DNSPrimary
+
+
+#Install Active Directory Domain Services, including Management Tools:
+Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
+
+#Set the following variables
+$DomainName = "example-gcp.com"
+$DomainMode = "7"
+$ForestMode = "7"
+$DatabasePath = "C:\Windows\NTDS"
+$SysvolPath = "C:\Windows\SYSVOL"
+$LogPath = "C:\Logs"
+
+
+#Install the new Active Directory forest configuration in Windows Server 2016 mode:
+Install-ADDSForest -CreateDnsDelegation:$false `
+    -DatabasePath $DatabasePath `
+    -LogPath $LogPath `
+    -SysvolPath $SysvolPath `
+    -DomainName $DomainName `
+    -DomainMode $DomainMode `
+    -ForestMode $ForestMode `
+    -InstallDNS:$true `
+    -NoRebootOnCompletion:$true `
+    -Force:$true
+
+Restart-Computer
+
+#Restart the virtual machine:
+Restart-Computer
+
+#check the ad is up and runnig:
+$DomainName = "example-gcp.com"
+nltest /dsgetdc:$DomainName
+
+$LASTEXITCODE should be equal to 0 if the domain controller is operational
+
+##########################################################################################################################################################################
+#Install S2D and SQL part
+#########################################################################################################################################################################
+
+VPC_NAME=webappnet
+SUBNET_NAME=zone-1
+
+
+#Create firewall rule for the WSFC nodes:
+SUBNET_CIDR=$(gcloud compute networks subnets describe $SUBNET_NAME --format=value\('ipCidrRange'\))
+
+gcloud compute firewall-rules create allow-all-between-wsfc-nodes \
+  --direction=INGRESS \
+  --action=allow \
+  --rules=tcp,udp,icmp \
+  --enable-logging \
+  --source-tags=wsfc \
+  --target-tags=wsfc \
+  --network=$VPC_NAME \
+  --priority 10000
+
+gcloud compute firewall-rules create allow-sql-to-wsfc-nodes \
+  --direction=INGRESS \
+  --action=allow \
+  --rules=tcp:1433 \
+  --enable-logging \
+  --source-ranges=$SUBNET_CIDR \
+  --target-tags=wsfc-node \
+  --network=$VPC_NAME \
+  --priority 10000
+
+
+#Create a firewall rule that allows health checks from the IP ranges of the Google Cloud probers:
+
+gcloud compute firewall-rules create allow-health-check-to-wsfc-nodes \
+  --direction=INGRESS \
+  --action=allow \
+  --rules=tcp \
+  --source-ranges=130.211.0.0/22,35.191.0.0/16 \
+  --target-tags=wsfc-node \
+  --network=$VPC_NAME \
+  --priority 10000
+
+
+###create this script in the shell as it will be used during the creation of the gcp
+##
+cat << "EOF" > specialize-node.ps1
+
+$ErrorActionPreference = "stop"
+
+# Install required Windows features
+Install-WindowsFeature Failover-Clustering -IncludeManagementTools
+Install-WindowsFeature RSAT-AD-PowerShell
+
+# Open firewall for WSFC
+netsh advfirewall firewall add rule name="Allow SQL Server health check" dir=in action=allow protocol=TCP localport=59997
+
+# Open firewall for SQL Server
+netsh advfirewall firewall add rule name="Allow SQL Server" dir=in action=allow protocol=TCP localport=1433
+
+EOF
+
+###Create the VM instances. On the two VMs that serve as S2D and WSFC nodes, attach additional data disks and enable the Windows Server Failover Clustering 
+###by setting the metadata key enable-wsfc to true:
+
+#MACHINE_TYPE=n1-standard-2          #limit for the project is 8 cpus and 8gb ram for individual machine
+MACHINE_TYPE=e2-medium                #2 cpus , 4 gb ram
+#MACHINE_TYPE=e2-small                 #2 cpus , 2gb ram
+
+REGION=$(gcloud config get-value compute/region)
+PD_SIZE=20
+MACHINE_TYPE=e2-medium                #2 cpus , 4 gb ram
+
+
+
+gcloud compute instances create node-1 \
+  --zone $REGION-b \
+  --machine-type $MACHINE_TYPE \
+  --subnet $SUBNET_NAME \
+  --image-family windows-2019 \
+  --image-project windows-cloud \
+  --tags wsfc,wsfc-node \
+  --boot-disk-size 50 \
+  --boot-disk-type pd-ssd \
+  --boot-disk-device-name "node-1" \
+  --create-disk=name=node-1-datadisk-1,size=$PD_SIZE,type=pd-ssd,auto-delete=no \
+  --create-disk=name=node-1-datadisk-2,size=$PD_SIZE,type=pd-ssd,auto-delete=no \
+  --create-disk=name=node-1-datadisk-3,size=$PD_SIZE,type=pd-ssd,auto-delete=no \
+  --create-disk=name=node-1-datadisk-4,size=$PD_SIZE,type=pd-ssd,auto-delete=no \
+  --metadata enable-wsfc=true \
+  --metadata-from-file=sysprep-specialize-script-ps1=specialize-node.ps1
+
+
+
+
+gcloud compute instances create node-2 \
+  --zone $REGION-c \
+  --machine-type $MACHINE_TYPE \
+  --subnet $SUBNET_NAME \
+  --image-family windows-2019 \
+  --image-project windows-cloud \
+  --tags wsfc,wsfc-node \
+  --boot-disk-size 50 \
+  --boot-disk-type pd-ssd \
+  --boot-disk-device-name "node-2" \
+  --create-disk=name=node-2-datadisk-1,size=$PD_SIZE,type=pd-ssd,auto-delete=no \
+  --create-disk=name=node-2-datadisk-2,size=$PD_SIZE,type=pd-ssd,auto-delete=no \
+  --create-disk=name=node-2-datadisk-3,size=$PD_SIZE,type=pd-ssd,auto-delete=no \
+  --create-disk=name=node-2-datadisk-4,size=$PD_SIZE,type=pd-ssd,auto-delete=no \
+  --metadata enable-wsfc=true \
+  --metadata-from-file=sysprep-specialize-script-ps1=specialize-node.ps1
+
+
+#--image-family sql-ent-2019-win-2019 \
+#--image-project windows-sql-cloud \
+
+
+
+gcloud compute instances create "witness" \
+  --zone $REGION-c \
+  --machine-type $MACHINE_TYPE \
+  --subnet $SUBNET_NAME \
+  --image-family=windows-2019 \
+  --image-project=windows-cloud \
+  --tags wsfc \
+  --boot-disk-size 50 \
+  --boot-disk-type pd-ssd \
+  --metadata sysprep-specialize-script-ps1="add-windowsfeature FS-FileServer"
+
+
+
+#you can see when the instances is ready to be used with this command
+gcloud compute instances tail-serial-port-output node-1
+gcloud compute instances tail-serial-port-output node-2
+gcloud compute instances tail-serial-port-output witness
+
+#then login to the server using rdp and set the dns
+$DNSPrimary = "10.1.0.100"
+netsh interface ip set dns Ethernet static $DNSPrimary
+ping example-gcp.com
+
+#then join the server to the domain with this command
+
+Add-Computer -Domain example-gcp.com -Restart
+
+#Reserve 2 static IP addresses in your VPC. 
+#One IP address is used as the WSFC cluster IP address, 
+#the other is used by the internal load balancer.
+
+#Reserve a static IP for the internal load balancer and capture the address in a new environment variable named LOADBALANCER_ADDRESS:
+
+gcloud compute addresses create wsfc \
+  --subnet $SUBNET_NAME \
+  --region $(gcloud config get-value compute/region)
+
+LOADBALANCER_ADDRESS=$(gcloud compute addresses describe wsfc \
+  --region $(gcloud config get-value compute/region) \
+  --format=value\(address\)) && \
+echo "Load Balancer IP: $LOADBALANCER_ADDRESS"
+
+
+#Reserve another static IP address that you use as cluster IP:
+gcloud compute addresses create wsfc-cluster \
+  --subnet $SUBNET_NAME \
+  --region $(gcloud config get-value compute/region) && \
+CLUSTER_ADDRESS=$(gcloud compute addresses describe wsfc-cluster \
+    --region $(gcloud config get-value compute/region) \
+    --format=value\(address\)) && \
+echo "Cluster IP: $CLUSTER_ADDRESS"
+
+
+
+##
+#Create a witness file share
+#1.Connect to witness by using Remote Desktop. Log in with your domain user account.
+#2.Right-click the Start button (or press Win+X) and click Windows PowerShell (Admin).
+#3.Confirm the elevation prompt by clicking Yes.
+#4.Create the witness folder and share the folder:
+
+New-Item "C:\QWitness" –type directory
+New-SmbShare `
+  -Name QWitness `
+  -Path "C:\QWitness" `
+  -Description "SQL File Share Witness" `
+  -FullAccess  $env:username,node-1$,node-2$,example-gcp\Administrator
+
+###########Deploying the failover cluster
+#Deploy WSFC
+#1.Connect to node-1 by using Remote Desktop. Log in with your domain user account.
+#2.Right-click the Start button (or press Win+X) and click Windows PowerShell (Admin).
+#3.Confirm the elevation prompt by clicking Yes.
+#4.Create a new cluster:
+
+
+#$DNSPrimary = ip from above command
+$CLUSTER_ADDRESS = "10.1.0.6"
+
+New-Cluster `
+  -Name windows-fci `
+  -Node node-1,node-2 `
+  -NoStorage `
+  -StaticAddress $CLUSTER_ADDRESS
+
+#Configure the cluster to use the file share on witness as a cluster quorum:
+Set-ClusterQuorum -FileShareWitness \\witness\QWitness
+
+#Verify that the cluster was created successfully:
+
+Test-Cluster
+
+#You can also launch the Failover Cluster Manager MMC snap-in to review the cluster's health by running cluadmin.msc.
+cluadmin.msc
+
+#run some commands to see the status of the disks
+Get-PhysicalDisk -canpool $True
+
+#############################Enabling Storage Spaces Direct########################
+#Return to the PowerShell session on node-1.
+#Enable S2D:
+
+Enable-ClusterStorageSpacesDirect
+
+#Optionally, set the Cluster Shared Volume (CSV) in-memory cache to 2048 MB for better read throughput:
+
+(Get-Cluster).BlockCacheSize = 2048
+
+#Create a new volume that uses the cluster shared volume versions of ReFS and a 64 KB cluster size:
+
+New-Volume `
+  -StoragePoolFriendlyName S2D* `
+  -FriendlyName FciVolume `
+  -FileSystem CSVFS_ReFS `
+  -UseMaximumSize `
+  -AllocationUnitSize 65536
+
+
+#Open the Failover Cluster Manager MMC snap-in:
+
+cluadmin.msc
+
+#In the left window pane, navigate to Failover Cluster Manager > windows-fci > Storage > Disks.
+#Right-click Cluster Virtual Disk (FciVolume) and select Remove From Cluster Shared Volumes.
+#Select Cluster Virtual Disk (FciVolume).
+#In the Volumes tab at the bottom, right-lick the volume and select Change drive letter.
+#Select the drive letter D and click OK.
+#you may continue from the white paper
+
+#Testing storage pool failover
+https://cloud.google.com/compute/docs/instances/sql-server/configure-failover-cluster-instance#testing_storage_pool_failover
