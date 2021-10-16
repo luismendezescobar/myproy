@@ -19,7 +19,7 @@ module "network" {
 locals {
   instances_to_build = { for server in var.server_vm_info : server.name => server }
 
-  myip = module.create_internal_ip.create_ip.output
+  myip = module.create_internal_ip.create_ip
 }
 /*
 module "vm_instances_creation" {
