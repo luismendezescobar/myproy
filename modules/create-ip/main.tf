@@ -4,7 +4,8 @@ data "google_compute_network" "vpc_network" {
 }
 
 data "google_compute_subnetwork" "network-with-private-secondary-ip-ranges" {
-  name          = var.subnet_name    
+  name          = var.subnet_name  
+  region       = var.region  
   #network       = data.google_compute_network.vpc_network.id
 }
 
