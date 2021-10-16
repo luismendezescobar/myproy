@@ -53,7 +53,7 @@ module "create_internal_ip" {
   #for_each            = var.internal_ips
   internal_ips=var.internal_ips
   source = "./modules/create-ip"
-  name_internal_ip    = each.value.name
+  //name_internal_ip    = each.value.name
   project_id          = var.project_id
   vpc_name            = var.vpc_name
   subnet_name         = var.subnet_name
