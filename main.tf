@@ -62,6 +62,6 @@ module "create_internal_ip" {
 }
 
 output "internal_ip_out" {
-  value = module.create_internal_ip.create_ip]
+  value = module.create_internal_ip.create_ip
 
 }
