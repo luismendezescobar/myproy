@@ -22,7 +22,7 @@ variable "subnetwork_project" {type=string}
 variable "subnetwork" {type=string}
 variable "network_ip" {type=string}
 variable "metadata" {type=map(string)}
-variable "service_account" {type=string}
+
           
  
 

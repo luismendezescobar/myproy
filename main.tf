@@ -40,7 +40,7 @@ module "vm_instances_creation" {
   disk_size_gb              = each.value.boot_disk_size_gb
   boot_disk_type            = each.value.boot_disk_type
   additional_disks          = each.value.additional_disks
-  service_account           = var.service_account
+  
 
   depends_on = [module.network]
 }

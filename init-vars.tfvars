@@ -1,5 +1,4 @@
 project_id="playground-s-11-1934f5ac"  #update the project here
-service_account="518670736766-compute@developer.gserviceaccount.com" #update the service account here
 vpc_name="webappnet"
 region="us-east1"
 subnet_name="test-subnetwork"

@@ -65,7 +65,7 @@ resource "google_compute_instance" "gce_machine" {
 
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = var.service_account
+    #email  = var.service_account
     scopes = ["cloud-platform"]
   }
 }

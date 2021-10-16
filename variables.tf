@@ -14,9 +14,6 @@ variable "subnet_name" {
 variable "ip_cidr_range" {
   type=string
 }
-variable "service_account" {
-  type=string
-}
 
 
 
