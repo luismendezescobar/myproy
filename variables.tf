@@ -43,5 +43,5 @@ variable "server_vm_info" {
 
 
 variable "internal_ips" {
-  type=list(string)
+  type=map
 }

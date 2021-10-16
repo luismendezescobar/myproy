@@ -122,8 +122,13 @@ server_vm_info = [
 ]
 
 
-internal_ips=["wsfc","wsfc-cluster"]
-
-
+internal_ips={
+  ip01={
+    name="wsfc"
+  },
+  ip02={
+    name="wsfc-cluster"
+  }, 
+}
 
 
