@@ -61,7 +61,7 @@ module "create_internal_ip" {
   depends_on = [module.vm_instances_creation]
 }
 
-output "internal_ip" {
+output "internal_ip_out" {
   value = [for name in module.create_internal_ip.instance_ip_addr:name]
 
 }
