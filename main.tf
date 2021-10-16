@@ -30,7 +30,7 @@ module "vm_instances_creation" {
   instance_description      = each.value.description
   instance_tags             = each.value.instance_tags
   instance_machine_type     = each.value.instance_type
-  source_image              = var.source_image
+  source_image              = each.value.source_image
   subnetwork_project        = var.project_id
   subnetwork                = var.subnet_name
   init_script               = each.value.init_script
