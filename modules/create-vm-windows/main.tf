@@ -4,12 +4,6 @@ locals {
     for i in var.additional_disks : i.name => i
   }
 }
-/*
-data "template_file" "user_init" {
-  count    = var.init_script == "" ? 0 : 1
-  template = file(var.init_script)
-}
-*/
 
 
 /******************************************
@@ -67,5 +61,11 @@ resource "google_compute_instance" "gce_machine" {
     access_config {
       // Ephemeral public IP
     }
+  }
+
+  service_account {
+    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    email  = var.service_account
+    scopes = ["cloud-platform"]
   }
 }
