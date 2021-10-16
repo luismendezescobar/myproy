@@ -12,11 +12,11 @@ variable "subnet_name" {
   type=string
 }
 
-
+/*
 variable "name_internal_ip" {
   type=string
 }
-
+*/
 variable "internal_ips" {
   type=map
 }
