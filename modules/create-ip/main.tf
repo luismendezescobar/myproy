@@ -39,6 +39,6 @@ resource "google_compute_address" "static_internal_address" {
 
 
 output "create-ip" {
-  value = google_compute_address.static_internal_address.*.name
+  value = [for x in google_compute_address.static_internal_address :x]
   
 }
