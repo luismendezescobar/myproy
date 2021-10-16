@@ -44,3 +44,23 @@ module "vm_instances_creation" {
 
   depends_on = [module.network]
 }
+
+
+
+module "create_internal_ip" {
+  for_each            = var.internal_ips
+  
+  source = "./modules/create-ip"
+  name_internal_ip    = each.value
+  project_id          = var.project_id
+  vpc_name            = var.vpc_name
+  subnet_name         = var.subnet_name
+  region              = var.region  
+  
+  
+  depends_on = [module.vm_instances_creation]
+}
+
+output "internal_ip" {
+  value=module.create_internal_ip.instance_ip_addr
+}

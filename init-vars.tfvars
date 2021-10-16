@@ -122,7 +122,7 @@ server_vm_info = [
 ]
 
 
-
+internal_ips=["wsfc","wsfc-cluster"]
 
 
 

@@ -40,3 +40,8 @@ variable "server_vm_info" {
   }))
   default = []
 }
+
+
+variable "internal_ips" {
+  type=list(string)
+}

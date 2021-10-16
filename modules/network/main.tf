@@ -65,7 +65,3 @@ resource "google_compute_firewall" "allow-health-check-to-wsfc-nodes" {
   target_tags = ["wsfc-node"]
 }
 
-
-
-
-
