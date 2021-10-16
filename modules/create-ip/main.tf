@@ -25,10 +25,3 @@ resource "google_compute_address" "static_internal_address" {
 
 
 
-output "instance_ip_addr" {
-  value       = google_compute_address.static_internal_address.address
-  
-}
-
-
-

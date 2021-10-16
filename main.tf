@@ -15,7 +15,7 @@ module "network" {
   ip_cidr_range = var.ip_cidr_range
   region        = var.region  
 }
-
+/*
 locals {
   instances_to_build = { for server in var.server_vm_info : server.name => server }
 }
@@ -45,7 +45,7 @@ module "vm_instances_creation" {
   depends_on = [module.network]
 }
 
-
+*/
 
 module "create_internal_ip" {
   for_each            = var.internal_ips
@@ -58,11 +58,10 @@ module "create_internal_ip" {
   region              = var.region  
   
   
-  depends_on = [module.vm_instances_creation]
+  //depends_on = [module.vm_instances_creation]
 }
-/*
+
 output "internal_ip_out" {
-  value = [for name in module.create_internal_ip.instance_ip_addr:name]
+  value = module.create_internal_ip.create_ip]
 
 }
-*/
