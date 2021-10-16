@@ -4,6 +4,12 @@ locals {
     for i in var.additional_disks : i.name => i
   }
 }
+/*
+data "template_file" "user_init" {
+  count    = var.init_script == "" ? 0 : 1
+  template = file(var.init_script)
+}
+*/
 
 
 /******************************************
@@ -30,7 +36,7 @@ resource "google_compute_instance" "gce_machine" {
   tags         = var.instance_tags
   description  = var.instance_description
 
-  metadata_startup_script = file(var.init_script)  
+  metadata_startup_script = var.init_script == "" ? "" : file(var.init_script) 
 
   allow_stopping_for_update = false
 
