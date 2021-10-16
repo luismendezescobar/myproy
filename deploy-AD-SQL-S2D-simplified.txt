@@ -1,0 +1,159 @@
+
+#follow these instructions
+0. check that the machine is up by running this command:
+gcloud compute instances tail-serial-port-output ad-dc1
+
+#Wait about 3 minutes until you see the output Instance setup finished, then press Ctrl+C. 
+#At this point, the VM instance is ready to be used.
+
+#1.reset the user password from the cloud console
+#2.use RDP to connect to the domain controller instance with the credentials you created in the previous step.
+#3.Open a PowerShell terminal as Administrator. (Click Start, type PowerShell, and then press Shift+Ctrl+Enter.)
+#4.Set the Windows credentials for the Administrator account:
+
+net user Administrator *
+net user Administrator /active:yes
+
+$LocalStaticIp = "10.1.0.100"
+$DNSPrimary = "10.1.0.100"
+$DefaultGateway = "10.1.0.1"
+netsh interface ip set address name=Ethernet static `
+    $LocalStaticIp 255.255.255.0 $DefaultGateway 1
+netsh interface ip set dns Ethernet static $DNSPrimary
+Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
+$DomainName = "example-gcp.com"
+$DomainMode = "7"
+$ForestMode = "7"
+$DatabasePath = "C:\Windows\NTDS"
+$SysvolPath = "C:\Windows\SYSVOL"
+$LogPath = "C:\Logs"
+
+Install-ADDSForest -CreateDnsDelegation:$false `
+    -DatabasePath $DatabasePath `
+    -LogPath $LogPath `
+    -SysvolPath $SysvolPath `
+    -DomainName $DomainName `
+    -DomainMode $DomainMode `
+    -ForestMode $ForestMode `
+    -InstallDNS:$true `
+    -NoRebootOnCompletion:$true `
+    -Force:$true
+
+Restart-Computer
+
+##########################################################################################################################################################################
+#Install S2D and SQL part
+#########################################################################################################################################################################
+#then login to the server using rdp and set the dns
+$DNSPrimary = "10.1.0.100"
+netsh interface ip set dns Ethernet static $DNSPrimary
+ping example-gcp.com
+
+#then join the server to the domain with this command
+
+Add-Computer -Domain example-gcp.com -Restart
+
+#Reserve 2 static IP addresses in your VPC. 
+#One IP address is used as the WSFC cluster IP address, 
+#the other is used by the internal load balancer.
+
+#Reserve a static IP for the internal load balancer and capture the address in a new environment variable named LOADBALANCER_ADDRESS:
+
+gcloud compute addresses create wsfc \
+  --subnet $SUBNET_NAME \
+  --region $(gcloud config get-value compute/region)
+
+LOADBALANCER_ADDRESS=$(gcloud compute addresses describe wsfc \
+  --region $(gcloud config get-value compute/region) \
+  --format=value\(address\)) && \
+echo "Load Balancer IP: $LOADBALANCER_ADDRESS"
+
+
+#Reserve another static IP address that you use as cluster IP:
+gcloud compute addresses create wsfc-cluster \
+  --subnet $SUBNET_NAME \
+  --region $(gcloud config get-value compute/region) && \
+CLUSTER_ADDRESS=$(gcloud compute addresses describe wsfc-cluster \
+    --region $(gcloud config get-value compute/region) \
+    --format=value\(address\)) && \
+echo "Cluster IP: $CLUSTER_ADDRESS"
+
+
+
+##
+#Create a witness file share
+#1.Connect to witness by using Remote Desktop. Log in with your domain user account.
+#2.Right-click the Start button (or press Win+X) and click Windows PowerShell (Admin).
+#3.Confirm the elevation prompt by clicking Yes.
+#4.Create the witness folder and share the folder:
+
+New-Item "C:\QWitness" –type directory
+New-SmbShare `
+  -Name QWitness `
+  -Path "C:\QWitness" `
+  -Description "SQL File Share Witness" `
+  -FullAccess  $env:username,node-1$,node-2$,example-gcp\Administrator
+
+###########Deploying the failover cluster
+#Deploy WSFC
+#1.Connect to node-1 by using Remote Desktop. Log in with your domain user account.
+#2.Right-click the Start button (or press Win+X) and click Windows PowerShell (Admin).
+#3.Confirm the elevation prompt by clicking Yes.
+#4.Create a new cluster:
+
+
+#$DNSPrimary = ip from above command
+$CLUSTER_ADDRESS = "10.1.0.6"
+
+New-Cluster `
+  -Name windows-fci `
+  -Node node-1,node-2 `
+  -NoStorage `
+  -StaticAddress $CLUSTER_ADDRESS
+
+#Configure the cluster to use the file share on witness as a cluster quorum:
+Set-ClusterQuorum -FileShareWitness \\witness\QWitness
+
+#Verify that the cluster was created successfully:
+
+Test-Cluster
+
+#You can also launch the Failover Cluster Manager MMC snap-in to review the cluster's health by running cluadmin.msc.
+cluadmin.msc
+
+#run some commands to see the status of the disks
+Get-PhysicalDisk -canpool $True
+
+#############################Enabling Storage Spaces Direct########################
+#Return to the PowerShell session on node-1.
+#Enable S2D:
+
+Enable-ClusterStorageSpacesDirect
+
+#Optionally, set the Cluster Shared Volume (CSV) in-memory cache to 2048 MB for better read throughput:
+
+(Get-Cluster).BlockCacheSize = 2048
+
+#Create a new volume that uses the cluster shared volume versions of ReFS and a 64 KB cluster size:
+
+New-Volume `
+  -StoragePoolFriendlyName S2D* `
+  -FriendlyName FciVolume `
+  -FileSystem CSVFS_ReFS `
+  -UseMaximumSize `
+  -AllocationUnitSize 65536
+
+
+#Open the Failover Cluster Manager MMC snap-in:
+
+cluadmin.msc
+
+#In the left window pane, navigate to Failover Cluster Manager > windows-fci > Storage > Disks.
+#Right-click Cluster Virtual Disk (FciVolume) and select Remove From Cluster Shared Volumes.
+#Select Cluster Virtual Disk (FciVolume).
+#In the Volumes tab at the bottom, right-lick the volume and select Change drive letter.
+#Select the drive letter D and click OK.
+#you may continue from the white paper
+
+#Testing storage pool failover
+https://cloud.google.com/compute/docs/instances/sql-server/configure-failover-cluster-instance#testing_storage_pool_failover
