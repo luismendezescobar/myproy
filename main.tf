@@ -62,6 +62,6 @@ module "create_internal_ip" {
 }
 
 output "internal_ip" {
-  value = [for name in module.create_internal_ip.instance_ip_addr]
+  value = [for name in module.create_internal_ip.instance_ip_addr:name]
 
 }
