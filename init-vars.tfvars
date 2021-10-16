@@ -124,7 +124,7 @@ server_vm_info = [
 
 internal_ips={
   ip01={
-    name="wsfc"
+    name="load-balancer"
   },
   ip02={
     name="wsfc-cluster"
