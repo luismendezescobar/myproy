@@ -7,7 +7,6 @@ terraform {
     }
 }
 
-
 module "network" {
   source = "./modules/network"
   project_id    = var.project_id
@@ -17,21 +16,15 @@ module "network" {
   region        = var.region  
 }
 
-
-
 locals {
   instances_to_build = { for server in var.server_vm_info : server.name => server }
 }
-
-
-
 
 module "vm_instances_creation" {
   for_each                  = local.instances_to_build
 
   source                    = "./modules/create-vm-windows"  
-  project_id                = var.project_id
-  region                    = var.region
+  project_id                = var.project_id  
   zone                      = each.value.zone
   instance_name             = each.value.name
   instance_description      = each.value.description
