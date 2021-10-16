@@ -62,6 +62,6 @@ module "create_internal_ip" {
 }
 
 output "internal_ip" {
-  for_each =module.create_internal_ip.instance_ip_addr
-  value=each.value
+  value = [for name in module.create_internal_ip.instance_ip_addr]
+
 }
