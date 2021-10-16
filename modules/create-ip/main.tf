@@ -37,8 +37,13 @@ resource "google_compute_address" "static_internal_address" {
 
 
 
-
+/*
 output "create-ip" {
   value = google_compute_address.static_internal_address[0].address
   
+}
+*/
+
+output "testout" {
+  value="get out from there"
 }
