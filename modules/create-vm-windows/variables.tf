@@ -3,7 +3,7 @@ variable "additional_disks" {
   type = list(object({
     name         = string
     disk_size_gb = number
-    disk_type    = string
+    disk_type    = string    
   }))
   default = []
 }
@@ -20,7 +20,11 @@ variable "source_image" {type=string}
 variable "boot_disk_type" {type=string}
 variable "subnetwork_project" {type=string}
 variable "subnetwork" {type=string}
+variable "network_ip" {type=string}
+variable "metadata" {type=map(string)}
 
+          
+ 
 
 
   

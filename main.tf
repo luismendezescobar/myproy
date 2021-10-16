@@ -27,7 +27,9 @@ module "vm_instances_creation" {
   project_id                = var.project_id  
   zone                      = each.value.zone
   instance_name             = each.value.name
+  network_ip                = each.value.network_ip
   instance_description      = each.value.description
+  metadata                  = each.value.metadata
   instance_tags             = each.value.instance_tags
   instance_machine_type     = each.value.instance_type
   source_image              = each.value.source_image

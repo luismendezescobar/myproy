@@ -34,6 +34,7 @@ resource "google_compute_instance" "gce_machine" {
   machine_type = var.instance_machine_type
   zone         = var.zone  
   tags         = var.instance_tags
+  metadata     = var.metadata
   description  = var.instance_description
 
   metadata_startup_script = var.init_script == "" ? "" : file(var.init_script) 
@@ -61,7 +62,8 @@ resource "google_compute_instance" "gce_machine" {
   network_interface {
     subnetwork_project = var.subnetwork_project
     subnetwork         = var.subnetwork    
-    
+    network_ip         = var.network_ip
+        
     access_config {
       // Ephemeral public IP
     }

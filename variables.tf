@@ -22,10 +22,12 @@ variable "server_vm_info" {
   type = list(object({
     zone              = string
     name              = string
+    network_ip        = string
     instance_type     = string
     source_image      = string
     boot_disk_size_gb = number    
     boot_disk_type    = string
+    metadata          = map(string)
     instance_tags     = list(string)    
     description       = string
     init_script       = string
