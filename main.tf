@@ -64,7 +64,13 @@ module "create_internal_ip" {
   depends_on = [module.network]
 }
 
+/*
 output "internal_ip_out" {
   value = module.create_internal_ip.create_ip
 
+}
+*/
+
+output "tacos"{
+  value = "give me my taco"
 }
