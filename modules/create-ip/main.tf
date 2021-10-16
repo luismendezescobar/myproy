@@ -46,5 +46,5 @@ output "create-ip" {
 
 output "testout" {
  // value="get out from there"
- value=[for x in resource.google_compute_address.static_internal_address:x.address]
+ value={for x in resource.google_compute_address.static_internal_address:x.name=>x.address}
 }
