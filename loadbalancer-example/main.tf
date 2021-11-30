@@ -61,7 +61,7 @@ module "vm_instances_creation" {
   depends_on = [module.network]
 }
 
-
+/*
 module "unmanaged_instance_group" {
   source = "./modules/uig"  
 
@@ -81,7 +81,7 @@ module "unmanaged_instance_group" {
   depends_on = [module.vm_instances_creation]
 }
 
-
+*/
 output "instances_out" {
   value=[for vm in module.vm_instances_creation : vm ]  
 }
