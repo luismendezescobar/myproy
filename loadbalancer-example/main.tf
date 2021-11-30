@@ -21,7 +21,7 @@ locals {
 
   loadbalancers = distinct([for vm in var.server_vm_info : lookup(vm, "loadbalancer", "")])
   loadbalancer_map = { for loadbalancer in local.loadbalancers : loadbalancer => {
-    vms = [for item in var.webserver_vm_info : item.name if item.loadbalancer == loadbalancer]
+    vms = [for item in var.server_vm_info : item.name if item.loadbalancer == loadbalancer]
     }
   }
 
