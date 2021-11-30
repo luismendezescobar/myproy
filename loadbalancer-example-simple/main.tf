@@ -105,7 +105,7 @@ module "unmanaged_instance_group" {
 
 
 output "instances_out" {
-  value=data.google_compute_instance.instance_to_balancer.self_link
+  value=module.vm_instances_creation.myserver
 }
 
 
