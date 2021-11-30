@@ -70,6 +70,9 @@ resource "google_compute_instance" "gce_machine" {
     #email  = var.service_account
     scopes = ["cloud-platform"]
   }
+
+  depends_on = [google_compute_address.static_internal_address]
+
 }
 
 

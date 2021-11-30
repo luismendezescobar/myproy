@@ -6,7 +6,7 @@ terraform {
         }
     }
 }
-
+/*
 module "network" {
   source = "./modules/network"
   project_id    = var.project_id
@@ -15,11 +15,25 @@ module "network" {
   ip_cidr_range = var.ip_cidr_range
   region        = var.region  
 }
-
+*/
 locals {
   instances_to_build = { for server in var.server_vm_info : server.name => server }
+
+  loadbalancers = distinct([for vm in var.server_vm_info : lookup(vm, "loadbalancer", "")])
+  loadbalancer_map = { for loadbalancer in local.loadbalancers : loadbalancer => {
+    vms = [for item in var.webserver_vm_info : item.name if item.loadbalancer == loadbalancer]
+    }
+  }
+
 }
 
+output "loadbalancers" {
+  value=local.loadbalancers
+}
+output "loadbalancer_map" {
+  value=local.loadbalancer_map
+}
+/*
 module "vm_instances_creation" {
   for_each                  = local.instances_to_build
 
@@ -43,6 +57,23 @@ module "vm_instances_creation" {
   
   depends_on = [module.network]
 }
+
+
+module "unmanaged_instance_group" {
+  source = "./modules/uig"  
+
+  for_each      = local.loadbalancer_map
+  name          = lower(each.key) == "serviceweb" ? join("-", [local.instance_group_name, lower(each.key)]) : local.instance_group_name
+  project_id    = var.project_id
+  region        = var.region
+  network       = local.network_self_link
+  subnetwork    = local.subnetwork_self_link
+  instances     = [for vm in module.webserver_vm_instance : vm if contains(each.value.vms, vm.name)]
+  named_port    = var.named_port
+  health_check  = var.health_check
+  frontend_name = var.frontend_name
+}
+*/
 
 
 /*

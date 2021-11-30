@@ -31,6 +31,7 @@ variable "server_vm_info" {
     instance_tags     = list(string)    
     description       = string
     init_script       = string
+    loadbalancer      = string
     auto_delete       = bool
     additional_disks = list(object({
       name         = string
