@@ -83,13 +83,16 @@ module "unmanaged_instance_group" {
 }
 
 
-output "instances_out" {
-  value=[for vm in module.vm_instances_creation : vm ]  
+
+
+data "google_compute_instance" "instance_to_balancer" {
+   name     = "node-1"
+   zone     = "us-east1-b"
 }
-
-
   
-
+output "instances_out" {
+  value=data.google_compute_instance.instance_to_balancer.self_link
+}
 
 /*
 module "create_internal_ip" {

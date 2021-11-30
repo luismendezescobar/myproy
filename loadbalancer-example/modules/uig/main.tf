@@ -12,7 +12,7 @@ data "google_compute_instance" "instance_to_balancer" {
    name     = "node-1"
    zone     = "us-east1-b"
 }
-
+/*
 resource "google_compute_instance_group" "webservers_zone" {
   for_each = local.distinct_zones
 
@@ -33,7 +33,7 @@ resource "google_compute_instance_group" "webservers_zone" {
   zone = each.value
 }
 
-
+*/
 
 resource "google_compute_health_check" "ilb_health_check" {
   name    = join("-", [var.name, "health"])
