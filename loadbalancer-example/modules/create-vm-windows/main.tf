@@ -58,8 +58,8 @@ resource "google_compute_instance" "gce_machine" {
   network_interface {
     subnetwork_project = var.subnetwork_project
     subnetwork         = var.subnetwork    
-    network_ip         = var.network_ip
-        
+    #network_ip         = var.network_ip
+    network_ip         = google_compute_address.static_internal_address.name
     access_config {
       // Ephemeral public IP
     }
