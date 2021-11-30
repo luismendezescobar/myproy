@@ -78,7 +78,7 @@ resource "google_compute_instance" "gce_machine" {
 
 
 resource "google_compute_address" "static_internal_address" {
-  count        = var.network_ip == "" ? 0 : 1
+  #count        = var.network_ip == "" ? 0 : 1
   name         = join("-", ["static-int-ip", lower(var.instance_name)])
   subnetwork   = local.subnetwork_self_link
   address_type = "INTERNAL"
