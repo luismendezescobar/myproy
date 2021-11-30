@@ -12,7 +12,7 @@ data "google_compute_instance" "instance_to_balancer" {
    name     = "node-1"
    zone     = "us-east1-b"
 }
-/*
+
 resource "google_compute_instance_group" "webservers_zone" {
   for_each = local.distinct_zones
 
@@ -20,7 +20,7 @@ resource "google_compute_instance_group" "webservers_zone" {
   description = "Connect Ship Instance group for zone: ${each.value}"
 
   //instances = [for instance in var.instances : instance.self_link if instance.zone == each.value]
-  instances = [data.google_compute_instance.instance_to_balancer]
+  instances = [data.google_compute_instance.instance_to_balancer.name]
 
   dynamic "named_port" {
     for_each = var.named_port
@@ -33,7 +33,7 @@ resource "google_compute_instance_group" "webservers_zone" {
   zone = each.value
 }
 
-*/
+
 
 resource "google_compute_health_check" "ilb_health_check" {
   name    = join("-", [var.name, "health"])
