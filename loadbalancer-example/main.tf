@@ -67,8 +67,7 @@ module "unmanaged_instance_group" {
 
   //for_each      = local.loadbalancer_map
   //name          = join("-", ["unmanaged-instance", lower(each.key)]) 
-  name          = join("-", ["unmanaged-instance", "serviceweb"]) 
-  lookup(named_port.value, "name", null)
+  name          = join("-", ["unmanaged-instance", "serviceweb"])   
   project_id    = var.project_id
   region        = var.region 
   network       = local.network_self_link
