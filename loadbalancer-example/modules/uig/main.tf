@@ -28,7 +28,7 @@ resource "google_compute_instance_group" "webservers_zone" {
 
 
 output "instances_out_module" {
- value=var.instances
+ value="hello"
 }
 /*
 output "testout" {
