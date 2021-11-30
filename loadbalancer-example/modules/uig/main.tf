@@ -1,9 +1,9 @@
 
 locals {
-  distinct_zones = {
+  /*distinct_zones = {
     for zone in distinct([for server in var.instances : server.zone]) : zone => zone
-  }
-  //distinct_zones = {zone="us-east1-b"}
+  }*/
+  distinct_zones = {zone="us-east1-b"}
   ports     = var.named_port[*].port
   all_ports = var.frontend_ports != [] ? concat(var.frontend_ports, local.ports) : local.ports
 }
@@ -11,7 +11,7 @@ locals {
 
 
 resource "google_compute_instance_group" "webservers_zone" {
-  //for_each = local.distinct_zones
+  for_each = local.distinct_zones
 
   name        = join("-", [var.name, each.value])
   description = "Connect Ship Instance group for zone: ${each.value}"
