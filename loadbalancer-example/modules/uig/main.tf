@@ -26,6 +26,13 @@ resource "google_compute_instance_group" "webservers_zone" {
   zone = each.value
 }
 
+
+output "instances_out" {
+ value=var.instances
+}
+
+
+
 resource "google_compute_health_check" "ilb_health_check" {
   name    = join("-", [var.name, "tcp-healthcheck"])
   project = var.project_id

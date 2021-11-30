@@ -71,17 +71,19 @@ module "unmanaged_instance_group" {
   region        = var.region 
   network       = local.network_self_link
   subnetwork    = local.subnetwork_self_link
-  instances     = [for vm in module.vm_instances_creation : vm if contains(each.value.vms, vm.name)]
-  var.for_output= [for vm in module.vm_instances_creation : vm if contains(each.value.vms, vm.name)]
+  instances     = [for vm in module.vm_instances_creation : vm if contains(each.value.vms, vm.name)]  
   named_port    = var.named_port
   health_check  = var.health_check
   frontend_ports= var.frontend_ports
   frontend_name = var.frontend_name
 }
 
-output "instances" {
-  value=var.for_output
+
+output "instances_out" {
+  value=module.unmanaged_instance_group.instances_out
 }
+
+
 
 /*
 module "create_internal_ip" {
