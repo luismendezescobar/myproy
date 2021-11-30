@@ -39,7 +39,7 @@ output "loadbalancer_map" {
 
 
 output "instances_to_build" {
-  value=local.instances_to_build
+  value=local.instances_to_build.value
 }
 
 /*
