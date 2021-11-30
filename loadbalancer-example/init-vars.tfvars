@@ -30,7 +30,6 @@ server_vm_info = [
 
 ]
 
-
 internal_ips={
   ip01={
     name="load-balancer"
@@ -40,4 +39,22 @@ internal_ips={
   }, 
 }
 
+named_port= [
+    {
+      name = "http"
+      port = "80"
+    }
+]
 
+health_check={
+    type                = "tcp"
+    port                = 80
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    check_interval_sec  = 5
+    timeout_sec         = 3
+    port_specification  = "USE_FIXED_PORT"
+    initial_delay_sec   = 600
+}
+frontend_ports =[]
+frontend_name = "forwarding-rule"

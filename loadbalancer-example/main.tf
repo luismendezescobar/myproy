@@ -6,7 +6,7 @@ terraform {
         }
     }
 }
-/*
+
 module "network" {
   source = "./modules/network"
   project_id    = var.project_id
@@ -15,7 +15,7 @@ module "network" {
   ip_cidr_range = var.ip_cidr_range
   region        = var.region  
 }
-*/
+
 locals {
   instances_to_build = { for server in var.server_vm_info : server.name => server }
 
@@ -25,6 +25,9 @@ locals {
     }
   }
 
+  network_self_link    = "projects/${var.project_id}/global/networks/${var.vpc_name}"
+  subnetwork_self_link = "projects/${var.project_id}/regions/${var.region}/subnetworks/${var.subnet_name}"
+
 }
 
 output "loadbalancers" {
@@ -33,7 +36,7 @@ output "loadbalancers" {
 output "loadbalancer_map" {
   value=local.loadbalancer_map
 }
-/*
+
 module "vm_instances_creation" {
   for_each                  = local.instances_to_build
 
@@ -63,18 +66,21 @@ module "unmanaged_instance_group" {
   source = "./modules/uig"  
 
   for_each      = local.loadbalancer_map
-  name          = lower(each.key) == "serviceweb" ? join("-", [local.instance_group_name, lower(each.key)]) : local.instance_group_name
+  name          = join("-", ["unmanaged_instance"group_name, lower(each.key)]) 
   project_id    = var.project_id
-  region        = var.region
+  region        = var.region 
   network       = local.network_self_link
   subnetwork    = local.subnetwork_self_link
-  instances     = [for vm in module.webserver_vm_instance : vm if contains(each.value.vms, vm.name)]
+  instances     = [for vm in module.vm_instances_creation : vm if contains(each.value.vms, vm.name)]
   named_port    = var.named_port
   health_check  = var.health_check
+  frontend_ports= var.frontend_ports
   frontend_name = var.frontend_name
 }
-*/
 
+output "instances" {
+  value=[for vm in module.vm_instances_creation : vm if contains(each.value.vms, vm.name)]
+}
 
 /*
 module "create_internal_ip" {

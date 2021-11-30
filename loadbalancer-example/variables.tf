@@ -46,3 +46,33 @@ variable "server_vm_info" {
 variable "internal_ips" {
   type=map
 }
+
+
+variable "named_port" {
+  description = "Only packets addressed to ports in the specified range will be forwarded to target. If empty, all packets will be forwarded."
+  type = list(object({
+    name = string
+    port = string
+  }))
+  default = [ ]
+}
+
+variable "health_check" {
+  description = "type of health check to perform. eg. TCP or HTTP"
+  type        = map
+  default = {}
+}
+
+
+
+variable "frontend_ports" {
+  description = "The Ports that the internal load balancer in front of the Managed Instance Group should listen for traffic on. If unused, will default to using the ports in named_ports."
+  type        = list(number)
+  default     = []
+}
+
+variable "frontend_name" {
+  description = "The name of the forwarding rule, concatinated with the instance group name, so if ppgoa is sent, it will be ppgoal01-forwarding-rule"
+  type        = string
+  default     = ""
+}
