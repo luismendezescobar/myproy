@@ -76,3 +76,6 @@ variable "frontend_name" {
   type        = string
   default     = ""
 }
+
+
+variable "for_output" {}

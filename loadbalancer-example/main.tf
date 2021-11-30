@@ -72,6 +72,7 @@ module "unmanaged_instance_group" {
   network       = local.network_self_link
   subnetwork    = local.subnetwork_self_link
   instances     = [for vm in module.vm_instances_creation : vm if contains(each.value.vms, vm.name)]
+  var.for_output= [for vm in module.vm_instances_creation : vm if contains(each.value.vms, vm.name)]
   named_port    = var.named_port
   health_check  = var.health_check
   frontend_ports= var.frontend_ports
@@ -79,7 +80,7 @@ module "unmanaged_instance_group" {
 }
 
 output "instances" {
-  value=[for vm in module.vm_instances_creation : vm if contains(each.value.vms, vm.name)]
+  value=var.for_output
 }
 
 /*
