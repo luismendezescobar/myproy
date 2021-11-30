@@ -66,7 +66,7 @@ module "unmanaged_instance_group" {
   source = "./modules/uig"  
 
   for_each      = local.loadbalancer_map
-  name          = join("-", ["unmanaged_instance", lower(each.key)]) 
+  name          = join("-", ["unmanaged-instance", lower(each.key)]) 
   project_id    = var.project_id
   region        = var.region 
   network       = local.network_self_link

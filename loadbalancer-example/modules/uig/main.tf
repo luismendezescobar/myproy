@@ -34,7 +34,7 @@ output "testout" {
 */
 
 resource "google_compute_health_check" "ilb_health_check" {
-  name    = join("-", [var.name, "tcp-healthcheck"])
+  name    = join("-", [var.name, "health"])
   project = var.project_id
 
   check_interval_sec  = lookup(var.health_check, "check_interval_sec", null)
