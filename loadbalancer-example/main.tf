@@ -91,7 +91,7 @@ data "google_compute_instance" "instance_to_balancer" {
 }
   
 output "instances_out" {
-  value=data.google_compute_instance.instance_to_balancer.self_link
+  value=data.google_compute_instance.instance_to_balancer.id
 }
 
 /*
