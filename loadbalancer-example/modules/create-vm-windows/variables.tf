@@ -24,3 +24,6 @@ variable "network_ip" {type=string}
 variable "metadata" {type=map(string)}
  
 
+variable "region" {
+  type=string
+}

@@ -84,5 +84,5 @@ resource "google_compute_address" "static_internal_address" {
   address_type = "INTERNAL"
   address      = var.network_ip
   project      = var.project_id
-  region       = substr(var.zone, 0, -3)
+  region       = var.region
 }

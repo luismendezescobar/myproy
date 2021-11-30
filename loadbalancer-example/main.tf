@@ -57,11 +57,12 @@ module "vm_instances_creation" {
   disk_size_gb              = each.value.boot_disk_size_gb
   boot_disk_type            = each.value.boot_disk_type
   additional_disks          = each.value.additional_disks
+  region                    = var.region
   
   depends_on = [module.network]
 }
 
-
+/*
 module "unmanaged_instance_group" {
   source = "./modules/uig"  
 
@@ -80,7 +81,7 @@ module "unmanaged_instance_group" {
 
   depends_on = [module.vm_instances_creation]
 }
-
+*/
 
 output "instances_out" {
   value=[for vm in module.vm_instances_creation : vm ]  
