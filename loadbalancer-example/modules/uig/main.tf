@@ -17,7 +17,7 @@ resource "google_compute_instance_group" "webservers_zone" {
   description = "Connect Ship Instance group for zone: ${each.value}"
 
   //instances = [for instance in var.instances : instance.self_link if instance.zone == each.value]
-  instances = [google_compute_instance.node-1.id]
+  instances = [data.google_compute_instance.node-1.id]
 
   dynamic "named_port" {
     for_each = var.named_port
