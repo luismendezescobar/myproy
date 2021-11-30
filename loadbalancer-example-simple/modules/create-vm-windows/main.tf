@@ -86,3 +86,8 @@ resource "google_compute_address" "static_internal_address" {
   project      = var.project_id
   region       = substr(var.zone,0, length(var.zone)-2)
 }
+
+output "myserver" {
+  value=google_compute_instance.gce_machine.self_link
+
+}
