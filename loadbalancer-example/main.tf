@@ -77,7 +77,8 @@ module "unmanaged_instance_group" {
   health_check  = var.health_check
   frontend_ports= var.frontend_ports
   frontend_name = var.frontend_name
-  depends_on[module.vm_instances_creation]
+
+  depends_on = [module.vm_instances_creation]
 }
 
 
