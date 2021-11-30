@@ -66,6 +66,9 @@ module "vm_instances_creation" {
 data "google_compute_instance" "instance_to_balancer" {
    name     = "node-1"
    zone     = "us-east1-b"
+   depends_on = [
+     module.vm_instances_creation
+   ]
 }
   
 
