@@ -27,9 +27,6 @@ resource "google_compute_instance_group" "webservers_zone" {
 }
 
 
-output "instances_out_module" {
- value="hello"
-}
 /*
 output "testout" {
  value={for x in resource.google_compute_address.static_internal_address:x.name=>x.address}
@@ -94,4 +91,8 @@ resource "google_compute_forwarding_rule" "rule_all_ports" {
   network               = var.network
   subnetwork            = var.subnetwork
   allow_global_access   = true
+}
+
+output "testout" {
+ value="hello"
 }

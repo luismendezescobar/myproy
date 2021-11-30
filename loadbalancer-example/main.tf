@@ -80,7 +80,7 @@ module "unmanaged_instance_group" {
 
 
 output "instances_out" {
-  value=module.unmanaged_instance_group.instances_out_module
+  value=module.unmanaged_instance_group.testout
 }
 
 
