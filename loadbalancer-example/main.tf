@@ -80,9 +80,11 @@ module "unmanaged_instance_group" {
 
 
 output "instances_out" {
-  value="module.unmanaged_instance_group.testout"
+  value=[for vm in module.vm_instances_creation : vm ]  
 }
 
+
+  
 
 
 /*

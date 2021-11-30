@@ -7,6 +7,8 @@ locals {
   all_ports = var.frontend_ports != [] ? concat(var.frontend_ports, local.ports) : local.ports
 }
 
+
+
 resource "google_compute_instance_group" "webservers_zone" {
   for_each = local.distinct_zones
 
