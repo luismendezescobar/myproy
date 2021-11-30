@@ -84,7 +84,7 @@ module "unmanaged_instance_group" {
   subnetwork    = local.subnetwork_self_link
   //instances     = [for vm in module.vm_instances_creation : vm if contains(each.value.vms, vm.name)]  
   //instances     = [data.google_compute_instance.instance_to_balancer.self_link]  
-  instances     = [module.vm_instances_creation.self_link]  
+  instances     = [for element in module.vm_instances_creation:element]  
   named_port    = var.named_port
   health_check  = var.health_check
   frontend_ports= var.frontend_ports
