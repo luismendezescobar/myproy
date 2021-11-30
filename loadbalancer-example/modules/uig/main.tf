@@ -11,7 +11,7 @@ locals {
 
 
 resource "google_compute_instance_group" "webservers_zone" {
-  for_each = local.distinct_zones
+  //for_each = local.distinct_zones
 
   name        = join("-", [var.name, each.value])
   description = "Connect Ship Instance group for zone: ${each.value}"
@@ -30,11 +30,6 @@ resource "google_compute_instance_group" "webservers_zone" {
 }
 
 
-/*
-output "testout" {
- value={for x in resource.google_compute_address.static_internal_address:x.name=>x.address}
-}
-*/
 
 resource "google_compute_health_check" "ilb_health_check" {
   name    = join("-", [var.name, "health"])
