@@ -9,11 +9,9 @@ locals {
 }
 
 data "google_compute_instance" "instance_to_balancer" {
-   name         = "node-1"
+   name     = "node-1"
+   zone     = "us-east1-b"
 }
-
-
-
 
 resource "google_compute_instance_group" "webservers_zone" {
   for_each = local.distinct_zones
