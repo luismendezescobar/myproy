@@ -1,9 +1,9 @@
 
 locals {
-  /*distinct_zones = {
+  distinct_zones = {
     for zone in distinct([for server in var.instances : server.zone]) : zone => zone
-  }*/
-  distinct_zones = {zone="us-east1-b"}
+  }
+  //distinct_zones = {zone="us-east1-b"}
   ports     = var.named_port[*].port
   all_ports = var.frontend_ports != [] ? concat(var.frontend_ports, local.ports) : local.ports
 }
