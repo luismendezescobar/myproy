@@ -78,4 +78,3 @@ variable "frontend_name" {
 }
 
 
-variable "for_output" {}
