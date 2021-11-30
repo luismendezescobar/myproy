@@ -62,6 +62,13 @@ module "vm_instances_creation" {
   depends_on = [module.network]
 }
 
+
+data "google_compute_instance" "instance_to_balancer" {
+   name     = "node-1"
+   zone     = "us-east1-b"
+}
+  
+
 module "unmanaged_instance_group" {
   source = "./modules/uig"  
 
@@ -73,7 +80,7 @@ module "unmanaged_instance_group" {
   network       = local.network_self_link
   subnetwork    = local.subnetwork_self_link
   //instances     = [for vm in module.vm_instances_creation : vm if contains(each.value.vms, vm.name)]  
-  instances     = [for vm in module.vm_instances_creation : vm ]  
+  instances     = [data.google_compute_instance.instance_to_balancer.self_link]  
   named_port    = var.named_port
   health_check  = var.health_check
   frontend_ports= var.frontend_ports
@@ -85,13 +92,9 @@ module "unmanaged_instance_group" {
 
 
 
-data "google_compute_instance" "instance_to_balancer" {
-   name     = "node-1"
-   zone     = "us-east1-b"
-}
-  
+
 output "instances_out" {
-  value=data.google_compute_instance.instance_to_balancer.id
+  value=data.google_compute_instance.instance_to_balancer.self_link
 }
 
 /*
