@@ -27,11 +27,14 @@ resource "google_compute_instance_group" "webservers_zone" {
 }
 
 
-output "instances_out" {
+output "instances_out_module" {
  value=var.instances
 }
-
-
+/*
+output "testout" {
+ value={for x in resource.google_compute_address.static_internal_address:x.name=>x.address}
+}
+*/
 
 resource "google_compute_health_check" "ilb_health_check" {
   name    = join("-", [var.name, "tcp-healthcheck"])
