@@ -4,7 +4,7 @@ locals {
     for i in var.additional_disks : i.name => i
   }
 
-  subnetwork_self_link  = format("projects/%s/regions/%s/subnetworks/%s", var.project_id,substr(var.zone, 0, -3),var.subnetwork)
+  subnetwork_self_link  = format("projects/%s/regions/%s/subnetworks/%s", var.project_id,substr(var.zone,0, length(var.zone)-2),var.subnetwork)
 }
 
 
@@ -84,5 +84,5 @@ resource "google_compute_address" "static_internal_address" {
   address_type = "INTERNAL"
   address      = var.network_ip
   project      = var.project_id
-  region       = var.region
+  region       = substr(var.zone,0, length(var.zone)-2)
 }
