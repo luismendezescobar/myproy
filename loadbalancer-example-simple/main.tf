@@ -42,27 +42,27 @@ output "instances_to_build" {
   value=local.instances_to_build.node-1
 }
 
-/*
+
 module "vm_instances_creation" {
 
 
   source                    = "./modules/create-vm-windows"  
   project_id                = var.project_id  
-  zone                      = lookup(local.instances_to_build, "zone", null)
-  instance_name             = each.value.name
-  network_ip                = each.value.network_ip
-  instance_description      = each.value.description
-  metadata                  = each.value.metadata
-  instance_tags             = each.value.instance_tags
-  instance_machine_type     = each.value.instance_type
-  source_image              = each.value.source_image
+  zone                      = lookup(local.instances_to_build.node-1, "zone", null)
+  instance_name             = lookup(local.instances_to_build.node-1, "name", null)
+  network_ip                = lookup(local.instances_to_build.node-1, "network_ip", null)
+  instance_description      = lookup(local.instances_to_build.node-1, "description", null)
+  metadata                  = lookup(local.instances_to_build.node-1, "metadata", null)
+  instance_tags             = lookup(local.instances_to_build.node-1, "instance_tags", null)
+  instance_machine_type     = lookup(local.instances_to_build.node-1, "instance_type", null)
+  source_image              = lookup(local.instances_to_build.node-1, "source_image", null)
   subnetwork_project        = var.project_id
   subnetwork                = var.subnet_name
-  init_script               = each.value.init_script
-  auto_delete               = each.value.auto_delete
-  disk_size_gb              = each.value.boot_disk_size_gb
-  boot_disk_type            = each.value.boot_disk_type
-  additional_disks          = each.value.additional_disks
+  init_script               = lookup(local.instances_to_build.node-1, "init_script", null)
+  auto_delete               = lookup(local.instances_to_build.node-1, "auto_delete", null)
+  disk_size_gb              = lookup(local.instances_to_build.node-1, "boot_disk_size_gb", null)
+  boot_disk_type            = lookup(local.instances_to_build.node-1, "boot_disk_type", null)
+  additional_disks          = lookup(local.instances_to_build.node-1, "additional_disks", null)
   
   
   depends_on = [module.network]
@@ -106,23 +106,5 @@ module "unmanaged_instance_group" {
 output "instances_out" {
   value=data.google_compute_instance.instance_to_balancer.self_link
 }
-*/
 
 
-/*
-module "create_internal_ip" {
-  source        = "./modules/create-ip"  
-  
-  internal_ips  = var.internal_ips
-  project_id    = var.project_id
-  vpc_name      = var.vpc_name
-  subnet_name   = var.subnet_name
-  region        = var.region  
-  
-  depends_on = [module.vm_instances_creation]
-}
-
-output "internal_ip" {
-  value=module.create_internal_ip.testout
-}
-*/
