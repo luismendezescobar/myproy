@@ -7,6 +7,15 @@ locals {
   subnetwork_self_link  = format("projects/%s/regions/%s/subnetworks/%s", var.project_id,substr(var.zone,0, length(var.zone)-2),var.subnetwork)
 }
 
+data "template_file" "default" {
+  template = file("./modules/create-vm-windows/specialize-node.ps1")
+  vars = {
+    foo = "bar"
+  }
+}
+
+
+
 
 /******************************************
  Creating additional disks for VM
@@ -33,7 +42,7 @@ resource "google_compute_instance" "gce_machine" {
   metadata     = var.metadata
   description  = var.instance_description
 
-  metadata_startup_script = var.init_script == "" ? "" : file(var.init_script) 
+  metadata_startup_script = data.template_file.default.rendered
 
   allow_stopping_for_update = false
 
