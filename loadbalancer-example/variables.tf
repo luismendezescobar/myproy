@@ -43,11 +43,6 @@ variable "server_vm_info" {
 }
 
 
-variable "internal_ips" {
-  type=map
-}
-
-
 variable "named_port" {
   description = "Only packets addressed to ports in the specified range will be forwarded to target. If empty, all packets will be forwarded."
   type = list(object({
