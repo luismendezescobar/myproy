@@ -76,7 +76,7 @@ resource "google_compute_forwarding_rule" "rule" {
   backend_service       = google_compute_region_backend_service.backend.id
   network               = var.network
   subnetwork            = var.subnetwork
-  allow_global_access   = true
+  allow_global_access   = false
 }
 /*
 resource "google_compute_forwarding_rule" "rule_all_ports" {
