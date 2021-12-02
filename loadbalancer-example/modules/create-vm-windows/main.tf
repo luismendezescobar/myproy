@@ -71,7 +71,7 @@ resource "google_compute_instance" "gce_machine" {
     scopes = ["cloud-platform"]
   }
 
-  depends_on = [google_compute_address.static_internal_address]
+//  depends_on = [google_compute_address.static_internal_address]
 
 }
 
