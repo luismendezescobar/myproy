@@ -43,7 +43,7 @@ health_check={
     healthy_threshold   = 2
     unhealthy_threshold = 2
     check_interval_sec  = 5
-    timeout_sec         = 3
+    timeout_sec         = 5
     port_specification  = "USE_FIXED_PORT"
     initial_delay_sec   = 600
 }
