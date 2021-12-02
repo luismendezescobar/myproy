@@ -28,6 +28,10 @@ locals {
   network_self_link    = "projects/${var.project_id}/global/networks/${var.vpc_name}"
   subnetwork_self_link = "projects/${var.project_id}/regions/${var.region}/subnetworks/${var.subnet_name}"
 
+
+  actual_instances_for_lb = [for server in module.vm_instances_creation :server]
+
+
 }
 
 output "loadbalancers" {
@@ -36,6 +40,11 @@ output "loadbalancers" {
 output "loadbalancer_map" {
   value=local.loadbalancer_map
 }
+
+output "instances_for_lb" {
+  value=local.actual_instances_for_lb
+}
+
 
 module "vm_instances_creation" {
   for_each                  = local.instances_to_build
@@ -62,22 +71,14 @@ module "vm_instances_creation" {
   depends_on = [module.network]
 }
 
-
-data "google_compute_instance" "instance_to_balancer" {
-   name     = "node-1"
-   zone     = "us-east1-b"
-   depends_on = [
-     module.vm_instances_creation
-   ]
-}
   
-
+/*
 module "unmanaged_instance_group" {
   source = "./modules/uig"  
 
-  //for_each      = local.loadbalancer_map
-  //name          = join("-", ["unmanaged-instance", lower(each.key)]) 
-  name          = join("-", ["unmanaged-instance", "serviceweb"])   
+  for_each      = local.loadbalancer_map
+  name          = join("-", ["unmanaged-instance", lower(each.key)]) 
+  //name          = join("-", ["unmanaged-instance", "serviceweb"])   
   project_id    = var.project_id
   region        = var.region 
   network       = local.network_self_link
@@ -93,28 +94,6 @@ module "unmanaged_instance_group" {
   depends_on = [module.vm_instances_creation]
 }
 
-
-
-
-
-output "instances_out" {
-  value=data.google_compute_instance.instance_to_balancer.self_link
-}
-
-/*
-module "create_internal_ip" {
-  source        = "./modules/create-ip"  
-  
-  internal_ips  = var.internal_ips
-  project_id    = var.project_id
-  vpc_name      = var.vpc_name
-  subnet_name   = var.subnet_name
-  region        = var.region  
-  
-  depends_on = [module.vm_instances_creation]
-}
-
-output "internal_ip" {
-  value=module.create_internal_ip.testout
-}
 */
+
+
