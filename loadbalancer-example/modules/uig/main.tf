@@ -89,7 +89,3 @@ resource "google_compute_forwarding_rule" "rule_all_ports" {
   subnetwork            = var.subnetwork
   allow_global_access   = true
 }
-
-output "testout" {
- value="hello"
-}

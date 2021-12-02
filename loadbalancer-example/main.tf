@@ -80,7 +80,7 @@ module "vm_instances_creation" {
 }
 
   
-/*
+
 module "unmanaged_instance_group" {
   source = "./modules/uig"  
 
@@ -98,6 +98,6 @@ module "unmanaged_instance_group" {
 
   depends_on = [module.vm_instances_creation]
 }
-*/
+
 
 
