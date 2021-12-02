@@ -39,6 +39,7 @@ resource "google_compute_health_check" "ilb_health_check" {
   healthy_threshold   = lookup(var.health_check, "healthy_threshold", null)
   timeout_sec         = lookup(var.health_check, "timeout_sec", null)
   unhealthy_threshold = lookup(var.health_check, "unhealthy_threshold", null)
+  type                = lookup(var.health_check, "type", null)
 
   tcp_health_check {
     request            = lookup(var.health_check, "request", null)
