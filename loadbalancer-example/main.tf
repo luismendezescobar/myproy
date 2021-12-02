@@ -31,6 +31,10 @@ locals {
 
   actual_instances_for_lb = [for server in module.vm_instances_creation :server]
 
+  distinct_zones = {
+    for zone in distinct([for server in local.actual_instances_for_lb : server.zone]) : zone => zone
+  }
+
 
 }
 
@@ -43,6 +47,10 @@ output "loadbalancer_map" {
 
 output "instances_for_lb" {
   value=local.actual_instances_for_lb
+}
+
+output "distinct_zones" {
+  value=local.distinct_zones
 }
 
 
@@ -77,15 +85,12 @@ module "unmanaged_instance_group" {
   source = "./modules/uig"  
 
   for_each      = local.loadbalancer_map
-  name          = join("-", ["unmanaged-instance", lower(each.key)]) 
-  //name          = join("-", ["unmanaged-instance", "serviceweb"])   
+  name          = join("-", ["unmanaged-instance", lower(each.key)])   
   project_id    = var.project_id
   region        = var.region 
   network       = local.network_self_link
   subnetwork    = local.subnetwork_self_link
-  //instances     = [for vm in module.vm_instances_creation : vm if contains(each.value.vms, vm.name)]  
-  //instances     = [data.google_compute_instance.instance_to_balancer.self_link]  
-  instances     = [for element in module.vm_instances_creation:element]  
+  instances     = [for vm in module.vm_instances_creation : vm if contains(each.value.vms, vm.name)]    
   named_port    = var.named_port
   health_check  = var.health_check
   frontend_ports= var.frontend_ports
@@ -93,7 +98,6 @@ module "unmanaged_instance_group" {
 
   depends_on = [module.vm_instances_creation]
 }
-
 */
 
 

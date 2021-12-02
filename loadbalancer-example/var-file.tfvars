@@ -16,7 +16,7 @@ server_vm_info = [
     boot_disk_type    = "pd-ssd"
     auto_delete       = true
     description       = "sql node-1"
-    init_script       = "./modules/create-vm-windows/specialize-node.ps1"  
+    init_script       = "./modules/create-vm-windows/scripts/specialize-node.ps1"  
     loadbalancer       = "serviceweb"
 
 
@@ -37,7 +37,7 @@ server_vm_info = [
     boot_disk_type    = "pd-ssd"
     auto_delete       = true
     description       = "sql node-1"
-    init_script       = "./modules/create-vm-windows/specialize-node.ps1"  
+    init_script       = "./modules/create-vm-windows/scripts/specialize-node.ps1"  
     loadbalancer       = ""
 
 
