@@ -58,8 +58,8 @@ resource "google_compute_instance" "gce_machine" {
   network_interface {
     subnetwork_project = var.subnetwork_project
     subnetwork         = var.subnetwork    
-    #network_ip         = var.network_ip
-    network_ip         = google_compute_address.static_internal_address.id
+    //network_ip         = var.network_ip
+    //network_ip         = google_compute_address.static_internal_address.id
     access_config {
       // Ephemeral public IP
     }
@@ -76,7 +76,7 @@ resource "google_compute_instance" "gce_machine" {
 }
 
 
-
+/*
 resource "google_compute_address" "static_internal_address" {
   #count        = var.network_ip == "" ? 0 : 1
   name         = join("-", ["static-int-ip", lower(var.instance_name)])
@@ -86,7 +86,7 @@ resource "google_compute_address" "static_internal_address" {
   project      = var.project_id
   region       = substr(var.zone,0, length(var.zone)-2)
 }
-
+*/
 
 /*
 output "testout" {
