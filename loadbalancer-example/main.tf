@@ -19,7 +19,8 @@ module "network" {
 locals {
   instances_to_build = { for server in var.server_vm_info : server.name => server }
 
-  loadbalancers = distinct([for vm in var.server_vm_info : lookup(vm, "loadbalancer", "") if vm.loadbalancer!="" ])
+  //loadbalancers = distinct([for vm in var.server_vm_info : lookup(vm, "loadbalancer", "") if vm.loadbalancer!="" ])
+  loadbalancers = distinct([for vm in var.server_vm_info : vm.loadbalancer if vm.loadbalancer!="" ])
   loadbalancer_map = { for loadbalancer in local.loadbalancers : loadbalancer => {
     vms = [for item in var.server_vm_info : item.name if item.loadbalancer == loadbalancer]
     }
