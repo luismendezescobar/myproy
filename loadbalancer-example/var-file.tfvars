@@ -1,4 +1,4 @@
-project_id="playground-s-11-bc187d10"  #update the project here
+project_id="playground-s-11-cf64a209"  #update the project here
 vpc_name="webappnet"
 region="us-east1"
 subnet_name="test-subnetwork"
@@ -10,7 +10,7 @@ server_vm_info = [
     name              = "node-1"
     network_ip        = ""
     zone              = "us-east1-b"        
-    instance_type     = "e2-small"
+    instance_type     = "e2-medium"
     source_image      = "windows-cloud/windows-2019"
     boot_disk_size_gb = 50
     boot_disk_type    = "pd-ssd"
