@@ -66,7 +66,7 @@ resource "google_compute_region_backend_service" "backend" {
   network               = var.network
   region                = var.region
 }
-/*
+
 resource "google_compute_forwarding_rule" "rule" {
   count                 = length(local.all_ports) == 0 ? 0 : 1
   name                  = join("-", [var.name, var.frontend_name])
@@ -78,7 +78,7 @@ resource "google_compute_forwarding_rule" "rule" {
   subnetwork            = var.subnetwork
   allow_global_access   = true
 }
-*/
+/*
 resource "google_compute_forwarding_rule" "rule_all_ports" {
   count                 = length(local.all_ports) == 0 ? 1 : 0
   name                  = join("-", [var.name, var.frontend_name])
@@ -90,3 +90,4 @@ resource "google_compute_forwarding_rule" "rule_all_ports" {
   subnetwork            = var.subnetwork
   allow_global_access   = false
 }
+*/
