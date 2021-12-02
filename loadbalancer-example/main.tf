@@ -28,16 +28,16 @@ locals {
   network_self_link    = "projects/${var.project_id}/global/networks/${var.vpc_name}"
   subnetwork_self_link = "projects/${var.project_id}/regions/${var.region}/subnetworks/${var.subnet_name}"
 
-
+/*
   actual_instances_for_lb = [for server in module.vm_instances_creation :server]
 
   distinct_zones = {
     for zone in distinct([for server in local.actual_instances_for_lb : server.zone]) : zone => zone
   }
-
+*/
 
 }
-
+/*
 output "loadbalancers" {
   value=local.loadbalancers
 }
@@ -52,7 +52,7 @@ output "instances_for_lb" {
 output "distinct_zones" {
   value=local.distinct_zones
 }
-
+*/
 
 module "vm_instances_creation" {
   for_each                  = local.instances_to_build
