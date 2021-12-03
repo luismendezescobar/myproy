@@ -7,7 +7,7 @@ ip_cidr_range="10.1.0.0/24"
 
 server_vm_info = [  
   {
-    name              = "node-1"
+    name              = "node-2"
     network_ip        = ""
     zone              = "us-east1-b"        
     instance_type     = "custom-4-4096"
@@ -20,11 +20,8 @@ server_vm_info = [
     loadbalancer       = "serviceweb"
 
 
-    metadata = {
-      domain      = "example-gcp.com"
-      enable-wsfc = true
-    }
-    instance_tags     = ["fw-gcp-hc-all"]
+    metadata = {}
+    instance_tags     = [""]
     additional_disks = []
   },
   
