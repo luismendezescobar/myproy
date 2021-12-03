@@ -21,7 +21,7 @@ server_vm_info = [
 
 
     metadata = {}
-    instance_tags     = [""]
+    instance_tags     = []
     additional_disks = []
   },
   
