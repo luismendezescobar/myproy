@@ -1,4 +1,4 @@
-project_id="playground-s-11-513b9a74"  #update the project here
+project_id="playground-s-11-41463d5b"  #update the project here
 vpc_name="webappnet"
 region="us-east1"
 subnet_name="test-subnetwork"
@@ -6,6 +6,24 @@ ip_cidr_range="10.1.0.0/24"
 
 
 server_vm_info = [  
+  {
+    name              = "node-1"
+    network_ip        = ""
+    zone              = "us-east1-b"        
+    instance_type     = "custom-4-4096"
+    source_image      = "windows-cloud/windows-2019"
+    boot_disk_size_gb = 50
+    boot_disk_type    = "pd-ssd"
+    auto_delete       = true
+    description       = "sql node-1"
+    init_script       = "./modules/create-vm-windows/scripts/specialize-node.ps1"  
+    loadbalancer       = "serviceweb"
+
+
+    metadata = {}
+    instance_tags     = []
+    additional_disks = []
+  },
   {
     name              = "node-2"
     network_ip        = ""
