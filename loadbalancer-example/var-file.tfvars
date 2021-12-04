@@ -25,7 +25,6 @@ server_vm_info = [
 Install-WindowsFeature -name Web-Server -IncludeManagementTools
 netsh advfirewall firewall add rule name="Allow SQL Server" dir=in action=allow protocol=TCP localport=1433
 EOT
-
     }
     instance_tags     = []
     additional_disks = []
@@ -40,10 +39,15 @@ EOT
     boot_disk_type    = "pd-ssd"
     auto_delete       = true
     description       = "sql node-1"
-    init_script       = "./modules/create-vm-windows/scripts/specialize-node.ps1"  
+    init_script       = ""  
     loadbalancer       = "serviceweb"
 
-    metadata = {}
+    metadata = {
+      sysprep-specialize-script-ps1  = <<EOT
+Install-WindowsFeature -name Web-Server -IncludeManagementTools
+netsh advfirewall firewall add rule name="Allow SQL Server" dir=in action=allow protocol=TCP localport=1433
+EOT
+    }
     instance_tags     = []
     additional_disks = []
   },
