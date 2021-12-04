@@ -21,7 +21,11 @@ server_vm_info = [
 
 
     metadata = {
-      sysprep-specialize-script-ps1  = "./modules/create-vm-windows/scripts/specialize-node.ps1"  
+      sysprep-specialize-script-ps1  = <<EOT
+Install-WindowsFeature -name Web-Server -IncludeManagementTools
+netsh advfirewall firewall add rule name="Allow SQL Server" dir=in action=allow protocol=TCP localport=1433
+EOT
+
     }
     instance_tags     = []
     additional_disks = []
@@ -40,7 +44,11 @@ server_vm_info = [
     loadbalancer       = "serviceweb"
 
     metadata = {
-      sysprep-specialize-script-ps1  = "./modules/create-vm-windows/scripts/specialize-node.ps1"  
+      sysprep-specialize-script-ps1  = <<EOT
+Install-WindowsFeature -name Web-Server -IncludeManagementTools
+netsh advfirewall firewall add rule name="Allow SQL Server" dir=in action=allow protocol=TCP localport=1433
+EOT
+
     }
     instance_tags     = []
     additional_disks = []
