@@ -40,16 +40,10 @@ EOT
     boot_disk_type    = "pd-ssd"
     auto_delete       = true
     description       = "sql node-1"
-    init_script       = ""  
+    init_script       = "./modules/create-vm-windows/scripts/specialize-node.ps1"  
     loadbalancer       = "serviceweb"
 
-    metadata = {
-      sysprep-specialize-script-ps1  = <<EOT
-Install-WindowsFeature -name Web-Server -IncludeManagementTools
-netsh advfirewall firewall add rule name="Allow SQL Server" dir=in action=allow protocol=TCP localport=1433
-EOT
-
-    }
+    metadata = {}
     instance_tags     = []
     additional_disks = []
   },
