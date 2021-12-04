@@ -16,11 +16,13 @@ server_vm_info = [
     boot_disk_type    = "pd-ssd"
     auto_delete       = true
     description       = "sql node-1"
-    init_script       = "./modules/create-vm-windows/scripts/specialize-node.ps1"  
+    init_script       = ""  
     loadbalancer       = "serviceweb"
 
 
-    metadata = {}
+    metadata = {
+      sysprep-specialize-script-ps1  = "./modules/create-vm-windows/scripts/specialize-node.ps1"  
+    }
     instance_tags     = []
     additional_disks = []
   },
@@ -34,11 +36,12 @@ server_vm_info = [
     boot_disk_type    = "pd-ssd"
     auto_delete       = true
     description       = "sql node-1"
-    init_script       = "./modules/create-vm-windows/scripts/specialize-node.ps1"  
+    init_script       = ""  
     loadbalancer       = "serviceweb"
 
-
-    metadata = {}
+    metadata = {
+      sysprep-specialize-script-ps1  = "./modules/create-vm-windows/scripts/specialize-node.ps1"  
+    }
     instance_tags     = []
     additional_disks = []
   },
