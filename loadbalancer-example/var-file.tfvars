@@ -1,4 +1,4 @@
-project_id="playground-s-11-594b1aad"  #update the project here
+project_id="playground-s-11-f8b00730"  #update the project here
 vpc_name="webappnet"
 region="us-east1"
 subnet_name="test-subnetwork"
@@ -60,7 +60,7 @@ named_port= [
       port = "80"
     }
 ]
-
+/*
 health_check={
     type                = "tcp"
     port                = 80
@@ -71,5 +71,19 @@ health_check={
     port_specification  = "USE_FIXED_PORT"
     initial_delay_sec   = 600
 }
+*/
+
+health_check={
+  type                = "http"
+  description         = "http load balancer"
+  timeout_sec         = 5
+  check_interval_sec  = 5
+  healthy_threshold   = 2
+  unhealthy_threshold = 2
+  port_name           = "health-check-port"
+  port_specification  = "USED_NAMED_PORT"
+  request_path        = "/"  
+}
+
 frontend_ports =[]
 frontend_name = "forwarding-rule"

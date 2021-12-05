@@ -29,30 +29,48 @@ resource "google_compute_instance_group" "webservers_zone" {
 }
 
 
-
-resource "google_compute_health_check" "ilb_health_check" {
+/*
+resource "google_compute_health_check" "tcp_health_check" {
   name    = join("-", [var.name, "health"])
   project = var.project_id
 
+  timeout_sec         = lookup(var.health_check, "timeout_sec", null)
   check_interval_sec  = lookup(var.health_check, "check_interval_sec", null)
   description         = lookup(var.health_check, "description", null)
-  healthy_threshold   = lookup(var.health_check, "healthy_threshold", null)
-  timeout_sec         = lookup(var.health_check, "timeout_sec", null)
+  healthy_threshold   = lookup(var.health_check, "healthy_threshold", null)  
   unhealthy_threshold = lookup(var.health_check, "unhealthy_threshold", null)
   
 
   tcp_health_check {
+    port_name          = lookup(var.health_check, "port_name", null)
     request            = lookup(var.health_check, "request", null)
     response           = lookup(var.health_check, "response", null)
-    port               = lookup(var.health_check, "port", null)
-    port_name          = lookup(var.health_check, "port_name", null)
+    port               = lookup(var.health_check, "port", null)    
     proxy_header       = lookup(var.health_check, "proxy_header", null)
     port_specification = lookup(var.health_check, "port_specification", null)
   }
 }
+*/
+resource "google_compute_health_check" "http_health_check" {
+  name    = join("-", [var.name, "health"])
+  project = var.project_id
+
+  description         = lookup(var.health_check, "description", null)
+  timeout_sec         = lookup(var.health_check, "timeout_sec", null)
+  check_interval_sec  = lookup(var.health_check, "check_interval_sec", null)  
+  healthy_threshold   = lookup(var.health_check, "healthy_threshold", null)  
+  unhealthy_threshold = lookup(var.health_check, "unhealthy_threshold", null)
+  
+
+  http_health_check {
+    port_name          = lookup(var.health_check, "port_name", null)
+    port_specification = lookup(var.health_check, "request", null)    
+    request_path       = lookup(var.health_check, "request_path", null)
+  }
+}
 
 resource "google_compute_region_backend_service" "backend" {
-  health_checks = [google_compute_health_check.ilb_health_check.self_link]
+  health_checks = [google_compute_health_check.http_health_check.self_link]
   name          = join("-", [var.name, "backend-service"])
 
   dynamic "backend" {
