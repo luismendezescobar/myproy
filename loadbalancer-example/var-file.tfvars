@@ -10,7 +10,7 @@ server_vm_info = [
     name              = "node-1"
     network_ip        = ""
     zone              = "us-east1-b"        
-    instance_type     = "custom-4-4096"
+    instance_type     = "custom-3-4096"
     source_image      = "windows-cloud/windows-2019"
     boot_disk_size_gb = 50
     boot_disk_type    = "pd-ssd"
@@ -33,7 +33,7 @@ EOT
     name              = "node-2"
     network_ip        = ""
     zone              = "us-east1-b"        
-    instance_type     = "custom-4-4096"
+    instance_type     = "custom-3-4096"
     source_image      = "windows-cloud/windows-2019"
     boot_disk_size_gb = 50
     boot_disk_type    = "pd-ssd"
@@ -48,6 +48,23 @@ Install-WindowsFeature -name Web-Server -IncludeManagementTools
 netsh advfirewall firewall add rule name="Allow SQL Server" dir=in action=allow protocol=TCP localport=1433
 EOT
     }
+    instance_tags     = []
+    additional_disks = []
+  },
+  {
+    name              = "test"
+    network_ip        = ""
+    zone              = "us-east1-b"        
+    instance_type     = "custom-2-4096"
+    source_image      = "windows-cloud/windows-2019"
+    boot_disk_size_gb = 50
+    boot_disk_type    = "pd-ssd"
+    auto_delete       = true
+    description       = "sql node-1"
+    init_script       = ""  
+    loadbalancer       = "serviceweb"
+
+    metadata = {}
     instance_tags     = []
     additional_disks = []
   },
