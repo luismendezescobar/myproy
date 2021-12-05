@@ -80,8 +80,7 @@ health_check={
   check_interval_sec  = 5
   healthy_threshold   = 2
   unhealthy_threshold = 2
-  port_name           = "health-check-port"
-  port_specification  = "USED_NAMED_PORT"
+  port                = 80  
   request_path        = "/"  
 }
 

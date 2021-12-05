@@ -63,8 +63,7 @@ resource "google_compute_health_check" "http_health_check" {
   
 
   http_health_check {
-    port_name          = lookup(var.health_check, "port_name", null)
-    port_specification = lookup(var.health_check, "request", null)    
+    port               = lookup(var.health_check, "port_name", null)    
     request_path       = lookup(var.health_check, "request_path", null)
   }
 }
