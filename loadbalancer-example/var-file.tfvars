@@ -40,7 +40,7 @@ EOT
     auto_delete       = true
     description       = "sql node-1"
     init_script       = ""  
-    loadbalancer       = "serviceweb"
+    loadbalancer       = ""
 
     metadata = {
       sysprep-specialize-script-ps1  = <<EOT
