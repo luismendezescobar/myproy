@@ -10,7 +10,7 @@ server_vm_info = [
     name              = "node-1"
     network_ip        = ""
     zone              = "us-east1-b"        
-    instance_type     = "custom-2-4096"
+    instance_type     = "custom-4-8192"
     source_image      = "windows-cloud/windows-2019"
     boot_disk_size_gb = 50
     boot_disk_type    = "pd-ssd"
@@ -29,7 +29,7 @@ EOT
     instance_tags     = []
     additional_disks = []
   },
-  {
+/*  {
     name              = "node-2"
     network_ip        = ""
     zone              = "us-east1-b"        
@@ -68,7 +68,7 @@ EOT
     instance_tags     = []
     additional_disks = []
   },
-  
+  */
 ]
 
 named_port= [
