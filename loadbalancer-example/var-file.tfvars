@@ -8,7 +8,7 @@ ip_cidr_range="10.1.0.0/24"
 server_vm_info = [  
   {
     name              = "node-1"
-    network_ip        = ""
+    network_ip        = "10.1.0.10"
     zone              = "us-east1-b"        
     instance_type     = "custom-4-8192"
     source_image      = "windows-cloud/windows-2019"
