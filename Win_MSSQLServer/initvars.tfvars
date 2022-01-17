@@ -22,7 +22,7 @@ local_vm_adminusername="localvmadmin"
 local_vm_password="Passw0rd12345!" 
 vm_timezone="Central Standard Time"
 
-node_count= 1
+node_count= 2
   
 node_size="B2s"
 
