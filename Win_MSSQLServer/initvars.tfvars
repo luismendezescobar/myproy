@@ -1,8 +1,10 @@
-azure_resource_group_name="change when deploying"
-azure_subnet_id           ="/subscriptions/3258efe1-d8e7-4e11-aa41-7ece0bcd7d88/resourceGroups/rg-west-ETS_NETWORK/providers/Microsoft.Network/virtualNetworks/vnet-west-MMS-SharedServices/subnets/MMS-Development"
-bootdiags_primary_blob_endpoint="fill out this when creating"
-azure_location= "WestUS"   
-region="WUS"
+##change these when deploying
+azure_resource_group_name="1-50b757f8-playground-sandbox"
+#azure_subnet_id          ="/subscriptions/3258efe1-d8e7-4e11-aa41-7ece0bcd7d88/resourceGroups/rg-west-ETS_NETWORK/providers/Microsoft.Network/virtualNetworks/vnet-west-MMS-SharedServices/subnets/MMS-Development"
+azure_subnet_id           ="/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-50b757f8-playground-sandbox/providers/Microsoft.Network/virtualNetworks/1-50b757f8-playground-sandbox-vnet/subnets/default"
+bootdiags_primary_blob_endpoint="https://mystorage11722.blob.core.windows.net/mycontainer1172022"
+azure_location= "Central US"   
+region="CUS"
 appabbrev="app"
 #core_image_reference=
 resource_tags = {
