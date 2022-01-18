@@ -56,7 +56,7 @@ resource "azurerm_lb_rule" "ntc" {
   backend_port                    = "0"
   frontend_ip_configuration_name  = "ClusterFrontEnd"
   backend_address_pool_id         = azurerm_lb_backend_address_pool.lbbap[0].id
-  probe_id                        = azurerm_lb_probe.ntc-probe.id
+  probe_id                        = azurerm_lb_probe.ntc-probe[0].id
   #count                           = var.node_count >= 2 ? 1 : 0
 }
 
@@ -70,7 +70,7 @@ resource "azurerm_lb_rule" "sql" {
   backend_port                    = "0"
   frontend_ip_configuration_name  = "SQLFrontEnd"
   backend_address_pool_id         = azurerm_lb_backend_address_pool.lbbap[0].id
-  probe_id                        = azurerm_lb_probe.sql-probe.id
+  probe_id                        = azurerm_lb_probe.sql-probe[0].id
   #count                           = var.node_count >= 2 ? 1 : 0
 }
 
@@ -201,7 +201,7 @@ resource "azurerm_virtual_machine_data_disk_attachment" "sqldata" {
   virtual_machine_id  = azurerm_virtual_machine.vm[*].id
   lun                 = "${floor( (count.index + 1) / ceil( (count.index + 1) * 1.0 / var.sql_data_disk_count) )}" //count Index of 0 equates out to 1, OS disk is 0 
   count               = var.sql_data_disk_count > 0 ? var.sql_data_disk_count : 0 
-  caching             = sql_data_disk_size_gb < 4095 ? "ReadOnly" : "None"
+  caching             = var.sql_data_disk_size_gb < 4095 ? "ReadOnly" : "None"
   create_option       = "Attach"
 }
 
@@ -219,7 +219,7 @@ resource "azurerm_virtual_machine_data_disk_attachment" "sqltempdb" {
   virtual_machine_id  = azurerm_virtual_machine.vm[*].id
   lun                 = "${floor( (count.index + 1) / ceil( (count.index + 1) * 1.0 / var.sql_tempdb_disk_count) ) + var.sql_logs_disk_count + var.sql_data_disk_count + 1 }" //count Index of 0 equates out to 1 + sql_data_disk_count + sql_logs_disk_count, OS disk is 0
   count               = var.sql_tempdb_disk_count > 0 ? var.sql_tempdb_disk_count : 0 
-  caching             = sql_tempdb_disk_size_gb < 4095 ? "ReadOnly" : "None"
+  caching             = var.sql_tempdb_disk_size_gb < 4095 ? "ReadOnly" : "None"
   create_option       = "Attach"
 }
 /*
