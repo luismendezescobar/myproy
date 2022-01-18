@@ -1,3 +1,19 @@
+terraform{
+    backend "azurerm"{
+        resource_group_name ="1-50b757f8-playground-sandbox"     #variables can not be used, you have to put this manually here
+        storage_account_name="mystorage11722"              #variables can not be used, you have to put this manually here
+        container_name      ="statecontainer"
+        key                 ="terraform.tfstate"
+    }
+    required_providers {
+      azurerm={
+        source  = "hashicorp/azurerm"
+        version = "~>2.0"
+      }
+    }
+}
+
+
 # Configure the Azure provider
 provider "azurerm" {    
 	  subscription_id  = var.subguid
