@@ -152,7 +152,7 @@ resource "azurerm_virtual_machine" "vm" {
   }
 
   boot_diagnostics  {
-    enabled   = true
+    enabled   = false
     #storage_uri = var.bootdiags_primary_blob_endpoint
   }
 
