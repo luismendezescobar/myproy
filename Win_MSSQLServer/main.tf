@@ -176,7 +176,7 @@ resource "azurerm_virtual_machine" "vm" {
     timezone                  = var.vm_timezone
   }
 }
-
+/*
 resource "azurerm_managed_disk" "data" {
   name                  = "${lower(var.appabbrev)}-${lower(var.region)}-sql-${lower(terraform.workspace)}-data${count.index}"
   location              = var.azure_location
