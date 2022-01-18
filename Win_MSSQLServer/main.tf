@@ -1,6 +1,6 @@
 # Configure the Azure provider
 provider "azurerm" {    
-	  #subscription_id  = var.subguid
+	  subscription_id  = var.subguid
     #tenant_id       = "da67ef1b-ca59-4db2-9a8c-aa8d94617a16"      #manually here
     features {}
 }
@@ -127,6 +127,7 @@ resource "azurerm_virtual_machine" "vm" {
   count                             = var.node_count
 
   storage_image_reference {
+    #you can get it with this command az vm image list
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
     sku       = "2016-Datacenter"

@@ -99,3 +99,9 @@ variable "sql_tempdb_disk_count" {
   description = "Number of disks to create and attach for SQL TempDB."
   type = number
 }
+
+
+variable "subguid"{
+  description = "this number is inside the resource group properties"
+  type = string
+}
