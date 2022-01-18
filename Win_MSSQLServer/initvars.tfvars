@@ -8,7 +8,7 @@ azure_location= "Central US"
 region="CUS"
 subguid="4cedc5dd-e3ad-468d-bf66-32e31bdb9148"  #this number is inside the resource group properties 
 #######################################################################################################
-appabbrev="app"
+appabbrev="server"
 #core_image_reference=
 resource_tags = {
     core-app-name   = "Blue Yonder"
