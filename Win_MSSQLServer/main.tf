@@ -153,7 +153,7 @@ resource "azurerm_virtual_machine" "vm" {
 
   boot_diagnostics  {
     enabled   = true
-    storage_uri = var.bootdiags_primary_blob_endpoint
+    #storage_uri = var.bootdiags_primary_blob_endpoint
   }
 
   storage_os_disk {
