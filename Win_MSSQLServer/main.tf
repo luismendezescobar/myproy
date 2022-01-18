@@ -150,12 +150,12 @@ resource "azurerm_virtual_machine" "vm" {
     sku       = "2016-Datacenter"
     version   = "latest"
   }
-
+/*
   boot_diagnostics  {
     enabled   = false
     #storage_uri = var.bootdiags_primary_blob_endpoint
   }
-
+*/
   storage_os_disk {
     name              = "${lower(var.appabbrev)}-${lower(var.region)}-sql-${lower(terraform.workspace)}${count.index}-os"
     caching           = "ReadWrite"
