@@ -30,9 +30,9 @@ node_count= 2
 node_size="B2s"
 
 sql_data_disk_size_gb=10
-sql_data_disk_count=1
+sql_data_disk_count=2
 sql_logs_disk_size_gb=10
-sql_logs_disk_count=1 
+sql_logs_disk_count=2 
 sql_tempdb_disk_size_gb=10
-sql_tempdb_disk_count=1
+sql_tempdb_disk_count=2
   
