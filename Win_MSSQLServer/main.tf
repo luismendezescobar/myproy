@@ -165,7 +165,7 @@ resource "azurerm_virtual_machine" "vm" {
   }
 
   os_profile  {
-    computer_name   = "${lower(var.appabbrev)}${lower(var.region)}sql${lower(terraform.workspace)}${count.index}"
+    computer_name   = "${lower(var.appabbrev)}sql${count.index}"
     admin_username  = var.local_vm_adminusername
     admin_password  = var.local_vm_password
   }
