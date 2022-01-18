@@ -157,7 +157,7 @@ resource "azurerm_virtual_machine" "vm" {
   }
 */
   storage_os_disk {
-    name              = "${lower(var.appabbrev)}-${lower(var.region)}-sql-${lower(terraform.workspace)}${count.index}-os"
+    name              = "${lower(var.appabbrev)}sql${count.index}-os"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Premium_LRS"
