@@ -132,7 +132,7 @@ resource "azurerm_network_interface_backend_address_pool_association" "nicbapass
 }
 
 resource "azurerm_virtual_machine" "vm" {
-  name                              = "${lower(var.appabbrev)}-${lower(var.region)}-sql-${count.index}"
+  name                              = "${lower(var.appabbrev)}-sql-${count.index}"
   availability_set_id               = azurerm_availability_set.avset[0].id
   location                          = var.azure_location
   resource_group_name               = var.azure_resource_group_name
