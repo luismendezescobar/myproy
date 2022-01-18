@@ -57,7 +57,7 @@ resource "azurerm_lb_rule" "ntc" {
   frontend_ip_configuration_name  = "ClusterFrontEnd"
   backend_address_pool_id         = azurerm_lb_backend_address_pool.lbbap[0].id
   probe_id                        = azurerm_lb_probe.ntc-probe.id
-  count                           = var.node_count >= 2 ? 1 : 0
+  #count                           = var.node_count >= 2 ? 1 : 0
 }
 
 resource "azurerm_lb_rule" "sql" {
@@ -71,7 +71,7 @@ resource "azurerm_lb_rule" "sql" {
   frontend_ip_configuration_name  = "SQLFrontEnd"
   backend_address_pool_id         = azurerm_lb_backend_address_pool.lbbap[0].id
   probe_id                        = azurerm_lb_probe.sql-probe.id
-  count                           = var.node_count >= 2 ? 1 : 0
+  #count                           = var.node_count >= 2 ? 1 : 0
 }
 
 resource "azurerm_availability_set" "avset" {
