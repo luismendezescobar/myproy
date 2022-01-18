@@ -1,3 +1,11 @@
+# Configure the Azure provider
+provider "azurerm" {    
+	  #subscription_id  = var.subguid
+    #tenant_id       = "da67ef1b-ca59-4db2-9a8c-aa8d94617a16"      #manually here
+    features {}
+}
+
+
 resource "azurerm_lb" "lb" {
   name                = "lb-${lower(var.region)}-${lower(var.appabbrev)}-sql-${lower(terraform.workspace)}"
   location            = var.azure_location
