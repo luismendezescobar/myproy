@@ -27,7 +27,7 @@ vm_timezone="Central Standard Time"
 
 node_count= 2
   
-node_size="B2s"
+node_size="standard_ds1_v2"
 
 sql_data_disk_size_gb=10
 sql_data_disk_count=2
