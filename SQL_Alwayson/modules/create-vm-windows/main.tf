@@ -1,7 +1,7 @@
 
 
 #02.second we are going to create the network cards for the machines 
-resource "azurerm_network_interface" "server_dev_nic" {
+resource "azurerm_network_interface" "nic" {
   
   name                = var.nic_name
   location            = var.location
@@ -87,7 +87,7 @@ resource "azurerm_virtual_machine_data_disk_attachment" "azure_disk_attach" {
 
 
 output "testout" {
- value={for x in azurerm_network_interface.server_dev_nic:x.name=>x}
+ value={for x in resource.azurerm_network_interface.nic:x.name=>x}
 }
 
 /*
