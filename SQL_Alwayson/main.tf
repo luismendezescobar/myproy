@@ -117,6 +117,6 @@ output "instances_out" {
 }*/
 
 output "instances_out" {
-  value=module.vm_instance_windows.testout
+  value={for x in module.vm_instance_windows.testout:x=>x}
 }
 
