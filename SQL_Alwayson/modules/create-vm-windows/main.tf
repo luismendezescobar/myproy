@@ -25,7 +25,7 @@ resource "azurerm_windows_virtual_machine" "server_db" {
   location                    = var.location
   resource_group_name         = var.resource_group_name
   size                        = var.size
-  network_interface_ids       = [azurerm_network_interface.server_dev_nic.id]
+  network_interface_ids       = [azurerm_network_interface.nic.id]
   admin_username              = var.admin_username
   admin_password              = var.admin_password
   tags                        = var.resource_tags
