@@ -129,6 +129,11 @@ output "instances_out-02" {
   value= [for vm in module.vm_instance_windows: vm.testout.id]
 }
 
+output "instances_out-03" {
+  value= [for vm in module.vm_instance_windows: vm.testout.ip_configuration]
+}
+
+
 
 
     ##instances = [for instance in var.instances : instance.self_link if instance.zone == each.value]
