@@ -125,7 +125,7 @@ output "instances_out" {
   value= [for vm in module.vm_instance_windows: vm ]
 }
 
-output "instances_out" {
+output "instances_out-02" {
   value= [for vm in module.vm_instance_windows: vm.id]
 }
 
