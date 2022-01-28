@@ -89,16 +89,16 @@ resource "azurerm_virtual_machine_data_disk_attachment" "azure_disk_attach" {
 output "testout" {
  value={for x in resource.azurerm_network_interface.nic:x.name=>x}
 }*/
-/*
+
 output "testout" {
  value=resource.azurerm_network_interface.nic
 }
-*/
 
+/*
 output "testout" {
  value="hello"
 }
-
+*/
 /*
 
 we give 5 minutes for breating room 
