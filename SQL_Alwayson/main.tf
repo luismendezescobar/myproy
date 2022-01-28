@@ -122,7 +122,13 @@ output "instances_out" {
 */
 
 output "instances_out" {
-  value= [for vm in module.vm_instance_windows.testout: vm ]
-
+  value= [for vm in module.vm_instance_windows: vm ]
 }
-  
+
+output "instances_out" {
+  value= [for vm in module.vm_instance_windows: vm.id]
+}
+
+
+
+    ##instances = [for instance in var.instances : instance.self_link if instance.zone == each.value]
