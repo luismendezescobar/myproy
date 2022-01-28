@@ -111,8 +111,12 @@ module "vm_instance_dev_ansible-linux-uswest" {
 }
 
 
-
+/*
 output "instances_out" {
   value={for x in module.vm_instance_windows.testout: x.name =>x}
+}*/
+
+output "instances_out" {
+  value=module.vm_instance_windows.testout
 }
 
