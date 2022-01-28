@@ -83,6 +83,13 @@ resource "azurerm_virtual_machine_data_disk_attachment" "azure_disk_attach" {
     caching                = each.value.caching
     lun                    = each.value.lun_number    
 }
+
+
+
+output "testout" {
+ value={for x in azurerm_network_interface.server_dev_nic:x.name=>x}
+}
+
 /*
 
 we give 5 minutes for breating room 
