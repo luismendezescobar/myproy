@@ -87,7 +87,7 @@ resource "azurerm_virtual_machine_data_disk_attachment" "azure_disk_attach" {
 
 
 output "testout" {
- value={for x in resource.azurerm_network_interface.nic:x.name=>x}
+ value={for x in resource.azurerm_network_interface.nic:x=>x}
 }
 
 /*
