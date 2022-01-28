@@ -72,10 +72,11 @@ resource_tags                   = {
     Core-bap-number = "AS22490"
 }
 
-boot_diagnostic_account_name    ="boot_diagnostics_account_01272022"
+boot_diagnostic_account_name    ="boot_diagnostics_account_01272022"        
 
-subguid                         ="3258efe1-d8e7-4e11-aa41-7ece0bcd7d88"          #MMS Shared Services
+subguid                         ="0f39574d-d756-48cf-b622-0e27a6943bd2"          #MMS Shared Services ### this number is inside the resource group properties 
 azure_resource_group_name       ="1-626a8dd8-playground-sandbox"
+
 
 #storage_account_name_for_backend="storage4terra1052021"  #this is for the backend it needs to be created manually
 #container_name_for_state        ="statecontainer"                #this is for the backend it needs to be created manually
