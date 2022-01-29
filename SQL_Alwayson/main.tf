@@ -1,6 +1,6 @@
 terraform{
     backend "azurerm"{
-        resource_group_name ="1-d13a137b-playground-sandbox"                    #variables can not be used, you have to put this manually here
+        resource_group_name ="1-d01a02f5-playground-sandbox"                    #variables can not be used, you have to put this manually here
         storage_account_name="mystorage1292022"              #"myaccount1292022"   ##this has to be created manually##       #variables can not be used, you have to put this manually here
         container_name      ="statecontainer"                       ##this has to be created manually
         key                 ="terraform.tfstate"
@@ -157,7 +157,7 @@ output "instances_out-05" {
 }
 
 output "instances_out-06" {
-  value = [for vm in module.vm_instance_windows.Nic0: vm]
+  value = [for vm in module.vm_instance_windows.Nic0: vm.id]
 }
 
 

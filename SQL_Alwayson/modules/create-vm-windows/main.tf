@@ -90,13 +90,6 @@ output "testout" {
  value={for x in resource.azurerm_network_interface.nic:x.name=>x}
 }*/
 
-output "testout" {
- value=resource.azurerm_network_interface.nic
-}
-
-output "Nic0" {  
-  value = azurerm_network_interface.nic
-}
 
 
 /*

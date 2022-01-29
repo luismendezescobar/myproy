@@ -88,7 +88,7 @@ avset_name  ="avset_name_sql01"
 boot_diagnostic_account_name    ="boot_diagnostics_account_01292022"        
 
 subguid                         ="0f39574d-d756-48cf-b622-0e27a6943bd2"          #MMS Shared Services ### this number is inside the resource group properties 
-azure_resource_group_name       ="1-d13a137b-playground-sandbox"
+azure_resource_group_name       ="1-d01a02f5-playground-sandbox"
 
 
 
