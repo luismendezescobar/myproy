@@ -51,8 +51,8 @@ resource "azurerm_lb_rule" "ntc" {
   frontend_port                   = "0"
   backend_port                    = "0"
   frontend_ip_configuration_name  = "ClusterFrontEnd"
-  backend_address_pool_id         = azurerm_lb_backend_address_pool.lbbap[0].id
-  probe_id                        = azurerm_lb_probe.ntc-probe[0].id  
+  backend_address_pool_id         = azurerm_lb_backend_address_pool.lbbap.id
+  probe_id                        = azurerm_lb_probe.ntc-probe.id  
 }
 
 resource "azurerm_lb_rule" "sql" {
@@ -64,8 +64,8 @@ resource "azurerm_lb_rule" "sql" {
   frontend_port                   = "0"
   backend_port                    = "0"
   frontend_ip_configuration_name  = "SQLFrontEnd"
-  backend_address_pool_id         = azurerm_lb_backend_address_pool.lbbap[0].id
-  probe_id                        = azurerm_lb_probe.sql-probe[0].id  
+  backend_address_pool_id         = azurerm_lb_backend_address_pool.lbbap.id
+  probe_id                        = azurerm_lb_probe.sql-probe.id  
 }
 
 resource "azurerm_availability_set" "avset" {
@@ -83,7 +83,7 @@ resource "azurerm_network_interface_backend_address_pool_association" "nicbapass
   #network_interface_id    = azurerm_network_interface.nic[count.index].id
   network_interface_id    = each.value.testout.id
   ip_configuration_name   = "ipconfig1"
-  backend_address_pool_id = azurerm_lb_backend_address_pool.lbbap[0].id
+  backend_address_pool_id = azurerm_lb_backend_address_pool.lbbap.id
   
 }
 
