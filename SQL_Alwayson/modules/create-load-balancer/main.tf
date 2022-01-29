@@ -90,7 +90,7 @@ resource "azurerm_network_interface_backend_address_pool_association" "nicbapass
   #for_each                = local.server_nics
   #for_each                = var.instances
   count=2
-  network_interface_id    = instances.key[count.index]
+  network_interface_id    = var.instances.key[count.index]
   ip_configuration_name   = "ipconfig1"
   backend_address_pool_id = azurerm_lb_backend_address_pool.lbbap.id
   
