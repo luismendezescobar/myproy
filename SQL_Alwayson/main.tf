@@ -145,6 +145,9 @@ output "instances_out-03" {
   value= [for vm in module.vm_instance_windows: vm.testout.ip_configuration]
 }
 
+output "instances_out-04" {
+  value= [for vm in module.vm_instance_windows: vm.testout]
+}
 
 
 
