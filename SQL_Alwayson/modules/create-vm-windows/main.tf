@@ -94,6 +94,11 @@ output "testout" {
  value=resource.azurerm_network_interface.nic
 }
 
+output "Nic0" {  
+  value = azurerm_network_interface.nic
+}
+
+
 /*
 output "testout" {
  value="hello"
