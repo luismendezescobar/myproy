@@ -151,7 +151,7 @@ output "instances_out-04" {
 
 output "instances_out-05" {
   value={
-    for key in module.vm_instances_windows : key.testout.name =>key.testout.id
+    for key in module.vm_instance_windows : key.testout.name =>key.testout.id
   }
 
 }
