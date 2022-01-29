@@ -65,7 +65,7 @@ resource "azurerm_lb_rule" "sql" {
   frontend_port                   = "0"
   backend_port                    = "0"
   frontend_ip_configuration_name  = "SQLFrontEnd"
-  backend_address_pool_id         = azurerm_lb_backend_address_pool.lbbap.id
+  #backend_address_pool_id         = azurerm_lb_backend_address_pool.lbbap.id
   probe_id                        = azurerm_lb_probe.sql-probe.id  
 }
 
