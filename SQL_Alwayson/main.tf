@@ -110,7 +110,7 @@ module "vm_instance_dev_ansible-linux-uswest" {
 
 }
 
-/*
+
 module "create_lb" {
   source            = "./modules/create-load-balancer"  
   lb_name           = var.lb_name
@@ -128,7 +128,7 @@ module "create_lb" {
 
 }
 
-*/
+
 
 
 
