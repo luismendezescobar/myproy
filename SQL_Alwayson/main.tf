@@ -129,7 +129,7 @@ module "create_lb" {
     for key in module.vm_instance_windows : "key" =>key.Nic0...
   }
 
-
+  depends_on = [module.vm_instance_windows]
 }
 
 
