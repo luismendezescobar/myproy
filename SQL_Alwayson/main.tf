@@ -149,5 +149,12 @@ output "instances_out-04" {
   value= [for vm in module.vm_instance_windows: vm.testout]
 }
 
+output "instances_out-05" {
+  value={
+    for key in module.vm_instances_windows : key.testout.name =>key.testout.id
+  }
+
+}
+
 
 
