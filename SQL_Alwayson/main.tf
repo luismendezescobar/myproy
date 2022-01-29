@@ -155,9 +155,9 @@ output "instances_out-05" {
   }
 
 }
-/*
+
 output "instances_out-06" {
   value = [for vm in module.vm_instance_windows.Nic0: vm.id]
 }
 
-*/
+
