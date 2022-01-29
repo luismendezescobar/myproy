@@ -20,14 +20,14 @@ resource "azurerm_lb" "lb" {
 
 resource "azurerm_lb_backend_address_pool" "lbbap" {
   resource_group_name   = var.azure_resource_group_name
-  loadbalancer_id       = azurerm_lb.lb[0].id
+  loadbalancer_id       = azurerm_lb.lb.id
   name                  = var.lb-backendpool-name
 }
 
 resource "azurerm_lb_probe" "ntc-probe" {
   name                = var.lb_probe_ntc
   resource_group_name = var.azure_resource_group_name
-  loadbalancer_id     = azurerm_lb.lb[0].id
+  loadbalancer_id     = azurerm_lb.lb.id
   port                = 59998
   interval_in_seconds = 5
   number_of_probes    = 2 
@@ -36,7 +36,7 @@ resource "azurerm_lb_probe" "ntc-probe" {
 resource "azurerm_lb_probe" "sql-probe" {
   name                = var.lb_probe_sql
   resource_group_name = var.azure_resource_group_name
-  loadbalancer_id     = azurerm_lb.lb[0].id
+  loadbalancer_id     = azurerm_lb.lb.id
   port                = 59999
   interval_in_seconds = 5
   number_of_probes    = 2  
@@ -45,7 +45,7 @@ resource "azurerm_lb_probe" "sql-probe" {
 resource "azurerm_lb_rule" "ntc" {
   name                            = var.lb_rule_ntc
   resource_group_name             = var.azure_resource_group_name
-  loadbalancer_id                 = azurerm_lb.lb[0].id
+  loadbalancer_id                 = azurerm_lb.lb.id
   enable_floating_ip              = true
   protocol                        = "All"
   frontend_port                   = "0"
@@ -58,7 +58,7 @@ resource "azurerm_lb_rule" "ntc" {
 resource "azurerm_lb_rule" "sql" {
   name                            = var.lb_rule_sql
   resource_group_name             = var.azure_resource_group_name
-  loadbalancer_id                 = azurerm_lb.lb[0].id
+  loadbalancer_id                 = azurerm_lb.lb.id
   enable_floating_ip              = true
   protocol                        = "All"
   frontend_port                   = "0"
