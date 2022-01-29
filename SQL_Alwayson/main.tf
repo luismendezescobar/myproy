@@ -164,7 +164,7 @@ output "instances_out-06" {
 
 output "instances_out-06" {
   value={
-    for key in module.vm_instance_windows : key =>key.Nic0
+    for key in module.vm_instance_windows : key.value =>key.Nic0
   }
 
 }
