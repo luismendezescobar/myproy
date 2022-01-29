@@ -111,15 +111,27 @@ module "vm_instance_dev_ansible-linux-uswest" {
 }
 
 
-/*
-output "instances_out" {
-  value={for x in module.vm_instance_windows.testout: x.name =>x}
+module "create_lb" {
+  source            = "./modules/create-load-balancer"  
+  lb_name           = var.lb_name
+  lb_location       = var.lb_location
+  azure_resource_group_name =var.azure_resource_group_name 
+  resource_tags     = var.resource_tags 
+  lb_azure_subnet_id= var.lb_azure_subnet_id
+  lb-backendpool-name=var.lb-backendpool-name
+  lb_probe_ntc      = var.lb_probe_ntc
+  lb_probe_sql      = var.lb_probe_sql
+  lb_rule_ntc       = var.lb_rule_ntc
+  lb_rule_sql       = var.lb_rule_sql
+  avset_name        = var.avset_name
+  instances         = [for vm in module.vm_instance_windows: vm]
+
 }
 
-output "instances_out" {
-  value={for x in module.vm_instance_windows.testout:x=>x}
-}
-*/
+
+
+
+
 
 output "instances_out" {
   value= [for vm in module.vm_instance_windows: vm ]
@@ -136,4 +148,3 @@ output "instances_out-03" {
 
 
 
-    ##instances = [for instance in var.instances : instance.self_link if instance.zone == each.value]

@@ -85,3 +85,40 @@ variable "storage_container_for_boot_diag" {
   type=string
 }
 
+#############
+variable "lb_name" {
+  type=string
+}
+
+
+variable "lb_location"{
+  type = string
+}
+
+variable "lb_azure_subnet_id" {
+  type=string
+}
+
+variable "lb-backendpool-name" {
+  type=string
+}
+
+variable "lb_probe_ntc" {
+  type=string
+}
+
+variable "lb_probe_sql" {
+  type=string
+}
+
+variable "lb_rule_ntc" {
+  type=string
+}
+
+variable "lb_rule_sql" {
+  type=string
+}
+
+variable "avset_name" {
+  type=string
+}

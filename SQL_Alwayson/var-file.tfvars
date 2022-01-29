@@ -72,14 +72,26 @@ resource_tags                   = {
     Core-bap-number = "AS22490"
 }
 
+####################load balancer variables#########
+lb_name="lb_sql01"
+lb_location= "WestUS"                
+lb_azure_subnet_id="/subscriptions/0f39574d-d756-48cf-b622-0e27a6943bd2/resourceGroups/1-626a8dd8-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"        
+lb-backendpool-name="lb_bep_sql01"
+lb_probe_ntc="lb_probe_ntc_sql01"
+lb_probe_sql="lb_probe_sql_sql01"
+lb_rule_ntc ="lb_rule_ntc_sql01"
+lb_rule_sql ="lb_rule_sql_sql01"
+avset_name  ="avset_name_sql01"
+
+######################################################
+
 boot_diagnostic_account_name    ="boot_diagnostics_account_01272022"        
 
 subguid                         ="0f39574d-d756-48cf-b622-0e27a6943bd2"          #MMS Shared Services ### this number is inside the resource group properties 
 azure_resource_group_name       ="1-626a8dd8-playground-sandbox"
 
 
-#storage_account_name_for_backend="storage4terra1052021"  #this is for the backend it needs to be created manually
-#container_name_for_state        ="statecontainer"                #this is for the backend it needs to be created manually
+
 
 storage_account_for_boot_diag   ="bootdiag01272022"
 storage_container_for_boot_diag ="bootblob"
