@@ -7,13 +7,13 @@ resource "azurerm_lb" "lb" {
   
   frontend_ip_configuration {
     name                          = "ClusterFrontEnd"
-    subnet_id                     = var.azure_subnet_id
+    subnet_id                     = var.lb_azure_subnet_id
     private_ip_address_allocation = "Dynamic"
   }
   
   frontend_ip_configuration {
     name                          = "SQLFrontEnd"
-    subnet_id                     = var.azure_subnet_id
+    subnet_id                     = var.lb_azure_subnet_id
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -70,7 +70,7 @@ resource "azurerm_lb_rule" "sql" {
 
 resource "azurerm_availability_set" "avset" {
   name                = var.avset_name
-  location            = var.azure_location
+  location            = var.lb_location
   resource_group_name = var.azure_resource_group_name
   managed             = true
   tags                = var.resource_tags  
