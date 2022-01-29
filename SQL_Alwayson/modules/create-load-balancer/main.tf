@@ -19,7 +19,7 @@ resource "azurerm_lb" "lb" {
 }
 
 resource "azurerm_lb_backend_address_pool" "lbbap" {
-  resource_group_name   = var.azure_resource_group_name
+  #resource_group_name   = var.azure_resource_group_name
   loadbalancer_id       = azurerm_lb.lb.id
   name                  = var.lb-backendpool-name
 }
