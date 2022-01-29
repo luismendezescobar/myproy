@@ -110,7 +110,7 @@ module "vm_instance_dev_ansible-linux-uswest" {
 
 }
 
-
+/*
 module "create_lb" {
   source            = "./modules/create-load-balancer"  
   lb_name           = var.lb_name
@@ -127,7 +127,7 @@ module "create_lb" {
   instances         = [for vm in module.vm_instance_windows: vm]
 
 }
-
+*/
 
 
 
@@ -160,5 +160,11 @@ output "instances_out-06" {
   value = [for vm in module.vm_instance_windows.Nic0: vm.id]
 }
 
-
 */
+
+output "instances_out-06" {
+  value={
+    for key in module.vm_instnce_windows : key =>key.Nic0
+  }
+
+}
