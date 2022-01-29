@@ -134,7 +134,7 @@ module "create_lb" {
 
 
 output "instances_out" {
-  value= flatten([for vm in module.vm_instance_windows: vm ])
+  value= [for vm in module.vm_instance_windows: vm ]
 }
 /*
 output "instances_out-02" {
@@ -161,11 +161,10 @@ output "instances_out-06" {
 }
 
 */
-/*
+
 output "instances_out-06" {
   value={
-    for key in module.vm_instance_windows : key.Nic0 =>key.Nic0
+    for key in module.vm_instance_windows : key =>key.Nic0
   }
 
 }
-*/
