@@ -100,11 +100,11 @@ resource "azurerm_network_interface_backend_address_pool_association" "nicbapass
 
 
 resource "azurerm_network_interface_backend_address_pool_association" "nicbapassoc" {
-  #for_each                = local.server_nics
-  #for_each                = var.instances
- # count=2
-  network_interface_id    = var.instances.key.[count.index]
-  ip_configuration_name   = "ipconfig1"
+  
+  for_each                = var.instances
+ 
+  network_interface_id    = each.value
+  ip_configuration_name   = each.key
   backend_address_pool_id = azurerm_lb_backend_address_pool.lbbap.id
   
 }

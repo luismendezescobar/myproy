@@ -113,7 +113,7 @@ module "vm_instance_dev_ansible-linux-uswest" {
 
 }
 
-/*
+
 module "create_lb" {
   source            = "./modules/create-load-balancer"  
   lb_name           = var.lb_name
@@ -128,13 +128,18 @@ module "create_lb" {
   lb_rule_sql       = var.lb_rule_sql
   avset_name        = var.avset_name
   #instances         = [for vm in module.vm_instance_windows: vm]
+/*
   instances         = {
     for key in module.vm_instance_windows : "key" =>key.Nic0...
+  }*/
+  instances={
+    for key in module.vm_instance_windows : key.testout.name =>key.testout.id
   }
+
 
   depends_on = [module.vm_instance_windows]
 }
-*/
+
 
 
 
