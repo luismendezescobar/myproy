@@ -31,7 +31,9 @@ data "azurerm_resource_group" "rg" {
 #01.first create the storage account for boot diagnostics
 resource "azurerm_storage_account" "dev_boot_diag" {
   name                     = var.storage_account_for_boot_diag
-  resource_group_name      = data.azurerm_resource_group.rg.name
+  #resource_group_name      = data.azurerm_resource_group.rg.name                  #this has to be enabled in production
+  resource_group_name      = "Central US"
+
   location                 = data.azurerm_resource_group.rg.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
