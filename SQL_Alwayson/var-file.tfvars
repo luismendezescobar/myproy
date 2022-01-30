@@ -3,7 +3,7 @@
 
 server_vm_info = { 
     "server01" = {        
-        location                  = "WestUS"                
+        location                  = "Central US"                
         #size                     = "Standard_D4s_v3"
         size                      =  "standard_ds1_v2"
         nic_name                  = "nic-production01"
@@ -31,7 +31,7 @@ server_vm_info = {
         ]
     },
     "server02" = {        
-        location                  = "WestUS"                
+        location                  = "Central US"                
         #size                     = "Standard_D4s_v3"
         size                      = "standard_ds1_v2"
         nic_name                  = "nic-production02"
@@ -74,7 +74,7 @@ resource_tags                   = {
 
 ####################load balancer variables#########
 lb_name="lb_sql01"
-lb_location= "West US"                
+lb_location= "Central US"                
 lb_azure_subnet_id="/subscriptions/0f39574d-d756-48cf-b622-0e27a6943bd2/resourceGroups/1-d01a02f5-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
 lb-backendpool-name="lb_bep_sql01"
 lb_probe_ntc="lb_probe_ntc_sql01"

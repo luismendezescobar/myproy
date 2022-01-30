@@ -1,7 +1,7 @@
 resource "azurerm_lb" "lb" {
   name                = var.lb_name
-  #location            = var.lb_location
-  location            = "Central US"
+  location            = var.lb_location
+  #location            = "Central US"
   resource_group_name = var.azure_resource_group_name
   sku                 = "Standard"
   tags                = var.resource_tags
