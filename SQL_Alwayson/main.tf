@@ -155,14 +155,14 @@ output "instances_out-03" {
 output "instances_out-04" {
   value= [for vm in module.vm_instance_windows: vm.testout]
 }
-
+*/
 output "instances_out-05" {
   value={
     for key in module.vm_instance_windows : key.testout.name =>key.testout.id
   }
 
 }
-
+/*
 output "instances_out-06" {
   value = [for vm in module.vm_instance_windows.Nic0: vm.id]
 }
