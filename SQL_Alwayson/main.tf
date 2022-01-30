@@ -32,7 +32,7 @@ data "azurerm_resource_group" "rg" {
 resource "azurerm_storage_account" "dev_boot_diag" {
   name                     = var.storage_account_for_boot_diag
   resource_group_name      = data.azurerm_resource_group.rg.name                    
-  
+
   #location                 = data.azurerm_resource_group.rg.location     #this has to be enabled in production
   location                 = "Central US"
 
@@ -113,7 +113,7 @@ module "vm_instance_dev_ansible-linux-uswest" {
 
 }
 
-
+/*
 module "create_lb" {
   source            = "./modules/create-load-balancer"  
   lb_name           = var.lb_name
@@ -134,14 +134,14 @@ module "create_lb" {
 
   depends_on = [module.vm_instance_windows]
 }
-
+*/
 
 
 
 
 
 output "instances_out" {
-  value= [for vm in module.vm_instance_windows: vm ]
+  value= [for vm in module.vm_instance_windows: vm.testout ]
 }
 /*
 output "instances_out-02" {
