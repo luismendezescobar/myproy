@@ -61,7 +61,7 @@ server_vm_info = {
 }
 
 server_vm_info_additional = { 
-    "file_server" = {        
+    "fileserver01" = {        
         location                  = "Central US"                
         #size                     = "Standard_D4s_v3"
         size                      =  "standard_ds1_v2"
