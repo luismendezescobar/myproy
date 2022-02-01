@@ -18,7 +18,7 @@ server_vm_info = {
         source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2021.09.15"
         enable_automatic_updates  = "false"
         patch_mode                = "Manual"        
-        custom_data               = "./files/bywus-web-trn3.ps1"
+        custom_data               = "./files/tazuswssbysc03.ps1"
 
         additional_disks = [{
             name                    ="drivef"
@@ -46,7 +46,7 @@ server_vm_info = {
         source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2021.09.15"
         enable_automatic_updates  = "false"
         patch_mode                = "Manual"        
-        custom_data               = "./files/bywus-web-trn3.ps1"
+        custom_data               = "./files/tazuswssbysc03.ps1"
 
         additional_disks = [{
             name                    ="drivef"
@@ -77,7 +77,7 @@ server_vm_info_additional = {
         source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2021.09.15"
         enable_automatic_updates  = "false"
         patch_mode                = "Manual"        
-        custom_data               = "./files/bywus-web-trn3.ps1"
+        custom_data               = "./files/tazuswssbysc03.ps1"
 
         additional_disks = [{
             name                    ="drivef"
@@ -90,6 +90,41 @@ server_vm_info_additional = {
         ]
     },
 }
+
+
+server_vm_info_external = { 
+    "bastion" = {        
+        location                  = "Central US"                
+        #size                     = "Standard_D4s_v3"
+        size                      =  "standard_ds1_v2"
+        nic_name                  = "nic-production01"
+        azure_subnet_id           ="/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-d86a0fa1-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+        private_ip_address_allocation = "Static"
+        static_ip                 = "10.10.10.13"
+        admin_username            = "localvmadmin"
+        admin_password            = "Passw0rd12345!"        
+        disk_size_gb              = 127
+        caching_type              = "ReadWrite"
+        storage_account_type      = "Standard_LRS"        
+        source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2021.09.15"
+        enable_automatic_updates  = "false"
+        patch_mode                = "Manual"        
+        custom_data               = "./files/tazuswssbysc03.ps1"
+
+        additional_disks = [{
+            name                    ="drivef"
+            disk_size_gb            = 10
+            storage_account_type    = "Premium_LRS"
+            create_option           = "Empty"
+            caching                 = "ReadWrite"
+            lun_number              = 10                  
+            },
+        ]
+    },
+}
+
+
+
 
 
 server_vm_info_linux = {}
