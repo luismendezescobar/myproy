@@ -61,7 +61,7 @@ resource "azurerm_lb_rule" "sql" {
   resource_group_name             = var.azure_resource_group_name
   loadbalancer_id                 = azurerm_lb.lb.id
   enable_floating_ip              = true
-  protocol                        = "All"
+  protocol                        = "TCP"
   frontend_port                   = "1433"
   backend_port                    = "1433"
   frontend_ip_configuration_name  = "SQLFrontEnd"
