@@ -62,8 +62,8 @@ resource "azurerm_lb_rule" "sql" {
   loadbalancer_id                 = azurerm_lb.lb.id
   enable_floating_ip              = true
   protocol                        = "All"
-  frontend_port                   = "0"
-  backend_port                    = "0"
+  frontend_port                   = "1433"
+  backend_port                    = "1433"
   frontend_ip_configuration_name  = "SQLFrontEnd"
   #backend_address_pool_id         = azurerm_lb_backend_address_pool.lbbap.id
   probe_id                        = azurerm_lb_probe.sql-probe.id  
@@ -78,26 +78,6 @@ resource "azurerm_availability_set" "avset" {
 }
 
 ##############Here comes the tricky part####################################################
-/*
-locals {
-  server_nics={
-    for key in var.instances : key =>key.Nic0
-  }
-
-}
-*/
-/*
-resource "azurerm_network_interface_backend_address_pool_association" "nicbapassoc" {
-  #for_each                = local.server_nics
-  #for_each                = var.instances
-  count=2
-  network_interface_id    = var.instances.key.[count.index]
-  ip_configuration_name   = "ipconfig1"
-  backend_address_pool_id = azurerm_lb_backend_address_pool.lbbap.id
-  
-}
-*/
-
 
 resource "azurerm_network_interface_backend_address_pool_association" "nicbapassoc" {
   

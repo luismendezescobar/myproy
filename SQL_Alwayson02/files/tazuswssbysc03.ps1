@@ -466,25 +466,29 @@ Start-Sleep -Seconds 10        #we give a pause of 10 seconds so that the previo
 #now that the drive E is free we can use it to assign it
 Initialize-Disk -Number 2 -PartitionStyle GPT -confirm:$false
 New-Partition -DiskNumber 2 -UseMaximumSize -DriveLetter E
-Format-Volume -DriveLetter F -FileSystem NTFS -NewFileSystemLabel sql-binaries
+Format-Volume -DriveLetter E -FileSystem NTFS -NewFileSystemLabel sql-binaries
 
-Start-Sleep -Seconds 20
+Start-Sleep -Seconds 5
 
-Initialize-Disk -Number 3 -PartitionStyle GPT -confirm:$false
-New-Partition -DiskNumber 3 -UseMaximumSize -DriveLetter F
-Format-Volume -DriveLetter G -FileSystem NTFS -NewFileSystemLabel sql-data
 
-Initialize-Disk -Number 4 -PartitionStyle GPT -confirm:$false
-New-Partition -DiskNumber 4 -UseMaximumSize -DriveLetter L
-Format-Volume -DriveLetter L -FileSystem NTFS -NewFileSystemLabel sqllog
+New-NetFirewallRule -DisplayName 'SQL-Always-on' -Profile @('Domain', 'Private','Public') -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('1433', '5022','59998','59999')
 
-Initialize-Disk -Number 5 -PartitionStyle GPT -confirm:$false
-New-Partition -DiskNumber 5 -UseMaximumSize -DriveLetter T
-Format-Volume -DriveLetter T -FileSystem NTFS -NewFileSystemLabel sqltempdbdisk
 
-Initialize-Disk -Number 6 -PartitionStyle GPT -confirm:$false
-New-Partition -DiskNumber 6 -UseMaximumSize -DriveLetter U
-Format-Volume -DriveLetter U -FileSystem NTFS -NewFileSystemLabel sqlbackupdisk
+#Initialize-Disk -Number 3 -PartitionStyle GPT -confirm:$false
+#New-Partition -DiskNumber 3 -UseMaximumSize -DriveLetter F
+#Format-Volume -DriveLetter G -FileSystem NTFS -NewFileSystemLabel sql-data
+
+#Initialize-Disk -Number 4 -PartitionStyle GPT -confirm:$false
+#New-Partition -DiskNumber 4 -UseMaximumSize -DriveLetter L
+#Format-Volume -DriveLetter L -FileSystem NTFS -NewFileSystemLabel sqllog
+
+#Initialize-Disk -Number 5 -PartitionStyle GPT -confirm:$false
+#New-Partition -DiskNumber 5 -UseMaximumSize -DriveLetter T
+#Format-Volume -DriveLetter T -FileSystem NTFS -NewFileSystemLabel sqltempdbdisk
+
+#Initialize-Disk -Number 6 -PartitionStyle GPT -confirm:$false
+#New-Partition -DiskNumber 6 -UseMaximumSize -DriveLetter U
+#Format-Volume -DriveLetter U -FileSystem NTFS -NewFileSystemLabel sqlbackupdisk
 
 
 
