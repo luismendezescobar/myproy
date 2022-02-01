@@ -211,7 +211,7 @@ module "vm_instance_windows_additional" {
   resource_tags             = var.resource_tags
   resource_group_location   = data.azurerm_resource_group.rg.location
   resource_group_name       = data.azurerm_resource_group.rg.name
-  boot_diagnostic_account_name=var.boot_diagnostic_account_name
+  #boot_diagnostic_account_name=var.boot_diagnostic_account_name
   primary_blob_endpoint     = azurerm_storage_account.dev_boot_diag.primary_blob_endpoint
 
   depends_on = [module.create_lb]
