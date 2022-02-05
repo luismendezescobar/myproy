@@ -154,9 +154,7 @@ module "create_lb" {
   cluster_front_end_ip= var.cluster_front_end_ip
   sql_front_end_ip    = var.sql_front_end_ip
 
-  cluster_front_end_ip= "10.10.10.14"
-  sql_front_end_ip    = "10.10.10.15"
-
+  
 
   #instances         = [for vm in module.vm_instance_windows: vm]
 /*
