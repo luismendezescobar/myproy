@@ -240,7 +240,7 @@ module "vm_instance_windows_additional" {
 
 module "vm_instance_windows_bastion_host" {
   for_each                  = var.server_vm_info_external
-  source                    = "./modules/create-vm-external"  
+  source                    = "./modules/create-vm-windows-external"  
   server_name               = each.key                                #this is the server name
   location                  = each.value.location
   nic_name                  = "prod-${lower(each.key)}"
