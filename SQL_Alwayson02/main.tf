@@ -5,8 +5,8 @@
 
 terraform{
     backend "azurerm"{
-        resource_group_name ="1-f79bd4b5-playground-sandbox"                    #variables can not be used, you have to put this manually here
-        storage_account_name="mystorage242022"              #"myaccount1292022"   ##this has to be created manually##       #variables can not be used, you have to put this manually here
+        resource_group_name ="1-603a96fb-playground-sandbox"                    #variables can not be used, you have to put this manually here
+        storage_account_name="mystorage252022"              #"myaccount1292022"   ##this has to be created manually##       #variables can not be used, you have to put this manually here
         container_name      ="statecontainer"                       ##this has to be created manually
         key                 ="terraform.tfstate"
     }
@@ -212,7 +212,7 @@ output "instances_out-06" {
 
 
 
-module "vm_instance_windows_additional" {
+module "vm_instance_windows_DC" {
   for_each                  = var.server_vm_info_additional
   source                    = "./modules/create-vm-windows"  
   server_name               = each.key                                #this is the server name
@@ -242,7 +242,7 @@ module "vm_instance_windows_additional" {
 
 }
 
-
+/*
 module "vm_instance_windows_bastion_host" {
   for_each                  = var.server_vm_info_external
   source                    = "./modules/create-vm-windows-external"  
@@ -270,4 +270,4 @@ module "vm_instance_windows_bastion_host" {
 
   depends_on = [module.create_lb]
 
-}
+}*/

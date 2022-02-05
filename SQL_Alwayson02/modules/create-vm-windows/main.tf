@@ -98,11 +98,11 @@ output "testout" {
 }
 */
 
-/*
-#we give 2 minutes for breating room 
+
+#we give 5 minutes for breating room 
 resource "null_resource" "wait-for-machine-provision" {
   provisioner "local-exec" {
-    command = "sleep 100"
+    command = "sleep 240"
   }
 
   depends_on = [azurerm_virtual_machine_data_disk_attachment.azure_disk_attach]
@@ -123,4 +123,3 @@ resource "azurerm_virtual_machine_extension" "cloudinit" {
 
   depends_on = [null_resource.wait-for-machine-provision]
 }
-*/

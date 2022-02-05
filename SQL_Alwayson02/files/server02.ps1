@@ -474,7 +474,7 @@ Start-Sleep -Seconds 5
 New-NetFirewallRule -DisplayName 'SQL-Always-on' -Profile @('Domain', 'Private','Public') -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('1433', '5022','59998','59999')
 
 
-Install-WindowsFeature -Name Failover-Clustering –IncludeManagementTools –ComputerName server02
+Install-WindowsFeature -Name 'Failover-Clustering' –IncludeManagementTools –ComputerName 'server02'
 
 #Initialize-Disk -Number 3 -PartitionStyle GPT -confirm:$false
 #New-Partition -DiskNumber 3 -UseMaximumSize -DriveLetter F
