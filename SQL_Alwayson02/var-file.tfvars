@@ -78,7 +78,7 @@ server_vm_info_additional = {
         source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2021.09.15"
         enable_automatic_updates  = "false"
         patch_mode                = "Manual"        
-        custom_data               = ""
+        custom_data               = "./files/bywus-web-trn3.ps1"
 
         additional_disks = []
     },
@@ -102,7 +102,7 @@ server_vm_info_external = {
         source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2021.09.15"
         enable_automatic_updates  = "false"
         patch_mode                = "Manual"        
-        custom_data               = ""
+        custom_data               = "./files/bywus-web-trn3.ps1"
 
         additional_disks = []
     },
