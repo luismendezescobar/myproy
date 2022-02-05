@@ -139,18 +139,25 @@ module "vm_instance_dev_ansible-linux-uswest" {
 
 
 module "create_lb" {
-  source            = "./modules/create-load-balancer"  
-  lb_name           = var.lb_name
-  lb_location       = var.lb_location
+  source              = "./modules/create-load-balancer"  
+  lb_name             = var.lb_name
+  lb_location         = var.lb_location
   azure_resource_group_name =var.azure_resource_group_name 
-  resource_tags     = var.resource_tags 
-  lb_azure_subnet_id= var.lb_azure_subnet_id
-  lb-backendpool-name=var.lb-backendpool-name
-  lb_probe_ntc      = var.lb_probe_ntc
-  lb_probe_sql      = var.lb_probe_sql
-  lb_rule_ntc       = var.lb_rule_ntc
-  lb_rule_sql       = var.lb_rule_sql
-  avset_name        = var.avset_name
+  resource_tags       = var.resource_tags 
+  lb_azure_subnet_id  = var.lb_azure_subnet_id
+  lb-backendpool-name =var.lb-backendpool-name
+  lb_probe_ntc        = var.lb_probe_ntc
+  lb_probe_sql        = var.lb_probe_sql
+  lb_rule_ntc         = var.lb_rule_ntc
+  lb_rule_sql         = var.lb_rule_sql
+  avset_name          = var.avset_name
+  cluster_front_end_ip= var.cluster_front_end_ip
+  sql_front_end_ip    = var.sql_front_end_ip
+
+  cluster_front_end_ip= "10.10.10.14"
+  sql_front_end_ip    = "10.10.10.15"
+
+
   #instances         = [for vm in module.vm_instance_windows: vm]
 /*
   instances         = {
