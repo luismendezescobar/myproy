@@ -470,7 +470,7 @@ Format-Volume -DriveLetter F -FileSystem NTFS -NewFileSystemLabel sql-binaries
 
 Start-Sleep -Seconds 5
 
-Install-WindowsFeature Failover-Clustering –IncludeManagementTools
+Install-WindowsFeature Failover-Clustering `–IncludeManagementTools
 
 
 New-NetFirewallRule -DisplayName 'SQL-Always-on' -Profile @('Domain', 'Private','Public') -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('1433', '5022','59998','59999')
