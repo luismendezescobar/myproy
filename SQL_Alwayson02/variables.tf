@@ -183,3 +183,14 @@ variable "lb_rule_sql" {
 variable "avset_name" {
   type=string
 }
+
+variable "cluster_front_end_ip" {
+  type=string
+}
+variable "sql_front_end_ip" {
+  type=string
+}
+
+variable "storage_account_for_witness" {
+  type=string
+}

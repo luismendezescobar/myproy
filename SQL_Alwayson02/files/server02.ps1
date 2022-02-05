@@ -465,14 +465,16 @@ Start-Sleep -Seconds 10        #we give a pause of 10 seconds so that the previo
 
 #now that the drive E is free we can use it to assign it
 Initialize-Disk -Number 2 -PartitionStyle GPT -confirm:$false
-New-Partition -DiskNumber 2 -UseMaximumSize -DriveLetter E
-Format-Volume -DriveLetter E -FileSystem NTFS -NewFileSystemLabel sql-binaries
+New-Partition -DiskNumber 2 -UseMaximumSize -DriveLetter F
+Format-Volume -DriveLetter F -FileSystem NTFS -NewFileSystemLabel sql-binaries
 
 Start-Sleep -Seconds 5
 
 
 New-NetFirewallRule -DisplayName 'SQL-Always-on' -Profile @('Domain', 'Private','Public') -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('1433', '5022','59998','59999')
 
+
+Install-WindowsFeature -Name Failover-Clustering –IncludeManagementTools –ComputerName server02
 
 #Initialize-Disk -Number 3 -PartitionStyle GPT -confirm:$false
 #New-Partition -DiskNumber 3 -UseMaximumSize -DriveLetter F

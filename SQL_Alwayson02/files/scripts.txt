@@ -1,0 +1,100 @@
+$ErrorActionPreference = "stop"
+
+# Install required Windows features
+Install-WindowsFeature Failover-Clustering -IncludeManagementTools
+Install-WindowsFeature RSAT-AD-PowerShell
+
+# Open firewall for WSFC
+netsh advfirewall firewall add rule name="Allow SQL Server health check" dir=in action=allow protocol=TCP localport=59997
+
+# Open firewall for SQL Server
+netsh advfirewall firewall add rule name="Allow SQL Server" dir=in action=allow protocol=TCP localport=1433
+
+
+
+##########################################for the active directory#######################
+
+net user Administrator *
+
+#Enable the account:
+net user Administrator /active:yes
+
+#Set the following variables:
+$LocalStaticIp = "10.1.0.100"
+$DNSPrimary = "10.1.0.100"
+$DefaultGateway = "10.1.0.1"
+
+#Set the IP address and default gateway:
+netsh interface ip set address name=Ethernet static `
+    $LocalStaticIp 255.255.255.0 $DefaultGateway 1
+
+#Configure the primary DNS server:
+netsh interface ip set dns Ethernet static $DNSPrimary
+
+
+#Install Active Directory Domain Services, including Management Tools:
+Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
+
+#Set the following variables
+$DomainName = "example-gcp.com"
+$DomainMode = "7"
+$ForestMode = "7"
+$DatabasePath = "C:\Windows\NTDS"
+$SysvolPath = "C:\Windows\SYSVOL"
+$LogPath = "C:\Logs"
+
+
+#Install the new Active Directory forest configuration in Windows Server 2016 mode:
+Install-ADDSForest -CreateDnsDelegation:$false `
+    -DatabasePath $DatabasePath `
+    -LogPath $LogPath `
+    -SysvolPath $SysvolPath `
+    -DomainName $DomainName `
+    -DomainMode $DomainMode `
+    -ForestMode $ForestMode `
+    -InstallDNS:$true `
+    -NoRebootOnCompletion:$true `
+    -Force:$true
+
+Restart-Computer
+
+#Restart the virtual machine:
+Restart-Computer
+
+#check the ad is up and runnig:
+$DomainName = "example-gcp.com"
+nltest /dsgetdc:$DomainName
+
+$LASTEXITCODE should be equal to 0 if the domain controller is operational
+
+
+
+
+###########################to join server to the domain###########################################
+then login to the server using rdp and set the dns
+$DNSPrimary = "10.1.0.100"
+netsh interface ip set dns Ethernet static $DNSPrimary
+ping example-gcp.com
+
+#then join the server to the domain with this command
+
+Add-Computer -Domain example-gcp.com -Restart
+
+
+
+#########################Deploying the failover cluster#########################################
+#Deploy WSFC
+#1.Connect to node-1 by using Remote Desktop. Log in with your domain user account.
+#2.Right-click the Start button (or press Win+X) and click Windows PowerShell (Admin).
+#3.Confirm the elevation prompt by clicking Yes.
+#4.Create a new cluster:
+
+
+#$DNSPrimary = ip from above command
+$CLUSTER_ADDRESS = "10.1.0.6"
+
+New-Cluster `
+  -Name windows-fci `
+  -Node node-1,node-2 `
+  -NoStorage `
+  -StaticAddress $CLUSTER_ADDRESS

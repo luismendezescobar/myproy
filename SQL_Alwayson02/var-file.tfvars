@@ -1,5 +1,6 @@
 #you have to create the newtork manually typing create vnet
-#az network vnet subnet list --resource-group 1-d86a0fa1-playground-sandbox --vnet-name myvpc
+#az network vnet create --name myvpc --resource-group 1-f79bd4b5-playground-sandbox --subnet-name default
+#az network vnet subnet list --resource-group 1-f79bd4b5-playground-sandbox --vnet-name myvpc
 
 server_vm_info = { 
     "server01" = {        
@@ -7,9 +8,9 @@ server_vm_info = {
         #size                     = "Standard_D4s_v3"
         size                      =  "standard_ds1_v2"
         nic_name                  = "nic-production01"
-        azure_subnet_id           ="/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-d86a0fa1-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+        azure_subnet_id           = "/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-f79bd4b5-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
         private_ip_address_allocation = "Static"
-        static_ip                 = "10.10.10.10"
+        static_ip                 = "10.0.0.10"
         admin_username            = "localvmadmin"
         admin_password            = "Passw0rd12345!"        
         disk_size_gb              = 127
@@ -18,7 +19,7 @@ server_vm_info = {
         source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2021.09.15"
         enable_automatic_updates  = "false"
         patch_mode                = "Manual"        
-        custom_data               = "./files/tazuswssbysc03.ps1"
+        custom_data               = "./files/server01.ps1"
 
         additional_disks = [{
             name                    ="drivef"
@@ -35,9 +36,9 @@ server_vm_info = {
         #size                     = "Standard_D4s_v3"
         size                      = "standard_ds1_v2"
         nic_name                  = "nic-production02"
-        azure_subnet_id           ="/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-d86a0fa1-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+        azure_subnet_id           ="/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-f79bd4b5-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
         private_ip_address_allocation = "Static"
-        static_ip                 = "10.10.10.11"
+        static_ip                 = "10.0.0.11"
         admin_username            = "localvmadmin"
         admin_password            = "Passw0rd12345!"        
         disk_size_gb              = 127
@@ -46,7 +47,7 @@ server_vm_info = {
         source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2021.09.15"
         enable_automatic_updates  = "false"
         patch_mode                = "Manual"        
-        custom_data               = "./files/tazuswssbysc03.ps1"
+        custom_data               = "./files/server02.ps1"
 
         additional_disks = [{
             name                    ="drivef"
@@ -66,9 +67,9 @@ server_vm_info_additional = {
         #size                     = "Standard_D4s_v3"
         size                      =  "standard_ds1_v2"
         nic_name                  = "nic-production01"
-        azure_subnet_id           ="/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-d86a0fa1-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+        azure_subnet_id           ="/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-f79bd4b5-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
         private_ip_address_allocation = "Static"
-        static_ip                 = "10.10.10.12"
+        static_ip                 = "10.0.0.12"
         admin_username            = "localvmadmin"
         admin_password            = "Passw0rd12345!"        
         disk_size_gb              = 127
@@ -77,17 +78,9 @@ server_vm_info_additional = {
         source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2021.09.15"
         enable_automatic_updates  = "false"
         patch_mode                = "Manual"        
-        custom_data               = "./files/tazuswssbysc03.ps1"
+        custom_data               = ""
 
-        additional_disks = [{
-            name                    ="drivef"
-            disk_size_gb            = 10
-            storage_account_type    = "Premium_LRS"
-            create_option           = "Empty"
-            caching                 = "ReadWrite"
-            lun_number              = 10                  
-            },
-        ]
+        additional_disks = []
     },
 }
 
@@ -98,9 +91,9 @@ server_vm_info_external = {
         #size                     = "Standard_D4s_v3"
         size                      =  "standard_ds1_v2"
         nic_name                  = "nic-production01"
-        azure_subnet_id           ="/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-d86a0fa1-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+        azure_subnet_id           = "/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-f79bd4b5-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
         private_ip_address_allocation = "Static"
-        static_ip                 = "10.10.10.13"
+        static_ip                 = "10.0.0.13"
         admin_username            = "localvmadmin"
         admin_password            = "Passw0rd12345!"        
         disk_size_gb              = 127
@@ -109,17 +102,9 @@ server_vm_info_external = {
         source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2021.09.15"
         enable_automatic_updates  = "false"
         patch_mode                = "Manual"        
-        custom_data               = "./files/tazuswssbysc03.ps1"
+        custom_data               = ""
 
-        additional_disks = [{
-            name                    ="drivef"
-            disk_size_gb            = 10
-            storage_account_type    = "Premium_LRS"
-            create_option           = "Empty"
-            caching                 = "ReadWrite"
-            lun_number              = 10                  
-            },
-        ]
+        additional_disks = []
     },
 }
 
@@ -150,15 +135,20 @@ lb_rule_ntc ="lb_rule_ntc_sql01"
 lb_rule_sql ="lb_rule_sql_sql01"
 avset_name  ="avset_name_sql01"
 
+cluster_front_end_ip= "10.10.10.14"
+sql_front_end_ip= "10.10.10.15"
+
+
 ########################dynamic variables##############################
 
-#boot_diagnostic_account_name    ="boot_diagnostics_account_01312022"        
 
 subguid                         ="964df7ca-3ba4-48b6-a695-1ed9db5723f8"          #MMS Shared Services ### this number is inside the resource group properties 
-azure_resource_group_name       ="1-d86a0fa1-playground-sandbox"
+azure_resource_group_name       ="1-f79bd4b5-playground-sandbox"
 
 
 
 
 storage_account_for_boot_diag   ="bootdiag01312022"
 storage_container_for_boot_diag ="bootblob"
+
+storage_account_for_witness="witness242022"

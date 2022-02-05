@@ -9,13 +9,16 @@ resource "azurerm_lb" "lb" {
   frontend_ip_configuration {
     name                          = "ClusterFrontEnd"
     subnet_id                     = var.lb_azure_subnet_id
-    private_ip_address_allocation = "Dynamic"
+    private_ip_address_allocation = "Static"
+    private_ip_address            = var.cluster_front_end_ip
+
   }
   
   frontend_ip_configuration {
     name                          = "SQLFrontEnd"
     subnet_id                     = var.lb_azure_subnet_id
-    private_ip_address_allocation = "Dynamic"
+    private_ip_address_allocation = "Static"
+    private_ip_address            = var.sql_front_end_ip
   }
 }
 

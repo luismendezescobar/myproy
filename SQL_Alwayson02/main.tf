@@ -5,8 +5,8 @@
 
 terraform{
     backend "azurerm"{
-        resource_group_name ="1-d86a0fa1-playground-sandbox"                    #variables can not be used, you have to put this manually here
-        storage_account_name="mystorage1312022"              #"myaccount1292022"   ##this has to be created manually##       #variables can not be used, you have to put this manually here
+        resource_group_name ="1-f79bd4b5-playground-sandbox"                    #variables can not be used, you have to put this manually here
+        storage_account_name="mystorage242022"              #"myaccount1292022"   ##this has to be created manually##       #variables can not be used, you have to put this manually here
         container_name      ="statecontainer"                       ##this has to be created manually
         key                 ="terraform.tfstate"
     }
@@ -54,6 +54,25 @@ resource "azurerm_storage_container" "lab" {
   container_access_type = "private"
 }
 
+########Create storage account for witness for the failover cluster#############################
+
+
+resource "azurerm_storage_account" "storage_witness" {
+  name                     = var.storage_account_for_witness
+  resource_group_name      = data.azurerm_resource_group.rg.name                    
+
+  #location                 = data.azurerm_resource_group.rg.location     #this has to be enabled in production
+  location                 = "Central US"
+
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  tags={
+        environment="Terraform Storage"
+        CreatedBy= "Luis Mendez"
+    }
+}
+
+##############################################################
 
 
 
