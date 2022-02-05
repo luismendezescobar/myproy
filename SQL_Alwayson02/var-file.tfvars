@@ -1,6 +1,6 @@
 #you have to create the newtork manually typing create vnet
-#az network vnet create --name myvpc --resource-group 1-f79bd4b5-playground-sandbox --subnet-name default
-#az network vnet subnet list --resource-group 1-f79bd4b5-playground-sandbox --vnet-name myvpc
+#az network vnet create --name myvpc --resource-group 1-f79bd4b5-playground-sandbox --subnet-name default --location "Central US"
+#az network vnet subnet list --resource-group 1-f79bd4b5-playground-sandbox --vnet-name myvpc 
 
 server_vm_info = { 
     "server01" = {        
@@ -135,8 +135,8 @@ lb_rule_ntc ="lb_rule_ntc_sql01"
 lb_rule_sql ="lb_rule_sql_sql01"
 avset_name  ="avset_name_sql01"
 
-cluster_front_end_ip= "10.10.10.14"
-sql_front_end_ip= "10.10.10.15"
+cluster_front_end_ip= "10.0.0.14"
+sql_front_end_ip= "10.0.0.15"
 
 
 ########################dynamic variables##############################
