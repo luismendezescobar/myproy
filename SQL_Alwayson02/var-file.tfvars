@@ -19,7 +19,7 @@ server_vm_info = {
         source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2021.09.15"
         enable_automatic_updates  = "false"
         patch_mode                = "Manual"        
-        custom_data               = "./files/server01.ps1"
+        custom_data               = "./files/server01.txt"
 
         additional_disks = [{
             name                    ="drivef"
@@ -47,7 +47,7 @@ server_vm_info = {
         source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2021.09.15"
         enable_automatic_updates  = "false"
         patch_mode                = "Manual"        
-        custom_data               = "./files/server02.ps1"
+        custom_data               = "./files/server01.txt"
 
         additional_disks = [{
             name                    ="drivef"

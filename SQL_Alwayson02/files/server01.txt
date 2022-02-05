@@ -37,9 +37,9 @@
 # Updated by Michael Crilly <mike@autologic.cm>
 # Updated by Anton Ouzounov <Anton.Ouzounov@careerbuilder.com>
 # Updated by Nicolas Simond <contact@nicolas-simond.com>
-# Updated by Dag Wieërs <dag@wieers.com>
+# Updated by Dag WieÃ«rs <dag@wieers.com>
 # Updated by Jordan Borean <jborean93@gmail.com>
-# Updated by Erwan Quélin <erwan.quelin@gmail.com>
+# Updated by Erwan QuÃ©lin <erwan.quelin@gmail.com>
 # Updated by David Norman <david@dkn.email>
 #
 # Version 1.0 - 2014-07-06
@@ -469,10 +469,12 @@ New-Partition -DiskNumber 2 -UseMaximumSize -DriveLetter F
 Format-Volume -DriveLetter F -FileSystem NTFS -NewFileSystemLabel sql-binaries
 
 Start-Sleep -Seconds 5
-'Install-WindowsFeature Failover-Clustering –IncludeManagementTools'
+
+Install-WindowsFeature Failover-Clustering -IncludeManagementTools
 
 
 New-NetFirewallRule -DisplayName 'SQL-Always-on' -Profile @('Domain', 'Private','Public') -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('1433', '5022','59998','59999')
+
 
 
 
