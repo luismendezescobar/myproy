@@ -479,24 +479,6 @@ Install-WindowsFeature Failover-Clustering –IncludeManagementTools
 
 
 
-#Initialize-Disk -Number 3 -PartitionStyle GPT -confirm:$false
-#New-Partition -DiskNumber 3 -UseMaximumSize -DriveLetter F
-#Format-Volume -DriveLetter G -FileSystem NTFS -NewFileSystemLabel sql-data
-
-#Initialize-Disk -Number 4 -PartitionStyle GPT -confirm:$false
-#New-Partition -DiskNumber 4 -UseMaximumSize -DriveLetter L
-#Format-Volume -DriveLetter L -FileSystem NTFS -NewFileSystemLabel sqllog
-
-#Initialize-Disk -Number 5 -PartitionStyle GPT -confirm:$false
-#New-Partition -DiskNumber 5 -UseMaximumSize -DriveLetter T
-#Format-Volume -DriveLetter T -FileSystem NTFS -NewFileSystemLabel sqltempdbdisk
-
-#Initialize-Disk -Number 6 -PartitionStyle GPT -confirm:$false
-#New-Partition -DiskNumber 6 -UseMaximumSize -DriveLetter U
-#Format-Volume -DriveLetter U -FileSystem NTFS -NewFileSystemLabel sqlbackupdisk
-
-
-
 
 
 
