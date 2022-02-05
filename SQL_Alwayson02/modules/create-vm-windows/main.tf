@@ -98,7 +98,7 @@ output "testout" {
 }
 */
 
-
+/*
 #we give 2 minutes for breating room 
 resource "null_resource" "wait-for-machine-provision" {
   provisioner "local-exec" {
@@ -123,3 +123,4 @@ resource "azurerm_virtual_machine_extension" "cloudinit" {
 
   depends_on = [null_resource.wait-for-machine-provision]
 }
+*/
