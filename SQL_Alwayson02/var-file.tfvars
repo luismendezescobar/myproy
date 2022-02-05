@@ -127,7 +127,7 @@ resource_tags                   = {
 ####################load balancer variables#########
 lb_name="lb_sql01"
 lb_location= "Central US"                
-lb_azure_subnet_id="/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-d86a0fa1-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+lb_azure_subnet_id="/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-f79bd4b5-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
 lb-backendpool-name="lb_bep_sql01"
 lb_probe_ntc="lb_probe_ntc_sql01"
 lb_probe_sql="lb_probe_sql_sql01"
