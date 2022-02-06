@@ -461,20 +461,19 @@ $DVD_Drive = Get-WmiObject win32_volume -filter 'DriveType = "5"'
 $DVD_Drive.DriveLetter = "B:" # assign new letter you want
 $DVD_Drive.Put()
 
-Start-Sleep -Seconds 10        #we give a pause of 10 seconds so that the previous change is completed.
+Start-Sleep -Seconds 5        #we give a pause of 10 seconds so that the previous change is completed.
 
-#now that the drive E is free we can use it to assign it
-Initialize-Disk -Number 2 -PartitionStyle GPT -confirm:$false
-New-Partition -DiskNumber 2 -UseMaximumSize -DriveLetter F
-Format-Volume -DriveLetter F -FileSystem NTFS -NewFileSystemLabel sql-binaries
 
-Start-Sleep -Seconds 5
+$LocalStaticIp = "10.0.0.12"
+$DNSPrimary = "10.0.0.12"
+$DefaultGateway = "10.0.0.1"
 
-Install-WindowsFeature Failover-Clustering -IncludeManagementTools
-Install-WindowsFeature RSAT-AD-PowerShell
+netsh interface ip set address name=Ethernet static `
+    $LocalStaticIp 255.255.255.0 $DefaultGateway 1
 
-New-NetFirewallRule -DisplayName 'SQL-Always-on' -Profile @('Domain', 'Private','Public') -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('1433', '5022','59998','59999')
+netsh interface ip set dns Ethernet static $DNSPrimary
 
+Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 
 
 

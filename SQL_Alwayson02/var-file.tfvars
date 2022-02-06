@@ -1,6 +1,6 @@
 #you have to create the newtork manually typing create vnet
-#az network vnet create --name myvpc --resource-group 1-603a96fb-playground-sandbox --subnet-name default --location "Central US"
-#az network vnet subnet list --resource-group 11-603a96fb-playground-sandbox --vnet-name myvpc 
+#az network vnet create --name myvpc --resource-group 1-58fb898a-playground-sandbox --subnet-name default --location "Central US"
+#az network vnet subnet list --resource-group 1-58fb898a-playground-sandbox --vnet-name myvpc 
 
 server_vm_info = { 
     "server01" = {        
@@ -8,7 +8,7 @@ server_vm_info = {
         #size                     = "Standard_D4s_v3"
         size                      =  "standard_ds1_v2"
         nic_name                  = "nic-production01"
-        azure_subnet_id           = "/subscriptions/0f39574d-d756-48cf-b622-0e27a6943bd2/resourceGroups/1-603a96fb-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+        azure_subnet_id           = "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-58fb898a-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
         private_ip_address_allocation = "Static"
         static_ip                 = "10.0.0.10"
         admin_username            = "localvmadmin"
@@ -36,7 +36,7 @@ server_vm_info = {
         #size                     = "Standard_D4s_v3"
         size                      = "standard_ds1_v2"
         nic_name                  = "nic-production02"
-        azure_subnet_id           = "/subscriptions/0f39574d-d756-48cf-b622-0e27a6943bd2/resourceGroups/1-603a96fb-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+        azure_subnet_id           = "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-58fb898a-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
         private_ip_address_allocation = "Static"
         static_ip                 = "10.0.0.11"
         admin_username            = "localvmadmin"
@@ -67,7 +67,7 @@ server_vm_info_additional = {
         #size                     = "Standard_D4s_v3"
         size                      =  "standard_ds1_v2"
         nic_name                  = "nic-production01"
-        azure_subnet_id           ="/subscriptions/0f39574d-d756-48cf-b622-0e27a6943bd2/resourceGroups/1-603a96fb-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+        azure_subnet_id           = "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-58fb898a-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
         private_ip_address_allocation = "Static"
         static_ip                 = "10.0.0.12"
         admin_username            = "localvmadmin"
@@ -78,7 +78,7 @@ server_vm_info_additional = {
         source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2021.09.15"
         enable_automatic_updates  = "false"
         patch_mode                = "Manual"        
-        custom_data               = "./files/bywus-web-trn3.ps1"
+        custom_data               = "./files/dc01.txt"
 
         additional_disks = []
     },
@@ -127,7 +127,7 @@ resource_tags                   = {
 ####################load balancer variables#########
 lb_name="lb_sql01"
 lb_location= "Central US"                
-lb_azure_subnet_id="/subscriptions/0f39574d-d756-48cf-b622-0e27a6943bd2/resourceGroups/1-603a96fb-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+lb_azure_subnet_id="/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-58fb898a-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
 lb-backendpool-name="lb_bep_sql01"
 lb_probe_ntc="lb_probe_ntc_sql01"
 lb_probe_sql="lb_probe_sql_sql01"
@@ -142,13 +142,11 @@ sql_front_end_ip= "10.0.0.15"
 ########################dynamic variables##############################
 
 
-subguid                         ="0f39574d-d756-48cf-b622-0e27a6943bd2"          #MMS Shared Services ### this number is inside the resource group properties 
-azure_resource_group_name       ="1-603a96fb-playground-sandbox"
+subguid                         ="4cedc5dd-e3ad-468d-bf66-32e31bdb9148"          #MMS Shared Services ### this number is inside the resource group properties 
+azure_resource_group_name       ="1-58fb898a-playground-sandbox"
 
 
-
-
-storage_account_for_boot_diag   ="bootdiag02052022"
+storage_account_for_boot_diag   ="bootdiag02062022"
 storage_container_for_boot_diag ="bootblob"
 
-storage_account_for_witness="witness252022"
+storage_account_for_witness="witness262022"

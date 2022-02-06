@@ -5,8 +5,8 @@
 
 terraform{
     backend "azurerm"{
-        resource_group_name ="1-603a96fb-playground-sandbox"                    #variables can not be used, you have to put this manually here
-        storage_account_name="mystorage252022"              #"myaccount1292022"   ##this has to be created manually##       #variables can not be used, you have to put this manually here
+        resource_group_name ="1-58fb898a-playground-sandbox"                    #variables can not be used, you have to put this manually here
+        storage_account_name="mystorage262022"              #"myaccount1292022"   ##this has to be created manually##       #variables can not be used, you have to put this manually here
         container_name      ="statecontainer"                       ##this has to be created manually
         key                 ="terraform.tfstate"
     }
