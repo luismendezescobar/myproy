@@ -24,6 +24,26 @@ Restart-Computer
 
 
 
+$Password = (ConvertTo-SecureString -String "Passw0rd12345!"  -AsPlainText -Force)
+
+$Params = @{
+CreateDnsDelegation = $false
+DatabasePath = 'C:\Windows\NTDS'
+DomainMode = '7'
+DomainName = 'example.net'
+DomainNetbiosName = 'example'
+ForestMode = '7'
+InstallDns = $true
+LogPath = 'C:\Windows\NTDS'
+NoRebootOnCompletion = $true
+SafeModeAdministratorPassword = $Password
+SysvolPath = 'C:\Windows\SYSVOL'
+Force = $true
+}
+
+Install-ADDSForest @Params
+Restart-Computer
+
 ###########################to join servers to the domain###########################################
 
 

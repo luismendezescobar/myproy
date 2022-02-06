@@ -475,7 +475,28 @@ netsh interface ip set dns Ethernet static $DNSPrimary
 
 Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 
+Start-Sleep -Seconds 5
 
+$Password = (ConvertTo-SecureString -String "Passw0rd12345!"  -AsPlainText -Force)
+
+$Params = @{
+CreateDnsDelegation = $false
+DatabasePath = 'C:\Windows\NTDS'
+DomainMode = '7'
+DomainName = 'example.net'
+DomainNetbiosName = 'example'
+ForestMode = '7'
+InstallDns = $true
+LogPath = 'C:\Windows\NTDS'
+NoRebootOnCompletion = $true
+SafeModeAdministratorPassword = $Password
+SysvolPath = 'C:\Windows\SYSVOL'
+Force = $true
+}
+
+Install-ADDSForest @Params
+Start-Sleep -Seconds 10
+Restart-Computer
 
 
 
