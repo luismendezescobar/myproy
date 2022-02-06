@@ -1,61 +1,25 @@
-##########################################for the active directory#######################
-
-
-$DomainName = "example.com"
-$DomainMode = "7"
-$ForestMode = "7"
-$DatabasePath = "C:\Windows\NTDS"
-$SysvolPath = "C:\Windows\SYSVOL"
-$LogPath = "C:\Logs"
-
-
-Install-ADDSForest -CreateDnsDelegation:$false `
-    -DatabasePath $DatabasePath `
-    -LogPath $LogPath `
-    -SysvolPath $SysvolPath `
-    -DomainName $DomainName `
-    -DomainMode $DomainMode `
-    -ForestMode $ForestMode `
-    -InstallDNS:$true `
-    -NoRebootOnCompletion:$true `
-    -Force:$true
-
-Restart-Computer
-
-
-
-$Password = (ConvertTo-SecureString -String "Passw0rd12345!"  -AsPlainText -Force)
-
-$Params = @{
-CreateDnsDelegation = $false
-DatabasePath = 'C:\Windows\NTDS'
-DomainMode = '7'
-DomainName = 'example.net'
-DomainNetbiosName = 'example'
-ForestMode = '7'
-InstallDns = $true
-LogPath = 'C:\Windows\NTDS'
-NoRebootOnCompletion = $true
-SafeModeAdministratorPassword = $Password
-SysvolPath = 'C:\Windows\SYSVOL'
-Force = $true
-}
-
-Install-ADDSForest @Params
-Restart-Computer
 
 ###########################to join servers to the domain###########################################
-
-
 $DNSPrimary = "10.0.0.12"
 netsh interface ip set dns Ethernet static $DNSPrimary
-Add-Computer -Domain example-gcp.com -Restart
+
+$dc = "example"
+$dcfull="example.net"
+$pw = "Passw0rd12345!" | ConvertTo-SecureString -asPlainText –Force 
+$usr = "$dc\localvmadmin"
+$creds = New-Object System.Management.Automation.PSCredential($usr,$pw)
+Add-Computer -DomainName $dcfull -Credential $creds -restart -force -verbose
+
+
+
+
+
+
 
 
 
 #########################Deploying the failover cluster#########################################
 
-#$DNSPrimary = "10.0.0.12"
 $CLUSTER_ADDRESS = "10.0.0.16"
 
 New-Cluster `
