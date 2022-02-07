@@ -480,7 +480,7 @@ netsh interface ip set dns Ethernet static $DNSPrimary
 
 $dc = "example"
 $dcfull="example.net"
-$pw = "Passw0rd12345!" | ConvertTo-SecureString -asPlainText –Force 
+$pw = (ConvertTo-SecureString -String "Passw0rd12345!"  -AsPlainText -Force)
 $usr = 'example\localvmadmin'
 $creds = New-Object System.Management.Automation.PSCredential($usr,$pw)
 Add-Computer -DomainName $dcfull -Credential $creds -restart -force -verbose
