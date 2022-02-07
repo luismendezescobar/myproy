@@ -72,13 +72,7 @@ resource "azurerm_lb_rule" "sql" {
   probe_id                        = azurerm_lb_probe.sql-probe.id  
 }
 
-resource "azurerm_availability_set" "avset" {
-  name                = var.avset_name
-  location            = var.lb_location
-  resource_group_name = var.azure_resource_group_name
-  managed             = true
-  tags                = var.resource_tags  
-}
+
 
 ##############Here comes the tricky part####################################################
 

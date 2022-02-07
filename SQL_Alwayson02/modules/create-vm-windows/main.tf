@@ -29,6 +29,7 @@ resource "azurerm_windows_virtual_machine" "server_db" {
   admin_username              = var.admin_username
   admin_password              = var.admin_password
   tags                        = var.resource_tags
+  availability_set_id         = var.availability_set_id
 
   os_disk {
     name                      = join("-", [lower(var.server_name), "os"])

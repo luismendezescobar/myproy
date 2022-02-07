@@ -116,3 +116,7 @@ variable "custom_data" {
 variable "static_ip" {
   type=string
 }
+
+variable "availability_set_id" {
+  type=string  
+}

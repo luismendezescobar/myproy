@@ -5,7 +5,7 @@
 
 terraform{
     backend "azurerm"{
-        resource_group_name ="1-a3e894a6-playground-sandbox"                    #variables can not be used, you have to put this manually here
+        resource_group_name ="1-0e84c6ac-playground-sandbox"                    #variables can not be used, you have to put this manually here
         storage_account_name="mystorage272022"              #"myaccount1292022"   ##this has to be created manually##       #variables can not be used, you have to put this manually here
         container_name      ="statecontainer"                       ##this has to be created manually
         key                 ="terraform.tfstate"
@@ -74,7 +74,13 @@ resource "azurerm_storage_account" "storage_witness" {
 
 ##############################################################
 
-
+resource "azurerm_availability_set" "sqlAS" {
+  name                = var.avset_name
+  location            = var.lb_location
+  resource_group_name = var.azure_resource_group_name
+  managed             = true
+  tags                = var.resource_tags  
+}
 
 
 module "vm_instance_windows" {
@@ -101,6 +107,7 @@ module "vm_instance_windows" {
   resource_group_location   = data.azurerm_resource_group.rg.location
   resource_group_name       = data.azurerm_resource_group.rg.name 
   primary_blob_endpoint     = azurerm_storage_account.dev_boot_diag.primary_blob_endpoint
+  availability_set_id       = azurerm_availability_set.sqlAS.id
 
   #depends_on = [azurerm_storage_account.dev_boot_diag]
   depends_on = [module.vm_instance_windows_DC]
@@ -195,10 +202,9 @@ module "vm_instance_windows_DC" {
   custom_data               = each.value.custom_data 
   resource_tags             = var.resource_tags
   resource_group_location   = data.azurerm_resource_group.rg.location
-  resource_group_name       = data.azurerm_resource_group.rg.name
-  #boot_diagnostic_account_name=var.boot_diagnostic_account_name
+  resource_group_name       = data.azurerm_resource_group.rg.name  
   primary_blob_endpoint     = azurerm_storage_account.dev_boot_diag.primary_blob_endpoint
-
+  availability_set_id       = azurerm_availability_set.sqlAS.id
   
 
 }

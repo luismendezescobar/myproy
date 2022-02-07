@@ -194,3 +194,7 @@ variable "sql_front_end_ip" {
 variable "storage_account_for_witness" {
   type=string
 }
+
+variable "availability_set_id" {
+  type=string  
+}
