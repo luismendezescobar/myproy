@@ -150,3 +150,4 @@ storage_account_for_boot_diag   ="bootdiag02072022"
 storage_container_for_boot_diag ="bootblob"
 
 storage_account_for_witness="witness272022"
+availability_set_id=""
