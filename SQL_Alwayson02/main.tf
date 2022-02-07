@@ -126,7 +126,7 @@ module "vm_instance_dev_ansible-linux-uswest" {
   source_image_id           = each.value.source_image_id
   resource_tags             = var.resource_tags
   resource_group_location   = data.azurerm_resource_group.rg.location
-  resource_group_name       = data.azurerm_resource_group.rg.nam
+  resource_group_name       = data.azurerm_resource_group.rg.name
   primary_blob_endpoint     = azurerm_storage_account.dev_boot_diag.primary_blob_endpoint
 
   depends_on = [azurerm_storage_account.dev_boot_diag]
