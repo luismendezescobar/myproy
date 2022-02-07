@@ -5,8 +5,8 @@
 
 terraform{
     backend "azurerm"{
-        resource_group_name ="1-2ec2edd7-playground-sandbox"                    #variables can not be used, you have to put this manually here
-        storage_account_name="mystorage262022"              #"myaccount1292022"   ##this has to be created manually##       #variables can not be used, you have to put this manually here
+        resource_group_name ="1-a3e894a6-playground-sandbox"                    #variables can not be used, you have to put this manually here
+        storage_account_name="mystorage272022"              #"myaccount1292022"   ##this has to be created manually##       #variables can not be used, you have to put this manually here
         container_name      ="statecontainer"                       ##this has to be created manually
         key                 ="terraform.tfstate"
     }
@@ -99,15 +99,12 @@ module "vm_instance_windows" {
   custom_data               = each.value.custom_data 
   resource_tags             = var.resource_tags
   resource_group_location   = data.azurerm_resource_group.rg.location
-  resource_group_name       = data.azurerm_resource_group.rg.name
-  #boot_diagnostic_account_name=var.boot_diagnostic_account_name
+  resource_group_name       = data.azurerm_resource_group.rg.name 
   primary_blob_endpoint     = azurerm_storage_account.dev_boot_diag.primary_blob_endpoint
 
-  depends_on = [azurerm_storage_account.dev_boot_diag]
-
+  #depends_on = [azurerm_storage_account.dev_boot_diag]
+  depends_on = [module.vm_instance_windows_DC]
 }
-
-
 
 
 module "vm_instance_dev_ansible-linux-uswest" {
@@ -129,8 +126,7 @@ module "vm_instance_dev_ansible-linux-uswest" {
   source_image_id           = each.value.source_image_id
   resource_tags             = var.resource_tags
   resource_group_location   = data.azurerm_resource_group.rg.location
-  resource_group_name       = data.azurerm_resource_group.rg.name
-  #boot_diagnostic_account_name=var.boot_diagnostic_account_name
+  resource_group_name       = data.azurerm_resource_group.rg.nam
   primary_blob_endpoint     = azurerm_storage_account.dev_boot_diag.primary_blob_endpoint
 
   depends_on = [azurerm_storage_account.dev_boot_diag]
@@ -154,60 +150,25 @@ module "create_lb" {
   cluster_front_end_ip= var.cluster_front_end_ip
   sql_front_end_ip    = var.sql_front_end_ip
 
-  
-
-  #instances         = [for vm in module.vm_instance_windows: vm]
-/*
-  instances         = {
-    for key in module.vm_instance_windows : "key" =>key.Nic0...
-  }*/
   instances={
     for key in module.vm_instance_windows : key.testout.name =>key.testout.id
   }
-
-
   depends_on = [module.vm_instance_windows]
 }
-
-
-
-
-
 
 output "instances_out" {
   value= [for vm in module.vm_instance_windows: vm.testout ]
 }
-/*
-output "instances_out-02" {
-  value= [for vm in module.vm_instance_windows: vm.testout.id]
-}
-
-output "instances_out-03" {
-  value= [for vm in module.vm_instance_windows: vm.testout.ip_configuration]
-}
-
-output "instances_out-04" {
-  value= [for vm in module.vm_instance_windows: vm.testout]
-}
-*/
 output "instances_out-05" {
   value={
     for key in module.vm_instance_windows : key.testout.name =>key.testout.id
   }
 
 }
-/*
-output "instances_out-06" {
-  value = [for vm in module.vm_instance_windows.Nic0: vm.id]
-}
-
-*/
-
 output "instances_out-06" {
   value={
     for key in module.vm_instance_windows : "key" =>key.Nic0...
   }
-
 }
 
 
@@ -238,7 +199,7 @@ module "vm_instance_windows_DC" {
   #boot_diagnostic_account_name=var.boot_diagnostic_account_name
   primary_blob_endpoint     = azurerm_storage_account.dev_boot_diag.primary_blob_endpoint
 
-  depends_on = [module.create_lb]
+  
 
 }
 
