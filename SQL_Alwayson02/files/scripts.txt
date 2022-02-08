@@ -1,31 +1,3 @@
-
-###########################to join servers to the domain###########################################
-$DNSPrimary = "10.0.0.12"
-netsh interface ip set dns Ethernet static $DNSPrimary
-
-$dc = "example"
-$dcfull="example.net"
-$pw = "Passw0rd12345!" | ConvertTo-SecureString -asPlainText –Force 
-$usr = "$dc\localvmadmin"
-$creds = New-Object System.Management.Automation.PSCredential($usr,$pw)
-Add-Computer -DomainName $dcfull -Credential $creds -restart -force -verbose
-
-
-
-or with this form
-$dc = "example"
-$dcfull="example.net"
-$pw = (ConvertTo-SecureString -String "Passw0rd12345!"  -AsPlainText -Force)
-$usr = 'example\localvmadmin'
-$creds = New-Object System.Management.Automation.PSCredential($usr,$pw)
-Add-Computer -DomainName $dcfull -Credential $creds -restart -force -verbose
-shutdown -r -t 5
-exit 0
-
-
-
-
-
 #########################Deploying the failover cluster#########################################
 
 $CLUSTER_ADDRESS = "10.0.0.14"
