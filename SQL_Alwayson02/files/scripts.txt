@@ -7,3 +7,29 @@ New-Cluster `
   -Node server01,server02 `
   -NoStorage `
   -StaticAddress $CLUSTER_ADDRESS
+
+
+###########################after the AG01 has been deployed########################################
+---------------------------to access the sql listener from outside---------------------------
+#run the below script from powershell in one of the nodes
+
+$ClusterNetworkName="Cluster Network 1"
+$IPResourceName="IP Address 10.0.0.15"
+$ListenerILBIP="10.0.0.15"
+$ListenerProbePort=59999
+Import-Module FailoverClusters
+Get-ClusterResource $IPResourceName | Set-ClusterParameter -Multiple @{"Address"="$ListenerILBIP";"ProbePort"=$ListenerProbePort;"SubnetMask"="255.255.255.255";"Network"="$ClusterNetworkName";"EnableDhcp"=0}
+
+
+-------------------to access wfcm from anywhere-------------------------------------
+#run the below script from powershell in one of the nodes
+
+$ClusterNetworkName = "Cluster Network 1"
+$IPResourceName = "Cluster IP Address"
+$ClusterCoreIP = "10.0.0.14"
+[int]$ClusterProbePort = 59998
+
+Import-Module FailoverClusters
+
+Get-ClusterResource $IPResourceName | Set-ClusterParameter -Multiple @{"Address"="$ClusterCoreIP";"ProbePort"=$ClusterProbePort;"SubnetMask"="255.255.255.255";"Network"="$ClusterNetworkName";"EnableDhcp"=0}
+
