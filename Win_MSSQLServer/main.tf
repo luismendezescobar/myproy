@@ -24,7 +24,7 @@ provider "azurerm" {
     skip_provider_registration = "true"
 }
 
-/*
+
 resource "azurerm_lb" "lb" {
   name                = "lb-${lower(var.region)}-${lower(var.appabbrev)}-sql-${lower(terraform.workspace)}"
   location            = var.azure_location
@@ -45,7 +45,7 @@ resource "azurerm_lb" "lb" {
     private_ip_address_allocation = "Dynamic"
   }
 }
-
+/*
 resource "azurerm_lb_backend_address_pool" "lbbap" {
   resource_group_name   = var.azure_resource_group_name
   loadbalancer_id       = azurerm_lb.lb[0].id
