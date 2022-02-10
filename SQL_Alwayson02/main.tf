@@ -1,7 +1,8 @@
 #we are going to use the following links:
 #https://docs.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/availability-group-manually-configure-prerequisites-tutorial-single-subnet
 #https://docs.microsoft.com/en-us/windows-server/failover-clustering/deploy-cloud-witness
-
+#troubleshooting
+#https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/trouble-shooting-availability-group-listener-in-azure-sql-vm/ba-p/371317
 
 terraform{
     backend "azurerm"{

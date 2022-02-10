@@ -1,14 +1,16 @@
+#az network vnet create --name myvpc --resource-group 1-c805ffc1-playground-sandbox --subnet-name default --location "West US"
+
 terraform{
     backend "azurerm"{
-        resource_group_name ="1-0e84c6ac-playground-sandbox"     #variables can not be used, you have to put this manually here
-        storage_account_name="mystorage272022"              #variables can not be used, you have to put this manually here
+        resource_group_name ="1-c805ffc1-playground-sandbox"     #variables can not be used, you have to put this manually here
+        storage_account_name="mystorage292022"              #variables can not be used, you have to put this manually here
         container_name      ="statecontainer02"
         key                 ="terraform.tfstate"
     }
     required_providers {
       azurerm={
         source  = "hashicorp/azurerm"
-        version = "~>2.0"
+        #version = "~>2.0"
       }
     }
 }
@@ -43,7 +45,7 @@ resource "azurerm_lb" "lb" {
     private_ip_address_allocation = "Dynamic"
   }
 }
-
+/*
 resource "azurerm_lb_backend_address_pool" "lbbap" {
   resource_group_name   = var.azure_resource_group_name
   loadbalancer_id       = azurerm_lb.lb[0].id
@@ -150,12 +152,14 @@ resource "azurerm_virtual_machine" "vm" {
     sku       = "2016-Datacenter"
     version   = "latest"
   }
-/*
+/*this is not required for testing
   boot_diagnostics  {
     enabled   = false
     #storage_uri = var.bootdiags_primary_blob_endpoint
   }
 */
+
+/*
   storage_os_disk {
     name              = "${lower(var.appabbrev)}sql${count.index}-os"
     caching           = "ReadWrite"
@@ -176,7 +180,12 @@ resource "azurerm_virtual_machine" "vm" {
     timezone                  = var.vm_timezone
   }
 }
-/*
+
+*/
+
+
+
+/* this is not required for testing
 resource "azurerm_managed_disk" "data" {
   name                  = "${lower(var.appabbrev)}-${lower(var.region)}-sql-${lower(terraform.workspace)}-data${count.index}"
   location              = var.azure_location
