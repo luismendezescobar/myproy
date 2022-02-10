@@ -2,7 +2,7 @@
 
 terraform{
     backend "azurerm"{
-        resource_group_name ="1-c805ffc1-playground-sandbox"     #variables can not be used, you have to put this manually here
+        resource_group_name =local.ResourceGroupName     #variables can not be used, you have to put this manually here
         storage_account_name="mystorage292022"              #variables can not be used, you have to put this manually here
         container_name      ="statecontainer02"
         key                 ="terraform.tfstate"
@@ -24,26 +24,31 @@ provider "azurerm" {
     skip_provider_registration = "true"
 }
 
+locals {
+  Subscriptionid = "0f39574d-d756-48cf-b622-0e27a6943bd2"
+  ResourceGroupName="1-46e02360-playground-sandbox"
+
+}
 
 resource "azurerm_lb" "lb" {
   name                = "lb-${lower(var.region)}-${lower(var.appabbrev)}-sql-${lower(terraform.workspace)}"
   location            = "West US"
   count               = var.node_count >= 2 ? 1 : 0
-  resource_group_name = var.azure_resource_group_name
+  resource_group_name = local.ResourceGroupName
   sku                 = "Standard"
   tags                = var.resource_tags
   
   frontend_ip_configuration {
     name                          = "ClusterFrontEnd"
     #subnet_id                     = var.azure_subnet_id
-    subnet_id                     = "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-c805ffc1-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+    subnet_id                     = "/subscriptions/${local.Subscriptionid}/resourceGroups/${local.ResourceGroupName}/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
     private_ip_address_allocation = "Dynamic"
   }
   
   frontend_ip_configuration {
     name                          = "SQLFrontEnd"
     #subnet_id                     = var.azure_subnet_id
-    subnet_id                     = "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-c805ffc1-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+    subnet_id                     = "/subscriptions/${local.Subscriptionid}/resourceGroups/${local.ResourceGroupName}/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -103,6 +108,7 @@ resource "azurerm_lb_rule" "sql" {
   #count                           = var.node_count >= 2 ? 1 : 0
 }
 */
+/*
 resource "azurerm_availability_set" "avset" {
   name                = "avset-${lower(var.region)}-${lower(var.appabbrev)}-sql-${lower(terraform.workspace)}"
   location            = var.azure_location
@@ -135,6 +141,7 @@ resource "azurerm_network_interface_backend_address_pool_association" "nicbapass
   count                   = var.node_count >= 1 ? var.node_count : 0
 }
 */
+/*
 resource "azurerm_virtual_machine" "vm" {
   name                              = "${lower(var.appabbrev)}sql${count.index}"
   availability_set_id               = azurerm_availability_set.avset[0].id
@@ -161,7 +168,7 @@ resource "azurerm_virtual_machine" "vm" {
   }
 */
 
-
+/*
   storage_os_disk {
     name              = "${lower(var.appabbrev)}sql${count.index}-os"
     caching           = "ReadWrite"

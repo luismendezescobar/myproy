@@ -1,5 +1,5 @@
 #you have to create the newtork manually typing create vnet
-#az network vnet create --name myvpc --resource-group 1-0e84c6ac-playground-sandbox --subnet-name default --location "Central US"
+#az network vnet create --name myvpc --resource-group 1-0e84c6ac-playground-sandbox --subnet-name default --location "West US"
 #az network vnet subnet list --resource-group 1-0e84c6ac-playground-sandbox --vnet-name myvpc 
 
 server_vm_info = { 
