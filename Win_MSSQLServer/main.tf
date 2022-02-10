@@ -24,7 +24,7 @@ provider "azurerm" {
     skip_provider_registration = "true"
 }
 
-
+/*
 resource "azurerm_lb" "lb" {
   name                = "lb-${lower(var.region)}-${lower(var.appabbrev)}-sql-${lower(terraform.workspace)}"
   location            = var.azure_location
@@ -45,7 +45,7 @@ resource "azurerm_lb" "lb" {
     private_ip_address_allocation = "Dynamic"
   }
 }
-/*
+
 resource "azurerm_lb_backend_address_pool" "lbbap" {
   resource_group_name   = var.azure_resource_group_name
   loadbalancer_id       = azurerm_lb.lb[0].id
@@ -109,7 +109,7 @@ resource "azurerm_availability_set" "avset" {
   tags                = var.resource_tags
   count               = var.node_count >= 1 ? 1 : 0
 }
-
+*/
 resource "azurerm_network_interface" "nic" {
   name                  = "nic-${lower(var.region)}-${lower(var.appabbrev)}-sql-${lower(terraform.workspace)}-${count.index}"
   location              = var.azure_location
@@ -125,14 +125,14 @@ resource "azurerm_network_interface" "nic" {
     primary                       = true
   }
 }
-
+/*
 resource "azurerm_network_interface_backend_address_pool_association" "nicbapassoc" {
   network_interface_id    = azurerm_network_interface.nic[count.index].id
   ip_configuration_name   = "ipconfig1"
   backend_address_pool_id = azurerm_lb_backend_address_pool.lbbap[0].id
   count                   = var.node_count >= 1 ? var.node_count : 0
 }
-
+*/
 resource "azurerm_virtual_machine" "vm" {
   name                              = "${lower(var.appabbrev)}sql${count.index}"
   availability_set_id               = azurerm_availability_set.avset[0].id
@@ -159,7 +159,7 @@ resource "azurerm_virtual_machine" "vm" {
   }
 */
 
-/*
+
   storage_os_disk {
     name              = "${lower(var.appabbrev)}sql${count.index}-os"
     caching           = "ReadWrite"
@@ -181,7 +181,7 @@ resource "azurerm_virtual_machine" "vm" {
   }
 }
 
-*/
+
 
 
 
