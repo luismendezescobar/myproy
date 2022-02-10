@@ -100,7 +100,7 @@ resource "azurerm_lb_rule" "sql" {
   probe_id                        = azurerm_lb_probe.sql-probe[0].id
   #count                           = var.node_count >= 2 ? 1 : 0
 }
-
+*/
 resource "azurerm_availability_set" "avset" {
   name                = "avset-${lower(var.region)}-${lower(var.appabbrev)}-sql-${lower(terraform.workspace)}"
   location            = var.azure_location
@@ -109,7 +109,7 @@ resource "azurerm_availability_set" "avset" {
   tags                = var.resource_tags
   count               = var.node_count >= 1 ? 1 : 0
 }
-*/
+
 resource "azurerm_network_interface" "nic" {
   name                  = "nic-${lower(var.region)}-${lower(var.appabbrev)}-sql-${lower(terraform.workspace)}-${count.index}"
   location              = var.azure_location
