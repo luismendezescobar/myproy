@@ -32,7 +32,7 @@ locals {
 
 resource "azurerm_lb" "lb" {
   name                = "lb-${lower(var.region)}-${lower(var.appabbrev)}-sql-${lower(terraform.workspace)}"
-  location            = "West US"
+  location            = "westus"
   count               = var.node_count >= 2 ? 1 : 0
   resource_group_name = local.ResourceGroupName
   sku                 = "Standard"
