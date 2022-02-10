@@ -27,7 +27,7 @@ provider "azurerm" {
 
 resource "azurerm_lb" "lb" {
   name                = "lb-${lower(var.region)}-${lower(var.appabbrev)}-sql-${lower(terraform.workspace)}"
-  location            = var.azure_location
+  #location            = var.azure_location
   count               = var.node_count >= 2 ? 1 : 0
   resource_group_name = var.azure_resource_group_name
   sku                 = "Standard"
