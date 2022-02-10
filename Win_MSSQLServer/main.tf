@@ -32,7 +32,7 @@ locals {
 
  data "azurerm_resource_group" "test" {
    name     = "1-46e02360-playground-sandbox"
-   location = "South Central US"
+   #location = "South Central US"
  }
 
 
