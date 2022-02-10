@@ -30,9 +30,15 @@ locals {
 
 }
 
+ data "azurerm_resource_group" "test" {
+   name     = "1-46e02360-playground-sandbox"
+   location = "South Central US"
+ }
+
+
 resource "azurerm_lb" "lb" {
   name                = "lb-${lower(var.region)}-${lower(var.appabbrev)}-sql-${lower(terraform.workspace)}"
-  location            = "westus"
+  location            = data.azurerm_resource_group.test.location
   count               = var.node_count >= 2 ? 1 : 0
   resource_group_name = local.ResourceGroupName
   sku                 = "Standard"
