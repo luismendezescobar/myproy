@@ -36,14 +36,14 @@ resource "azurerm_lb" "lb" {
   frontend_ip_configuration {
     name                          = "ClusterFrontEnd"
     #subnet_id                     = var.azure_subnet_id
-    subnet_id                     = "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-c805ffc1-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+    subnet_id                     = "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-c805ffc1-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc2/subnets/default"
     private_ip_address_allocation = "Dynamic"
   }
   
   frontend_ip_configuration {
     name                          = "SQLFrontEnd"
     #subnet_id                     = var.azure_subnet_id
-    subnet_id                     = "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-c805ffc1-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+    subnet_id                     = "/subscriptions/4cedc5dd-e3ad-468d-bf66-32e31bdb9148/resourceGroups/1-c805ffc1-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc2/subnets/default"
     private_ip_address_allocation = "Dynamic"
   }
 }
