@@ -91,9 +91,9 @@ resource "azurerm_availability_set" "sqlAS" {
 }
 
 data "azurerm_subnet" "net_master" {
-  name="general-vnet"
+  name="master"
   resource_group_name = var.azure_resource_group_name
-  virtual_network_name="master"
+  virtual_network_name="general-vnet"
 }
 /*
 module "vm_instance_windows" {
