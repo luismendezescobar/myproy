@@ -79,6 +79,7 @@ module "create_networks" {
   source                    = "./modules/create-networks"  
 
   for_each=local.vnet_json_data
+  vnet_name=each.key
   vnet_json_data=each.value
 
 

@@ -1,6 +1,6 @@
 
 resource "azurerm_virtual_network" "example" {
-  name                = var.vnet_json_data.key
+  name                = var.vnet_name
   location            = var.vnet_json_data.location
   resource_group_name = var.vnet_json_data.Resource_Grp
   address_space       = var.vnet_json_data.AddressSpace
