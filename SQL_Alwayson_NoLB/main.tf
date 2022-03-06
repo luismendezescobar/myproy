@@ -74,7 +74,7 @@ resource "azurerm_storage_account" "storage_witness" {
 }
 
 ##############################################################
-/*
+
 module "create_networks" {
   for_each=local.vnet_json_data
   vnet_json_data=each.value
@@ -86,7 +86,7 @@ module "create_networks" {
 
 
 }
-/*
+
 resource "azurerm_availability_set" "sqlAS" {
   name                = var.avset_name
   location            = var.lb_location
