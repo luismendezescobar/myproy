@@ -218,7 +218,7 @@ module "vm_instance_windows_DC" {
   resource_group_name       = data.azurerm_resource_group.rg.name  
   primary_blob_endpoint     = azurerm_storage_account.dev_boot_diag.primary_blob_endpoint
   availability_set_id       = azurerm_availability_set.sqlAS.id
-  
+  depends_on = [module.create_networks]
 }
 
 /*
