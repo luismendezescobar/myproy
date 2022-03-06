@@ -95,7 +95,7 @@ data "azurerm_subnet" "net_master" {
   resource_group_name = var.azure_resource_group_name
   virtual_network_name="general-vnet"
 }
-/*
+
 module "vm_instance_windows" {
   for_each                  = var.server_vm_info
   source                    = "./modules/create-vm-windows"  
