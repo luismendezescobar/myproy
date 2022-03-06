@@ -1,0 +1,24 @@
+{
+    "VirtualNetworks": {
+        "general-vnet": {
+            "AddressSpace": "10.0.0.0/16",
+            "dns_servers": ["10.0.0.12"],
+            "Subnets": [
+                {
+                    "Name": "master",
+                    "address_prefix": "10.0.0.0/24"
+                }
+            ]
+        }
+    },
+    "ResourceGroups": {
+        "k8s": {
+            "name": "eastus-k8s-1234",
+            "location": "eastus"
+        },
+        "hub": {
+            "name": "eastus-hub-1234",
+            "location": "eastus"
+        }
+    }
+}

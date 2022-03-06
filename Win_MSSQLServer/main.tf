@@ -10,7 +10,7 @@ terraform{
     required_providers {
       azurerm={
         source  = "hashicorp/azurerm"
-        #version = "~>2.0"
+        version = "~>2.0"
       }
     }
 }
@@ -24,12 +24,6 @@ provider "azurerm" {
     skip_provider_registration = "true"
 }
 
-locals {
-  Subscriptionid = "0f39574d-d756-48cf-b622-0e27a6943bd2"
-  ResourceGroupName="1-46e02360-playground-sandbox"
-
-}
-
 resource "azurerm_lb" "lb" {
   name                = "lb-${lower(var.region)}-${lower(var.appabbrev)}-sql-${lower(terraform.workspace)}"
   location            = "westus"
@@ -37,22 +31,20 @@ resource "azurerm_lb" "lb" {
   resource_group_name = local.ResourceGroupName
   sku                 = "Standard"
   tags                = var.resource_tags
-  
+
   frontend_ip_configuration {
     name                          = "ClusterFrontEnd"
-    #subnet_id                     = var.azure_subnet_id
-    subnet_id                     = "/subscriptions/${local.Subscriptionid}/resourceGroups/${local.ResourceGroupName}/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+    subnet_id                     = var.azure_subnet_id    
     private_ip_address_allocation = "Dynamic"
   }
   
   frontend_ip_configuration {
     name                          = "SQLFrontEnd"
-    #subnet_id                     = var.azure_subnet_id
-    subnet_id                     = "/subscriptions/${local.Subscriptionid}/resourceGroups/${local.ResourceGroupName}/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
+    subnet_id                     = var.azure_subnet_id    
     private_ip_address_allocation = "Dynamic"
   }
 }
-/*
+
 resource "azurerm_lb_backend_address_pool" "lbbap" {
   resource_group_name   = var.azure_resource_group_name
   loadbalancer_id       = azurerm_lb.lb[0].id
@@ -107,8 +99,7 @@ resource "azurerm_lb_rule" "sql" {
   probe_id                        = azurerm_lb_probe.sql-probe[0].id
   #count                           = var.node_count >= 2 ? 1 : 0
 }
-*/
-/*
+
 resource "azurerm_availability_set" "avset" {
   name                = "avset-${lower(var.region)}-${lower(var.appabbrev)}-sql-${lower(terraform.workspace)}"
   location            = var.azure_location
@@ -133,15 +124,15 @@ resource "azurerm_network_interface" "nic" {
     primary                       = true
   }
 }
-/*
+
 resource "azurerm_network_interface_backend_address_pool_association" "nicbapassoc" {
   network_interface_id    = azurerm_network_interface.nic[count.index].id
   ip_configuration_name   = "ipconfig1"
   backend_address_pool_id = azurerm_lb_backend_address_pool.lbbap[0].id
   count                   = var.node_count >= 1 ? var.node_count : 0
 }
-*/
-/*
+
+
 resource "azurerm_virtual_machine" "vm" {
   name                              = "${lower(var.appabbrev)}sql${count.index}"
   availability_set_id               = azurerm_availability_set.avset[0].id
@@ -158,7 +149,7 @@ resource "azurerm_virtual_machine" "vm" {
     #you can get it with this command az vm image list
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2016-Datacenter"
+    sku       = "2019-Datacenter"
     version   = "latest"
   }
 /*this is not required for testing
@@ -168,7 +159,6 @@ resource "azurerm_virtual_machine" "vm" {
   }
 */
 
-/*
   storage_os_disk {
     name              = "${lower(var.appabbrev)}sql${count.index}-os"
     caching           = "ReadWrite"

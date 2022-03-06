@@ -1,0 +1,6 @@
+steps:
+- name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+  args: ["cd ./python-scripts/cloud-functions/ci-cd/"]
+  args: ["./scripts/deploy-http.sh"]
+  
+  

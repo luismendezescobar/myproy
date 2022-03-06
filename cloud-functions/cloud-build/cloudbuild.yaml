@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cluid-builders/yarn'
+  args: ['install']
+  dir: 'functions/autodeploy'
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['functions,'deploy',luis-repo-function-1,'--trigger-http','--runtime','python38','--entry-point','greetings_http']
+  dir: 'functions/autodeploy'

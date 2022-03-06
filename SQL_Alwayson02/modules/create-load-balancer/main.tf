@@ -55,7 +55,7 @@ resource "azurerm_lb_rule" "ntc" {
   frontend_port                   = "0"
   backend_port                    = "0"
   frontend_ip_configuration_name  = "ClusterFrontEnd"
-  backend_address_pool_id         = azurerm_lb_backend_address_pool.lbbap.id  
+  backend_address_pool_ids        = [azurerm_lb_backend_address_pool.lbbap.id]  
   probe_id                        = azurerm_lb_probe.ntc-probe.id  
 }
 
@@ -68,11 +68,9 @@ resource "azurerm_lb_rule" "sql" {
   frontend_port                   = "1433"
   backend_port                    = "1433"
   frontend_ip_configuration_name  = "SQLFrontEnd"
-  backend_address_pool_id         = azurerm_lb_backend_address_pool.lbbap.id  
+  backend_address_pool_ids        = [azurerm_lb_backend_address_pool.lbbap.id]
   probe_id                        = azurerm_lb_probe.sql-probe.id  
 }
-
-
 
 ##############Here comes the tricky part####################################################
 
