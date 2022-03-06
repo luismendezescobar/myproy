@@ -76,7 +76,8 @@ resource "azurerm_storage_account" "storage_witness" {
 ##############################################################
 /*
 module "create_networks" {
-
+  for_each=local.vnet_json_data
+  vnet_json_data=each.value
 
 
 
