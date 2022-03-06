@@ -6,28 +6,25 @@
             "location": "Central US",
             "Resource_Grp":"1-2d3be0ec-playground-sandbox",
 
-            "Subnets": [
-                {
-                    "Name": "master",
+            "Subnets": {
+               "master": {
                     "address_prefix": "10.0.0.0/24"
                 },
-                {
-                    "Name": "second-sub",
+                "second-sub":{
                     "address_prefix": "10.0.1.0/24"
                 }
-            ]
+            }
         },
         "secondary-vnet": {
             "AddressSpace": ["192.168.0.0/16"],
             "dns_servers": ["192.168.0.12"],
             "location": "West US",
             "Resource_Grp":"1-2d3be0ec-playground-sandbox",
-            "Subnets": [
-                {
-                    "Name": "master",
+            "Subnets": {
+                "master": {
                     "address_prefix": "192.168.0.0/24"
                 }
-            ]
+            }
         }
 
     },
