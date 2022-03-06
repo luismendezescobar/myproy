@@ -21,13 +21,22 @@ server_vm_info = {
         patch_mode                = "Manual"        
         custom_data               = "./files/server01.txt"
 
-        additional_disks = [{
-            name                    ="drivef"
-            disk_size_gb            = 10
-            storage_account_type    = "Premium_LRS"
-            create_option           = "Empty"
-            caching                 = "ReadWrite"
-            lun_number              = 10                  
+        additional_disks = [
+            {
+                name                    ="drivef"
+                disk_size_gb            = 10
+                storage_account_type    = "Premium_LRS"
+                create_option           = "Empty"
+                caching                 = "ReadWrite"
+                lun_number              = 10                  
+            },
+            {
+                name                    ="driveg"
+                disk_size_gb            = 100
+                storage_account_type    = "Premium_LRS"
+                create_option           = "Empty"
+                caching                 = "ReadWrite"
+                lun_number              = 20                  
             },
         ]
     },
@@ -49,14 +58,23 @@ server_vm_info = {
         patch_mode                = "Manual"        
         custom_data               = "./files/server01.txt"
 
-        additional_disks = [{
-            name                    ="drivef"
-            disk_size_gb            = 10
-            storage_account_type    = "Premium_LRS"
-            create_option           = "Empty"
-            caching                 = "ReadWrite"
-            lun_number              = 10            
-        },    
+        additional_disks = [
+           {
+                name                    ="drivef"
+                disk_size_gb            = 10
+                storage_account_type    = "Premium_LRS"
+                create_option           = "Empty"
+                caching                 = "ReadWrite"
+                lun_number              = 10                  
+            },
+            {
+                name                    ="driveg"
+                disk_size_gb            = 100
+                storage_account_type    = "Premium_LRS"
+                create_option           = "Empty"
+                caching                 = "ReadWrite"
+                lun_number              = 20                  
+            },    
         ]       
     },   
 }

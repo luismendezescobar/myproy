@@ -468,6 +468,10 @@ Initialize-Disk -Number 2 -PartitionStyle GPT -confirm:$false
 New-Partition -DiskNumber 2 -UseMaximumSize -DriveLetter F
 Format-Volume -DriveLetter F -FileSystem NTFS -NewFileSystemLabel sql-binaries
 
+Initialize-Disk -Number 3 -PartitionStyle GPT -confirm:$false
+New-Partition -DiskNumber 3 -UseMaximumSize -DriveLetter G
+Format-Volume -DriveLetter G -FileSystem NTFS -NewFileSystemLabel sql-data
+
 Start-Sleep -Seconds 5
 
 Install-WindowsFeature Failover-Clustering -IncludeManagementTools
