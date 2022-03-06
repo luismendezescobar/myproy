@@ -77,20 +77,11 @@ resource "azurerm_storage_account" "storage_witness" {
 
 module "create_networks" {
   source                    = "./modules/create-networks"  
-
   for_each=local.vnet_json_data
   vnet_name=each.key
   vnet_json_data=each.value
-
-
-
-
-
-
-
 }
 
-/*
 resource "azurerm_availability_set" "sqlAS" {
   name                = var.avset_name
   location            = var.lb_location
@@ -99,7 +90,12 @@ resource "azurerm_availability_set" "sqlAS" {
   tags                = var.resource_tags  
 }
 
-
+data "azurerm_subnet" "net_master" {
+  name="general-vnet"
+  resource_group_name = var.azure_resource_group_name
+  virtual_network_name="master"
+}
+/*
 module "vm_instance_windows" {
   for_each                  = var.server_vm_info
   source                    = "./modules/create-vm-windows"  
@@ -107,7 +103,8 @@ module "vm_instance_windows" {
   location                  = each.value.location
   nic_name                  = "prod-${lower(each.key)}"
   size                      = each.value.size
-  azure_subnet_id           = each.value.azure_subnet_id
+  #azure_subnet_id           = each.value.azure_subnet_id
+  azure_subnet_id           = data.azurerm_subnet.net_master.id
   private_ip_address_allocation = each.value.private_ip_address_allocation  
   static_ip                 = each.value.static_ip
   admin_username            = each.value.admin_username
@@ -129,7 +126,7 @@ module "vm_instance_windows" {
   depends_on = [module.vm_instance_windows_DC]
 }
 
-
+/*
 module "vm_instance_dev_ansible-linux-uswest" {
   for_each                  = var.server_vm_info_linux
   source                    = "./modules/create-vm-linux"  
@@ -193,8 +190,7 @@ output "instances_out-06" {
     for key in module.vm_instance_windows : "key" =>key.Nic0...
   }
 }
-
-
+*/
 
 module "vm_instance_windows_DC" {
   for_each                  = var.server_vm_info_additional
@@ -203,7 +199,8 @@ module "vm_instance_windows_DC" {
   location                  = each.value.location
   nic_name                  = "prod-${lower(each.key)}"
   size                      = each.value.size
-  azure_subnet_id           = each.value.azure_subnet_id
+  #azure_subnet_id           = each.value.azure_subnet_id
+  azure_subnet_id           = data.azurerm_subnet.net_master.id
   private_ip_address_allocation = each.value.private_ip_address_allocation  
   static_ip                 = each.value.static_ip
   admin_username            = each.value.admin_username
@@ -222,7 +219,6 @@ module "vm_instance_windows_DC" {
   primary_blob_endpoint     = azurerm_storage_account.dev_boot_diag.primary_blob_endpoint
   availability_set_id       = azurerm_availability_set.sqlAS.id
   
-
 }
 
 /*
