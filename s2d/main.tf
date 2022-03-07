@@ -16,14 +16,9 @@ module "network" {
   region        = var.region  
 }
 
-locals {
-  instances_to_build = { for server in var.server_vm_info : server.name => server }
-}
-
-module "vm_instances_creation" {
-  for_each                  = local.instances_to_build
-
-  source                    = "./modules/create-vm-windows"  
+module "vm_instance_windows_DC" {
+  source                    = "./modules/create-dc"  
+  for_each                  = var.server_dc
   project_id                = var.project_id  
   zone                      = each.value.zone
   instance_name             = each.value.name
@@ -42,6 +37,33 @@ module "vm_instances_creation" {
   additional_disks          = each.value.additional_disks
   
   depends_on = [module.network]
+}
+
+locals {
+  instances_to_build = { for server in var.server_vm_info : server.name => server }
+}
+
+module "vm_instances_creation" {
+  source                    = "./modules/create-vm-windows"    
+  for_each                  = local.instances_to_build
+  project_id                = var.project_id  
+  zone                      = each.value.zone
+  instance_name             = each.value.name
+  network_ip                = each.value.network_ip
+  instance_description      = each.value.description
+  metadata                  = each.value.metadata
+  instance_tags             = each.value.instance_tags
+  instance_machine_type     = each.value.instance_type
+  source_image              = each.value.source_image
+  subnetwork_project        = var.project_id
+  subnetwork                = var.subnet_name
+  init_script               = each.value.init_script
+  auto_delete               = each.value.auto_delete
+  disk_size_gb              = each.value.boot_disk_size_gb
+  boot_disk_type            = each.value.boot_disk_type
+  additional_disks          = each.value.additional_disks
+  
+  depends_on = [module.network,module.vm_instance_windows_DC]
 }
 
 

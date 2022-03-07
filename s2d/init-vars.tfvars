@@ -1,14 +1,12 @@
-project_id="playground-s-11-9cfc9456"  #update the project here
+project_id="playground-s-11-8de07746"  #update the project here
 vpc_name="webappnet"
 region="us-east1"
 subnet_name="test-subnetwork"
-ip_cidr_range="10.1.0.0/24"
+ip_cidr_range="10.0.0.0/24"
 
-
-server_vm_info = [
-  {
-    name              = "ad-dc1"
-    network_ip        = "10.1.0.100"
+server_dc = {
+  dc01={    
+    network_ip        = "10.0.0.12"
     zone              = "us-east1-b"    
     instance_type     = "e2-small"
     source_image      = "windows-cloud/windows-2019"
@@ -16,16 +14,19 @@ server_vm_info = [
     boot_disk_type    = "pd-standard"         
     auto_delete       = true
     description       = "Domain controller Instance"
-    init_script       = "" 
+    init_script       = "./modules/create-dc/dc01.ps1" 
     metadata = {
       domain      = "example-gcp.com"      
     } 
     instance_tags = ["wsfc"]
     additional_disks = []
   },
+}
+
+server_vm_info = [
   {
     name              = "node-1"
-    network_ip        = ""
+    network_ip        = "10.0.0.10"
     zone              = "us-east1-b"    
     #instance_type     = "e2-medium"
     instance_type     = "e2-small"
@@ -65,7 +66,7 @@ server_vm_info = [
   },
   {
     name              = "node-2"
-    network_ip        = ""
+    network_ip        = "10.0.0.11"
     zone              = "us-east1-c"    
     #instance_type     = "e2-medium"
     instance_type     = "e2-small"
@@ -105,7 +106,7 @@ server_vm_info = [
   },
   {
     name              = "witness"
-    network_ip        = ""
+    network_ip        = "10.0.0.13"
     zone              = "us-east1-c"    
     instance_type     = "e2-small"
     source_image      = "windows-cloud/windows-2019"
