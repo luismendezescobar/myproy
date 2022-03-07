@@ -63,7 +63,7 @@ variable "server_dc" {
       disk_type    = string
     }))
   }))
-  default = []
+  default = {}
 }
 
 
