@@ -38,7 +38,7 @@ variable "server_vm_info" {
       disk_type    = string
     }))
   }))
-  default = []
+  default = {}
 }
 
 
