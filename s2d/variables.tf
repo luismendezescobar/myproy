@@ -21,7 +21,6 @@ variable "server_vm_info" {
   description = "the number of DB server instances"
   type = map(object({
     zone              = string
-    name              = string
     network_ip        = string
     instance_type     = string
     source_image      = string
