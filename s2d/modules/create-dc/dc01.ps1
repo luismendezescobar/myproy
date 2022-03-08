@@ -5,7 +5,11 @@ $DefaultGateway = "10.0.0.1"
 netsh interface ip set address name=Ethernet static `
     $LocalStaticIp 255.255.255.0 $DefaultGateway 1
 
+Start-Sleep -Seconds 15
+
 netsh interface ip set dns Ethernet static $DNSPrimary
+
+Start-Sleep -Seconds 10
 
 Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 
@@ -33,7 +37,7 @@ Force = $true
 
 Install-ADDSForest @Params
 Start-Sleep -Seconds 10
-Restart-Computer
+
 
 
 

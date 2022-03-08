@@ -1,4 +1,4 @@
-project_id="playground-s-11-8de07746"  #update the project here
+project_id="playground-s-11-cb20b2b0"  #update the project here
 vpc_name="webappnet"
 region="us-east1"
 subnet_name="test-subnetwork"
