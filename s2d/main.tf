@@ -77,7 +77,7 @@ module "create_internal_ip" {
   subnet_name   = var.subnet_name
   region        = var.region  
   
-  depends_on = [module.vm_instances_creation]
+  #depends_on = [module.vm_instances_creation]
 }
 
 output "internal_ip" {
