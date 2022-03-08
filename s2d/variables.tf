@@ -45,8 +45,7 @@ variable "server_vm_info" {
 variable "server_dc" {
   description = "for the creation of the AD"
   type = map(object({
-    zone              = string
-    name              = string
+    zone              = string    
     network_ip        = string
     instance_type     = string
     source_image      = string

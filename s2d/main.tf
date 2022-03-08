@@ -19,9 +19,9 @@ module "network" {
 module "vm_instance_windows_DC" {
   source                    = "./modules/create-dc"  
   for_each                  = var.server_dc
+  instance_name             = each.key
   project_id                = var.project_id  
-  zone                      = each.value.zone
-  instance_name             = each.value.name
+  zone                      = each.value.zone  
   network_ip                = each.value.network_ip
   instance_description      = each.value.description
   metadata                  = each.value.metadata
