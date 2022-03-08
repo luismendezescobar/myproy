@@ -17,6 +17,7 @@ server_dc = {
     init_script       = "./modules/create-dc/dc01.txt" 
     metadata = {
       domain      = "example.net"
+      windows-startup-script-url ="gs://mystorage372022/dc01.ps1"   
     } 
     instance_tags = ["wsfc"]
     additional_disks = []
@@ -113,7 +114,7 @@ server_vm_info = {
     description       = "file witness Instance"
     init_script       = "./modules/create-vm-windows/witness-node.ps1"  
     metadata = {
-      domain      = "example.net"      
+      domain      = "example.net"          
     } 
     instance_tags = ["wsfc"]
     additional_disks = []
