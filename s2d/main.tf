@@ -38,7 +38,7 @@ module "vm_instance_windows_DC" {
   
   depends_on = [module.network]
 }
-
+/*
 locals {
   instances_to_build = { for server in var.server_vm_info : server.name => server }
 }
@@ -66,7 +66,7 @@ module "vm_instances_creation" {
   depends_on = [module.network,module.vm_instance_windows_DC]
 }
 
-
+*/
 
 module "create_internal_ip" {
   source        = "./modules/create-ip"  

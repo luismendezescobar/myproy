@@ -13,6 +13,8 @@ gcloud compute reset-windows-password node-1
 gcloud compute reset-windows-password node-2
 gcloud compute reset-windows-password witness
 
+netdom.exe join 10.0.0.10 /domain:example.net /UserD:DomainName\UserName /PasswordD:Password
+
 
 #2.use RDP to connect to the domain controller instance with the credentials you created in the previous step.
 #3.Open a PowerShell terminal as Administrator. (Click Start, type PowerShell, and then press Shift+Ctrl+Enter.)

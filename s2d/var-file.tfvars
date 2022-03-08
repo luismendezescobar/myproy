@@ -15,9 +15,7 @@ server_dc = {
     auto_delete       = true
     description       = "Domain controller Instance"
     init_script       = "./modules/create-dc/dc01.ps1" 
-    metadata = {
-      domain      = "example-gcp.com"      
-    } 
+    metadata = {} 
     instance_tags = ["wsfc"]
     additional_disks = []
   },
