@@ -38,17 +38,14 @@ module "vm_instance_windows_DC" {
   
   depends_on = [module.network]
 }
-/*
-locals {
-  instances_to_build = { for server in var.server_vm_info : server.name => server }
-}
+
 
 module "vm_instances_creation" {
   source                    = "./modules/create-vm-windows"    
-  for_each                  = local.instances_to_build
+  for_each                  = var.server_vm_info  
+  instance_name             = each.key
   project_id                = var.project_id  
-  zone                      = each.value.zone
-  instance_name             = each.value.name
+  zone                      = each.value.zone  
   network_ip                = each.value.network_ip
   instance_description      = each.value.description
   metadata                  = each.value.metadata
@@ -66,7 +63,7 @@ module "vm_instances_creation" {
   depends_on = [module.network,module.vm_instance_windows_DC]
 }
 
-*/
+
 
 module "create_internal_ip" {
   source        = "./modules/create-ip"  
@@ -77,7 +74,7 @@ module "create_internal_ip" {
   subnet_name   = var.subnet_name
   region        = var.region  
   
-  #depends_on = [module.vm_instances_creation]
+  depends_on = [module.vm_instances_creation]
 }
 
 output "internal_ip" {

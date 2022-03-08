@@ -19,7 +19,7 @@ variable "ip_cidr_range" {
 
 variable "server_vm_info" {
   description = "the number of DB server instances"
-  type = list(object({
+  type = map(object({
     zone              = string
     name              = string
     network_ip        = string

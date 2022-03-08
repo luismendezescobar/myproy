@@ -23,9 +23,8 @@ server_dc = {
   },
 }
 
-server_vm_info = [
-  {
-    name              = "node-1"
+server_vm_info = {
+  node-1={    
     network_ip        = "10.0.0.10"
     zone              = "us-east1-b"    
     #instance_type     = "e2-medium"
@@ -64,8 +63,7 @@ server_vm_info = [
       },
     ]
   },
-  {
-    name              = "node-2"
+  node-2={    
     network_ip        = "10.0.0.11"
     zone              = "us-east1-c"    
     #instance_type     = "e2-medium"
@@ -104,8 +102,7 @@ server_vm_info = [
       },
     ]
   },
-  {
-    name              = "witness"
+  witness={    
     network_ip        = "10.0.0.13"
     zone              = "us-east1-c"    
     instance_type     = "e2-small"
@@ -122,7 +119,7 @@ server_vm_info = [
     additional_disks = []
   },
 
-]
+}
 
 
 internal_ips={
