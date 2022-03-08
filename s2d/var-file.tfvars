@@ -14,7 +14,7 @@ server_dc = {
     boot_disk_type    = "pd-standard"         
     auto_delete       = true
     description       = "Domain controller Instance"
-    init_script       = "./modules/create-dc/dc01.ps1" 
+    init_script       = "./modules/create-dc/dc01.txt" 
     metadata = {
       domain      = "example.net"
     } 
