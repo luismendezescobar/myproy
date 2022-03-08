@@ -17,7 +17,7 @@ server_dc = {
     init_script       = "./modules/create-dc/dc01.ps1" 
     metadata = {
       domain      = "example.net"
-      windows-startup-script-url ="gs://mystorage372022/dc01.ps1"   
+      windows-startup-script-url ="gs://my-3-7-2022/dc01.ps1"   
     } 
     instance_tags = ["wsfc"]
     additional_disks = []
