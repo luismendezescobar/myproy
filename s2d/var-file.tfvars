@@ -16,7 +16,7 @@ server_dc = {
     description       = "Domain controller Instance"
     init_script       = "./modules/create-dc/dc01.ps1" 
     metadata = {
-      domain      = "example.com"
+      domain      = "example.net"
     } 
     instance_tags = ["wsfc"]
     additional_disks = []
@@ -37,7 +37,7 @@ server_vm_info = [
     description       = "sql node-1"
     init_script       = "./modules/create-vm-windows/specialize-node.ps1"  
     metadata = {
-      domain      = "example.com"
+      domain      = "example.net"
       enable-wsfc = true
     }
     instance_tags     = ["wsfc","wsfc-node"]
@@ -77,7 +77,7 @@ server_vm_info = [
     description       = "sql node-2"
     init_script       = "./modules/create-vm-windows/specialize-node.ps1"  
     metadata = {
-      domain      = "example.com"
+      domain      = "example.net"
       enable-wsfc = true
     }
     instance_tags     = ["wsfc","wsfc-node"]
@@ -116,7 +116,7 @@ server_vm_info = [
     description       = "file witness Instance"
     init_script       = "./modules/create-vm-windows/witness-node.ps1"  
     metadata = {
-      domain      = "example-gcp.com"      
+      domain      = "example.net"      
     } 
     instance_tags = ["wsfc"]
     additional_disks = []
