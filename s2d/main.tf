@@ -39,7 +39,7 @@ module "vm_instance_windows_DC" {
   depends_on = [module.network]
 }
 
-/*
+
 module "vm_instances_creation" {
   source                    = "./modules/create-vm-windows"    
   for_each                  = var.server_vm_info  
@@ -81,4 +81,3 @@ output "internal_ip" {
   value=module.create_internal_ip.testout
 }
 
-*/

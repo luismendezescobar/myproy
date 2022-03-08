@@ -15,6 +15,11 @@ Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 
 net user /add localvmadmin Passw0rd12345! 
 net localgroup administrators localvmadmin /add
+
+net user Administrator Passw0rd12345!
+net user Administrator /active:yes
+
+
   
 Start-Sleep -Seconds 5
 
@@ -38,7 +43,7 @@ Force = $true
 Install-ADDSForest @Params
 Start-Sleep -Seconds 10
 
-
+Restart-Computer
 
 
 

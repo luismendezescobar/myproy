@@ -39,6 +39,7 @@ server_vm_info = {
     metadata = {
       domain      = "example.net"
       enable-wsfc = true
+      windows-startup-script-url ="gs://my-3-7-2022/specialize-node.ps1" 
     }
     instance_tags     = ["wsfc","wsfc-node"]
     additional_disks = [  
@@ -78,6 +79,7 @@ server_vm_info = {
     metadata = {
       domain      = "example.net"
       enable-wsfc = true
+      windows-startup-script-url ="gs://my-3-7-2022/specialize-node.ps1" 
     }
     instance_tags     = ["wsfc","wsfc-node"]
     additional_disks = [  
@@ -114,7 +116,8 @@ server_vm_info = {
     description       = "file witness Instance"
     init_script       = "./modules/create-vm-windows/witness-node.ps1"  
     metadata = {
-      domain      = "example.net"          
+      domain      = "example.net"
+      windows-startup-script-url ="gs://my-3-7-2022/witness-node.ps1"           
     } 
     instance_tags = ["wsfc"]
     additional_disks = []
