@@ -76,7 +76,7 @@ resource "google_compute_instance" "gce_machine" {
 #we give 2 minutes for breating room 
 resource "null_resource" "wait-for-machine-provision" {
   provisioner "local-exec" {
-    command = "sleep 600"
+    command = "sleep 840"
   }
 
   depends_on = [google_compute_instance.gce_machine]

@@ -7,7 +7,7 @@ if ($op.Count -eq 0) {
 }
 
 
-
+Write-Host "the script continues from here"
 
 Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 
