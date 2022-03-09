@@ -23,6 +23,11 @@ netsh advfirewall firewall add rule name="Allow SQL Server health check" dir=in 
 netsh advfirewall firewall add rule name="Allow SQL Server" dir=in action=allow protocol=TCP localport=1433
 
 
+$DNSPrimary = "10.0.0.12"
+netsh interface ip set dns Ethernet static $DNSPrimary
+
+
+
 $dcfull="example.net"
 $pw = (ConvertTo-SecureString -String "Passw0rd12345!"  -AsPlainText -Force)
 $usr = 'example\localvmadmin'

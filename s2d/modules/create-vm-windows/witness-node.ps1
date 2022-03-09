@@ -11,6 +11,10 @@ net localgroup administrators localvmadmin /add
 
 add-windowsfeature FS-FileServer
 
+$DNSPrimary = "10.0.0.12"
+netsh interface ip set dns Ethernet static $DNSPrimary
+
+
 $dcfull="example.net"
 $pw = (ConvertTo-SecureString -String "Passw0rd12345!"  -AsPlainText -Force)
 $usr = 'example\localvmadmin'
