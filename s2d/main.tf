@@ -60,7 +60,7 @@ module "vm_instances_creation" {
   boot_disk_type            = each.value.boot_disk_type
   additional_disks          = each.value.additional_disks
   
-  depends_on = [module.network,module.vm_instance_windows_DC]
+  depends_on = [module.vm_instance_windows_DC]
 }
 
 

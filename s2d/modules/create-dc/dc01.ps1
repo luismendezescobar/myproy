@@ -1,3 +1,13 @@
+$op = Get-LocalUser | where-Object Name -eq "localvmadmin" | Measure
+if ($op.Count -eq 0) {
+   Write-Host "User localvmadmin does not exist. The full script is going to be executed."
+} else {
+	Write-Host "User exist localvmadmin exit"
+	exit 0
+}
+
+
+
 $LocalStaticIp = "10.0.0.12"
 $DNSPrimary = "10.0.0.12"
 $DefaultGateway = "10.0.0.1"
