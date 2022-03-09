@@ -8,15 +8,6 @@ if ($op.Count -eq 0) {
 
 
 
-$LocalStaticIp = "10.0.0.12"
-$DNSPrimary = "10.0.0.12"
-$DefaultGateway = "10.0.0.1"
-
-netsh interface ip set address name=Ethernet static `
-    $LocalStaticIp 255.255.255.0 $DefaultGateway 1
-
-
-Start-Sleep -Seconds 10
 
 Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 
