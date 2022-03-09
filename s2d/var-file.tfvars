@@ -1,4 +1,4 @@
-project_id="playground-s-11-3ba7c8c8"  #update the project here
+project_id="playground-s-11-730e2a21"  #update the project here
 vpc_name="webappnet"
 region="us-east1"
 subnet_name="test-subnetwork"
@@ -17,7 +17,7 @@ server_dc = {
     init_script       = "./modules/create-dc/dc01.ps1" 
     metadata = {
       domain      = "example.net"
-      windows-startup-script-url ="gs://storage3-8-2022/dc01.ps1"   
+      windows-startup-script-url ="gs://storage-3-8-2022/dc01.ps1"   
     } 
     instance_tags = ["wsfc"]
     additional_disks = []
@@ -39,7 +39,7 @@ server_vm_info = {
     metadata = {
       domain      = "example.net"
       enable-wsfc = true
-      windows-startup-script-url ="gs://storage3-8-2022/specialize-node.ps1" 
+      windows-startup-script-url ="gs://storage-3-8-2022/specialize-node.ps1" 
     }
     instance_tags     = ["wsfc","wsfc-node"]
     additional_disks = [  
@@ -79,7 +79,7 @@ server_vm_info = {
     metadata = {
       domain      = "example.net"
       enable-wsfc = true
-      windows-startup-script-url ="gs://storage3-8-2022/specialize-node.ps1" 
+      windows-startup-script-url ="gs://storage-3-8-2022/specialize-node.ps1" 
     }
     instance_tags     = ["wsfc","wsfc-node"]
     additional_disks = [  
@@ -117,7 +117,7 @@ server_vm_info = {
     init_script       = "./modules/create-vm-windows/witness-node.ps1"  
     metadata = {
       domain      = "example.net"
-      windows-startup-script-url ="gs://storage3-8-2022/witness-node.ps1"           
+      windows-startup-script-url ="gs://storage-3-8-2022/witness-node.ps1"           
     } 
     instance_tags = ["wsfc"]
     additional_disks = []
