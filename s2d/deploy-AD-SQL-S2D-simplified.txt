@@ -74,7 +74,7 @@ New-SmbShare `
   -Name QWitness `
   -Path "C:\QWitness" `
   -Description "SQL File Share Witness" `
-  -FullAccess  $env:username,node-1$,node-2$,example-gcp\Administrator
+  -FullAccess  $env:username,node-1$,node-2$,example\Administrator
 
 ###########Deploying the failover cluster
 #Deploy WSFC
@@ -82,7 +82,10 @@ New-SmbShare `
 
 
 #$DNSPrimary = ip from above command
-$CLUSTER_ADDRESS = "10.1.0.6"
+
+
+#this is from the terraform command output to reserve cluster ip
+$CLUSTER_ADDRESS = "10.0.0.3"
 
 New-Cluster `
   -Name windows-fci `
