@@ -131,3 +131,13 @@ cluadmin.msc
 
 #Testing storage pool failover
 https://cloud.google.com/compute/docs/instances/sql-server/configure-failover-cluster-instance#testing_storage_pool_failover
+
+
+https://charbelnemnom.com/step-by-step-how-to-extend-and-resize-a-two-way-mirrored-storage-tiered-space-storagespaces-ws2012r2/
+
+https://kasperk.it/windows-server/error-extending-volume-size-not-supported-storage-spaces
+
+Get-VirtualDisk <Vdisk Name> | Get-StorageTier | Select FriendlyName
+Resize-StorageTier "friendlyname" -size 50GB
+
+

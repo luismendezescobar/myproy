@@ -4,7 +4,7 @@
             "AddressSpace": ["10.0.0.0/16"],
             "dns_servers": ["10.0.0.12"],
             "location": "Central US",
-            "Resource_Grp":"1-5c120cd5-playground-sandbox",
+            "Resource_Grp":"1-6db0d38e-playground-sandbox",
 
             "Subnets": {
                "master": {
@@ -19,7 +19,7 @@
             "AddressSpace": ["192.168.0.0/16"],
             "dns_servers": ["192.168.0.12"],
             "location": "West US",
-            "Resource_Grp":"1-5c120cd5-playground-sandbox",
+            "Resource_Grp":"1-6db0d38e-playground-sandbox",
             "Subnets": {
                 "master": {
                     "address_prefix": "192.168.0.0/24"

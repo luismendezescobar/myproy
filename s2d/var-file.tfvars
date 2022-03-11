@@ -8,7 +8,7 @@ server_dc = {
   dc01={    
     network_ip        = "10.0.0.12"
     zone              = "us-east1-b"    
-    instance_type     = "e2-small"
+    instance_type     = "e2-medium"
     source_image      = "windows-cloud/windows-2019"
     boot_disk_size_gb = 120
     boot_disk_type    = "pd-standard"         
@@ -29,9 +29,9 @@ server_vm_info = {
     network_ip        = "10.0.0.10"
     zone              = "us-east1-b"    
     #instance_type     = "e2-medium"
-    instance_type     = "e2-medium"
+    instance_type     = "e2-standard-2"
     source_image      = "windows-cloud/windows-2019"
-    boot_disk_size_gb = 50
+    boot_disk_size_gb = 100
     boot_disk_type    = "pd-ssd"
     auto_delete       = true
     description       = "sql node-1"
@@ -44,22 +44,22 @@ server_vm_info = {
     instance_tags     = ["wsfc","wsfc-node"]
     additional_disks = [  
       {
-        disk_size_gb = 10
+        disk_size_gb = 20
         disk_type    = "pd-ssd"
         name         = "node-1-sql-data1"
       },
       {
-        disk_size_gb = 10
+        disk_size_gb = 20
         disk_type    = "pd-ssd"
         name         = "node-1-sql-data2"
       },
       {
-        disk_size_gb = 10
+        disk_size_gb = 20
         disk_type    = "pd-ssd"
         name         = "node-1-sql-data3"
       },
       {
-        disk_size_gb = 10
+        disk_size_gb = 20
         disk_type    = "pd-ssd"
         name         = "node-1-sql-data4"
       },
@@ -69,9 +69,9 @@ server_vm_info = {
     network_ip        = "10.0.0.11"
     zone              = "us-east1-c"    
     #instance_type     = "e2-medium"
-    instance_type     = "e2-medium"
+    instance_type     = "e2-standard-2"
     source_image      = "windows-cloud/windows-2019"
-    boot_disk_size_gb = 50
+    boot_disk_size_gb = 100
     boot_disk_type    = "pd-ssd"
     auto_delete       = true
     description       = "sql node-2"
@@ -84,22 +84,22 @@ server_vm_info = {
     instance_tags     = ["wsfc","wsfc-node"]
     additional_disks = [  
       {
-        disk_size_gb = 10
+        disk_size_gb = 20
         disk_type    = "pd-ssd"
         name         = "node-2-sql-data1"
       },
       {
-        disk_size_gb = 10
+        disk_size_gb = 20
         disk_type    = "pd-ssd"
         name         = "node-2-sql-data2"
       },
       {
-        disk_size_gb = 10
+        disk_size_gb = 20
         disk_type    = "pd-ssd"
         name         = "node-2-sql-data3"
       },
       {
-        disk_size_gb = 10
+        disk_size_gb = 20
         disk_type    = "pd-ssd"
         name         = "node-2-sql-data4"
       },

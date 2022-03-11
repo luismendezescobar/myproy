@@ -25,7 +25,7 @@ server_vm_info = {
             {
                 name                    ="drivef"
                 disk_size_gb            = 10
-                storage_account_type    = "Premium_LRS"
+                storage_account_type    = "UltraSSD_LRS"
                 create_option           = "Empty"
                 caching                 = "ReadWrite"
                 lun_number              = 10                  
@@ -33,7 +33,7 @@ server_vm_info = {
             {
                 name                    ="driveg"
                 disk_size_gb            = 100
-                storage_account_type    = "Premium_LRS"
+                storage_account_type    = "UltraSSD_LRS"
                 create_option           = "Empty"
                 caching                 = "ReadWrite"
                 lun_number              = 20                  
@@ -62,7 +62,7 @@ server_vm_info = {
            {
                 name                    ="drivef"
                 disk_size_gb            = 10
-                storage_account_type    = "Premium_LRS"
+                storage_account_type    = "UltraSSD_LRS"
                 create_option           = "Empty"
                 caching                 = "ReadWrite"
                 lun_number              = 10                  
@@ -70,7 +70,7 @@ server_vm_info = {
             {
                 name                    ="driveg"
                 disk_size_gb            = 100
-                storage_account_type    = "Premium_LRS"
+                storage_account_type    = "UltraSSD_LRS"
                 create_option           = "Empty"
                 caching                 = "ReadWrite"
                 lun_number              = 20                  
@@ -161,11 +161,11 @@ sql_front_end_ip= "10.0.0.15"        ##this has to be a new one, that one later 
 
 
 subguid                         ="0f39574d-d756-48cf-b622-0e27a6943bd2"          #MMS Shared Services ### this number is inside the resource group properties 
-azure_resource_group_name       ="1-5c120cd5-playground-sandbox"
+azure_resource_group_name       ="1-6db0d38e-playground-sandbox"
 
 
-storage_account_for_boot_diag   ="bootdiag03062022"
+storage_account_for_boot_diag   ="bootdiag03102022"
 storage_container_for_boot_diag ="bootblob"
 
-storage_account_for_witness="witness362022"
+storage_account_for_witness="witness3102022"
 availability_set_id=""
