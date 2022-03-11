@@ -125,6 +125,6 @@ module "vm_instance_windows" {
   primary_blob_endpoint     = azurerm_storage_account.dev_boot_diag.primary_blob_endpoint
   availability_set_id       = azurerm_availability_set.sqlAS.id
 
-  depends_on = [module.vm_instance_windows_DC]
+#  depends_on = [module.vm_instance_windows_DC]
 }
 
