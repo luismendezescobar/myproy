@@ -157,10 +157,10 @@ cluster_front_end_ip= "10.0.0.14"    ##the ip of the cluster_front_end must be t
 sql_front_end_ip= "10.0.0.15"        ##this has to be a new one, that one later on will be used for the AG listener
 
 
-########################dynamic variables##############################
+########################dynamic variables, you need to modify all that is below here##############################
 
 
-subguid                         ="0f39574d-d756-48cf-b622-0e27a6943bd2"          #MMS Shared Services ### this number is inside the resource group properties 
+subguid                         ="964df7ca-3ba4-48b6-a695-1ed9db5723f8"       
 azure_resource_group_name       ="1-6db0d38e-playground-sandbox"
 
 
