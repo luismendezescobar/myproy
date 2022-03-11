@@ -110,7 +110,7 @@ resource "null_resource" "wait-for-machine-provision" {
 }
 
 
-resource "azurerm_virtual_machine_extension" "cloudinit" {
+resource "azurerm_virtual_machine_extension" "cloudextension" {
   name                 = azurerm_windows_virtual_machine.server_db.name
   virtual_machine_id    = azurerm_windows_virtual_machine.server_db.id 
   publisher            = "Microsoft.Compute"
@@ -118,7 +118,7 @@ resource "azurerm_virtual_machine_extension" "cloudinit" {
   type_handler_version = "1.10"
   settings = <<SETTINGS
     {
-        "commandToExecute": "powershell -ExecutionPolicy unrestricted -NoProfile -NonInteractive -command \"cp c:/azuredata/customdata.bin c:/azuredata/install.ps1; c:/azuredata/install.ps1 -ForceNewSSLCert\""
+        "commandToExecute": "powershell -ExecutionPolicy unrestricted -NoProfile -NonInteractive -command \"cp c:/azuredata/customdata.bin c:/azuredata/install.ps1; c:/azuredata/install.ps1 -ForceNewSSLCert;exit 0\""
     }
     SETTINGS
 

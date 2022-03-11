@@ -498,6 +498,7 @@ Install-ADDSForest @Params
 Start-Sleep -Seconds 10
 Restart-Computer
 
+exit 0
 
 
 
