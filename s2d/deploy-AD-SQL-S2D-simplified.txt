@@ -64,7 +64,7 @@ ping example-gcp.com
 
 Add-Computer -Domain example-gcp.com -Restart
 
-
+##########################start from here #################################################3
 ##
 #Create a witness file share
 #1.Connect to witness by using Remote Desktop. Log in with your domain user account.
@@ -139,5 +139,15 @@ https://kasperk.it/windows-server/error-extending-volume-size-not-supported-stor
 
 Get-VirtualDisk <Vdisk Name> | Get-StorageTier | Select FriendlyName
 Resize-StorageTier "friendlyname" -size 50GB
+###Error 
+incomplete communication with cluster windows 2019
+https://community.spiceworks.com/topic/292189-windows-failover-clustering-networks-problem
+netsh advfirewall firewall set rule "Failover Clusters (UDP-In)" new enable=no
 
+#Optionally
+https://docs.microsoft.com/en-us/answers/questions/266811/server-manager-refresh-failed-and-data-retrieval-f.html
+ dir WSMan:\localhost
+ Set-WSManInstance -ValueSet @{MaxEnvelopeSizekb = "1000"} -ResourceURI winrm/config
 
+ cd C:\Windows\System32\wbem\AutoRecover
+ for /f %s in ('dir /b *.mof *.mfl') do mofcomp %s
