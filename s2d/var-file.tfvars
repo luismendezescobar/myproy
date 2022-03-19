@@ -17,7 +17,7 @@ server_dc = {
     init_script       = "./modules/create-dc/dc01.ps1" 
     metadata = {
       domain      = "example.net"
-      windows-startup-script-url ="gs://storage-3-18-2022-01/dc01.ps1"   
+      windows-startup-script-url ="gs://storage-3-19-2022-01/dc01.ps1"   
     } 
     instance_tags = ["wsfc"]
     additional_disks = []
@@ -39,7 +39,7 @@ server_vm_info = {
     metadata = {
       domain      = "example.net"
       enable-wsfc = true
-      windows-startup-script-url ="gs://storage-3-18-2022-01/specialize-node.ps1" 
+      windows-startup-script-url ="gs://storage-3-19-2022-01/specialize-node.ps1" 
     }
     instance_tags     = ["wsfc","wsfc-node"]
     additional_disks = [  
@@ -79,7 +79,7 @@ server_vm_info = {
     metadata = {
       domain      = "example.net"
       enable-wsfc = true
-      windows-startup-script-url ="gs://storage-3-18-2022-01/specialize-node.ps1" 
+      windows-startup-script-url ="gs://storage-3-19-2022-01/specialize-node.ps1" 
     }
     instance_tags     = ["wsfc","wsfc-node"]
     additional_disks = [  
@@ -117,7 +117,7 @@ server_vm_info = {
     init_script       = "./modules/create-vm-windows/witness-node.ps1"  
     metadata = {
       domain      = "example.net"
-      windows-startup-script-url ="gs://storage-3-18-2022-01/witness-node.ps1"           
+      windows-startup-script-url ="gs://storage-3-19-2022-01/witness-node.ps1"           
     } 
     instance_tags = ["wsfc"]
     additional_disks = []
