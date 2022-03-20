@@ -161,5 +161,12 @@ https://docs.microsoft.com/en-us/answers/questions/266811/server-manager-refresh
 -Size 20GB `
 -AllocationUnitSize 65536
 
-
+to see the size of the pool
 get-storagepool S*|get-PhysicalDisk|sort model
+
+storage pool calculator
+https://s2dcalc.blob.core.windows.net/www/index.html
+
+when adding more diks you have to run this to check the status of the job
+Get-StorageJob
+https://techcommunity.microsoft.com/t5/storage-at-microsoft/deep-dive-the-storage-pool-in-storage-spaces-direct/ba-p/425959
