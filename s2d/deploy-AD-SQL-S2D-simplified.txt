@@ -151,3 +151,15 @@ https://docs.microsoft.com/en-us/answers/questions/266811/server-manager-refresh
 
  cd C:\Windows\System32\wbem\AutoRecover
  for /f %s in ('dir /b *.mof *.mfl') do mofcomp %s
+
+
+ to create a new disk
+ New-Volume `
+-StoragePoolFriendlyName S2D* `
+-FriendlyName newdisk1 `
+-FileSystem CSVFS_ReFS `
+-Size 20GB `
+-AllocationUnitSize 65536
+
+
+get-storagepool S*|get-PhysicalDisk|sort model
