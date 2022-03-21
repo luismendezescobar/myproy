@@ -158,7 +158,7 @@ https://docs.microsoft.com/en-us/answers/questions/266811/server-manager-refresh
 -StoragePoolFriendlyName S2D* `
 -FriendlyName newdisk1 `
 -FileSystem CSVFS_ReFS `
--Size 20GB `
+-Size 30GB `
 -AllocationUnitSize 65536
 
 to see the size of the pool

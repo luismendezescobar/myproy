@@ -1,9 +1,10 @@
 function get-counterdata
 {
 Param(
+    [parameter(Mandatory=$true)]
     $Data,
-    $MaxSamples=1,
-    $SampleInterval=1
+    [int]$MaxSamples=1,
+    [int]$SampleInterval=1
 )
     Switch($Data)
     {
