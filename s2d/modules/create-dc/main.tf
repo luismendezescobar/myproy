@@ -1,8 +1,12 @@
-
 locals {
   vm_disks = {
     for i in var.additional_disks : i.name => i
   }
+  default_metadata = {
+    domain        = var.metadata.domain
+    windows-startup-script-url = "${var.storage_name}/${var.metadata.windows-startup-script-url}"
+  }
+  
 }
 
 
@@ -28,7 +32,7 @@ resource "google_compute_instance" "gce_machine" {
   machine_type = var.instance_machine_type
   zone         = var.zone  
   tags         = var.instance_tags
-  metadata     = var.metadata
+  metadata     = local.default_metadata
   description  = var.instance_description
 
   metadata_startup_script = var.init_script == "" ? "" : file(var.init_script) 

@@ -106,27 +106,46 @@ if ($res_domain){
 
 
 $res_domain=(Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain
-
+$file = 'C:\QWitness\test.txt'
 if ($res_domain){
-	Write-Output "The server is already in domain"
-	Try {
-		Get-ADComputer "node-1" -ErrorAction Stop		
-		$node1_found=$true
+	Write-Output "The server is already in domain, entering the loop"
+	for (;;)
+	{
+		Try {
+			Get-ADComputer "node-1" -ErrorAction Stop		
+			$node1_found=$true
+		}
+		Catch {
+			$node1_found=$false
+		}
+		Try {
+			Get-ADComputer "node-2" -ErrorAction Stop		
+			$node2_found=$true
+		}
+		Catch {
+			$node2_found=$false
+		}
+		if(($node1_found -eq $true) -and ($node1_found -eq $true)  ){
+			break               #we may continue to the next step
+		}			
 	}
-	Catch {
-		$node1_found=$false
-	}
-	Try {
-		Get-ADComputer "node-2" -ErrorAction Stop		
-		$node2_found=$true
-	}
-	Catch {
-		$node2_found=$false
-	}			
 	Write-Output "node-1 result is: $node1_found"
 	Write-Output "node-1 result is: $node2_found"
 	if ($node1_found -and $node2_found){
 		Write-Output "both nodes were found"
+		if((Test-Path -Path "C:\QWitness") -eq $false){	
+			write-output "Creating folder"
+			#$null =New-Item C:\QWitness –type directory
+			try {
+				$null = New-Item -ItemType File -Path $file -force -ErrorAction Stop
+				Write-Host "The file [$file] has been created."
+				New-SmbShare -Name QWitness -Path "C:\QWitness" -Description "SQL File Share Witness" -FullAccess  $env:username,node-1$,node-2$,example\Administrator
+			}
+			catch {
+				throw $_.Exception.Message
+			}
+			#New-SmbShare -Name QWitness -Path "C:\QWitness" -Description "SQL File Share Witness" -FullAccess  $env:username,node-1$,node-2$,example\Administrator
+		}	
 	} 
 
 

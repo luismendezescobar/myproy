@@ -65,3 +65,27 @@ else {
 		exit 0
 	}
 }
+
+$Folder = 'C:\Windows'
+"Test to see if folder [$Folder]  exists"
+if (Test-Path -Path $Folder) {
+    "Path exists!"
+} else {
+    "Path doesn't exist."
+}
+
+$node1_found=$true
+$node2_found=$false
+			
+if ($node1_found -and $node2_found){
+    Write-Output "both nodes were found"
+    write-output "Exiting"
+}
+else {
+    Write-Output "the nodes were not found"
+    write-output "Exiting"
+}
+
+if((Test-Path -Path "C:\QWitness") -eq $false){	
+    Write-Output "File not found, we are going to create it"
+}	
