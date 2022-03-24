@@ -8,7 +8,7 @@ terraform {
 }
 
 locals {
-  storage_name="gs://mystorage-${formatdate("DDMMYYss", timestamp())}"
+  storage_name="mystorage-${formatdate("DDMMYYss", timestamp())}"
 }
 
 module "network" {

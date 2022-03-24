@@ -5,7 +5,7 @@ locals {
   }
   default_metadata = {
     domain        = var.metadata.domain
-    windows-startup-script-url = "${var.storage_name}/${var.metadata.windows-startup-script-url}"
+    windows-startup-script-url = "gs://${var.storage_name}/${var.metadata.windows-startup-script-url}"
   }
 
 }
