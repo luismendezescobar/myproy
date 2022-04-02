@@ -75,14 +75,10 @@ New-SmbShare `
   -Path "C:\QWitness" `
   -Description "SQL File Share Witness" `
   -FullAccess  $env:username,node-1$,node-2$,example\Administrator
-
+##########################Start from here#########################################################
 ###########Deploying the failover cluster
 #Deploy WSFC
 1.Create a new cluster:
-
-
-#$DNSPrimary = ip from above command
-
 
 #this is from the terraform command output to reserve cluster ip
 $CLUSTER_ADDRESS = "10.0.0.3"
