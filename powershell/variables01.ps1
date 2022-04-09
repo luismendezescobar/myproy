@@ -210,3 +210,51 @@ Get-Folder "Zerto DR Infrastructure" | Get-TagAssignment|ft -autosize
 #Name     Category                                 Description
 #----     --------                                 -----------
 #Excluded Backup Management (IBM Spectrum Protect) The object is excluded from scheduled backups by IBM Spectrum Protect
+
+###############################################################################################
+#####            03|Simple scripts and functions                         ######################
+###############################################################################################
+Get-WmiObject -Class win32_bios -ComputerName localhost
+
+#choose values to replace with variables
+[string]$computername ='localhost'
+[string]$drive='c:'
+
+Get-WmiObject -Class win32_logicalDisk -Filter "DeviceId='$Drive'" -ComputerName $computername
+
+######### params
+
+param(
+[string]$computername ='localhost',
+[string]$drive='c:'
+)
+
+Get-WmiObject -Class win32_logicalDisk -Filter "DeviceId='$Drive'" -ComputerName $computername
+
+########### then add the function word and cmdletbiding word
+function t{
+[CmdletBinding()]
+param(
+[string]$computername ='localhost',
+[string]$drive='c:'
+)
+
+    Get-WmiObject -Class win32_logicalDisk -Filter "DeviceId='$Drive'" -ComputerName $computername
+}
+########### Another example of function
+
+function get-diskinfo{
+    [CmdletBinding()]
+    param(
+        [parameter(Mandatory=$true)]
+        [string]$computername,
+        [string]$drive='c:'
+    )
+    Get-WmiObject -Class win32_logicalDisk -Filter "DeviceId='$Drive'" -ComputerName $computername
+        select PSComputerName,DeviceID,
+            @{n='Size(GB)';e={$_.size / 1gb -as [int]}},
+            @{n='Free(GB)';e={$_.Freespace / 1gb -as [int]}}
+}
+
+function get-luisfun1{Write-Output "Powershell is fun!"}
+function get-luisfun2{Write-Output "Powershell is REALLY fun!"}
