@@ -1,3 +1,7 @@
+#in place upgrade of servers
+#https://cloud.google.com/compute/docs/tutorials/performing-in-place-upgrade-windows-server#2019_1
+
+
 
 terraform {
     required_providers {
