@@ -6,3 +6,6 @@ echo $?
 
 rm doodles.txt
 echo $?
+
+expr 10 + 10
+echo $?
