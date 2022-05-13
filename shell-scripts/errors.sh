@@ -7,7 +7,7 @@ expr 1 + 5
 echo $?
 
 rm doodles.txt
-echo $?
+echo $?                 ##so the program is going to stop here 
 
 expr 10 + 10
 echo $?
