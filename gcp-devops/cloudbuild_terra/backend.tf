@@ -12,7 +12,7 @@ terraform {
   }
 }
 provider "google" {
-  project = "triggering-a-198-cfefe4f5"
+  project = "triggering-a-198-9747453f"
   #region  = "<regione_name>"
   #zone    = "<zone_name>"
 }
