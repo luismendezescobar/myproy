@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket  = var.terraform_bucket
+    bucket  = "mybucket5-19-2022-01"
     prefix  = "state"
   }  
   required_version = ">= 0.12.7"  
