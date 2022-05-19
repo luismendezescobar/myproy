@@ -36,7 +36,7 @@ ignored_files = [".gitignore"]
 
   substitutions = {
     _FOO = "bar"
-    _BAZ = "qux"
+    PROJECT_ID = var.project_id
   }
 
 }
