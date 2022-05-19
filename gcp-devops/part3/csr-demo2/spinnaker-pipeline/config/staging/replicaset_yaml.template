@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  annotations:
+    traffic.spinnaker.io/load-balancers: '["service world-gift-art-service"]'
+  labels:
+    app: world-gift-art
+  name: world-gift-art-frontend
+  namespace: world-gift-art-staging
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: world-gift-art
+  template:
+    metadata:
+      labels:
+        app: world-gift-art
+    spec:
+      containers:
+        - image: gcr.io/$PROJECT_ID/world-gift-art # will be modified on deployment to point at a digest of an image
+          name: world-gift-art
