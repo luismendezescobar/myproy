@@ -19,7 +19,7 @@ resource "google_cloudbuild_trigger" "react-trigger" {
   
 //Configuration section
  // build config file
- filename = "trigger-build.yaml"
+ filename = "gcp-devops/cloudbuild_terra/trigger-build.yaml"
 
 ignored_files = [".gitignore"]
  // build config inline yaml
