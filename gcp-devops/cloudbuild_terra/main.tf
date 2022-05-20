@@ -34,9 +34,15 @@ ignored_files = [".gitignore"]
  #  }
   //Advanced section
 
-  substitutions = {
+substitutions = {
     _FOO = "bar"
     _PROJECT_ID = var.project_id
-  }
+}
+options {
+    machine_type = "N1_HIGHCPU_8"
+    disk_size_gb = 100      
+    log_streaming_option = "STREAM_OFF"
+    worker_pool = "pool"
+}
 
 }
