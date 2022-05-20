@@ -36,20 +36,21 @@ resource "google_cloudbuild_trigger" "react-trigger" {
     }
     # Deploy container image to Cloud Run
     step{
-      name       = "gcr.io/cloud-builders/docker" 
+      name       = "gcr.io/cloud-builders/gcloud" 
       args       = ["run", "deploy", "cloud-run-deploy", "--image", "gcr.io/$_PROJECT_ID/build-run-image", "--region", "us-central1", "--platform", "managed", "--allow-unauthenticated"]
     } 
     artifacts {
       images = ["gcr.io/_$PROJECT_ID/build-run-image"]
     }
     //Advanced section
-   
+   /*
     options {
       machine_type = "N1_HIGHCPU_8"
       disk_size_gb = 100      
       log_streaming_option = "STREAM_OFF"
       worker_pool = "pool_01"
     }
+    */
   }  
   substitutions = {
       _FOO = "bar"
