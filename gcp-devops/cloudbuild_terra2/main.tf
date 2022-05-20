@@ -13,7 +13,7 @@ resource "google_cloudbuild_trigger" "react-trigger" {
     push {
        branch = "master"
        //or
-       //tag    = "production"
+       //tag    = "production"      ###is it possible to use regex??
       }
   }
   //Configuration section
@@ -24,7 +24,7 @@ resource "google_cloudbuild_trigger" "react-trigger" {
   // build config inline yaml
   build {
       # Build the container image
-    step {
+    step{
         name       = "gcr.io/cloud-builders/docker"
         #entrypoint = "npm"
         args       = ["build", "-t", "gcr.io/$_PROJECT_ID/build-run-image", "gcp-devops/cloudbuild_terra2/cloud_build/build-run/."]
