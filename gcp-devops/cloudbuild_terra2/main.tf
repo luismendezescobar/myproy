@@ -43,14 +43,14 @@ resource "google_cloudbuild_trigger" "react-trigger" {
       images = ["gcr.io/$_PROJECT_ID/build-run-image"]
     }
     //Advanced section
-   /*
+   
     options {
-      machine_type = "N1_HIGHCPU_8"
-      disk_size_gb = 100      
-      log_streaming_option = "STREAM_OFF"
-      worker_pool = "pool_01"
+      machinetype = "e2-medium"
+      diskSizeGb = 100      
+      logStreamingOption = "STREAM_ON"
+      //worker_pool = "pool_01"
     }
-    */
+    
   }  
   substitutions = {
       _FOO = "bar"
