@@ -27,7 +27,7 @@ resource "google_cloudbuild_trigger" "react-trigger" {
     step {
         name       = "build_image_01" 
         #entrypoint = "npm"
-        args       = ["build", "-t", "gcr.io/$_PROJECT_ID/build-run-image", "gcp-devops/cloudbuild_terra/cloud_build/build-run/."]
+        args       = ["build", "-t", "gcr.io/$_PROJECT_ID/build-run-image", "gcp-devops/cloudbuild_terra2/cloud_build/build-run/."]
     }
       # Push the container image to Container Registry
     step{
