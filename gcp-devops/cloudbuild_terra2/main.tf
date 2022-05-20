@@ -40,7 +40,7 @@ resource "google_cloudbuild_trigger" "react-trigger" {
       args       = ["run", "deploy", "cloud-run-deploy", "--image", "gcr.io/$_PROJECT_ID/build-run-image", "--region", "us-central1", "--platform", "managed", "--allow-unauthenticated"]
     } 
     artifacts {
-      images = ["gcr.io/_$PROJECT_ID/build-run-image"]
+      images = ["gcr.io/$_PROJECT_ID/build-run-image"]
     }
     //Advanced section
    /*
