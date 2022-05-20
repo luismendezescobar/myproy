@@ -43,10 +43,7 @@ resource "google_cloudbuild_trigger" "react-trigger" {
       images = ["gcr.io/_$PROJECT_ID/build-run-image"]
     }
     //Advanced section
-    substitutions = {
-      _FOO = "bar"
-      _PROJECT_ID = var.project_id
-    }
+   
     options {
       machine_type = "N1_HIGHCPU_8"
       disk_size_gb = 100      
@@ -54,4 +51,8 @@ resource "google_cloudbuild_trigger" "react-trigger" {
       worker_pool = "pool_01"
     }
   }  
+  substitutions = {
+      _FOO = "bar"
+      _PROJECT_ID = var.project_id
+  }
 }
