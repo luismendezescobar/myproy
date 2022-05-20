@@ -45,9 +45,9 @@ resource "google_cloudbuild_trigger" "react-trigger" {
     //Advanced section
    
     options {
-      machinetype = "e2-medium"
-      diskSizeGb = 100      
-      logStreamingOption = "STREAM_ON"
+      machine_type = "e2-medium"
+      disk_Size_Gb = 100      
+      log_Streaming_Option = "STREAM_ON"
       //worker_pool = "pool_01"
     }
     
