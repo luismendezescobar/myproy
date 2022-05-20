@@ -25,18 +25,18 @@ resource "google_cloudbuild_trigger" "react-trigger" {
   build {
       # Build the container image
     step {
-        name       = "build_image_01" 
+        name       = "gcr.io/cloud-builders/docker"
         #entrypoint = "npm"
         args       = ["build", "-t", "gcr.io/$_PROJECT_ID/build-run-image", "gcp-devops/cloudbuild_terra2/cloud_build/build-run/."]
     }
       # Push the container image to Container Registry
     step{
-      name       = "push_to_registry_02" 
+      name       = "gcr.io/cloud-builders/docker" 
       args       = ["push", "gcr.io/$_PROJECT_ID/build-run-image"]
     }
     # Deploy container image to Cloud Run
     step{
-      name       = "deploy_to_cloudrun_03" 
+      name       = "gcr.io/cloud-builders/docker" 
       args       = ["run", "deploy", "cloud-run-deploy", "--image", "gcr.io/$_PROJECT_ID/build-run-image", "--region", "us-central1", "--platform", "managed", "--allow-unauthenticated"]
     } 
     artifacts {
