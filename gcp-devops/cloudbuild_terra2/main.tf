@@ -48,7 +48,7 @@ resource "google_cloudbuild_trigger" "react-trigger" {
       machine_type = "UNSPECIFIED"
       disk_size_gb = 100      
       log_streaming_option = "STREAM_ON"
-      //worker_pool = "pool_01"
+     
     }
     
   }  

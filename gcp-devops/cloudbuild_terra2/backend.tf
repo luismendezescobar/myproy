@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket  = "mybucket5-19-2022-05"
+    bucket  = "mybucket5-19-2022-06"
     prefix  = "state"
   }  
   required_version = ">= 0.12.7"  
@@ -12,7 +12,7 @@ terraform {
   }
 }
 provider "google" {
-  project = "triggering-a-198-05de657e"
+  project = "triggering-a-198-b5df5f42"
   #region  = "<regione_name>"
   #zone    = "<zone_name>"
 }
