@@ -34,6 +34,7 @@ resource "google_cloudbuild_trigger" "react-trigger" {
       name       = "gcr.io/cloud-builders/docker" 
       args       = ["push", "gcr.io/$_PROJECT_ID/build-run-image"]
     }
+
     # Deploy container image to Cloud Run
     step{
       name       = "gcr.io/cloud-builders/gcloud" 
