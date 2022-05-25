@@ -44,6 +44,9 @@ resource "google_compute_firewall" "allow_ssh" {
   }
   source_ranges=["0.0.0.0/0"]
 }
+
+
+
 /*
 resource "google_compute_firewall" "allow-all-between-wsfc-nodes" {
   name    = "all-allow-wsfc"

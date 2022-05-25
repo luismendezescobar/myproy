@@ -10,7 +10,7 @@ region2="us-central1"
 */
 
 vpc_info = {
-    "vpc_shared"={
+    "vpc-shared"={
         auto_create_subnetworks=false
         subnetworks = [
             {
@@ -20,7 +20,7 @@ vpc_info = {
             }
         ]
     }
-    "vpc_local"={
+    "vpc-local"={
         auto_create_subnetworks=false
         subnetworks = [
             {
