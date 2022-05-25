@@ -20,7 +20,7 @@ variable "source_image" {type=string}
 variable "boot_disk_type" {type=string}
 variable "subnetwork_project" {type=string}
 variable "subnetwork" {type=string}
-variable "external_ip" {type=list}
+variable "external_ip" {type=list(string)}
 
 
   
