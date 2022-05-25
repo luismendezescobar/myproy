@@ -20,32 +20,19 @@ resource "google_compute_subnetwork" "network-with-private-secondary-ip-ranges" 
 
 }
 
-
-/*
-
-resource "google_compute_subnetwork" "network-with-private-secondary-ip-ranges2" {
-  name          = var.subnet_name2
-  ip_cidr_range = var.ip_cidr_range2
-  region        = var.region2
-  network       = google_compute_network.vpc_network.id
-}
-*/
-
-
 /************firewall rule creation*************************************/
 
-/*
-resource "google_compute_firewall" "allow_ssh" {
-  name    = "ssh-allow"
-  network = google_compute_network.vpc_network.name
 
+resource "google_compute_firewall" "allow_ssh" {
+  name    = join(var.vpc_name,"ssh-allow")
+  network = google_compute_network.vpc_network.name
   allow {
     protocol = "tcp"
     ports    = ["22"]
   }
   source_ranges=["0.0.0.0/0"]
 }
-*/
+
 
 
 /*
