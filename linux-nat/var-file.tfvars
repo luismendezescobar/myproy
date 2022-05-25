@@ -14,7 +14,7 @@ vpc_info = {
         auto_create_subnetworks=false
         subnetworks = [
             {
-                subnet_name     = "us-central1-subnetwork"
+                subnet_name     = "vpc-shared-us-central1-sub"
                 ip_cidr_range   = "10.10.10.0/24" 
                 region          =  "us-central1"
             }
@@ -24,7 +24,7 @@ vpc_info = {
         auto_create_subnetworks=false
         subnetworks = [
             {
-                subnet_name     = "us-central1-subnetwork"
+                subnet_name     = "vpc-local-us-central1-sub"
                 ip_cidr_range   = "10.10.11.0/24" 
                 region          =  "us-central1"
             }
