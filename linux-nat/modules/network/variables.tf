@@ -5,12 +5,7 @@ variable "project_id" {
 variable "vpc_name" {
   type=string
 }
-variable "region" {
-  type=string
-}
-variable "ip_cidr_range" {
-  type=string
-}
+
 variable "subnetworks" {
   description = "List of maps of additional subnetworks"
   type = list(object({
