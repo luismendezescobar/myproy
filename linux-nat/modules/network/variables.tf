@@ -10,7 +10,7 @@ variable "subnetworks" {
   description = "List of maps of additional subnetworks"
   type = list(object({
     subnet_name   = string
-    ip_cidr_range = number
+    ip_cidr_range = string
     region        = string
   }))
   default = []
