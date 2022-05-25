@@ -35,7 +35,7 @@ server_vm_info = {
         instance_tags = []
         additional_disks = []
     },
-    "srv_gtw"={
+    "srvgtw"={
         zone              = "us-east1-b"
         instance_type     = "e2-medium"
         source_image      = "centos-cloud/centos-stream-9"
