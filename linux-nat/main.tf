@@ -1,16 +1,16 @@
 module "network" {
+  for_each = var.vpc_info
   source = "./modules/network"
   project_id    = var.project_id
-  vpc_name      = var.vpc_name
-  subnet_name   = var.subnet_name
-  subnet_name2  = var.subnet_name2
-
-  ip_cidr_range = var.ip_cidr_range
-  ip_cidr_range2 = var.ip_cidr_range2
-  region        = var.region  
-  region2        = var.region2
+  vpc_name      = each.key
+  subnetworks   = each.value.subnet_name  
+  ip_cidr_range = each.value.ip_cidr_range
+  region        = each.value.region  
+  
 
 }
+
+//we need to create another rule to allow the comunication in the network (allow all)
 
 module "vm_instances_creation" {
   for_each                  = var.server_vm_info

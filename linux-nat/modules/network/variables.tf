@@ -8,19 +8,16 @@ variable "vpc_name" {
 variable "region" {
   type=string
 }
-variable "region2" {
-  type=string
-}
-variable "subnet_name" {
-  type=string
-}
-variable "subnet_name2" {
-    type = string
-}
-
 variable "ip_cidr_range" {
   type=string
 }
-variable "ip_cidr_range2" {
-  type=string
+variable "subnetworks" {
+  description = "List of maps of additional subnetworks"
+  type = list(object({
+    subnet_name   = string
+    ip_cidr_range = number
+    region        = string
+  }))
+  default = []
 }
+

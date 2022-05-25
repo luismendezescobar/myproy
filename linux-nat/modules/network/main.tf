@@ -1,3 +1,9 @@
+locals {
+  subnetworks_map = {
+    for i in var.subnetworks : i.subnet_name => i
+  }
+}
+
 resource "google_compute_network" "vpc_network" {
   project                 = var.project_id
   name                    = var.vpc_name
@@ -5,11 +11,17 @@ resource "google_compute_network" "vpc_network" {
 }
 
 resource "google_compute_subnetwork" "network-with-private-secondary-ip-ranges" {
-  name          = var.subnet_name
-  ip_cidr_range = var.ip_cidr_range
-  region        = var.region
+  for_each = local.subnetworks_map
+
+  name          = each.value.subnet_name
+  ip_cidr_range = each.value.ip_cidr_range
+  region        = each.value.region
   network       = google_compute_network.vpc_network.id
+
 }
+
+
+/*
 
 resource "google_compute_subnetwork" "network-with-private-secondary-ip-ranges2" {
   name          = var.subnet_name2
@@ -17,7 +29,7 @@ resource "google_compute_subnetwork" "network-with-private-secondary-ip-ranges2"
   region        = var.region2
   network       = google_compute_network.vpc_network.id
 }
-
+*/
 
 
 /************firewall rule creation*************************************/
