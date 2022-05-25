@@ -8,6 +8,9 @@ variable "vpc_name" {
 variable "region" {
   type=string
 }
+variable "region2" {
+  type=string
+}
 variable "subnet_name" {
   type=string
 }

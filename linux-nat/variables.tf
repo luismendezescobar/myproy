@@ -8,6 +8,9 @@ variable "vpc_name" {
 variable "region" {
   type=string
 }
+variable "region2" {
+  type=string
+}
 variable "subnet_name" {               //create an string instead of these 2
   type=string
 }
@@ -32,12 +35,13 @@ variable "server_vm_info" {
     source_image      = string
     boot_disk_size_gb = number    
     boot_disk_type    = string
-    instance_tags     = list(string)    
+    network_tags     = list(string)    
     description       = string
     init_script       = string
     auto_delete       = bool
     subnet_name       = string
     external_ip       = list(string)
+    can_ip_forward    = bool
     additional_disks = list(object({
       name         = string
       disk_size_gb = number

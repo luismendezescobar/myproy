@@ -6,7 +6,10 @@ module "network" {
   subnet_name2  = var.subnet_name2
 
   ip_cidr_range = var.ip_cidr_range
+  ip_cidr_range2 = var.ip_cidr_range2
   region        = var.region  
+  region2        = var.region2
+
 }
 
 module "vm_instances_creation" {
@@ -19,7 +22,7 @@ module "vm_instances_creation" {
   zone                      = each.value.zone
   
   instance_description      = each.value.description
-  instance_tags             = each.value.instance_tags
+  network_tags             = each.value.network_tags
   instance_machine_type     = each.value.instance_type
   source_image              = each.value.source_image
   subnetwork_project        = var.project_id
@@ -30,6 +33,7 @@ module "vm_instances_creation" {
   boot_disk_type            = each.value.boot_disk_type
   additional_disks          = each.value.additional_disks
   external_ip               = each.value.external_ip 
+  can_ip_forward            = each.value.can_ip_forward
 
   depends_on = [
     module.network

@@ -5,6 +5,7 @@ subnet_name="test-subnetwork"
 ip_cidr_range="10.10.10.0/24"
 subnet_name2="us-central1-subnetwork"
 ip_cidr_range2="10.10.11.0/24"
+region2="us-central1"
 
 
 server_vm_info = {
@@ -20,7 +21,8 @@ server_vm_info = {
         description       = "bastion to manage all"
         init_script       = "./modules/create-vm/dummy.sh"  
         external_ip       = ["true"]
-        instance_tags = []
+        can_ip_forward   = false
+        network_tags = []
         additional_disks = []
     },
     "client02" = {
@@ -34,7 +36,8 @@ server_vm_info = {
         description       = "client that will access all through the linux router"
         init_script       = "./modules/create-vm/dummy.sh"  
         external_ip       = ["false"]
-        instance_tags = ["no-ip"]   //rename this to network_tags
+        can_ip_forward    = false
+        network_tags = ["no-ip"]   //rename this to network_tags
         additional_disks = []
     },
     "srvgtw"={
@@ -48,7 +51,8 @@ server_vm_info = {
         description       = "Router in linux"
         init_script       = "./modules/create-vm/dummy.sh"   
         external_ip       = ["true"]
-        instance_tags = []
+        can_ip_forward    = true
+        network_tags = []
         additional_disks = []
     },
 }
