@@ -24,7 +24,7 @@ resource "google_compute_subnetwork" "network-with-private-secondary-ip-ranges" 
 
 
 resource "google_compute_firewall" "allow_ssh" {
-  name    = join(var.vpc_name,"ssh-allow")
+  name    = join("-",[var.vpc_name,"ssh-allow"])
   network = google_compute_network.vpc_network.name
   allow {
     protocol = "tcp"
