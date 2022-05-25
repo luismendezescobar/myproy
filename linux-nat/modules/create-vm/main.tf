@@ -13,7 +13,7 @@ resource "google_compute_disk" "gce_machine_disks" {
   for_each = local.vm_disks
 
   project = var.project_id
-  name    = join("-", [lower(var.instance_name), each.value.name])
+  name    = join("-", [lower(var.server_name), each.value.name])
   type    = each.value.disk_type
   zone    = var.zone  
   size    = each.value.disk_size_gb
