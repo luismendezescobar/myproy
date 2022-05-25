@@ -14,9 +14,9 @@ vpc_info = {
         auto_create_subnetworks=false
         subnetworks = [
             {
-                subnet_name     = "vpc-shared-us-central1-sub"
+                subnet_name     = "vpc-shared-us-east1-sub"
                 ip_cidr_range   = "10.10.10.0/24" 
-                region          =  "us-central1"
+                region          =  "us-east1"
             }
         ]
     }
@@ -24,9 +24,9 @@ vpc_info = {
         auto_create_subnetworks=false
         subnetworks = [
             {
-                subnet_name     = "vpc-local-us-central1-sub"
+                subnet_name     = "vpc-local-us-east1-sub"
                 ip_cidr_range   = "10.10.11.0/24" 
-                region          =  "us-central1"
+                region          =  "us-east1"
             }
         ]
     }
@@ -44,7 +44,7 @@ server_vm_info = {
         boot_disk_size_gb = 100
         boot_disk_type    = "pd-standard" 
         auto_delete       = true
-        subnet_name       = "vpc-local-us-central1-sub"
+        subnet_name       = "vpc-local-us-east1-sub"
         description       = "bastion to manage all"
         init_script       = "./modules/create-vm/dummy.sh"  
         external_ip       = ["true"]
@@ -59,7 +59,7 @@ server_vm_info = {
         boot_disk_size_gb = 100
         boot_disk_type    = "pd-standard" 
         auto_delete       = true
-        subnet_name       ="vpc-local-us-central1-sub"
+        subnet_name       = "vpc-local-us-east1-sub"
         description       = "client that will access all through the linux router"
         init_script       = "./modules/create-vm/dummy.sh"  
         external_ip       = ["false"]
@@ -74,7 +74,7 @@ server_vm_info = {
         boot_disk_size_gb = 100
         boot_disk_type    = "pd-standard" 
         auto_delete       = true
-        subnet_name       = "vpc-local-us-central1-sub"
+        subnet_name       = "vpc-local-us-east1-sub"
         description       = "Router in linux"
         init_script       = "./modules/create-vm/dummy.sh"   
         external_ip       = ["true"]
