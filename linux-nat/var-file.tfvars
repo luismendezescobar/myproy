@@ -32,7 +32,7 @@ server_vm_info = {
         description       = "client that will access all through the linux router"
         init_script       = "./modules/create-vm/dummy.sh"  
         external_ip       = ["false"]
-        instance_tags = []
+        instance_tags = ["no-ip"]
         additional_disks = []
     },
     "srvgtw"={
