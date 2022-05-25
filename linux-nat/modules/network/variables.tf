@@ -18,3 +18,6 @@ variable "subnet_name2" {
 variable "ip_cidr_range" {
   type=string
 }
+variable "ip_cidr_range2" {
+  type=string
+}

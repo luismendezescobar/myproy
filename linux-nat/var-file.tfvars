@@ -4,6 +4,7 @@ region="us-east1"
 subnet_name="test-subnetwork"
 ip_cidr_range="10.10.10.0/24"
 subnet_name2="us-central1-subnetwork"
+ip_cidr_range2="10.10.11.0/24"
 
 
 server_vm_info = {
