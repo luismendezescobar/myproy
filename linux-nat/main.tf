@@ -3,10 +3,8 @@ module "network" {
   source = "./modules/network"
   project_id    = var.project_id
   vpc_name      = each.key
-  subnetworks   = each.value.subnet_name  
-  ip_cidr_range = each.value.ip_cidr_range
-  region        = each.value.region  
-  
+  subnetworks   = each.value.subnetworks  
+ 
 
 }
 
