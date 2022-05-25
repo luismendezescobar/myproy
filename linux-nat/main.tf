@@ -13,7 +13,7 @@ module "vm_instances_creation" {
   server_name               = each.key
 
   project_id                = var.project_id
-  region                    = var.region
+  #region                    = var.region
   zone                      = each.value.zone
   
   instance_description      = each.value.description
