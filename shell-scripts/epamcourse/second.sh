@@ -38,7 +38,7 @@ say_bye ${NAME}
 
 echo "Enter your name again:"
 read NAME
-while [ "${NAME}" == "" ]
+while [ "${NAME}"  == "" ]
 do
   echo "Enter your name again:"
   read NAME
