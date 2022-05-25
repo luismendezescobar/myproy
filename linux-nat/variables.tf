@@ -8,9 +8,13 @@ variable "vpc_name" {
 variable "region" {
   type=string
 }
-variable "subnet_name" {
+variable "subnet_name" {               //create an string instead of these 2
   type=string
 }
+variable "subnet_name2" {
+    type = string
+}
+
 variable "ip_cidr_range" {
   type=string
 }

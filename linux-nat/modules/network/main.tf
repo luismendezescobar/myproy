@@ -11,6 +11,14 @@ resource "google_compute_subnetwork" "network-with-private-secondary-ip-ranges" 
   network       = google_compute_network.vpc_network.id
 }
 
+resource "google_compute_subnetwork" "network-with-private-secondary-ip-ranges2" {
+  name          = var.subnet_name2
+  ip_cidr_range = var.ip_cidr_range
+  region        = var.region
+  network       = google_compute_network.vpc_network.id
+}
+
+
 
 /************firewall rule creation*************************************/
 

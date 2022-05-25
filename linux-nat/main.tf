@@ -3,6 +3,8 @@ module "network" {
   project_id    = var.project_id
   vpc_name      = var.vpc_name
   subnet_name   = var.subnet_name
+  subnet_name2  = var.subnet_name2
+
   ip_cidr_range = var.ip_cidr_range
   region        = var.region  
 }

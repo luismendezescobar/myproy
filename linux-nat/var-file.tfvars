@@ -3,6 +3,7 @@ vpc_name="webappnet"
 region="us-east1"
 subnet_name="test-subnetwork"
 ip_cidr_range="10.10.10.0/24"
+subnet_name2="us-central1-subnetwork"
 
 
 server_vm_info = {
@@ -32,7 +33,7 @@ server_vm_info = {
         description       = "client that will access all through the linux router"
         init_script       = "./modules/create-vm/dummy.sh"  
         external_ip       = ["false"]
-        instance_tags = ["no-ip"]
+        instance_tags = ["no-ip"]   //rename this to network_tags
         additional_disks = []
     },
     "srvgtw"={

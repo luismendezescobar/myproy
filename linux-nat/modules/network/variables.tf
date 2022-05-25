@@ -11,6 +11,10 @@ variable "region" {
 variable "subnet_name" {
   type=string
 }
+variable "subnet_name2" {
+    type = string
+}
+
 variable "ip_cidr_range" {
   type=string
 }
