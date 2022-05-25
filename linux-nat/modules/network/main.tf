@@ -34,6 +34,7 @@ resource "google_compute_subnetwork" "network-with-private-secondary-ip-ranges2"
 
 /************firewall rule creation*************************************/
 
+/*
 resource "google_compute_firewall" "allow_ssh" {
   name    = "ssh-allow"
   network = google_compute_network.vpc_network.name
@@ -44,7 +45,7 @@ resource "google_compute_firewall" "allow_ssh" {
   }
   source_ranges=["0.0.0.0/0"]
 }
-
+*/
 
 
 /*
