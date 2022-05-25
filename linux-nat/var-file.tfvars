@@ -21,7 +21,7 @@ server_vm_info = {
         instance_tags = []
         additional_disks = []
     },
-    "client01" = {
+    "client02" = {
         zone              = "us-east1-b"        
         instance_type     = "e2-medium"
         source_image      = "centos-cloud/centos-stream-9"
