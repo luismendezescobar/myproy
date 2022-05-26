@@ -27,7 +27,23 @@ vpc_info = {
 
 
 server_vm_info = {
-    "bastion01" = {
+    "bastion-shared01" = {
+        zone              = "us-east1-b"
+        instance_type     = "e2-medium"
+        //gcloud compute images list
+        source_image      = "centos-cloud/centos-stream-9"
+        boot_disk_size_gb = 100
+        boot_disk_type    = "pd-standard" 
+        auto_delete       = true
+        subnet_name       = "vpc-shared-us-east1-sub"
+        description       = "bastion to manage all"
+        init_script       = "./modules/create-vm/dummy.sh"  
+        external_ip       = ["true"]
+        can_ip_forward   = false
+        network_tags = []
+        additional_disks = []
+    },
+    "bastion-local02" = {
         zone              = "us-east1-b"
         instance_type     = "e2-medium"
         //gcloud compute images list
@@ -58,7 +74,7 @@ server_vm_info = {
         network_tags = ["no-ip"]   
         additional_disks = []
     },
-    "vpc-local-srv01" = {
+    "vpc-local-srv02" = {
         zone              = "us-east1-b"        
         instance_type     = "e2-medium"
         source_image      = "centos-cloud/centos-stream-9"
@@ -71,21 +87,6 @@ server_vm_info = {
         external_ip       = ["false"]
         can_ip_forward    = false
         network_tags = ["no-ip"]   
-        additional_disks = []
-    },
-    "srvgtw"={
-        zone              = "us-east1-b"
-        instance_type     = "e2-medium"
-        source_image      = "centos-cloud/centos-stream-9"
-        boot_disk_size_gb = 100
-        boot_disk_type    = "pd-standard" 
-        auto_delete       = true
-        subnet_name       = "vpc-local-us-east1-sub"
-        description       = "Router in linux"
-        init_script       = "./modules/create-vm/dummy.sh"   
-        external_ip       = ["true"]
-        can_ip_forward    = true
-        network_tags = []
         additional_disks = []
     },
 }
@@ -106,7 +107,8 @@ server_vm_info_two_nics = {
         description       = "bastion to manage all"
         init_script       = "./modules/create-vm/dummy.sh"  
         external_ip       = ["true"]
-        can_ip_forward   = false
+        can_ip_forward   = true
         network_tags = []
         additional_disks = []
     },
+}
