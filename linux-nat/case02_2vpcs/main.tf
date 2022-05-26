@@ -40,7 +40,7 @@ module "vm_instances_creation" {
   can_ip_forward            = each.value.can_ip_forward
 
   depends_on = [
-    module.network
+    module.vpc_creation
   ]
 
 }
@@ -68,7 +68,7 @@ module "vm_double_nic" {
   can_ip_forward            = each.value.can_ip_forward
 
   depends_on = [
-    module.network
+    module.vpc_creation
   ]
 
 }
