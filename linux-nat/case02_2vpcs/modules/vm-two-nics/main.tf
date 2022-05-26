@@ -61,7 +61,7 @@ resource "google_compute_instance" "gce_machine" {
     }
   }
   network_interface {
-    subnetwork_project = var.subnetwork
+    subnetwork_project = var.subnetwork_project
     subnetwork         = var.subnetwork2    
   }
 
