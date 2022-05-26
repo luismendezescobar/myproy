@@ -40,7 +40,7 @@ server_vm_info = {
         init_script       = "./modules/create-vm/dummy.sh"  
         external_ip       = ["false"]
         can_ip_forward   = false
-        network_tags = []
+        network_tags = ["no-ip"]
         additional_disks = []
     },
     "local-client01" = {
@@ -56,7 +56,7 @@ server_vm_info = {
         init_script       = "./modules/create-vm/dummy.sh"  
         external_ip       = ["false"]
         can_ip_forward   = false
-        network_tags = []
+        network_tags = ["no-ip"]
         additional_disks = []
     },
     "shared-client" = {
