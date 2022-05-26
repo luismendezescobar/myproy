@@ -27,7 +27,7 @@ resource "google_compute_route" "from_shared_to_internet" {
   tags                  = ["no-ip"]
 }
 resource "google_compute_route" "from_shared_to_local" {  
-  name                  = "from-local-to-shared"
+  name                  = "from-shared-to-local"
   dest_range            = "10.10.11.0/24"
   network               = "vpc-shared"
   next_hop_instance     = "nat-server"
