@@ -47,7 +47,7 @@ module "vm_instances_creation" {
 
 
 module "vm_double_nic" {
-  for_each                  = var.server_vm_info
+  for_each                  = var.server_vm_info_two_nics
   source                    = "./modules/vm-two-nics"  
   server_name               = each.key
   project_id                = var.project_id
