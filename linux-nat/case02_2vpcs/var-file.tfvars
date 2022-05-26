@@ -27,7 +27,7 @@ vpc_info = {
 
 
 server_vm_info = {
-    "shared-bastion" = {
+    "shared-client01" = {
         zone              = "us-east1-b"
         instance_type     = "e2-medium"
         //gcloud compute images list
@@ -38,12 +38,12 @@ server_vm_info = {
         subnet_name       = "vpc-shared-us-east1-sub"
         description       = "bastion to manage all"
         init_script       = "./modules/create-vm/dummy.sh"  
-        external_ip       = ["true"]
+        external_ip       = ["false"]
         can_ip_forward   = false
         network_tags = []
         additional_disks = []
     },
-    "local-bastion" = {
+    "local-client01" = {
         zone              = "us-east1-b"
         instance_type     = "e2-medium"
         //gcloud compute images list
@@ -54,7 +54,7 @@ server_vm_info = {
         subnet_name       = "vpc-local-us-east1-sub"
         description       = "bastion to manage all"
         init_script       = "./modules/create-vm/dummy.sh"  
-        external_ip       = ["true"]
+        external_ip       = ["false"]
         can_ip_forward   = false
         network_tags = []
         additional_disks = []
