@@ -1,4 +1,4 @@
-project_id="playground-s-11-146393e1"  #update the project here
+project_id="playground-s-11-64bc4c4d"  #update the project here
 
 vpc_info = {
     "vpc-shared"={
@@ -27,7 +27,7 @@ vpc_info = {
 
 
 server_vm_info = {
-    "bastion-shared01" = {
+    "shared-bastion" = {
         zone              = "us-east1-b"
         instance_type     = "e2-medium"
         //gcloud compute images list
@@ -43,7 +43,7 @@ server_vm_info = {
         network_tags = []
         additional_disks = []
     },
-    "bastion-local02" = {
+    "local-bastion" = {
         zone              = "us-east1-b"
         instance_type     = "e2-medium"
         //gcloud compute images list
@@ -59,7 +59,7 @@ server_vm_info = {
         network_tags = []
         additional_disks = []
     },
-    "vpc-shared-srv01" = {
+    "shared-client" = {
         zone              = "us-east1-b"        
         instance_type     = "e2-medium"
         source_image      = "centos-cloud/centos-stream-9"
@@ -74,7 +74,7 @@ server_vm_info = {
         network_tags = ["no-ip"]   
         additional_disks = []
     },
-    "vpc-local-srv02" = {
+    "local-client" = {
         zone              = "us-east1-b"        
         instance_type     = "e2-medium"
         source_image      = "centos-cloud/centos-stream-9"
@@ -95,7 +95,7 @@ server_vm_info = {
 
 
 server_vm_info_two_nics = {
-    "vm-nat" = {
+    "nat-server" = {
         zone              = "us-east1-b"
         instance_type     = "e2-medium"
         source_image      = "centos-cloud/centos-stream-9"

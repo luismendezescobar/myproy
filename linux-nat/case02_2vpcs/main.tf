@@ -72,3 +72,10 @@ module "vm_double_nic" {
   ]
 
 }
+
+module "create_routes" {
+  source                    = "./modules/gcp-routes"  
+  depends_on = [
+    module.vm_double_nic
+  ]
+}
