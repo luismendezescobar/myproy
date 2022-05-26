@@ -34,7 +34,7 @@ resource "google_compute_firewall" "vpc_shared_allow_all" {
   allow {
     protocol = "udp"
   }  
-  source_ranges=["10.10.10.0/0"]
+  source_ranges=["10.10.10.0/24"]
 }
 resource "google_compute_firewall" "vpc_local_allow_all" {
   project = var.project_id
@@ -49,7 +49,7 @@ resource "google_compute_firewall" "vpc_local_allow_all" {
   allow {
     protocol = "udp"
   }  
-  source_ranges=["10.10.11.0/0"]
+  source_ranges=["10.10.11.0/24"]
 }
 /****************************************************************************/
 
