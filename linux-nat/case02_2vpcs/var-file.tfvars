@@ -1,4 +1,4 @@
-project_id="playground-s-11-92a494bc"  #update the project here
+project_id="playground-s-11-57b0959f"  #update the project here
 
 vpc_info = {
     "vpc-shared"={
