@@ -21,9 +21,9 @@ resource "google_compute_firewall" "vpc_local_ssh_allow" {
 }
 /*******************************************************************/
 
-resource "google_compute_firewall" "vpc_shared_allow_all" {
+resource "google_compute_firewall" "vpc_shared_allow_all_internal" {
   project = var.project_id
-  name    = join("-",["vpc-shared","allow-all"])
+  name    = join("-",["vpc-shared","allow-all-internal"])
   network = "vpc-shared"
   allow {
     protocol = "icmp"
@@ -34,11 +34,11 @@ resource "google_compute_firewall" "vpc_shared_allow_all" {
   allow {
     protocol = "udp"
   }  
-  source_ranges=["10.10.10.0/24","10.10.11.0/24"]
+  source_ranges=["10.10.10.0/24"]
 }
-resource "google_compute_firewall" "vpc_local_allow_all" {
+resource "google_compute_firewall" "vpc_local_allow_all_internal" {
   project = var.project_id
-  name    = join("-",["vpc-local","allow-all"])
+  name    = join("-",["vpc-local","allow-all-internal"])
   network = "vpc-local"
   allow {
     protocol = "icmp"
@@ -49,10 +49,59 @@ resource "google_compute_firewall" "vpc_local_allow_all" {
   allow {
     protocol = "udp"
   }  
-  source_ranges=["10.10.10.0/24","10.10.11.0/24"]
+  source_ranges=["10.10.11.0/24"]
 }
-/****************************************************************************/
+/**************************************************************************/
+resource "google_compute_firewall" "vpc_shared_allow_from_local" {
+  project = var.project_id
+  name    = join("-",["vpc-shared","allow-from-local"])
+  network = "vpc-shared"
+  allow {
+    protocol = "icmp"
+  }
+  allow {
+    protocol = "tcp"
+  } 
+  allow {
+    protocol = "udp"
+  }  
+  source_ranges=["10.10.11.0/24"]
+}
+resource "google_compute_firewall" "vpc_local_allow_from_shared" {
+  project = var.project_id
+  name    = join("-",["vpc-local","allow-from-internal"])
+  network = "vpc-local"
+  allow {
+    protocol = "icmp"
+  }
+  allow {
+    protocol = "tcp"
+  } 
+  allow {
+    protocol = "udp"
+  }  
+  source_ranges=["10.10.10.0/24"]
+}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/****************************************************************************/
+/*
 resource "google_compute_firewall" "vpc_shared_http_allow" {
   project = var.project_id
   name    = join("-",["vpc-shared","http-allow"])
@@ -74,3 +123,4 @@ resource "google_compute_firewall" "vpc_local_http_allow" {
   }
   source_ranges=["0.0.0.0/0"]
 }
+*/
