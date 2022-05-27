@@ -56,9 +56,10 @@ resource "google_compute_instance" "gce_machine" {
   network_interface {
     subnetwork_project = var.subnetwork_project
     subnetwork         = var.subnetwork1    
+    /*
     access_config {
             //Ephemeral public ip (no need to specify)        
-    }
+    }*/
   }
   network_interface {
     subnetwork_project = var.subnetwork_project
