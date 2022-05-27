@@ -14,23 +14,12 @@ module "firewall_rules" {
   ]
 }
 
-
-module "create_routes" {
-  source                    = "./modules/gcp-routes"  
-  depends_on = [
-    module.vpc_creation
-  ]
-}
-
 module "create_cloud_nat_gtw" {
   source                    = "./modules/create-nat"  
   depends_on = [
-    module.vpc_creation
+    module.firewall_rules
   ]
 }
-
-
-
 
 module "vm_double_nic" {
   for_each                  = var.server_vm_info_two_nics
@@ -59,7 +48,12 @@ module "vm_double_nic" {
 
 }
 
-
+module "create_routes" {
+  source                    = "./modules/gcp-routes"  
+  depends_on = [
+    module.vm_double_nic
+  ]
+}
 
 module "vm_instances_creation" {
   for_each                  = var.server_vm_info
@@ -85,7 +79,7 @@ module "vm_instances_creation" {
   can_ip_forward            = each.value.can_ip_forward
 
   depends_on = [
-    module.vpc_creation
+    module.create_routes
   ]
 
 }
