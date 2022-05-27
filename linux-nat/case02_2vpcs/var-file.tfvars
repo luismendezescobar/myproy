@@ -1,4 +1,4 @@
-project_id="playground-s-11-64bc4c4d"  #update the project here
+project_id="playground-s-11-92a494bc"  #update the project here
 
 vpc_info = {
     "vpc-shared"={
@@ -59,7 +59,7 @@ server_vm_info = {
         network_tags = ["no-ip"]
         additional_disks = []
     },
-    "shared-client" = {
+    "shared-client02" = {
         zone              = "us-east1-b"        
         instance_type     = "e2-medium"
         source_image      = "centos-cloud/centos-stream-9"
@@ -74,7 +74,7 @@ server_vm_info = {
         network_tags = ["no-ip"]   
         additional_disks = []
     },
-    "local-client" = {
+    "local-client02" = {
         zone              = "us-east1-b"        
         instance_type     = "e2-medium"
         source_image      = "centos-cloud/centos-stream-9"
