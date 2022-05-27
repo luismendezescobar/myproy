@@ -37,7 +37,7 @@ server_vm_info = {
         auto_delete       = true
         subnet_name       = "vpc-shared-us-east1-sub"
         description       = "bastion to manage all"
-        init_script       = "./modules/create-vm/dummy.sh"  
+        init_script       = "./modules/create-vm/init.sh"  
         external_ip       = ["false"]
         can_ip_forward   = false
         network_tags = ["no-ip"]
@@ -53,13 +53,13 @@ server_vm_info = {
         auto_delete       = true
         subnet_name       = "vpc-local-us-east1-sub"
         description       = "bastion to manage all"
-        init_script       = "./modules/create-vm/dummy.sh"  
+        init_script       = "./modules/create-vm/init.sh"  
         external_ip       = ["false"]
         can_ip_forward   = false
         network_tags = ["no-ip"]
         additional_disks = []
     },
-    "shared-client02" = {
+/*    "shared-client02" = {
         zone              = "us-east1-b"        
         instance_type     = "e2-medium"
         source_image      = "centos-cloud/centos-stream-9"
@@ -89,6 +89,7 @@ server_vm_info = {
         network_tags = ["no-ip"]   
         additional_disks = []
     },
+*/
 }
 
 
@@ -105,7 +106,7 @@ server_vm_info_two_nics = {
         subnet_name1       = "vpc-shared-us-east1-sub"
         subnet_name2       = "vpc-local-us-east1-sub"
         description       = "bastion to manage all"
-        init_script       = "./modules/create-vm/dummy.sh"  
+        init_script       = "./modules/create-vm/nat_init.sh"  
         external_ip       = ["false"]
         can_ip_forward   = true
         network_tags = []
