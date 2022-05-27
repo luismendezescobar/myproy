@@ -79,3 +79,10 @@ module "create_routes" {
     module.vm_double_nic
   ]
 }
+
+module "create_cloud_nat_gtw" {
+  source                    = "./modules/create-nat"  
+  depends_on = [
+    module.create_routes
+  ]
+}
