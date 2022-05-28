@@ -13,5 +13,5 @@ terraform {
   }
 }
 provider "google" {
-  project = "playground-s-11-138a37ae"
+  project = "playground-s-11-6704ad61"
 }
