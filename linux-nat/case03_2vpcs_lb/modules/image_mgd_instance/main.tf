@@ -116,10 +116,11 @@ resource "google_compute_region_instance_group_manager" "mig_nat" {
 
 # backend service
 resource "google_compute_region_backend_service" "backend_service_shared_tcp" {
-  name                  = "backend-shared"
+  name                  = "backend-shared" ///this is the load balancer name
   region                = var.region
   protocol              = "TCP"
   load_balancing_scheme = "INTERNAL"
+  session_affinity      =  "CLIENT_IP"
   health_checks         = [google_compute_health_check.tcp-health_check22.id]
   backend {
     group           = google_compute_region_instance_group_manager.mig_nat.instance_group
