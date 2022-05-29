@@ -22,7 +22,7 @@ module "create_cloud_nat_gtw" {
 }
 
 module "lb_mig_module" {
-  for_each                  = var.image_managed_instance_group
+  for_each                  = var.lb_mig_nat_var
   source                    = "./modules/lb-mig"  
   server_name               = each.key
   project_id                = var.project_id
