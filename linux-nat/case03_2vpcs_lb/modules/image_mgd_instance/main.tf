@@ -24,11 +24,10 @@ resource "google_compute_disk" "gce_machine_disks" {
 /******************************************
  Current Multi-disk vm
  *****************************************/
-resource "google_compute_instance_template" "gce_machine" {
+resource "google_compute_instance_template" "instance_template" {
   project         = var.project_id
   name            = lower(var.server_name)
   machine_type    = var.instance_machine_type
-  zone            = var.zone  
   tags            = var.network_tags
   description     = var.instance_description
   can_ip_forward  = var.can_ip_forward
