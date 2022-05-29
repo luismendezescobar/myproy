@@ -75,10 +75,34 @@ resource "google_compute_instance_template" "instance_template" {
 }
 
 
-resource "google_compute_instance_group_manager" "instance_group_manager" {
-  name               = "instance-group-manager"
-  instance_template  = google_compute_instance_template.instance_template.id
-  base_instance_name = "instance-group-manager"
+
+resource "google_compute_health_check" "tcp-health_check22" {
+  name                = "autohealing-health-check"
+  check_interval_sec  = 5
+  timeout_sec         = 5
+  healthy_threshold   = 2
+  unhealthy_threshold = 10 # 50 seconds
+
+ 
+  tcp_health_check {
+    port = "22"
+  }
+}
+
+resource "google_compute_instance_group_manager" "appserver" {
+  name = "nat-managed-instance-group"
+
+  base_instance_name = "app"
   zone               = var.zone
-  target_size        = "2"
+  target_size = 2
+
+  version {
+    instance_template  =google_compute_instance_template.instance_template.id
+
+  }
+
+  auto_healing_policies {
+    health_check      = google_compute_health_check.tcp-health_check22.id
+    initial_delay_sec = 300
+  }
 }
