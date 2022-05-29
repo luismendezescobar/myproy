@@ -110,5 +110,6 @@ image_managed_instance_group = {
         external_ip       = ["false"]
         can_ip_forward   = true
         network_tags = []
+        service_account="1067667395433-compute@developer.gserviceaccount.com"
     },
 }

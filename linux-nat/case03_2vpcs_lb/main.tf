@@ -50,7 +50,7 @@ module "image_managed_instance_group" {
 module "create_routes" {
   source                    = "./modules/gcp-routes"  
   depends_on = [
-    module.vm_double_nic
+    module.image_managed_instance_group
   ]
 }
 

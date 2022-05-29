@@ -15,5 +15,6 @@ variable "subnetwork1" {type=string}
 variable "subnetwork2" {type=string}
 variable "external_ip" {type=list(string)}
 variable "can_ip_forward" {type=bool}
+variable "service_account" {type=string}
 
   

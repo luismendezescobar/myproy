@@ -44,6 +44,7 @@ variable "image_managed_instance_group" {
     subnet_name2       = string
     external_ip       = list(string)
     can_ip_forward    = bool
+    service_account   = string
   }))
   default = {}
 }
