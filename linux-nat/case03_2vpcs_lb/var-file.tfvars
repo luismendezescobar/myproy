@@ -98,6 +98,7 @@ server_vm_info = {
 image_managed_instance_group = {
     "nat-server" = {
         zone              = "us-east1-b"
+        region            = "us-east1"
         instance_type     = "e2-medium"
         source_image      = "centos-cloud/centos-stream-9"
         boot_disk_size_gb = 100

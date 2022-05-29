@@ -32,6 +32,7 @@ variable "image_managed_instance_group" {
   description = "the number of DB server instances"
   type = map(object({
     zone              = string
+    region            = string
     instance_type     = string
     source_image      = string
     boot_disk_size_gb = number    

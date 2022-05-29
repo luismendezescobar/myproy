@@ -26,6 +26,7 @@ resource "google_compute_disk" "gce_machine_disks" {
  *****************************************/
 resource "google_compute_instance_template" "instance_template" {
   project         = var.project_id
+  region          = var.region
   name            = lower(var.server_name)
   machine_type    = var.instance_machine_type
   tags            = var.network_tags

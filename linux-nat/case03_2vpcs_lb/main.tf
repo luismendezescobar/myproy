@@ -27,6 +27,7 @@ module "image_managed_instance_group" {
   server_name               = each.key
   project_id                = var.project_id
   zone                      = each.value.zone
+  region                    = each.value.region
   instance_description      = each.value.description
   network_tags             = each.value.network_tags
   instance_machine_type     = each.value.instance_type
