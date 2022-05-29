@@ -38,7 +38,6 @@ module "image_managed_instance_group" {
   auto_delete               = each.value.auto_delete
   disk_size_gb              = each.value.boot_disk_size_gb
   boot_disk_type            = each.value.boot_disk_type
-  additional_disks          = each.value.additional_disks
   external_ip               = each.value.external_ip 
   can_ip_forward            = each.value.can_ip_forward
 
