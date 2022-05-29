@@ -35,7 +35,7 @@ resource "google_compute_instance_template" "gce_machine" {
 
   metadata_startup_script = file(var.init_script)  
 
-  allow_stopping_for_update = false
+ 
 
 //boot disk
   disk {
@@ -73,4 +73,13 @@ resource "google_compute_instance_template" "gce_machine" {
     subnetwork         = var.subnetwork2    
   }
 
+}
+
+
+resource "google_compute_instance_group_manager" "instance_group_manager" {
+  name               = "instance-group-manager"
+  instance_template  = google_compute_instance_template.instance_template.id
+  base_instance_name = "instance-group-manager"
+  zone               = var.zone
+  target_size        = "2"
 }
