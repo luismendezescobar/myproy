@@ -41,7 +41,7 @@ module "lb_mig_module" {
   boot_disk_type            = each.value.boot_disk_type
   external_ip               = each.value.external_ip 
   can_ip_forward            = each.value.can_ip_forward
-  service_account           = each.value.service_account
+  #service_account           = each.value.service_account
   health_check              = var.health_check
   mig_info                  = var.mig_info
   mig_zones                 = var.mig_zones
