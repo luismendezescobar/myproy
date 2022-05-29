@@ -115,7 +115,7 @@ resource "google_compute_region_instance_group_manager" "mig_nat" {
 
 
 # backend service
-resource "google_compute_region_backend_service" "backend_service_shared" {
+resource "google_compute_region_backend_service" "backend_service_shared_tcp" {
   name                  = "backend_shared"
   region                = var.region
   protocol              = "TCP"
@@ -129,9 +129,9 @@ resource "google_compute_region_backend_service" "backend_service_shared" {
 
 
 # forwarding rule
-resource "google_compute_forwarding_rule" "forwarding_rule_shared" {
+resource "google_compute_forwarding_rule" "forwarding_rule_shared_tcp" {
   name                  = "l4-ilb-forwarding-rule"
-  backend_service       = google_compute_region_backend_service.backend_service.id  
+  backend_service       = google_compute_region_backend_service.backend_service_shared_tcp.id  
   region                = var.region
   ip_protocol           = "TCP"
   load_balancing_scheme = "INTERNAL"
