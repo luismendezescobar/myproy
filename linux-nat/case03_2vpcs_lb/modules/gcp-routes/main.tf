@@ -1,3 +1,4 @@
+/*
 resource "google_compute_route" "from_local_to_internet" {  
   name                  = "from-local-to-internet"
   dest_range            = "0.0.0.0/0"
@@ -7,6 +8,7 @@ resource "google_compute_route" "from_local_to_internet" {
   priority              = 800
   tags                  = ["no-ip"]
 }
+
 resource "google_compute_route" "from_local_to_shared" {  
   name                  = "from-local-to-shared"
   dest_range            = "10.10.10.0/24"
@@ -16,6 +18,7 @@ resource "google_compute_route" "from_local_to_shared" {
   priority              = 1000
   tags                  = ["no-ip"]
 }
+*/
 /******************************************************************************/
 
 /* This one is not needed as we are going to use cloud nat gateway
@@ -30,6 +33,7 @@ resource "google_compute_route" "from_shared_to_internet" {
 }
 
 */
+/*
 resource "google_compute_route" "from_shared_to_local" {  
   name                  = "from-shared-to-local"
   dest_range            = "10.10.11.0/24"
@@ -39,3 +43,4 @@ resource "google_compute_route" "from_shared_to_local" {
   priority              = 1000
   tags                  = ["no-ip"]
 }
+*/
