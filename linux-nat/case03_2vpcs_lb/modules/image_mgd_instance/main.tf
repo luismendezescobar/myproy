@@ -126,7 +126,6 @@ resource "google_compute_region_backend_service" "backend_service_shared_tcp" {
     balancing_mode  = "CONNECTION"
   }
   network               = "vpc-shared"
-  subnetwork            = "vpc-shared-us-east1-sub"
 }
 
 
