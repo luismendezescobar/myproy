@@ -162,7 +162,7 @@ resource "google_compute_region_backend_service" "backend_service_local_tcp" {
 
 # forwarding rule
 resource "google_compute_forwarding_rule" "forwarding_rule_local_tcp" {
-  name                  = "l4-ilb-forwarding-rule"
+  name                  = "ilb-forwarding-rule-local"
   backend_service       = google_compute_region_backend_service.backend_service_local_tcp.id  
   region                = var.region
   ip_protocol           = "TCP"
