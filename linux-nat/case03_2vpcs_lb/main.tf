@@ -40,6 +40,7 @@ module "image_managed_instance_group" {
   boot_disk_type            = each.value.boot_disk_type
   external_ip               = each.value.external_ip 
   can_ip_forward            = each.value.can_ip_forward
+  service_account           = each.value.service_account
 
   depends_on = [
     module.create_cloud_nat_gtw
