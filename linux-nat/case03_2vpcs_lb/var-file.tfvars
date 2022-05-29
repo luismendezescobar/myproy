@@ -109,55 +109,55 @@ lb_mig_nat_var = {
         external_ip       = ["false"]
         can_ip_forward   = true
         network_tags = []  
-        health_check = {
-            name                = "health-check-lb-nat"
-            check_interval_sec  = 5
-            timeout_sec         = 5
-            healthy_threshold   = 2
-            unhealthy_threshold = 10
-            type                = "tcp"
-            port                = 22
-            
-        }
-        mig_info = {
-            name               = "nat-managed-instance-group"
-            base_instance_name = "nat-servers"
-            target_size        = 2  
-            initial_delay_sec  = 300            
-        }
-        mig_zones =["us-east1-b"]
-
-        load_balancer_info01 = {
-            lb_name               = "lb-backend-shared"
-            protocol              = "TCP"
-            load_balancing_scheme = "INTERNAL" 
-            session_affinity      = "CLIENT_IP"
-            balancing_mode        = "CONNECTION"
-            vpc                   = "vpc-shared"
-            forwarding_name       = "forwarding-rule-shared"   
-            ip_protocol           = "TCP"
-            load_balancing_scheme = "INTERNAL"
-            all_ports             = true
-            allow_global_access   = false
-            network               = "vpc-shared"
-            subnetwork            = "vpc-shared-us-east1-sub"
-        }
-        load_balancer_info02 = {
-            lb_name               = "lb-backend-local"
-            protocol              = "TCP"
-            load_balancing_scheme = "INTERNAL" 
-            session_affinity      = "CLIENT_IP"
-            balancing_mode        = "CONNECTION"
-            vpc                   = "vpc-local"
-            forwarding_name       = "forwarding-rule-local"   
-            ip_protocol           = "TCP"
-            load_balancing_scheme = "INTERNAL"
-            all_ports             = true
-            allow_global_access   = false
-            network               = "vpc-local"
-            subnetwork            = "vpc-local-us-east1-sub"            
-        }
-
+       
     },
 }
 
+health_check = {
+        name                = "health-check-lb-nat"
+        check_interval_sec  = 5
+        timeout_sec         = 5
+        healthy_threshold   = 2
+        unhealthy_threshold = 10
+        type                = "tcp"
+        port                = 22
+        
+}
+mig_info = {
+    name               = "nat-managed-instance-group"
+    base_instance_name = "nat-servers"
+    target_size        = 2  
+    initial_delay_sec  = 300            
+}
+mig_zones =["us-east1-b"]
+
+load_balancer_info01 = {
+    lb_name               = "lb-backend-shared"
+    protocol              = "TCP"
+    load_balancing_scheme = "INTERNAL" 
+    session_affinity      = "CLIENT_IP"
+    balancing_mode        = "CONNECTION"
+    vpc                   = "vpc-shared"
+    forwarding_name       = "forwarding-rule-shared"   
+    ip_protocol           = "TCP"
+    load_balancing_scheme = "INTERNAL"
+    all_ports             = true
+    allow_global_access   = false
+    network               = "vpc-shared"
+    subnetwork            = "vpc-shared-us-east1-sub"
+}
+load_balancer_info02 = {
+    lb_name               = "lb-backend-local"
+    protocol              = "TCP"
+    load_balancing_scheme = "INTERNAL" 
+    session_affinity      = "CLIENT_IP"
+    balancing_mode        = "CONNECTION"
+    vpc                   = "vpc-local"
+    forwarding_name       = "forwarding-rule-local"   
+    ip_protocol           = "TCP"
+    load_balancing_scheme = "INTERNAL"
+    all_ports             = true
+    allow_global_access   = false
+    network               = "vpc-local"
+    subnetwork            = "vpc-local-us-east1-sub"            
+}

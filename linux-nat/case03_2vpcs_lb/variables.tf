@@ -3,6 +3,20 @@ variable "project_id" {
   type=string
 }
 
+variable "vpc_info" {
+  description = "information about the vpc"
+  type = map(object({
+    auto_create_subnetworks = bool
+    subnetworks = list(object({
+      subnet_name   = string
+      ip_cidr_range = string
+      region        = string
+    }))
+  }))
+  default = {}
+}
+
+
 
 variable "server_vm_info" {
   description = "the number of DB server instances"
@@ -45,30 +59,13 @@ variable "lb_mig_nat_var" {
     subnet_name2      = string
     external_ip       = list(string)
     can_ip_forward    = bool
-    health_check      = map(object)
-    mig_info          = map(object)
-    mig_zones         = list(string)
-    load_balancer_info01= map(object) 
-    load_balancer_info02= map(object)
 
   }))
   default = {}
 }
 
-
-
-variable "vpc_info" {
-  description = "information about the vpc"
-  type = map(object({
-    auto_create_subnetworks = bool
-    subnetworks = list(object({
-      subnet_name   = string
-      ip_cidr_range = string
-      region        = string
-    }))
-  }))
-  default = {}
-}
-
-
-
+variable "health_check" {type = map }
+variable "mig_info" {type = map }
+variable "mig_zones" {type=list(string)}
+variable "load_balancer_info01" {type = map }
+variable "load_balancer_info02" {type = map }

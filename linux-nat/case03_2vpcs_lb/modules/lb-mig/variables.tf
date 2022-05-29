@@ -22,3 +22,4 @@ variable "mig_info" {type = map }
 variable "mig_zones" {type=list(string)}
 variable "load_balancer_info01" {type = map }
 variable "load_balancer_info02" {type = map }
+

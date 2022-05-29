@@ -42,15 +42,18 @@ module "lb_mig_module" {
   external_ip               = each.value.external_ip 
   can_ip_forward            = each.value.can_ip_forward
   service_account           = each.value.service_account
-  health_check              = each.value.health_check
-  mig_info                  = each.value.mig_info
-  mig_zones                 = each.value.mig_zones
-  load_balancer_info01      = each.value.load_balancer_info01
-  load_balancer_info02      = each.value.load_balancer_info02
+  health_check              = var.health_check
+  mig_info                  = var.mig_info
+  mig_zones                 = var.mig_zones
+  load_balancer_info01      = var.load_balancer_info01
+  load_balancer_info02      = var.load_balancer_info02
   depends_on = [
     module.create_cloud_nat_gtw
   ]
 }
+
+
+
 
 module "create_routes" {
   source                    = "./modules/gcp-routes"  
