@@ -112,7 +112,7 @@ resource "google_compute_region_instance_group_manager" "mig_nat" {
   }
 }
 
-
+############################VPC SHARED#########################################################
 
 # backend service
 resource "google_compute_region_backend_service" "backend_service_shared_tcp" {
@@ -142,3 +142,35 @@ resource "google_compute_forwarding_rule" "forwarding_rule_shared_tcp" {
   network               = "vpc-shared"
   subnetwork            = "vpc-shared-us-east1-sub"
 }
+
+################################# VPC LOCAL ##################################################
+# backend service
+resource "google_compute_region_backend_service" "backend_service_local_tcp" {
+  name                  = "loadbalancer-local" ///this is the load balancer name
+  region                = var.region
+  protocol              = "TCP"
+  load_balancing_scheme = "INTERNAL"
+  session_affinity      =  "CLIENT_IP"
+  health_checks         = [google_compute_health_check.tcp-health_check22.id]
+  backend {
+    group           = google_compute_region_instance_group_manager.mig_nat.instance_group
+    balancing_mode  = "CONNECTION"
+  }
+  network               = "vpc-local"
+}
+
+
+# forwarding rule
+resource "google_compute_forwarding_rule" "forwarding_rule_local_tcp" {
+  name                  = "l4-ilb-forwarding-rule"
+  backend_service       = google_compute_region_backend_service.backend_service_local_tcp.id  
+  region                = var.region
+  ip_protocol           = "TCP"
+  load_balancing_scheme = "INTERNAL"
+  all_ports             = true
+  allow_global_access   = false
+  network               = "vpc-local"
+  subnetwork            = "vpc-local-us-east1-sub"
+}
+
+
