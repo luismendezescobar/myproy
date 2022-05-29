@@ -22,7 +22,7 @@ module "create_cloud_nat_gtw" {
 }
 
 module "image_managed_instance_group" {
-  for_each                  = var.server_vm_info_two_nics
+  for_each                  = var.image_managed_instance_group
   source                    = "./modules/image_mgd_instance"  
   server_name               = each.key
   project_id                = var.project_id
