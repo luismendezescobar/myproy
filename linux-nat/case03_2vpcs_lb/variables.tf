@@ -45,11 +45,11 @@ variable "lb_mig_nat_var" {
     subnet_name2      = string
     external_ip       = list(string)
     can_ip_forward    = bool
-    health_check      = map
-    mig_info          = map
+    health_check      = map(object)
+    mig_info          = map(object)
     mig_zones         = list(string)
-    load_balancer_info01= map
-    load_balancer_info02= map
+    load_balancer_info01= map(object) 
+    load_balancer_info02= map(object)
 
   }))
   default = {}
