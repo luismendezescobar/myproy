@@ -21,9 +21,9 @@ module "create_cloud_nat_gtw" {
   ]
 }
 
-module "vm_double_nic" {
+module "image_managed_instance_group" {
   for_each                  = var.server_vm_info_two_nics
-  source                    = "./modules/vm-two-nics"  
+  source                    = "./modules/image_mgd_instance"  
   server_name               = each.key
   project_id                = var.project_id
   zone                      = each.value.zone

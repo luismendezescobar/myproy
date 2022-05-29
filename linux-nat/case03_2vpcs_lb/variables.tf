@@ -28,7 +28,7 @@ variable "server_vm_info" {
   default = {}
 }
 
-variable "server_vm_info_two_nics" {
+variable "image_managed_instance_group" {
   description = "the number of DB server instances"
   type = map(object({
     zone              = string
@@ -44,11 +44,6 @@ variable "server_vm_info_two_nics" {
     subnet_name2       = string
     external_ip       = list(string)
     can_ip_forward    = bool
-    additional_disks = list(object({
-      name         = string
-      disk_size_gb = number
-      disk_type    = string
-    }))
   }))
   default = {}
 }

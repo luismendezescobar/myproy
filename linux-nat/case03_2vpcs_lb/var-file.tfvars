@@ -1,4 +1,4 @@
-project_id="playground-s-11-752fab37"  #update the project here
+project_id="playground-s-11-33fdb14b"  #update the project here
 
 vpc_info = {
     "vpc-shared"={
@@ -95,7 +95,7 @@ server_vm_info = {
 
 
 
-server_vm_info_two_nics = {
+image_managed_instance_group = {
     "nat-server" = {
         zone              = "us-east1-b"
         instance_type     = "e2-medium"
@@ -106,10 +106,9 @@ server_vm_info_two_nics = {
         subnet_name1       = "vpc-shared-us-east1-sub"
         subnet_name2       = "vpc-local-us-east1-sub"
         description       = "bastion to manage all"
-        init_script       = "./modules/create-vm/nat_init.sh"  
+        init_script       = "./modules/image_mgd_instance/nat_init.sh"  
         external_ip       = ["false"]
         can_ip_forward   = true
         network_tags = []
-        additional_disks = []
     },
 }
