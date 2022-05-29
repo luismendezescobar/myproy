@@ -90,11 +90,15 @@ resource "google_compute_health_check" "tcp-health_check22" {
   }
 }
 
-resource "google_compute_instance_group_manager" "appserver" {
+
+//should be google_compute_region_instance_group_manager  instead???
+resource "google_compute_region_instance_group_manager" "mig_nat" {
   name = "nat-managed-instance-group"
 
-  base_instance_name = "app"
-  zone               = var.zone
+  base_instance_name = "nat-servers"      //change here to change the name of the servers
+  region = var.region
+  distribution_policy_zones  = [var.zone]
+  
   target_size = 2
 
   version {
@@ -106,4 +110,33 @@ resource "google_compute_instance_group_manager" "appserver" {
     health_check      = google_compute_health_check.tcp-health_check22.id
     initial_delay_sec = 300
   }
+}
+
+
+
+# backend service
+resource "google_compute_region_backend_service" "backend_service_shared" {
+  name                  = "backend_shared"
+  region                = var.region
+  protocol              = "TCP"
+  load_balancing_scheme = "INTERNAL"
+  health_checks         = [google_compute_health_check.tcp-health_check22.id]
+  backend {
+    group           = google_compute_region_instance_group_manager.mig_nat.instance_group
+    balancing_mode  = "CONNECTION"
+  }
+}
+
+
+# forwarding rule
+resource "google_compute_forwarding_rule" "forwarding_rule_shared" {
+  name                  = "l4-ilb-forwarding-rule"
+  backend_service       = google_compute_region_backend_service.backend_service.id  
+  region                = var.region
+  ip_protocol           = "TCP"
+  load_balancing_scheme = "INTERNAL"
+  all_ports             = true
+  allow_global_access   = false
+  network               = "vpc-shared"
+  subnetwork            = "vpc-shared-us-east1-sub"
 }
