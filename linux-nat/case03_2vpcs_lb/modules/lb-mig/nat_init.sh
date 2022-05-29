@@ -2,6 +2,7 @@
 # Enable IP forwarding:
 sudo sysctl -w net.ipv4.ip_forward=1
 echo "net.ipv4.ip_forward=1" > /etc/sysctl.d/20-iptables.conf
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 #iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 # Read VM network configuration:
 md_vm="http://169.254.169.254/computeMetadata/v1/instance/"

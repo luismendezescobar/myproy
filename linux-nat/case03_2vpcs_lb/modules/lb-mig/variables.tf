@@ -17,5 +17,8 @@ variable "external_ip" {type=list(string)}
 variable "can_ip_forward" {type=bool}
 variable "service_account" {type=string}
 variable "region" {type=string}
-
-  
+variable "health_check" {type = map }
+variable "mig_info" {type = map }
+variable "mig_zones" {type=list(string)}
+variable "load_balancer_info01" {type = map }
+variable "load_balancer_info02" {type = map }

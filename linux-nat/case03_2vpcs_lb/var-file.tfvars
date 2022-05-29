@@ -1,4 +1,4 @@
-project_id="playground-s-11-33fdb14b"  #update the project here
+project_id="playground-s-11-063e534a"  #update the project here
 
 vpc_info = {
     "vpc-shared"={
@@ -92,11 +92,9 @@ server_vm_info = {
 */
 }
 
-
-
-
-image_managed_instance_group = {
-    "nat-server" = {
+#########here begins all the variables for the load balancer
+lb_mig_nat_var = {
+    "lb-nat-server" = {
         zone              = "us-east1-b"
         region            = "us-east1"
         instance_type     = "e2-medium"
@@ -104,13 +102,62 @@ image_managed_instance_group = {
         boot_disk_size_gb = 100
         boot_disk_type    = "pd-standard" 
         auto_delete       = true
-        subnet_name1       = "vpc-shared-us-east1-sub"
-        subnet_name2       = "vpc-local-us-east1-sub"
+        subnet_name1      = "vpc-shared-us-east1-sub"
+        subnet_name2      = "vpc-local-us-east1-sub"
         description       = "bastion to manage all"
-        init_script       = "./modules/image_mgd_instance/nat_init.sh"  
+        init_script       = "./modules/lb-mig/nat_init.sh"  
         external_ip       = ["false"]
         can_ip_forward   = true
-        network_tags = []
-        service_account="1067667395433-compute@developer.gserviceaccount.com"
+        network_tags = []  
+        health_check = {
+            name                = "health-check-lb-nat"
+            check_interval_sec  = 5
+            timeout_sec         = 5
+            healthy_threshold   = 2
+            unhealthy_threshold = 10
+            type                = "tcp"
+            port                = 22
+            
+        }
+        mig_info = {
+            name               = "nat-managed-instance-group"
+            base_instance_name = "nat-servers"
+            target_size        = 2  
+            initial_delay_sec  = 300            
+        }
+        mig_zones =["us-east1-b"]
+
+        load_balancer_info01 = {
+            lb_name               = "lb-backend-shared"
+            protocol              = "TCP"
+            load_balancing_scheme = "INTERNAL" 
+            session_affinity      = "CLIENT_IP"
+            balancing_mode        = "CONNECTION"
+            vpc                   = "vpc-shared"
+            forwarding_name       = "forwarding-rule-shared"   
+            ip_protocol           = "TCP"
+            load_balancing_scheme = "INTERNAL"
+            all_ports             = true
+            allow_global_access   = false
+            network               = "vpc-shared"
+            subnetwork            = "vpc-shared-us-east1-sub"
+        }
+        load_balancer_info02 = {
+            lb_name               = "lb-backend-local"
+            protocol              = "TCP"
+            load_balancing_scheme = "INTERNAL" 
+            session_affinity      = "CLIENT_IP"
+            balancing_mode        = "CONNECTION"
+            vpc                   = "vpc-local"
+            forwarding_name       = "forwarding-rule-local"   
+            ip_protocol           = "TCP"
+            load_balancing_scheme = "INTERNAL"
+            all_ports             = true
+            allow_global_access   = false
+            network               = "vpc-local"
+            subnetwork            = "vpc-local-us-east1-sub"            
+        }
+
     },
 }
+

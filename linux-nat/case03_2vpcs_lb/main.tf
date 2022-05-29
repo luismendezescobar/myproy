@@ -21,9 +21,9 @@ module "create_cloud_nat_gtw" {
   ]
 }
 
-module "image_managed_instance_group" {
+module "lb_mig_module" {
   for_each                  = var.image_managed_instance_group
-  source                    = "./modules/image_mgd_instance"  
+  source                    = "./modules/lb-mig"  
   server_name               = each.key
   project_id                = var.project_id
   zone                      = each.value.zone
@@ -42,17 +42,20 @@ module "image_managed_instance_group" {
   external_ip               = each.value.external_ip 
   can_ip_forward            = each.value.can_ip_forward
   service_account           = each.value.service_account
-
+  health_check              = each.value.health_check
+  mig_info                  = each.value.mig_info
+  mig_zones                 = each.value.mig_zones
+  load_balancer_info01      = each.value.load_balancer_info01
+  load_balancer_info02      = each.value.load_balancer_info02
   depends_on = [
     module.create_cloud_nat_gtw
   ]
-
 }
 
 module "create_routes" {
   source                    = "./modules/gcp-routes"  
   depends_on = [
-    module.image_managed_instance_group
+    module.lb_mig_module
   ]
 }
 

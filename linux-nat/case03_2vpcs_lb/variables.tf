@@ -28,7 +28,7 @@ variable "server_vm_info" {
   default = {}
 }
 
-variable "image_managed_instance_group" {
+variable "lb_mig_nat_var" {
   description = "the number of DB server instances"
   type = map(object({
     zone              = string
@@ -40,12 +40,17 @@ variable "image_managed_instance_group" {
     network_tags     = list(string)    
     description       = string
     init_script       = string
-    auto_delete       = bool
-    subnet_name1       = string
-    subnet_name2       = string
+    auto_delete       = bool    
+    subnet_name1      = string    
+    subnet_name2      = string
     external_ip       = list(string)
     can_ip_forward    = bool
-    service_account   = string
+    health_check      = map
+    mig_info          = map
+    mig_zones         = list(string)
+    load_balancer_info01= map
+    load_balancer_info02= map
+
   }))
   default = {}
 }
@@ -64,5 +69,6 @@ variable "vpc_info" {
   }))
   default = {}
 }
+
 
 
