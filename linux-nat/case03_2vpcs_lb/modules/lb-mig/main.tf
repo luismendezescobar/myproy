@@ -73,6 +73,29 @@ resource "google_compute_region_instance_group_manager" "mig_nat" {
   }
 }
 
+resource "google_compute_autoscaler" "default" {
+  name   = "autoscaler-nat"
+  zone   = "us-east1-b"
+  target = google_compute_region_instance_group_manager.mig_nat.id
+
+  autoscaling_policy {
+    max_replicas    = 4
+    min_replicas    = 2
+    cooldown_period = 60
+    cpu_utilization {
+      target = 0.6
+    }
+
+/*
+    metric {
+      name                       = "pubsub.googleapis.com/subscription/num_undelivered_messages"
+      filter                     = "resource.type = pubsub_subscription AND resource.label.subscription_id = our-subscription"
+      single_instance_assignment = 65535
+    }*/
+  }
+}
+
+
 ############################VPC SHARED#########################################################
 
 # backend service
