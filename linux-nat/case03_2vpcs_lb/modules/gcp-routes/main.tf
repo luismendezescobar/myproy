@@ -26,8 +26,7 @@ resource "google_compute_route" "from_local_to_shared" {
 resource "google_compute_route" "from_local_to_internet" {  
   name                  = "from-local-to-internet"
   dest_range            = "0.0.0.0/0"
-  network               = "vpc-local"
-  next_hop_instance     = "nat-server"
+  network               = "vpc-local"  
   next_hop_ilb          = data.google_compute_forwarding_rule.local.id
   priority              = 800
   tags                  = ["no-ip"]
