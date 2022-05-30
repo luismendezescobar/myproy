@@ -21,8 +21,16 @@ vpc_info = {
             }
         ]
     }
-
-
+    "vpc-spoke"={
+        auto_create_subnetworks=false
+        subnetworks = [
+            {
+                subnet_name     = "vpc-spoke-us-east1-sub"
+                ip_cidr_range   = "10.10.12.0/24" 
+                region          =  "us-east1"
+            }
+        ]
+    }
 }
 
 
