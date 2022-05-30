@@ -21,7 +21,7 @@ vpc_info = {
             }
         ]
     }
-    "vpc-spoke"={
+    /*"vpc-spoke"={
         auto_create_subnetworks=false
         subnetworks = [
             {
@@ -30,7 +30,7 @@ vpc_info = {
                 region          =  "us-east1"
             }
         ]
-    }
+    }*/
 }
 
 
