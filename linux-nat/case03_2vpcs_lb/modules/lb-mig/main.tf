@@ -73,7 +73,7 @@ resource "google_compute_region_instance_group_manager" "mig_nat" {
   }
 }
 
-resource "google_compute_autoscaler" "default" {
+resource "google_compute_region_autoscaler" "default" {
   name   = "autoscaler-nat"
   zone   = "us-east1-b"
   target = google_compute_region_instance_group_manager.mig_nat.id
