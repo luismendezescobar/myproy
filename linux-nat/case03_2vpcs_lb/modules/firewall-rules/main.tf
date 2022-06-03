@@ -94,6 +94,22 @@ resource "google_compute_firewall" "vpc_shared_allow_from_local" {
   }  
   source_ranges=["10.10.11.0/24"]
 }
+resource "google_compute_firewall" "vpc_shared_allow_from_spoke" {
+  project = var.project_id
+  name    = join("-",["vpc-shared","allow-from-spoke"])
+  network = "vpc-shared"
+  allow {
+    protocol = "icmp"
+  }
+  allow {
+    protocol = "tcp"
+  } 
+  allow {
+    protocol = "udp"
+  }  
+  source_ranges=["10.10.12.0/24"]
+}
+
 resource "google_compute_firewall" "vpc_local_allow_from_shared" {
   project = var.project_id
   name    = join("-",["vpc-local","allow-from-shared"])
@@ -108,6 +124,21 @@ resource "google_compute_firewall" "vpc_local_allow_from_shared" {
     protocol = "udp"
   }  
   source_ranges=["10.10.10.0/24"]
+}
+resource "google_compute_firewall" "vpc_local_allow_from_spoke" {
+  project = var.project_id
+  name    = join("-",["vpc-local","allow-from-spoke"])
+  network = "vpc-local"
+  allow {
+    protocol = "icmp"
+  }
+  allow {
+    protocol = "tcp"
+  } 
+  allow {
+    protocol = "udp"
+  }  
+  source_ranges=["10.10.12.0/24"]
 }
 
 resource "google_compute_firewall" "vpc_spoke_allow_from_local" {
