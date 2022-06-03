@@ -1,11 +1,12 @@
 module "vpc_creation" {
   for_each = var.vpc_info
-  source = "./modules/network"
+  source  = "terraform-google-modules/network/google//modules/vpc"
+  version="~> 2.0.0"
   project_id    = var.project_id
-  vpc_name      = each.key
-  subnetworks   = each.value.subnetworks  
-}
+  network_name  = each.key
 
+}
+/*
 module "firewall_rules" {
   source = "./modules/firewall-rules"
   project_id    = var.project_id
@@ -13,6 +14,7 @@ module "firewall_rules" {
     module.vpc_creation
   ]
 }
+*/
 /*
 module "create_cloud_nat_gtw" {
   source                    = "./modules/create-nat"  
