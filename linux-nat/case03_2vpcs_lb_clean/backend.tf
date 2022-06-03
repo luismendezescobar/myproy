@@ -4,7 +4,7 @@ terraform {
     prefix  = "state"
   }  
   */
-  required_version = ">= 0.12.7"  
+  required_version = "~>= 1.1.0"  
   required_providers { 
     google = {
       source = "hashicorp/google"
