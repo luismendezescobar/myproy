@@ -56,7 +56,86 @@ firewall_rules = {
       }
       
     } ]    
-  }
+  },
+  "vpc-local-ssh-allow"= {
+    network_name = "vpc-local"    
+    rules = [ {
+      name                  ="vpc-local-ssh-allow"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["0.0.0.0/0"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[{
+          protocol = "tcp"
+          ports = [ "22" ]
+      }]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
+  "vpc-spoke-ssh-allow"= {
+    network_name = "vpc-spoke"    
+    rules = [ {
+      name                  ="vpc-spoke-ssh-allow"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["0.0.0.0/0"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[{
+          protocol = "tcp"
+          ports = [ "22" ]
+      }]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
+  "vpc-shared-allow-all-internal"= {
+    network_name = "vpc-shared"    
+    rules = [ {
+      name                  ="vpc-shared-allow-all-internal"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["10.10.10.0/24"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[
+        {
+          protocol = "icmp"
+          ports = []
+        },
+        {
+          protocol = "tcp"
+          ports = []
+        },
+        {
+          protocol = "udp"
+          ports = []
+        },
+            
+      ]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
+
+
 }
 
 
