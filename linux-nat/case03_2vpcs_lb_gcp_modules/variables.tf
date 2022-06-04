@@ -43,5 +43,5 @@ variable "firewall_rules" {
       })
     }))
   }))
-  default = []
+  default = {}
 }
