@@ -35,11 +35,11 @@ variable "firewall_rules" {
         ports       = list(string)              
       }))
       deny = list(object({
-      protocol = string
-      ports    = list(string)
+        protocol = string
+        ports    = list(string)
       }))
       log_config = object({
-      metadata = string
+        metadata = string
       })
     }))
   }))
