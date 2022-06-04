@@ -33,9 +33,9 @@ vpc_info = {
     }
 }
 
-firewall_rules = [
-  {
-    network_name = "vpc-shared"
+firewall_rules = {
+ "vpc-shared-ssh-allow"= {
+    network_name = "vpc-shared"    
     rules = [ {
       name                  ="vpc-shared-ssh-allow"
       description           =null
@@ -57,6 +57,6 @@ firewall_rules = [
       
     } ]    
   }
-]
+}
 
 

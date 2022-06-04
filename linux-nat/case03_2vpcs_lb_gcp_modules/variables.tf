@@ -18,7 +18,7 @@ variable "vpc_info" {
 
 variable "firewall_rules" {
   description = "Firewall rules"
-  type = list(object({
+  type = map(object({
     network_name       = string
     rules=list(object({        
       name        =string

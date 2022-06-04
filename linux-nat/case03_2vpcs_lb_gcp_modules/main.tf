@@ -16,7 +16,7 @@ module "firewall_rules" {
   
   
   network_name = each.value.network_name
-  rules=each.value.rules
+  rules        = each.value.rules
 /*
   rules = [{
     name                    = "allow-ssh-ingress"
