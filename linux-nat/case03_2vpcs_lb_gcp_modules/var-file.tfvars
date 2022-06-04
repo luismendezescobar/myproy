@@ -1,4 +1,4 @@
-project_id="playground-s-11-81a88700"  #update the project here
+project_id="playground-s-11-2af17223"  #update the project here
 
 vpc_info = {
     "vpc-shared"={
@@ -32,3 +32,31 @@ vpc_info = {
         ]
     }
 }
+
+firewall_rules = [
+  {
+    network_name = "vpc-shared"
+    rules = [ {
+      name                  ="vpc-shared-ssh-allow"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["0.0.0.0/0"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[{
+          protocol = "tcp"
+          ports = [ "22" ]
+      }]
+      deny=[]
+      log_config={
+          metadata=null
+      }
+      
+    } ]    
+  }
+]
+
+
