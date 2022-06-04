@@ -52,7 +52,7 @@ firewall_rules = {
       }]
       deny=[]
       log_config={
-          metadata="no metadata"
+          metadata="INCLUDE_ALL_METADATA"
       }
       
     } ]    
