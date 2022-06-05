@@ -72,3 +72,31 @@ module "cloud_nat_gtw_create" {
     module.cloud_router_creation
   ]
 }
+
+module "instance_template_creation" {
+  for_each        = var.instance_template_map
+  source          = "terraform-google-modules/vm/google//modules/instance_template"
+  version         = "~> 7.7.0"
+  name_prefix     = each.key
+  project_id      = var.project_id
+  region          = each.value.region
+  machine_type    = each.value.machine_type
+  tags            = each.value.network_tags
+  description     = each.value.description
+  can_ip_forward  = each.value.can_ip_forward
+  startup_script  = file(each.value.init_script)
+  auto_delete     = each.value.auto_delete
+  disk_size_gb    = each.value.disk_size_gb
+  source_image    = each.value.source_image
+  disk_type       = each.value.boot_disk_type
+  on_host_maintenance = each.value.on_host_maintenance
+  subnetwork          = each.value.subnet_name1
+  subnetwork_project  = each.value.subnetwork_project
+  additional_networks = each.value.additional_networks
+  service_account     = each.value.service_account
+
+  depends_on = [
+    module.cloud_nat_gtw_create
+  ]
+  
+}

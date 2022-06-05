@@ -114,7 +114,7 @@ resource "google_compute_region_backend_service" "backend_service_shared_tcp" {
 }
 
 
-# forwarding rule
+# forwarding rule it's the front end
 resource "google_compute_forwarding_rule" "forwarding_rule_shared_tcp" {
   name                  = lookup(var.load_balancer_info01, "forwarding_name", null)
   backend_service       = google_compute_region_backend_service.backend_service_shared_tcp.id  

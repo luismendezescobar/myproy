@@ -68,3 +68,40 @@ variable "cloud_nat_map" {
 
   }))
 }
+
+
+variable "instance_template_map" {
+  description = "the number of DB server instances"
+  type = map(object({
+    zone              = string
+    region            = string
+    machine_type     = string
+    source_image      = string
+    boot_disk_size_gb = string    
+    boot_disk_type    = string
+    network_tags     = list(string)    
+    description       = string
+    init_script       = string
+    auto_delete       = string        
+    subnetwork        = string
+    subnetwork_project= string
+    external_ip       = list(string)
+    can_ip_forward    = string
+    on_host_maintenance = string
+    additional_networks =list(object({
+      network             = string
+      subnetwork          = string
+      subnetwork_project  = string
+      network_ip          = string
+      access_config = list(object({
+        nat_ip       = string
+        network_tier = string
+      }))
+    }))
+    service_account=object({
+      email  = string
+      scopes = set(string)
+    })
+  }))
+  default = {}
+}

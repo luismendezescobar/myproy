@@ -1,4 +1,4 @@
-project_id="playground-s-11-dcbfd27e"  #update the project here
+project_id="playground-s-11-34b96233"  #update the project here
 
 vpc_info = {
     "vpc-shared"={
@@ -396,17 +396,6 @@ firewall_rules = {
 
 }
 
-
-/*
-cloud_router_map = {
-  "router-nat-us-east1-vpc-shared" = {
-    bgp = 64514
-    network = "vpc-shared"
-    region = "us-east1"
-  }
-}
-*/
-
 cloud_nat_map ={
   "cloud-nat-us-east1-vpc-shared" = {
     region                  ="us-east1"
@@ -416,13 +405,46 @@ cloud_nat_map ={
       "advertise_mode"    = "DEFAULT",
       "advertised_groups" = ["ALL_SUBNETS"],
     }
-
-
-
     network                 = "vpc-shared"
     nat_ip_allocate_option  = false
     source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
     log_config_enable       = true
     log_config_filter       = "ERRORS_ONLY"
   }
+}
+
+
+instance_template_map = {
+  "nat_server" = {
+    zone              = "us-east1-b"
+    region            = "us-east1"
+    machine_type     = "e2-medium"
+    source_image      = "centos-cloud/centos-stream-9"
+    boot_disk_size_gb = "100"
+    boot_disk_type    = "pd-standard" 
+    auto_delete       = "true"
+    subnetwork        = "vpc-shared-us-east1-sub"
+    subnetwork_project= var.project_id
+    //subnet_name2      = "vpc-local-us-east1-sub"
+    description       = "linux centos nat server"
+    init_script       = "./modules/lb-mig/nat_init.sh"  
+    external_ip       = ["false"]
+    can_ip_forward   = "true"
+    network_tags = []  
+    on_host_maintenance ="MIGRATE"
+    additional_networks = [ {
+      network       = "vpc-local"
+      subnetwork    = "vpc-local-us-east1-sub"
+      network_ip    = ""
+      acces_config  = [ {
+        nat_ip        = ""
+        network_tier  = ""
+      }]        
+    }]
+    service_account={
+      email  = "614753985742-compute@developer.gserviceaccount.com"
+      scopes = ["cloud-platform"]
+    }
+    
+  },
 }
