@@ -397,3 +397,11 @@ firewall_rules = {
 }
 
 
+
+cloud_router_map = {
+  "router-nat-us-east1-vpc-shared" = {
+    bgp = 64514
+    network = "vpc-shared"
+    region = "us-east1"
+  }
+}

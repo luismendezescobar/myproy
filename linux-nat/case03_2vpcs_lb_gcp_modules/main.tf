@@ -32,6 +32,29 @@ module "firewall_rules" {
     module.subnets_creation
   ]
 }
+
+module "cloud_router_creation" {
+  for_each=var.cloud_router_map
+  source  = "terraform-google-modules/cloud-router/google"
+  version = "~> 0.4"
+
+  name    = each.key
+  project = var.project_id
+  region  = each.value.region
+  network = each.value.network
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 module "create_cloud_nat_gtw" {
   source                    = "./modules/create-nat"  

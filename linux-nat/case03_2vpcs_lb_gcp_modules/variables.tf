@@ -45,3 +45,11 @@ variable "firewall_rules" {
   }))
   default = {}
 }
+
+variable "cloud_router_map" {
+  type = map(object({    
+    region      = string
+    network     = string
+    bgp         = number
+  }))
+}
