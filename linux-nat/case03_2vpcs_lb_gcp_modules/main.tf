@@ -60,7 +60,7 @@ module "cloud_nat_gtw_create" {
   version       = "~> 1.2"
   project_id    = var.project_id
   name          = each.key
-  region        = each.value
+  region        = each.value.region
   router        = each.value.router_name
   nat_ip_allocate_option            = each.value.nat_ip_allocate_option
   source_subnetwork_ip_ranges_to_nat= each.value.source_subnetwork_ip_ranges_to_nat
