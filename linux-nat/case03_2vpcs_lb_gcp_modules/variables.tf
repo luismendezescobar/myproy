@@ -54,11 +54,6 @@ variable "cloud_router_map" {
   }))
 }
 
-cloud_nat_map ={
-  "cloud-nat-us-east1-vpc-shared" = {
-    region="us-east1"
-  }
-}
 
 variable "cloud_nat_map" {
   type = map(object({    
