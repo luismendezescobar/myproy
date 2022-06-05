@@ -80,7 +80,7 @@ variable "instance_template_map" {
     boot_disk_size_gb = string    
     boot_disk_type    = string
     network_tags     = list(string)    
-    description       = string
+    #description       = string
     init_script       = string
     auto_delete       = string        
     subnetwork        = string

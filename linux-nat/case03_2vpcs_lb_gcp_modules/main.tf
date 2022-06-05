@@ -82,7 +82,7 @@ module "instance_template_creation" {
   region          = each.value.region
   machine_type    = each.value.machine_type
   tags            = each.value.network_tags
-  description     = each.value.description
+  #description     = each.value.description
   can_ip_forward  = each.value.can_ip_forward
   startup_script  = file(each.value.init_script)
   auto_delete     = each.value.auto_delete
