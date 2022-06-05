@@ -16,6 +16,9 @@ module "subnets_creation" {
   network_name      = each.key
   subnets           = each.value.subnets
   secondary_ranges  = each.value.secondary_ranges
+  depends_on = [
+    module.vpc_creation
+  ]
 }
 
 
