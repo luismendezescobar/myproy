@@ -114,8 +114,8 @@ module "vm_mig_creation" {
   version = "7.7.0"
   # insert the 4 required variables here
   autoscaling_mode= "ON"
-  instance_template=output.instance_template_output
+  instance_template=module.instance_template_creation:item.self_link
   project_id=var.project_id
-  region= var.region
+  region= "us-east1"
 
 }
