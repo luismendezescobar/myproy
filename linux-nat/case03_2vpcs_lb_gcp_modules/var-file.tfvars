@@ -1,4 +1,4 @@
-project_id="playground-s-11-34b96233"  #update the project here
+project_id="playground-s-11-c77f7b64"  #update the project here
 
 vpc_info = {
     "vpc-shared"={
@@ -425,7 +425,7 @@ instance_template_map = {
     disk_type         = "pd-standard" 
     auto_delete       = "true"
     subnetwork        = "vpc-shared-us-east1-sub"
-    subnetwork_project= "playground-s-11-34b96233"
+    subnetwork_project= "playground-s-11-c77f7b64"
     //subnet_name2      = "vpc-local-us-east1-sub"
     #description       = "linux centos nat server"
     init_script       = "./modules/nat_init.sh"  
@@ -436,7 +436,7 @@ instance_template_map = {
     additional_networks = [ {
       network       = "vpc-local"
       subnetwork    = "vpc-local-us-east1-sub"
-      subnetwork_project  = "playground-s-11-34b96233"
+      subnetwork_project  = "playground-s-11-c77f7b64"
       network_ip    = ""
       access_config  = [// {
         //nat_ip        = ""
@@ -450,4 +450,14 @@ instance_template_map = {
     }
     
   },
+}
+
+
+vm_mig_map = {
+  "vm_mig_01" = {
+    autoscaler_name     = "autoscaler-nat"
+
+
+  }  
+
 }

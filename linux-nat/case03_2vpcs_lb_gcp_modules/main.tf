@@ -104,13 +104,18 @@ module "instance_template_creation" {
 }
 
 output "instance_template_output" {
-  value = [for item in module.instance_template_creation:item ]
+  value = [for item in module.instance_template_creation:item.self_link ]
   
 }
 
-/*
+
 module "vm_mig_creation" {
   source  = "terraform-google-modules/vm/google//modules/mig"
   version = "7.7.0"
   # insert the 4 required variables here
-}*/
+  autoscaling_mode= "ON"
+  instance_template=output.instance_template_output
+  project_id=var.project_id
+  region= var.region
+
+}
