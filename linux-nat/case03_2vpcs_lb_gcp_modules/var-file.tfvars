@@ -6,8 +6,8 @@ vpc_info = {
         subnets = [
             {
                 subnet_name     = "vpc-shared-us-east1-sub"
-                ip_cidr_range   = "10.10.10.0/24" 
-                region          =  "us-east1"
+                subnet_ip       = "10.10.10.0/24" 
+                subnet_region   =  "us-east1"
                 description     = "This subnet has a description"
             }
         ]
@@ -18,8 +18,8 @@ vpc_info = {
         subnets = [
             {
                 subnet_name     = "vpc-local-us-east1-sub"
-                ip_cidr_range   = "10.10.11.0/24" 
-                region          =  "us-east1"
+                subnet_ip       = "10.10.11.0/24" 
+                subnet_region   =  "us-east1"
             }
         ]
         secondary_ranges={}
@@ -29,8 +29,8 @@ vpc_info = {
         subnets = [
             {
                 subnet_name     = "vpc-spoke-us-east1-sub"
-                ip_cidr_range   = "10.10.12.0/24" 
-                region          =  "us-east1"
+                subnet_ip       = "10.10.12.0/24" 
+                subnet_region   =  "us-east1"
             }
         ]
         secondary_ranges={}
