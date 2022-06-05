@@ -56,7 +56,7 @@ output "router_name" {
 module "cloud_nat_gtw_create" {
   for_each = var.cloud_nat_map
   source        = "terraform-google-modules/cloud-nat/google"  
-  version       = "~> 2.2"
+  version       = "~> 1.2"
   project_id    = var.project_id
   name          = each.key
   region        = each.value
