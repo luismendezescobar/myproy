@@ -4,11 +4,11 @@ terraform {
     prefix  = "state"
   }  
   */
-  required_version = "~> 1.1.0"  
+  required_version = "~> 1.1.0"  //terraform version required in the shell
   required_providers { 
     google = {
       source = "hashicorp/google"
-      version = "~>4.23.0"
+      version = "~>4.23.0"       //this is the hashicorp modules version
     }
   }
 }
