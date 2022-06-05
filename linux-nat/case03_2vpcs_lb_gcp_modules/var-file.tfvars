@@ -439,8 +439,8 @@ instance_template_map = {
       subnetwork_project  = "playground-s-11-34b96233"
       network_ip    = ""
       access_config  = [ {
-        nat_ip        = ""
-        network_tier  = ""
+        //nat_ip        = ""
+        //network_tier  = ""
       }]        
     }]
     service_account={
