@@ -14,7 +14,7 @@ module "subnets_creation" {
   version="~> 2.0.0"
   project_id        = var.project_id
   network_name      = each.key
-  subnets           = each.value.subnetworks
+  subnets           = each.value.subnets
   secondary_ranges  = each.value.secondary_ranges
 }
 
