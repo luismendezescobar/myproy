@@ -75,11 +75,11 @@ variable "instance_template_map" {
   type = map(object({
     zone              = string
     region            = string
-    machine_type     = string
+    machine_type      = string
     source_image      = string
-    boot_disk_size_gb = string    
-    boot_disk_type    = string
-    network_tags     = list(string)    
+    disk_size_gb      = string    
+    disk_type         = string
+    network_tags      = list(string)    
     #description       = string
     init_script       = string
     auto_delete       = string        

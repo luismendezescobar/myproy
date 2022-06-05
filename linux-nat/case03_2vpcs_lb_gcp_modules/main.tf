@@ -90,7 +90,7 @@ module "instance_template_creation" {
   source_image    = each.value.source_image
   disk_type       = each.value.boot_disk_type
   on_host_maintenance = each.value.on_host_maintenance
-  subnetwork          = each.value.subnet_name1
+  subnetwork          = each.value.subnetwork
   subnetwork_project  = var.project_id
   additional_networks = each.value.additional_networks
   service_account     = each.value.service_account
