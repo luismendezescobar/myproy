@@ -91,7 +91,7 @@ module "instance_template_creation" {
   disk_type       = each.value.boot_disk_type
   on_host_maintenance = each.value.on_host_maintenance
   subnetwork          = each.value.subnet_name1
-  subnetwork_project  = each.value.subnetwork_project
+  subnetwork_project  = var.project_id
   additional_networks = each.value.additional_networks
   service_account     = each.value.service_account
 

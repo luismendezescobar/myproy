@@ -84,7 +84,7 @@ variable "instance_template_map" {
     init_script       = string
     auto_delete       = string        
     subnetwork        = string
-    subnetwork_project= string
+    #subnetwork_project= string
     external_ip       = list(string)
     can_ip_forward    = string
     on_host_maintenance = string

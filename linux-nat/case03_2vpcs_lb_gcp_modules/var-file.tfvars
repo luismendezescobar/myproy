@@ -413,11 +413,6 @@ cloud_nat_map ={
   }
 }
 
-locals {
-  project=var.project_id
-
-}
-
 instance_template_map = {
   "nat_server" = {
     zone              = "us-east1-b"
@@ -428,7 +423,7 @@ instance_template_map = {
     boot_disk_type    = "pd-standard" 
     auto_delete       = "true"
     subnetwork        = "vpc-shared-us-east1-sub"
-    subnetwork_project= local.project
+    #subnetwork_project= local.project
     //subnet_name2      = "vpc-local-us-east1-sub"
     description       = "linux centos nat server"
     init_script       = "./modules/lb-mig/nat_init.sh"  
