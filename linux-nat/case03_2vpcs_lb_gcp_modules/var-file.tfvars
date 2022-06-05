@@ -438,10 +438,11 @@ instance_template_map = {
       subnetwork    = "vpc-local-us-east1-sub"
       subnetwork_project  = "playground-s-11-34b96233"
       network_ip    = ""
-      access_config  = [ {
+      access_config  = [// {
         //nat_ip        = ""
         //network_tier  = ""
-      }]        
+     // }
+      ]        
     }]
     service_account={
       email  = "614753985742-compute@developer.gserviceaccount.com"
