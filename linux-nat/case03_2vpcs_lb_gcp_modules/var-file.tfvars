@@ -435,7 +435,7 @@ instance_template_map = {
       network       = "vpc-local"
       subnetwork    = "vpc-local-us-east1-sub"
       network_ip    = ""
-      acces_config  = [ {
+      access_config  = [ {
         nat_ip        = ""
         network_tier  = ""
       }]        
