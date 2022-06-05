@@ -102,3 +102,15 @@ module "instance_template_creation" {
   ]
   
 }
+
+output "instance_template_output" {
+  value = [for item in module.instance_template_creation:item ]
+  
+}
+
+/*
+module "vm_mig_creation" {
+  source  = "terraform-google-modules/vm/google//modules/mig"
+  version = "7.7.0"
+  # insert the 4 required variables here
+}*/
