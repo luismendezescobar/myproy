@@ -1,7 +1,7 @@
 module "vpc_creation" {
   for_each = var.vpc_info
   source  = "terraform-google-modules/network/google//modules/vpc"
-  version="~> 2.0.0"
+  version="~> 5.1.0"
   project_id              = var.project_id
   network_name            = each.key
   auto_create_subnetworks = each.value.auto_create_subnetworks
@@ -11,7 +11,7 @@ module "vpc_creation" {
 module "subnets_creation" {
   for_each = var.vpc_info
   source  = "terraform-google-modules/network/google//modules/subnets"
-  version="~> 2.0.0"
+  version="~> 5.1.0"
   project_id        = var.project_id
   network_name      = each.key
   subnets           = each.value.subnets
@@ -25,6 +25,7 @@ module "subnets_creation" {
 module "firewall_rules_create" {
   for_each = var.firewall_rules
   source       = "terraform-google-modules/network/google//modules/firewall-rules"
+  version="~> 5.1.0"
   project_id   = var.project_id 
   network_name = each.value.network_name
   rules        = each.value.rules
