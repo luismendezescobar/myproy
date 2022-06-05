@@ -45,7 +45,10 @@ module "cloud_router_creation" {
 }
 
 
-
+output "router_name" {
+  value = [for item in module.cloud_router_creation:item.router]
+  
+}
 
 
 

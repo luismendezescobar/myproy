@@ -1,4 +1,4 @@
-project_id="playground-s-11-dd3bded5"  #update the project here
+project_id="playground-s-11-dcbfd27e"  #update the project here
 
 vpc_info = {
     "vpc-shared"={
@@ -405,3 +405,5 @@ cloud_router_map = {
     region = "us-east1"
   }
 }
+
+
