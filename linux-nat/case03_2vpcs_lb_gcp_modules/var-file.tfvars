@@ -412,7 +412,7 @@ cloud_nat_map ={
     region                  ="us-east1"
     router_name             = "router-nat-us-east1-vpc-shared"
     bgp                     = {
-      "asn"               =64514,
+      "asn"               ="64514",
       "advertise_mode"    = "DEFAULT",
       "advertised_groups" = ["ALL_SUBNETS"],
     }
