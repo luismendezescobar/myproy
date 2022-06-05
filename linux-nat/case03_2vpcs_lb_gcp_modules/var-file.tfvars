@@ -414,7 +414,7 @@ cloud_nat_map ={
     bgp                     = {
       "asn"               ="64514",
       "advertise_mode"    = "DEFAULT",
-      "advertised_groups" = "ALL_SUBNETS",
+      "advertised_groups" = ["ALL_SUBNETS"],
     }
 
 
