@@ -59,7 +59,7 @@ variable "cloud_nat_map" {
   type = map(object({    
     region      = string    
     router_name =string
-    bgp         = number
+    bgp         = map
     network     = string
     nat_ip_allocate_option  = string
     source_subnetwork_ip_ranges_to_nat = string
