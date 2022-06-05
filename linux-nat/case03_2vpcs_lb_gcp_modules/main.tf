@@ -36,7 +36,7 @@ module "firewall_rules_create" {
 module "cloud_router_creation" {
   for_each=var.cloud_nat_map
   source  = "terraform-google-modules/cloud-router/google"
-  version = "~> 2.0"
+  version = "~> 2.0.0"
 
   name    = each.value.router_name
   project = var.project_id
