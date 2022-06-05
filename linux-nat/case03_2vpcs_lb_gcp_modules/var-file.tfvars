@@ -414,7 +414,7 @@ cloud_nat_map ={
 }
 
 instance_template_map = {
-  "nat_server" = {
+  "nat-server" = {
     zone              = "us-east1-b"
     region            = "us-east1"
     machine_type      = "e2-medium"
