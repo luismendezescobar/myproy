@@ -65,7 +65,7 @@ module "cloud_nat_gtw_create" {
   nat_ip_allocate_option            = each.value.nat_ip_allocate_option
   source_subnetwork_ip_ranges_to_nat= each.value.source_subnetwork_ip_ranges_to_nat
   log_config_enable                 = each.value.log_config_enable
-  log_config_filter                 = each.value.log_config_filte
+  log_config_filter                 = each.value.log_config_filter
 
 
   depends_on = [

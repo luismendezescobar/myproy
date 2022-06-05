@@ -61,7 +61,7 @@ variable "cloud_nat_map" {
     router_name =string
     bgp         = any
     network     = string
-    nat_ip_allocate_option  = string
+    nat_ip_allocate_option  = bool
     source_subnetwork_ip_ranges_to_nat = string
     log_config_enable       = bool
     log_config_filter       = string
