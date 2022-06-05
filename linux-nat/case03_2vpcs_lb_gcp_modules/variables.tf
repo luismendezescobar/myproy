@@ -7,11 +7,7 @@ variable "vpc_info" {
   description = "information about the vpc"
   type = map(object({
     auto_create_subnetworks = bool
-    subnetworks = list(map({
-      subnet_name   = string
-      ip_cidr_range = string
-      region        = string
-    }))
+    subnets = list(map(string)) //you can put any string that you want
     secondary_ranges=map(list(object({ 
       range_name = string
       ip_cidr_range = string 

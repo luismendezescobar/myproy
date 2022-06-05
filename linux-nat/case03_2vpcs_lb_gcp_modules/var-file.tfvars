@@ -8,6 +8,7 @@ vpc_info = {
                 subnet_name     = "vpc-shared-us-east1-sub"
                 ip_cidr_range   = "10.10.10.0/24" 
                 region          =  "us-east1"
+                description     = "This subnet has a description"
             }
         ]
         secondary_ranges={}
