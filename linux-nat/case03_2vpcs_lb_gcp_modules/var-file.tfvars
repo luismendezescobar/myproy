@@ -10,6 +10,7 @@ vpc_info = {
                 region          =  "us-east1"
             }
         ]
+        secondary_ranges={}
     }
     "vpc-local"={
         auto_create_subnetworks=false
@@ -20,6 +21,7 @@ vpc_info = {
                 region          =  "us-east1"
             }
         ]
+        secondary_ranges={}
     }
     "vpc-spoke"={
         auto_create_subnetworks=false
@@ -30,6 +32,7 @@ vpc_info = {
                 region          =  "us-east1"
             }
         ]
+        secondary_ranges={}
     }
 }
 

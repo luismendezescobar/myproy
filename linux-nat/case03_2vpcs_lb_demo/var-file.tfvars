@@ -2,7 +2,7 @@ project_id="playground-s-11-a9415942"  #update the project here
 
 vpc_info = {
     "vpc-shared"={
-        auto_create_subnetworks=false
+        auto_create_subnetworks=false 
         subnetworks = [
             {
                 subnet_name     = "vpc-shared-us-east1-sub"
