@@ -45,7 +45,7 @@ variable "firewall_rules" {
   }))
   default = {}
 }
-
+/*
 variable "cloud_router_map" {
   type = map(object({    
     region      = string
@@ -53,11 +53,14 @@ variable "cloud_router_map" {
     bgp         = number
   }))
 }
-
+*/
 
 variable "cloud_nat_map" {
   type = map(object({    
-    region      = string
+    region      = string    
+    router_name =string
+    bgp         = number
+    network     = string
     nat_ip_allocate_option  = string
     source_subnetwork_ip_ranges_to_nat = string
     log_config_enable       = bool

@@ -34,28 +34,34 @@ module "firewall_rules" {
 }
 
 module "cloud_router_creation" {
-  for_each=var.cloud_router_map
+  for_each=var.cloud_nat_map
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 0.4"
 
-  name    = each.key
+  name    = each.value.router_name
   project = var.project_id
   region  = each.value.region
   network = each.value.network
+  bgp     = each.value.bgp
 }
 
 output "router_name" {
   value = [for item in module.cloud_router_creation:item.router.name ]
   
 }
-/*
+
 module "create_cloud_nat_gtw" {
   for_each = var.cloud_nat_map
   source        = "terraform-google-modules/cloud-nat/google"  
   version       = "~> 2.2"
   project_id    = var.project_id
+  name          = each.key
   region        = each.value
-
+  router        = each.value.router_name
+  nat_ip_allocate_option            = each.value.nat_ip_allocate_option
+  source_subnetwork_ip_ranges_to_nat= each.value.source_subnetwork_ip_ranges_to_nat
+  log_config_enable                 = each.value.log_config_enable
+  log_config_filter                 = each.value.log_config_filter
 
 
 
@@ -63,4 +69,3 @@ module "create_cloud_nat_gtw" {
     module.cloud_router_creation
   ]
 }
-*/
