@@ -1,4 +1,4 @@
-project_id="playground-s-11-2af17223"  #update the project here
+project_id="playground-s-11-dd3bded5"  #update the project here
 
 vpc_info = {
     "vpc-shared"={
@@ -125,8 +125,7 @@ firewall_rules = {
         {
           protocol = "udp"
           ports = []
-        },
-            
+        },            
       ]
       deny=[]
       log_config={
@@ -134,7 +133,262 @@ firewall_rules = {
       }      
     } ]    
   },
-
+  "vpc-local-allow-all-internal"= {
+    network_name = "vpc-local"    
+    rules = [ {
+      name                  ="vpc-local-allow-all-internal"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["10.10.11.0/24"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[
+        {
+          protocol = "icmp"
+          ports = []
+        },
+        {
+          protocol = "tcp"
+          ports = []
+        },
+        {
+          protocol = "udp"
+          ports = []
+        },            
+      ]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
+  "vpc-spoke-allow-all-internal"= {
+    network_name = "vpc-spoke"    
+    rules = [ {
+      name                  ="vpc-spoke-allow-all-internal"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["10.10.12.0/24"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[
+        {
+          protocol = "icmp"
+          ports = []
+        },
+        {
+          protocol = "tcp"
+          ports = []
+        },
+        {
+          protocol = "udp"
+          ports = []
+        },            
+      ]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
+  "vpc-shared-allow-from-local"= {
+    network_name = "vpc-shared"    
+    rules = [ {
+      name                  ="vpc-shared-allow-from-local"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["10.10.11.0/24"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[
+        {
+          protocol = "icmp"
+          ports = []
+        },
+        {
+          protocol = "tcp"
+          ports = []
+        },
+        {
+          protocol = "udp"
+          ports = []
+        },            
+      ]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
+  "vpc-shared-allow-from-spoke"= {
+    network_name = "vpc-shared"    
+    rules = [ {
+      name                  ="vpc-shared-allow-from-spoke"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["10.10.12.0/24"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[
+        {
+          protocol = "icmp"
+          ports = []
+        },
+        {
+          protocol = "tcp"
+          ports = []
+        },
+        {
+          protocol = "udp"
+          ports = []
+        },            
+      ]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
+  "vpc-local-allow-from-shared"= {
+    network_name = "vpc-local"    
+    rules = [ {
+      name                  ="vpc-local-allow-from-shared"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["10.10.10.0/24"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[
+        {
+          protocol = "icmp"
+          ports = []
+        },
+        {
+          protocol = "tcp"
+          ports = []
+        },
+        {
+          protocol = "udp"
+          ports = []
+        },            
+      ]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
+  "vpc-local-allow-from-spoke"= {
+    network_name = "vpc-local"    
+    rules = [ {
+      name                  ="vpc-local-allow-from-shared"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["10.10.12.0/24"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[
+        {
+          protocol = "icmp"
+          ports = []
+        },
+        {
+          protocol = "tcp"
+          ports = []
+        },
+        {
+          protocol = "udp"
+          ports = []
+        },            
+      ]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
+  "vpc-spoke-allow-from-local"= {
+    network_name = "vpc-spoke"    
+    rules = [ {
+      name                  ="vpc-spoke-allow-from-local"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["10.10.11.0/24"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[
+        {
+          protocol = "icmp"
+          ports = []
+        },
+        {
+          protocol = "tcp"
+          ports = []
+        },
+        {
+          protocol = "udp"
+          ports = []
+        },            
+      ]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
+  "vpc-spoke-allow-from-shared"= {
+    network_name = "vpc-spoke"    
+    rules = [ {
+      name                  ="vpc-spoke-allow-from-shared"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["10.10.10.0/24"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[
+        {
+          protocol = "icmp"
+          ports = []
+        },
+        {
+          protocol = "tcp"
+          ports = []
+        },
+        {
+          protocol = "udp"
+          ports = []
+        },            
+      ]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
 
 }
 
