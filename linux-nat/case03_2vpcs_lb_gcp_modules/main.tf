@@ -44,25 +44,23 @@ module "cloud_router_creation" {
   network = each.value.network
 }
 
-
 output "router_name" {
-  value = [for item in module.cloud_router_creation:item.router]
+  value = [for item in module.cloud_router_creation:item.router.name ]
   
 }
-
-
-
-
-
-
-
-
-
 /*
 module "create_cloud_nat_gtw" {
-  source                    = "./modules/create-nat"  
+  for_each = var.cloud_nat_map
+  source        = "terraform-google-modules/cloud-nat/google"  
+  version       = "~> 2.2"
+  project_id    = var.project_id
+  region        = each.value
+
+
+
+
   depends_on = [
-    module.firewall_rules
+    module.cloud_router_creation
   ]
 }
 */

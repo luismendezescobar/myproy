@@ -53,3 +53,20 @@ variable "cloud_router_map" {
     bgp         = number
   }))
 }
+
+cloud_nat_map ={
+  "cloud-nat-us-east1-vpc-shared" = {
+    region="us-east1"
+  }
+}
+
+variable "cloud_nat_map" {
+  type = map(object({    
+    region      = string
+    nat_ip_allocate_option  = string
+    source_subnetwork_ip_ranges_to_nat = string
+    log_config_enable       = bool
+    log_config_filter       = string
+
+  }))
+}
