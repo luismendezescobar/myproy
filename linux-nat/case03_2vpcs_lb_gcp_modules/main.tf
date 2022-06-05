@@ -87,7 +87,9 @@ module "instance_template_creation" {
   startup_script  = file(each.value.init_script)
   auto_delete     = each.value.auto_delete
   disk_size_gb    = each.value.disk_size_gb
-  source_image    = each.value.source_image
+  #source_image    = each.value.source_image
+  source_image_family=each.value.source_image_family
+  source_image_project=each.value.source_image_project
   disk_type       = each.value.disk_type
   on_host_maintenance = each.value.on_host_maintenance
   subnetwork          = each.value.subnetwork

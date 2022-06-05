@@ -77,6 +77,8 @@ variable "instance_template_map" {
     region            = string
     machine_type      = string
     source_image      = string
+    source_image_family=string
+    source_image_project=string
     disk_size_gb      = string    
     disk_type         = string
     network_tags      = list(string)    
