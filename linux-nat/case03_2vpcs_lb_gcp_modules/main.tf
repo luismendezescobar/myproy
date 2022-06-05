@@ -22,7 +22,7 @@ module "subnets_creation" {
 }
 
 
-module "firewall_rules" {
+module "firewall_rules_create" {
   for_each = var.firewall_rules
   source       = "terraform-google-modules/network/google//modules/firewall-rules"
   project_id   = var.project_id 
@@ -43,6 +43,9 @@ module "cloud_router_creation" {
   region  = each.value.region
   network = each.value.network
   bgp     = each.value.bgp
+  depends_on = [
+    module.firewall_rules
+  ]
 }
 
 output "router_name" {
@@ -50,7 +53,7 @@ output "router_name" {
   
 }
 
-module "create_cloud_nat_gtw" {
+module "cloud_nat_gtw_create" {
   for_each = var.cloud_nat_map
   source        = "terraform-google-modules/cloud-nat/google"  
   version       = "~> 2.2"
@@ -61,8 +64,7 @@ module "create_cloud_nat_gtw" {
   nat_ip_allocate_option            = each.value.nat_ip_allocate_option
   source_subnetwork_ip_ranges_to_nat= each.value.source_subnetwork_ip_ranges_to_nat
   log_config_enable                 = each.value.log_config_enable
-  log_config_filter                 = each.value.log_config_filter
-
+  log_config_filter                 = each.value.log_config_filte
 
 
   depends_on = [
