@@ -44,7 +44,7 @@ module "cloud_router_creation" {
   network = each.value.network
   bgp     = each.value.bgp
   depends_on = [
-    module.firewall_rules
+    module.firewall_rules_create
   ]
 }
 
