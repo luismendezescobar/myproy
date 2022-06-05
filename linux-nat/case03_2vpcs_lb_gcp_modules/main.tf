@@ -88,7 +88,7 @@ module "instance_template_creation" {
   auto_delete     = each.value.auto_delete
   disk_size_gb    = each.value.disk_size_gb
   source_image    = each.value.source_image
-  disk_type       = each.value.boot_disk_type
+  disk_type       = each.value.disk_type
   on_host_maintenance = each.value.on_host_maintenance
   subnetwork          = each.value.subnetwork
   subnetwork_project  = var.project_id
