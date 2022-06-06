@@ -132,8 +132,8 @@ locals {
   //some_value=[for item in module.instance_template_creation:item.self_link if item.name=="nat-server" ]
   //self_link=local.some_value[0]
   //some_value={for key, value in module.instance_template_creation:key=>value.self_link}
-  some_value={for key, value in module.instance_template_creation:key=>value.self_link}
-  self_link_real= join("",[for key,value in local.some_value:value if key=="nat-server"])
+  map_mig_self_links={for key, value in module.instance_template_creation:key=>value.self_link}
+  self_link_real= join("",[for key,value in local.map_mig_self_links:value if key=="nat-server"])
 
 }
 
@@ -145,16 +145,15 @@ output "name_final_good" {
 }
 
 
-/*
+
 module "vm_mig_creation" {
   source  = "terraform-google-modules/vm/google//modules/mig"
   version = "7.7.0"
   # insert the 4 required variables here
   autoscaling_mode= "ON"
-  instance_template=local.self_link
+  instance_template=join("",[for key,value in local.map_mig_self_links:value if key=="nat-server"])
   project_id=var.project_id
   region= "us-east1"
 
 }
 
-*/
