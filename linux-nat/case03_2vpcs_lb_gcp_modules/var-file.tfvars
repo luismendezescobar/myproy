@@ -485,7 +485,11 @@ mig_map = {
     ]
     autoscaling_metric      = []
     autoscaling_lb          = []
-    autoscaling_scale_in_control={}
+    autoscaling_scale_in_control={
+      fixed_replicas   = null
+      percent_replicas = null
+      time_window_sec  = null
+    }
   },
 }
 
