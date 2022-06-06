@@ -124,7 +124,7 @@ output "name" {
 }
 
 
-/*
+
 module "vm_mig_creation" {
   source  = "terraform-google-modules/vm/google//modules/mig"
   version = "7.7.0"
@@ -135,4 +135,4 @@ module "vm_mig_creation" {
   region= "us-east1"
 
 }
-*/
+
