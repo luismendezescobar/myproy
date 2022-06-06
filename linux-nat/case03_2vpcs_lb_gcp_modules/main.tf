@@ -133,7 +133,7 @@ locals {
   //self_link=local.some_value[0]
   //some_value={for key, value in module.instance_template_creation:key=>value.self_link}
   some_value={for key, value in module.instance_template_creation:key=>value.self_link}
-  self_link_real= [for key,value in local.some_value:value if key=="nat-server"]
+  self_link_real= join("",[for key,value in local.some_value:value if key=="nat-server"])
 
 }
 
