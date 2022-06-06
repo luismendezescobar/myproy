@@ -112,7 +112,7 @@ output "instance_template_output2" {
   
 }
 output "name2" {
-  value=[for item in module.instance_template_creation:item.self_link if item.name=="nat-server" ]
+  value=[for item in module.instance_template_creation:item.self_link ]
 }
 
 /*
