@@ -112,7 +112,7 @@ output "instance_template_output2" {
   
 }
 output "name2" {
-  value=[for key, value in module.instance_template_creation:key]
+  value=[for key, value in module.instance_template_creation:value.self_link if key=="nat-server"]
 }
 
 /*
