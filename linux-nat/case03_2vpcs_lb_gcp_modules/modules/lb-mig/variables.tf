@@ -1,4 +1,4 @@
-/*
+
 variable "project_id" {type=string}
 variable "server_name" {type=string}
 variable "zone" {type=string}
@@ -16,17 +16,10 @@ variable "subnetwork2" {type=string}
 variable "external_ip" {type=list(string)}
 variable "can_ip_forward" {type=bool}
 #variable "service_account" {type=string}
+variable "region" {type=string}
 variable "health_check" {type = map }
 variable "mig_info" {type = map }
 variable "mig_zones" {type=list(string)}
-*/
-
-variable "region" {type=string}
 variable "load_balancer_info01" {type = map }
 variable "load_balancer_info02" {type = map }
-variable "health_check" {
-    type = list(string)    
-}
-variable "mig_group" {
-    type =string
-}
+

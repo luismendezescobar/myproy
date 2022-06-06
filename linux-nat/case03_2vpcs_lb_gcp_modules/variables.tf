@@ -158,6 +158,7 @@ variable "mig_map"  {
 
 
   }))
-
-
 }
+
+variable "load_balancer_info01" {type = map }
+variable "load_balancer_info02" {type = map }

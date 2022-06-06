@@ -180,9 +180,18 @@ module "vm_mig_creation" {
 }
 
 output "vm_mig_creation01" {
-  value=module.vm_mig_creation.health_check_self_links[0] 
+  value=module.vm_mig_creation.health_check_self_links 
 }
 output "vm_mig_creation02" {
-  value=module.vm_mig_creation.self_link
-  
+  value=module.vm_mig_creation.self_link  
+}
+
+module "lb_creation" {
+  source                    = "./modules/lb-mig"  
+  region                    = "us-east1"
+  load_balancer_info01      = var.load_balancer_info01
+  load_balancer_info02      = var.load_balancer_info02
+  health_check              = module.vm_mig_creation.health_check_self_links 
+  mig_group                 = module.vm_mig_creation.instance_group
+
 }

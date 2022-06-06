@@ -543,3 +543,35 @@ mig_map = {
 }
 
 
+load_balancer_info01 = {
+   
+    lb_name               = "lb-backend-shared"
+    protocol              = "TCP"
+    load_balancing_scheme = "INTERNAL" 
+    session_affinity      = "CLIENT_IP"
+    balancing_mode        = "CONNECTION"
+    vpc                   = "vpc-shared"
+    forwarding_name       = "forwarding-rule-shared"   
+    ip_protocol           = "TCP"
+    load_balancing_scheme = "INTERNAL"
+    all_ports             = true
+    allow_global_access   = false
+    network               = "vpc-shared"
+    subnetwork            = "vpc-shared-us-east1-sub"
+}
+load_balancer_info02 = {
+    lb_name               = "lb-backend-local"
+    protocol              = "TCP"
+    load_balancing_scheme = "INTERNAL" 
+    session_affinity      = "CLIENT_IP"
+    balancing_mode        = "CONNECTION"
+    vpc                   = "vpc-local"
+    forwarding_name       = "forwarding-rule-local"   
+    ip_protocol           = "TCP"
+    load_balancing_scheme = "INTERNAL"
+    all_ports             = true
+    allow_global_access   = false
+    network               = "vpc-local"
+    subnetwork            = "vpc-local-us-east1-sub"            
+}
+
