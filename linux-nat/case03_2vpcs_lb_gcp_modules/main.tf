@@ -179,3 +179,7 @@ module "vm_mig_creation" {
 
 }
 
+output "vm_mig_creation" {
+  value=module.vm_mig_creation
+  
+}
