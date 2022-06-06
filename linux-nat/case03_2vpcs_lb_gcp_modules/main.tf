@@ -104,7 +104,7 @@ module "instance_template_creation" {
 }
 
 output "instance_template_output" {
-  value = [for item in module.instance_template_creation:item.self_link ]
+  value = flatten([for item in module.instance_template_creation:item.self_link ])
   
 }
 output "instance_template_output2" {
@@ -112,15 +112,16 @@ output "instance_template_output2" {
   
 }
 
-
+/*
 module "vm_mig_creation" {
   source  = "terraform-google-modules/vm/google//modules/mig"
   version = "7.7.0"
   # insert the 4 required variables here
   autoscaling_mode= "ON"
-  instance_template=module.instance_template_creation.nat-server.self_link
+  instance_template=module.instance_template_creation.-server.self_link
   project_id=var.project_id
   region= "us-east1"
 
 }
 
+*/
