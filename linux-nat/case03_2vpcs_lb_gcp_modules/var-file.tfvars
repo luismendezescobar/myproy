@@ -575,3 +575,52 @@ load_balancer_info02 = {
     subnetwork            = "vpc-local-us-east1-sub"            
 }
 
+server_vm_info = {
+    "shared-client01" = {
+        zone              = "us-east1-b"
+        instance_type     = "e2-medium"
+        //gcloud compute images list
+        source_image      = "centos-cloud/centos-stream-9"
+        boot_disk_size_gb = 100
+        boot_disk_type    = "pd-standard" 
+        auto_delete       = true
+        subnet_name       = "vpc-shared-us-east1-sub"
+        description       = "bastion to manage all"
+        init_script       = "./modules/create-vm/init.sh"  
+        external_ip       = ["false"]
+        can_ip_forward   = false
+        network_tags = ["no-ip"]
+        additional_disks = []
+    },
+    "local-client01" = {
+        zone              = "us-east1-b"
+        instance_type     = "e2-medium"
+        //gcloud compute images list
+        source_image      = "centos-cloud/centos-stream-9"
+        boot_disk_size_gb = 100
+        boot_disk_type    = "pd-standard" 
+        auto_delete       = true
+        subnet_name       = "vpc-local-us-east1-sub"
+        description       = "bastion to manage all"
+        init_script       = "./modules/create-vm/init.sh"  
+        external_ip       = ["false"]
+        can_ip_forward   = false
+        network_tags = ["no-ip"]
+        additional_disks = []
+    },    
+    "spoke" = {
+        zone              = "us-east1-b"        
+        instance_type     = "e2-medium"
+        source_image      = "centos-cloud/centos-stream-9"
+        boot_disk_size_gb = 100
+        boot_disk_type    = "pd-standard" 
+        auto_delete       = true
+        subnet_name       = "vpc-spoke-us-east1-sub"
+        description       = "client that will access all through the network peering"
+        init_script       = "./modules/create-vm/init.sh"  
+        external_ip       = ["false"]
+        can_ip_forward    = false
+        network_tags = ["no-ip"]   
+        additional_disks = []
+    },
+}
