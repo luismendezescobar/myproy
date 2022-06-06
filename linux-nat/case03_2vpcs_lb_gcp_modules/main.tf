@@ -111,7 +111,11 @@ output "instance_template_output2" {
   value = module.instance_template_creation
   
 }
+output "name2" {
+  value=[for item in module.instance_template_creation:item.self_link if item.name=="nat-server" ]
+}
 
+/*
 locals {
   some_value=[for item in module.instance_template_creation:item.self_link if item.name=="nat-server" ]
   self_link=local.some_value[0]
@@ -136,3 +140,4 @@ module "vm_mig_creation" {
 
 }
 
+*/
