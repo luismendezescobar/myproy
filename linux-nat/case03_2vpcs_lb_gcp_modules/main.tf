@@ -116,7 +116,7 @@ output "name2" {
 }
 
 output "name3" {
-  value=[for key,value in module.instance_template_creation:lookup(value,"self_link")if key=="nat-server" ]
+  value=for key,value in module.instance_template_creation:lookup(value,"self_link")if key=="nat-server" 
 }
 
 /*
