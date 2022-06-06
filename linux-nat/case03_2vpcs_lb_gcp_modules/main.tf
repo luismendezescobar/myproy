@@ -112,13 +112,19 @@ output "instance_template_output2" {
   
 }
 
+locals {
+  some_value=[for item in module.instance_template_creation:item.self_link ]
+  self_link=some_value[0]
+
+}
+
 
 module "vm_mig_creation" {
   source  = "terraform-google-modules/vm/google//modules/mig"
   version = "7.7.0"
   # insert the 4 required variables here
   autoscaling_mode= "ON"
-  instance_template=flatten([for item in module.instance_template_creation:item.self_link ])
+  instance_template=local.self_link
   project_id=var.project_id
   region= "us-east1"
 
