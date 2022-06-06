@@ -474,20 +474,19 @@ mig_map = {
       request_path        = ""
       host                = ""
     }
-  } 
-  autoscaling_enabled     =true
-  max_replicas            = 3
-  min_replicas            = 2
-  cooldown_period         = 60
-  autoscaling_cpu         = [
-    {
-      target = 0.6
-    }
-  ]
-  autoscaling_metric      = []
-  autoscaling_lb          = []
-  autoscaling_scale_in_control={}
-
+    autoscaling_enabled     =true
+    max_replicas            = 3
+    min_replicas            = 2
+    cooldown_period         = 60
+    autoscaling_cpu         = [
+      {
+        target = 0.6
+      }
+    ]
+    autoscaling_metric      = []
+    autoscaling_lb          = []
+    autoscaling_scale_in_control={}
+  },
 }
 
 
