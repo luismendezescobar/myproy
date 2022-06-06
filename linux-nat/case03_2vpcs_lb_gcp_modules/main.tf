@@ -156,6 +156,7 @@ module "vm_mig_creation" {
   version = "7.7.0"
   # insert the 4 required variables here
   project_id            = var.project_id
+  hostname              = var.mig_map.vm-mig-01.hostname
   region                = var.mig_map.vm-mig-01.region
   #autoscaling_mode      = "ON"
   instance_template     = module.instance_template_creation.self_link

@@ -111,6 +111,7 @@ variable "instance_template_map" {
 
 variable "mig_map"  {
   type = map(object({
+    hostname                  = string
     region                    = string
     distribution_policy_zones = list(string)
     health_check=object({

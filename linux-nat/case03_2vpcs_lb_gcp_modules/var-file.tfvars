@@ -455,7 +455,8 @@ instance_template_map = {
 
 
 mig_map = {
-  "vm-mig-01" = {
+  "mig-nat" = {
+    hostname                  = "mig-nat"
     region                    ="us-east1"
     distribution_policy_zones =["us-east1-b"]
     update_policy =[]
@@ -474,11 +475,15 @@ mig_map = {
       host                = ""
     }
   } 
-  autoscaling_enabled     =false
+  autoscaling_enabled     =true
   max_replicas            = 3
   min_replicas            = 2
   cooldown_period         = 60
-  autoscaling_cpu         = []
+  autoscaling_cpu         = [
+    {
+      target = 0.6
+    }
+  ]
   autoscaling_metric      = []
   autoscaling_lb          = []
   autoscaling_scale_in_control={}
