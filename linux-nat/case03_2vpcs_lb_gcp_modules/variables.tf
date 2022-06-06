@@ -114,6 +114,17 @@ variable "mig_map"  {
     hostname                  = string
     region                    = string
     distribution_policy_zones = list(string)
+    update_policy         = list(object({
+      max_surge_fixed              = number
+      instance_redistribution_type = string
+      max_surge_percent            = number
+      max_unavailable_fixed        = number
+      max_unavailable_percent      = number
+      min_ready_sec                = number
+      replacement_method           = string
+      minimal_action               = string
+      type                         = string
+    }))
     health_check=object({
       type                = string
       initial_delay_sec   = number
@@ -128,19 +139,7 @@ variable "mig_map"  {
       request_path        = string
       host                = string    
     })
-    update_policy         = list(object({
-      max_surge_fixed              = number
-      instance_redistribution_type = string
-      max_surge_percent            = number
-      max_unavailable_fixed        = number
-      max_unavailable_percent      = number
-      min_ready_sec                = number
-      replacement_method           = string
-      minimal_action               = string
-      type                         = string
-    }))
     autoscaling_enabled   = bool
-
     max_replicas          = number
     min_replicas          = number
     cooldown_period       = number
@@ -150,7 +149,7 @@ variable "mig_map"  {
       target = number
       type   = string
     }))
-    autoscaling_lb               = list(map(number))
+    autoscaling_lb        = list(map(number))
     autoscaling_scale_in_control = object({
       fixed_replicas   = number
       percent_replicas = number
