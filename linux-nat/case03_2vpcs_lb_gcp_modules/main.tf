@@ -114,7 +114,7 @@ output "instance_template_output2" {
 
 locals {
   some_value=[for item in module.instance_template_creation:item.self_link ]
-  self_link=local.some_value
+  self_link=local.some_value[0]
 
 }
 
