@@ -114,11 +114,17 @@ output "instance_template_output2" {
 
 locals {
   some_value=[for item in module.instance_template_creation:item.self_link ]
-  self_link=some_value[0]
+  self_link=some_value
 
 }
 
+output "name" {
+  value=local.self_link
+  
+}
 
+
+/*
 module "vm_mig_creation" {
   source  = "terraform-google-modules/vm/google//modules/mig"
   version = "7.7.0"
@@ -129,4 +135,4 @@ module "vm_mig_creation" {
   region= "us-east1"
 
 }
-
+*/
