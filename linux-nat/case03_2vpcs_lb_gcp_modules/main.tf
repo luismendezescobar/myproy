@@ -112,18 +112,25 @@ output "instance_template_output2" {
   
 }
 output "name2" {
-  value={for key, value in module.instance_template_creation:key=>value.self_link if key=="nat-server"}
+  value={for key, value in module.instance_template_creation:key=>value.self_link}
+}
+
+output "name3" {
+  value=[for key,value in module.instance_template_creation:lookup(value,"self_link")if key=="nat-server" ]
 }
 
 /*
 locals {
-  some_value=[for item in module.instance_template_creation:item.self_link if item.name=="nat-server" ]
-  self_link=local.some_value[0]
+  //some_value=[for item in module.instance_template_creation:item.self_link if item.name=="nat-server" ]
+  //self_link=local.some_value[0]
+  some_value={for key, value in module.instance_template_creation:key=>value.self_link}
 
 }
 
-output "name" {
+output "name3" {
   value=local.self_link
+  map_mig={for key, value in module.instance_template_creation:key=>value.self_link if key=="nat-server"}
+
   
 }
 
