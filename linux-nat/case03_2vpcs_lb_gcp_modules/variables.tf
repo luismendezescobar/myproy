@@ -108,3 +108,56 @@ variable "instance_template_map" {
   }))
   default = {}
 }
+
+variable "mig_map"  {
+  type = map(object({
+    region                    = string
+    distribution_policy_zones = list(string)
+    health_check=object({
+      type                = string
+      initial_delay_sec   = number
+      check_interval_sec  = number
+      healthy_threshold   = number
+      timeout_sec         = number
+      unhealthy_threshold = number
+      response            = string
+      proxy_header        = string
+      port                = number
+      request             = string
+      request_path        = string
+      host                = string    
+    })
+    update_policy         = list(object({
+      max_surge_fixed              = number
+      instance_redistribution_type = string
+      max_surge_percent            = number
+      max_unavailable_fixed        = number
+      max_unavailable_percent      = number
+      min_ready_sec                = number
+      replacement_method           = string
+      minimal_action               = string
+      type                         = string
+    }))
+    autoscaling_enabled   = bool
+
+    max_replicas          = number
+    min_replicas          = number
+    cooldown_period       = number
+    autoscaling_cpu       = list(map(number))
+    autoscaling_metric    = list(object({
+      name   = string
+      target = number
+      type   = string
+    }))
+    autoscaling_lb               = list(map(number))
+    autoscaling_scale_in_control = object({
+      fixed_replicas   = number
+      percent_replicas = number
+      time_window_sec  = number
+    })
+
+
+  }))
+
+
+}

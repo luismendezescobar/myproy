@@ -1,4 +1,4 @@
-project_id="playground-s-11-26c90c3b"  #update the project here
+project_id="playground-s-11-74401450"  #update the project here
 
 vpc_info = {
     "vpc-shared"={
@@ -446,7 +446,7 @@ instance_template_map = {
       ]        
     }]
     service_account={
-      email  = "614753985742-compute@developer.gserviceaccount.com"
+      email  = "665898570532-compute@developer.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
     
@@ -454,11 +454,33 @@ instance_template_map = {
 }
 
 
-vm_mig_map = {
-  "vm_mig_01" = {
-    autoscaler_name     = "autoscaler-nat"
-
-
-  }  
+mig_map = {
+  "vm-mig-01" = {
+    region                    ="us-east1"
+    distribution_policy_zones =["us-east1-b"]
+    update_policy =[]
+    health_check={
+      type                = "tcp"
+      initial_delay_sec   = 30
+      check_interval_sec  = 30
+      healthy_threshold   = 2
+      timeout_sec         = 10
+      unhealthy_threshold = 5
+      response            = ""
+      proxy_header        = "NONE"
+      port                = 22
+      request             = ""
+      request_path        = ""
+      host                = ""
+    }
+  } 
+  autoscaling_enabled     =false
+  max_replicas            = 3
+  min_replicas            = 2
+  cooldown_period         = 60
+  autoscaling_cpu         = []
+  autoscaling_metric      = []
+  autoscaling_lb          = []
+  autoscaling_scale_in_control={}
 
 }

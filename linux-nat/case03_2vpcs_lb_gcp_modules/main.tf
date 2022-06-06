@@ -144,19 +144,37 @@ locals {
 output "name_final_good" {
   value=local.self_link_real  
 }
+//with this one we remove the brackets and convert to string
+//instance_template=join("",[for key,value in local.map_mig_self_links:value if key=="nat-server"])
 */
 
+
 //this is pending
-/*
+
 module "vm_mig_creation" {
   source  = "terraform-google-modules/vm/google//modules/mig"
   version = "7.7.0"
   # insert the 4 required variables here
-  autoscaling_mode= "ON"
-  instance_template=join("",[for key,value in local.map_mig_self_links:value if key=="nat-server"])
-  project_id=var.project_id
-  region= "us-east1"
+  project_id            = var.project_id
+  region                = var.mig_map.vm-mig-01.region
+  #autoscaling_mode      = "ON"
+  instance_template     = module.instance_template_creation.self_link
+  //target_size               = var.target_size
+  //target_pools              = var.target_pools
+  distribution_policy_zones =var.mig_map.vm-mig-01.distribution_policy_zones
+  update_policy         = var.mig_map.vm-mig-01.update_policy
+   /* health check */
+  health_check          = var.mig_map.vm-mig-01.health_check
+
+  /* autoscaler */
+  autoscaling_enabled          = var.mig_map.vm-mig-01.autoscaling_enabled
+  max_replicas                 = var.mig_map.vm-mig-01.max_replicas
+  min_replicas                 = var.mig_map.vm-mig-01.min_replicas
+  cooldown_period              = var.mig_map.vm-mig-01.cooldown_period
+  autoscaling_cpu              = var.mig_map.vm-mig-01.autoscaling_cpu
+  autoscaling_metric           = var.mig_map.vm-mig-01.autoscaling_metric
+  autoscaling_lb               = var.mig_map.vm-mig-01.autoscaling_lb
+  autoscaling_scale_in_control = var.mig_map.vm-mig-01.autoscaling_scale_in_control
 
 }
 
-*/
