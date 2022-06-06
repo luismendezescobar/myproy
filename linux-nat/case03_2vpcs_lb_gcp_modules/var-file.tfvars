@@ -393,6 +393,55 @@ firewall_rules = {
       }      
     } ]    
   },
+  "vpc-shared-allow-health-check"= {
+    network_name = "vpc-shared"    
+    rules = [ {
+      name                  ="vpc-shared-allow-health-check"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["130.211.0.0/22","35.191.0.0/16"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[
+        {
+          protocol = "tcp"
+          ports = []
+        },
+      ]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
+  "vpc-local-allow-health-check"= {
+    network_name = "vpc-local"    
+    rules = [ {
+      name                  ="vpc-local-allow-health-check"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["130.211.0.0/22","35.191.0.0/16"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[
+        {
+          protocol = "tcp"
+          ports = []
+        },
+      ]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
+
 
 }
 
