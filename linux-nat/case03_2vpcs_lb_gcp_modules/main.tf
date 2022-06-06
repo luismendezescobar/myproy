@@ -74,7 +74,7 @@ module "cloud_nat_gtw_create" {
 }
 
 output "map1" {
-  value=var.instance_template_map["nat-server"]
+  value=var.instance_template_map.nat-server
 }
 output "map2" {
   value=var.instance_template_map
