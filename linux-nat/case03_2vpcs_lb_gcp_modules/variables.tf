@@ -73,6 +73,7 @@ variable "cloud_nat_map" {
 variable "instance_template_map" {
   description = "the number of DB server instances"
   type = map(object({
+    name_prefix       = string
     zone              = string
     region            = string
     machine_type      = string
