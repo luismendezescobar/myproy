@@ -105,6 +105,7 @@ module "instance_template_creation" {
   on_host_maintenance = var.instance_template_map.nat-server.on_host_maintenance
   subnetwork          = var.instance_template_map.nat-server.subnetwork
   subnetwork_project  = var.project_id
+  //modify the project id in the 
   additional_networks = var.instance_template_map.nat-server.additional_networks
   service_account     = var.instance_template_map.nat-server.service_account
 
