@@ -113,7 +113,7 @@ output "instance_template_output2" {
 }
 
 locals {
-  some_value=[for item in module.instance_template_creation:item.self_link ]
+  some_value=[for item in module.instance_template_creation:item.self_link if item.name=="nat-server" ]
   self_link=local.some_value[0]
 
 }
