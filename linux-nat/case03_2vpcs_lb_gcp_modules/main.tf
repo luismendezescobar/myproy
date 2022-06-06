@@ -179,7 +179,10 @@ module "vm_mig_creation" {
 
 }
 
-output "vm_mig_creation" {
-  value=module.vm_mig_creation
+output "vm_mig_creation01" {
+  value=module.vm_mig_creation.health_check_self_links 
+}
+output "vm_mig_creation02" {
+  value=module.vm_mig_creation.self_link
   
 }
