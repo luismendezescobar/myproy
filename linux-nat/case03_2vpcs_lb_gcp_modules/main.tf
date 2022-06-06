@@ -156,26 +156,26 @@ module "vm_mig_creation" {
   version = "7.7.0"
   # insert the 4 required variables here
   project_id            = var.project_id
-  hostname              = var.mig_map.vm-mig-01.hostname
-  region                = var.mig_map.vm-mig-01.region
+  hostname              = var.mig_map.mig-nat.hostname
+  region                = var.mig_map.mig-nat.region
   #autoscaling_mode      = "ON"
   instance_template     = module.instance_template_creation.self_link
   //target_size               = var.target_size
   //target_pools              = var.target_pools
-  distribution_policy_zones =var.mig_map.vm-mig-01.distribution_policy_zones
-  update_policy         = var.mig_map.vm-mig-01.update_policy
+  distribution_policy_zones =var.mig_map.mig-nat.distribution_policy_zones
+  update_policy         = var.mig_map.mig-nat.update_policy
    /* health check */
-  health_check          = var.mig_map.vm-mig-01.health_check
+  health_check          = var.mig_map.mig-nat.health_check
 
   /* autoscaler */
-  autoscaling_enabled          = var.mig_map.vm-mig-01.autoscaling_enabled
-  max_replicas                 = var.mig_map.vm-mig-01.max_replicas
-  min_replicas                 = var.mig_map.vm-mig-01.min_replicas
-  cooldown_period              = var.mig_map.vm-mig-01.cooldown_period
-  autoscaling_cpu              = var.mig_map.vm-mig-01.autoscaling_cpu
-  autoscaling_metric           = var.mig_map.vm-mig-01.autoscaling_metric
-  autoscaling_lb               = var.mig_map.vm-mig-01.autoscaling_lb
-  autoscaling_scale_in_control = var.mig_map.vm-mig-01.autoscaling_scale_in_control
+  autoscaling_enabled          = var.mig_map.mig-nat.autoscaling_enabled
+  max_replicas                 = var.mig_map.mig-nat.max_replicas
+  min_replicas                 = var.mig_map.mig-nat.min_replicas
+  cooldown_period              = var.mig_map.mig-nat.cooldown_period
+  autoscaling_cpu              = var.mig_map.mig-nat.autoscaling_cpu
+  autoscaling_metric           = var.mig_map.mig-nat.autoscaling_metric
+  autoscaling_lb               = var.mig_map.mig-nat.autoscaling_lb
+  autoscaling_scale_in_control = var.mig_map.mig-nat.autoscaling_scale_in_control
 
 }
 
