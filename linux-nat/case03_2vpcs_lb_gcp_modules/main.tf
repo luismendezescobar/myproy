@@ -80,7 +80,7 @@ output "map2" {
   value=var.instance_template_map
 }
 output "map3" {
-  value=var.instance_template_map["nat-server"].region
+  value=var.instance_template_map.nat-server.region
 }
 
 
