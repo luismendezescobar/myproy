@@ -84,38 +84,39 @@ output "map3" {
 }
 
 
-/*
 module "instance_template_creation" {
   //for_each        = var.instance_template_map
   source          = "terraform-google-modules/vm/google//modules/instance_template"
   version         = "~> 7.7.0"
-  name_prefix     = each.key
+  name_prefix     = var.instance_template_map.nat_server.name_prefix
   project_id      = var.project_id
-  region          = each.value.region
-  machine_type    = each.value.machine_type
-  tags            = each.value.network_tags
+  region          = var.instance_template_map.nat_server.region
+  machine_type    = var.instance_template_map.nat_server.machine_type
+  tags            = var.instance_template_map.nat_server.network_tags
   #description     = each.value.description
-  can_ip_forward  = each.value.can_ip_forward
-  startup_script  = file(each.value.init_script)
-  auto_delete     = each.value.auto_delete
-  disk_size_gb    = each.value.disk_size_gb
+  can_ip_forward  = var.instance_template_map.nat_server.can_ip_forward
+  startup_script  = file(var.instance_template_map.nat_server.init_script)
+  auto_delete     = var.instance_template_map.nat_server.auto_delete
+  disk_size_gb    = var.instance_template_map.nat_server.disk_size_gb
   #source_image    = each.value.source_image
-  source_image_family=each.value.source_image_family
-  source_image_project=each.value.source_image_project
-  disk_type       = each.value.disk_type
-  on_host_maintenance = each.value.on_host_maintenance
-  subnetwork          = each.value.subnetwork
+  source_image_family=var.instance_template_map.nat_server.source_image_family
+  source_image_project=var.instance_template_map.nat_server.source_image_project
+  disk_type       = var.instance_template_map.nat_server.disk_type
+  on_host_maintenance = var.instance_template_map.nat_server.on_host_maintenance
+  subnetwork          = var.instance_template_map.nat_server.subnetwork
   subnetwork_project  = var.project_id
-  additional_networks = each.value.additional_networks
-  service_account     = each.value.service_account
+  additional_networks = var.instance_template_map.nat_server.additional_networks
+  service_account     = var.instance_template_map.nat_server.service_account
 
   depends_on = [
     module.cloud_nat_gtw_create
   ]
   
-}*/
+}
 
-
+output "template" {
+  value=module.instance_template_creation.self_link
+}
 
 
 
