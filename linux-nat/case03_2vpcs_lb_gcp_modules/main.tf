@@ -111,31 +111,41 @@ output "instance_template_output2" {
   value = module.instance_template_creation
   
 }
-output "name2" {
+output "name2" { //this is the good
   value={for key, value in module.instance_template_creation:key=>value.self_link}
+/*output
+{
+"nat-server" = "https://www.googleapis.com/compute/v1/projects/playground-s-11-c77f7b64/global/instanceTemplates/nat-server-20220606000717456600000001"
+"nat-server2" = "https://www.googleapis.com/compute/v1/projects/playground-s-11-c77f7b64/global/instanceTemplates/nat-server-20220606000717456600000001"
+... etc
 }
+*/
+}
+
 
 output "name3" {
-  value=for key,value in module.instance_template_creation:lookup(value,"self_link")if key=="nat-server" 
+  value=[for key,value in module.instance_template_creation:lookup(value,"self_link")if key=="nat-server"] 
 }
 
-/*
+
 locals {
   //some_value=[for item in module.instance_template_creation:item.self_link if item.name=="nat-server" ]
   //self_link=local.some_value[0]
+  //some_value={for key, value in module.instance_template_creation:key=>value.self_link}
   some_value={for key, value in module.instance_template_creation:key=>value.self_link}
+  self_link_real= [for key,value in some_value:value if key=="nat-server"]
 
 }
 
-output "name3" {
-  value=local.self_link
-  map_mig={for key, value in module.instance_template_creation:key=>value.self_link if key=="nat-server"}
+output "name_final_good" {
+  value=local.self_link_real
+  //map_mig={for key, value in module.instance_template_creation:key=>value.self_link if key=="nat-server"}
 
   
 }
 
 
-
+/*
 module "vm_mig_creation" {
   source  = "terraform-google-modules/vm/google//modules/mig"
   version = "7.7.0"
