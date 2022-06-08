@@ -1,5 +1,7 @@
-project_id="playground-s-11-74401450"  #update the project here
-tf_service_account="tf-ta-cse-rd1@"
+project_id="triggering-a-198-5b91bbe2"  #update the project here
+compute_service_account="1048021849224-compute@developer.gserviceaccount.com"
+tf_service_account="tf-ta-cse-rd1@${var.project_id}.iam.gserviceaccount.com"
+
 vpc_info = {
     "vpc-shared"={
         auto_create_subnetworks=false
@@ -495,7 +497,7 @@ instance_template_map = {
       ]        
     }]
     service_account={
-      email  = "665898570532-compute@developer.gserviceaccount.com"
+      email  = ${var.compute_service_account}
       scopes = ["cloud-platform"]
     }
     

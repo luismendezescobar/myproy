@@ -1,6 +1,25 @@
-# Vertex AI for Machine Learning Operations
+# Linux NAT service
 
-## 👋 I'm Mike
+## how to configure linux nat 
+
+ACCOUNTNAME=tf-ta-cse-rd1
+PROJECTID=triggering-a-198-5b91bbe2
+
+gcloud iam service-accounts create $ACCOUNTNAME \
+    --description="account for terraform" \
+    --display-name=$ACCOUNTNAME
+
+
+
+
+gcloud projects add-iam-policy-binding $PROJECTID \
+--member=serviceAccount:$ACCOUNTNAME@$PROJECTID.iam.gserviceaccount.com --role=roles/owner
+
+
+
+
+
+
 
 I want to share and enable [Vertex AI](https://cloud.google.com/vertex-ai/docs/start/introduction-unified-platform) from [Google Cloud](https://cloud.google.com/vertex-ai) with you.  The goal here is to share a comprehensive set of end-to-end workflows for machine learning that each cover the range of data to model to serving and managing - even automating the flow.  Regardless of your data type, skill level or framework preferences you will find something helpful here. 
 

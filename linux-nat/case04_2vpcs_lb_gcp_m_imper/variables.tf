@@ -6,6 +6,10 @@ variable "tf_service_account" {
   type = string
 }
 
+variable "compute_service_account" {
+  type = string
+}
+
 
 variable "vpc_info" {
   description = "information about the vpc"
