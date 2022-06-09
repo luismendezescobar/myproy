@@ -580,7 +580,7 @@ load_balancer_info02 = {
 
 server_vm_info = {
     "shared-client01" = {
-        zone              = "us-east1-b"
+        zone              = "us-east1-c"
         instance_type     = "e2-medium"
         //gcloud compute images list
         source_image      = "centos-cloud/centos-stream-9"
