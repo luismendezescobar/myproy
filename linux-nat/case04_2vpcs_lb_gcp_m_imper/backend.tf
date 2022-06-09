@@ -6,7 +6,7 @@ terraform {
     #impersonate_service_account = var.tf_service_account
   }  
   
-  required_version = "~> 1.1.0"  //terraform version required in the shell
+  required_version = "~> 1.1"  //terraform version required in the shell
   required_providers { 
     google = {
       source = "hashicorp/google"
