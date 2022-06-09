@@ -465,6 +465,8 @@ cloud_nat_map ={
 }
 
 /*
+gcloud compute images list
+
 PROJECT: centos-cloud
 FAMILY: centos-7
 
@@ -535,7 +537,7 @@ mig_map = {
     }
     autoscaling_enabled     =true
     max_replicas            = 5
-    min_replicas            = 3
+    min_replicas            = 2
     cooldown_period         = 60
     autoscaling_cpu         = [
       {
