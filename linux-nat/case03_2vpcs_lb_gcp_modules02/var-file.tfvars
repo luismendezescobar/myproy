@@ -464,14 +464,22 @@ cloud_nat_map ={
   }
 }
 
+/*
+PROJECT: centos-cloud
+FAMILY: centos-7
+
+PROJECT: centos-cloud
+FAMILY: centos-stream-9
+*/
+
 instance_template_map = {
   "nat-server" = {
     name_prefix       = "nat-server"
     zone              = "us-east1-b"
     region            = "us-east1"
     machine_type      = "e2-medium"
-    source_image      = "centos-cloud/centos-stream-7"
-    source_image_family="centos-stream-7"
+    source_image      = "centos-cloud/centos-7"
+    source_image_family="centos-7"
     source_image_project="centos-cloud"
     disk_size_gb      = "100"
     disk_type         = "pd-standard" 
