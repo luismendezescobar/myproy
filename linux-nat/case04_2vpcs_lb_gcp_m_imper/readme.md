@@ -3,8 +3,8 @@
 ## how to configure linux nat 
 
 ACCOUNTNAME=tf-ta-cse-rd1
-PROJECTID=triggering-a-198-4bb0fe28
-BUCKET=mybucket5-19-2022-03
+PROJECTID=triggering-a-198-684d0213
+BUCKET=mybucket5-19-2022-04
 
 
 gcloud iam service-accounts create $ACCOUNTNAME \
@@ -24,6 +24,15 @@ gcloud projects add-iam-policy-binding $PROJECTID --member="user:luismendezescob
 gcloud iam service-accounts add-iam-policy-binding $ACCOUNTNAME@$PROJECTID.iam.gserviceaccount.com \
  --member='user:luismendezescobar@gmail.com' \
  --role='roles/iam.serviceAccountTokenCreator'
+
+
+ gcloud iam service-accounts add-iam-policy-binding $ACCOUNTNAME@$PROJECTID.iam.gserviceaccount.com \
+ --member='user:luismendezescobar@gmail.com' \
+ --role='roles/iam.serviceAccountUser'
+
+
+
+
 
 gsutil mb -c standard -l us-east1 gs://$BUCKET
 

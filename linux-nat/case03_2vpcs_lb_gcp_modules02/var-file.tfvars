@@ -1,7 +1,6 @@
 project_id="playground-s-11-fc9ada38"  #update the project here
-//this one needs to be added on line 501
-compute_service_account="628459286870-compute@developer.gserviceaccount.com"
-tf_service_account="tf-ta-cse-rd1@triggering-a-198-684d0213.iam.gserviceaccount.com"
+//also add the project account on line 498
+
 
 vpc_info = {
     "vpc-shared"={
@@ -471,8 +470,8 @@ instance_template_map = {
     zone              = "us-east1-b"
     region            = "us-east1"
     machine_type      = "e2-medium"
-    source_image      = "centos-cloud/centos-stream-9"
-    source_image_family="centos-stream-9"
+    source_image      = "centos-cloud/centos-stream-7"
+    source_image_family="centos-stream-7"
     source_image_project="centos-cloud"
     disk_size_gb      = "100"
     disk_type         = "pd-standard" 
@@ -498,7 +497,7 @@ instance_template_map = {
       ]        
     }]
     service_account={
-      email  = "628459286870-compute@developer.gserviceaccount.com"
+      email  = "334382904340-compute@developer.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
     
@@ -510,7 +509,7 @@ mig_map = {
   "mig-nat" = {
     hostname                  = "mig-nat"
     region                    ="us-east1"
-    distribution_policy_zones =["us-east1-b","us-east1-c"]
+    distribution_policy_zones =["us-east1-b"]
     update_policy =[]
     health_check={
       type                = "tcp"
@@ -527,8 +526,8 @@ mig_map = {
       host                = ""
     }
     autoscaling_enabled     =true
-    max_replicas            = 3
-    min_replicas            = 2
+    max_replicas            = 5
+    min_replicas            = 3
     cooldown_period         = 60
     autoscaling_cpu         = [
       {
@@ -580,7 +579,7 @@ load_balancer_info02 = {
 
 server_vm_info = {
     "shared-client01" = {
-        zone              = "us-east1-c"
+        zone              = "us-east1-b"
         instance_type     = "e2-medium"
         //gcloud compute images list
         source_image      = "centos-cloud/centos-stream-9"
