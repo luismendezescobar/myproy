@@ -3,21 +3,57 @@
 ## how to configure linux nat 
 
 ACCOUNTNAME=tf-ta-cse-rd1
-PROJECTID=triggering-a-198-5b91bbe2
+PROJECTID=triggering-a-198-4bb0fe28
+BUCKET=mybucket5-19-2022-03
+
 
 gcloud iam service-accounts create $ACCOUNTNAME \
     --description="account for terraform" \
     --display-name=$ACCOUNTNAME
 
 
-
-
 gcloud projects add-iam-policy-binding $PROJECTID \
 --member=serviceAccount:$ACCOUNTNAME@$PROJECTID.iam.gserviceaccount.com --role=roles/owner
 
 
+#add low permissions user
+gcloud projects add-iam-policy-binding $PROJECTID --member="user:luismendezescobar@gmail.com" --role="roles/viewer"
+
+#bind the account to run as the service account
+
+gcloud iam service-accounts add-iam-policy-binding $ACCOUNTNAME@$PROJECTID.iam.gserviceaccount.com \
+ --member='user:luismendezescobar@gmail.com' \
+ --role='roles/iam.serviceAccountTokenCreator'
+
+gsutil mb -c standard -l us-east1 gs://$BUCKET
 
 
+
+gcloud auth application-default login --no-launch-browser
+output:
+Credentials saved to file: [/home/luis/.config/gcloud/application_default_credentials.json]
+These credentials will be used by any library that requests Application Default Credentials (ADC).
+
+
+
+
+#-------other usefull commands
+
+gcloud init --no-launch-browser
+
+gcloud auth application-default login --no-launch-browser
+gcloud auth application-default revoke
+
+gcloud auth list
+gcloud auth revoke
+gcloud auth login
+this didn't worked
+gcloud auth login luismendezescobar@gmail.com --no-launch-browser
+
+gcloud config configurations activate user2
+gcloud config configurations list
+gcloud config configurations delete default
+gcloud config configurations delete luis
 
 
 

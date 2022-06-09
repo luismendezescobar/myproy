@@ -1,6 +1,7 @@
-project_id="triggering-a-198-5b91bbe2"  #update the project here
-compute_service_account="1048021849224-compute@developer.gserviceaccount.com"
-tf_service_account="tf-ta-cse-rd1@${var.project_id}.iam.gserviceaccount.com"
+project_id="triggering-a-198-4bb0fe28"  #update the project here
+//this one needs to be added on line 501
+compute_service_account="628459286870-compute@developer.gserviceaccount.com"
+tf_service_account="tf-ta-cse-rd1@triggering-a-198-4bb0fe28.iam.gserviceaccount.com"
 
 vpc_info = {
     "vpc-shared"={
@@ -497,7 +498,7 @@ instance_template_map = {
       ]        
     }]
     service_account={
-      email  = ${var.compute_service_account}
+      email  = "628459286870-compute@developer.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
     
