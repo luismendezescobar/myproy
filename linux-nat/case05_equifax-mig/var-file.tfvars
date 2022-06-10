@@ -443,7 +443,7 @@ firewall_rules = {
     } ]    
   },
 }
-*/
+
 
 cloud_nat_map ={
   "cloud-nat-us-east1-vpc-shared" = {
