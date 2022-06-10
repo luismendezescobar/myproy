@@ -1,4 +1,4 @@
-project_id="playground-s-11-6fa61f66"  #update the project here
+project_id="playground-s-11-f4e54a46"  #update the project here
 //also add the project account on line 527
 
 
@@ -497,8 +497,8 @@ instance_template_map = {
     zone              = "us-east1-b"
     region            = "us-east1"
     machine_type      = "e2-medium"
-    source_image      = "centos-cloud/centos-stream-9"
-    source_image_family="centos-stream-9"
+    source_image      = "centos-cloud/centos-7"
+    source_image_family="centos-7"
     source_image_project="centos-cloud"
     disk_size_gb      = "100"
     disk_type         = "pd-standard" 
