@@ -1,5 +1,5 @@
 
-/*
+
 module "vpc_creation" {
   for_each = var.vpc_info
   source  = "terraform-google-modules/network/google//modules/vpc"
@@ -84,7 +84,7 @@ output "map2" {
 output "map3" {
   value=var.instance_template_map.nat-server.region
 }
-*/
+
 
 module "instance_template_creation" {
   //for_each        = var.instance_template_map

@@ -1,6 +1,6 @@
-project_id="playground-s-11-f4e54a46"  #update the project here
+project_id="playground-s-11-b6da73ed"  #update the project here
 //also add the project account on line 527
-/*
+
 vpc_info = {
     "vpc-shared"={
         auto_create_subnetworks=false
@@ -495,8 +495,8 @@ instance_template_map = {
     zone              = "us-east1-b"
     region            = "us-east1"
     machine_type      = "e2-medium"
-    source_image      = "centos-stream-8"
-    source_image_family="centos-stream-8"
+    source_image      = "centos-7"
+    source_image_family="centos-7"
     source_image_project="centos-cloud"
     disk_size_gb      = "100"
     disk_type         = "pd-standard" 
@@ -522,7 +522,7 @@ instance_template_map = {
       ]        
     }]
     service_account={
-      email  = "136775448169-compute@developer.gserviceaccount.com"
+      email  = "796490740119-compute@developer.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
     
