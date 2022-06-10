@@ -537,7 +537,7 @@ mig_map = {
     }
     autoscaling_enabled     =true
     max_replicas            = 5
-    min_replicas            = 2
+    min_replicas            = 3
     cooldown_period         = 60
     autoscaling_cpu         = [
       {
