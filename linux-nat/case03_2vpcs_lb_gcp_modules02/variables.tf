@@ -114,9 +114,9 @@ variable "mig_map"  {
     hostname                  = string
     region                    = string
     distribution_policy_zones = list(string)
-    update_policy         = list(object({
-      max_surge_fixed              = number
+      update_policy         = list(object({
       instance_redistribution_type = string
+      max_surge_fixed              = number
       max_surge_percent            = number
       max_unavailable_fixed        = number
       max_unavailable_percent      = number
