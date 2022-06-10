@@ -488,7 +488,7 @@ PROJECT: centos-cloud
 FAMILY: centos-7
 
 PROJECT: centos-cloud
-FAMILY: centos-stream-9
+FAMILY: centos-stream-8
 */
 
 instance_template_map = {
@@ -497,8 +497,8 @@ instance_template_map = {
     zone              = "us-east1-b"
     region            = "us-east1"
     machine_type      = "e2-medium"
-    source_image      = "centos-cloud/centos-7"
-    source_image_family="centos-7"
+    source_image      = "centos-cloud/centos-stream-8"
+    source_image_family="centos-stream-8"
     source_image_project="centos-cloud"
     disk_size_gb      = "100"
     disk_type         = "pd-standard" 
