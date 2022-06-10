@@ -30,6 +30,17 @@ gcloud iam service-accounts add-iam-policy-binding $ACCOUNTNAME@$PROJECTID.iam.g
  --member='user:luismendezescobar@gmail.com' \
  --role='roles/iam.serviceAccountUser'
 
+------------------------------------------------------------------------------
+PROJECTID=triggering-a-198-684d0213
+for my account
+roles/compute.instanceAdmin.v1
+roles/storage.admin
+
+gcloud projects add-iam-policy-binding $PROJECTID \
+--member=serviceAccount:luis.mendez@equifax.com --role=roles/compute.instanceAdmin.v1
+
+gcloud projects add-iam-policy-binding $PROJECTID \
+--member=serviceAccount:luis.mendez@equifax.com --role=roles/storage.admin
 
 
 
