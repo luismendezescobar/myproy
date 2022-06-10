@@ -1,5 +1,5 @@
-project_id="playground-s-11-fc9ada38"  #update the project here
-//also add the project account on line 498
+project_id="playground-s-11-6fa61f66"  #update the project here
+//also add the project account on line 527
 
 
 vpc_info = {
@@ -497,8 +497,8 @@ instance_template_map = {
     zone              = "us-east1-b"
     region            = "us-east1"
     machine_type      = "e2-medium"
-    source_image      = "centos-cloud/centos-stream-8"
-    source_image_family="centos-stream-8"
+    source_image      = "centos-cloud/centos-7"
+    source_image_family="centos-7"
     source_image_project="centos-cloud"
     disk_size_gb      = "100"
     disk_type         = "pd-standard" 
@@ -524,7 +524,7 @@ instance_template_map = {
       ]        
     }]
     service_account={
-      email  = "334382904340-compute@developer.gserviceaccount.com"
+      email  = "118158102198-compute@developer.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
     
@@ -554,7 +554,7 @@ mig_map = {
     }
     autoscaling_enabled     =true
     max_replicas            = 5
-    min_replicas            = 3
+    min_replicas            = 2
     cooldown_period         = 60
     autoscaling_cpu         = [
       {
@@ -637,7 +637,7 @@ server_vm_info = {
         network_tags = ["no-ip"]
         additional_disks = []
     },    
-    "spoke" = {
+ /*   "spoke" = {
         zone              = "us-east1-b"        
         instance_type     = "e2-medium"
         source_image      = "centos-cloud/centos-stream-9"
@@ -652,4 +652,5 @@ server_vm_info = {
         network_tags = ["no-ip"]   
         additional_disks = []
     },
+  */  
 }
