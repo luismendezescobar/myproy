@@ -31,9 +31,6 @@ variable "forwarding_name" {
 variable "ip_protocol" {
   type =string
 }   
-variable "load_balancing_scheme" {
-  type =string
-}
 variable "all_ports" {
   type =bool
 }
