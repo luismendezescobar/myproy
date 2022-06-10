@@ -461,7 +461,24 @@ cloud_nat_map ={
     source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
     log_config_enable       = true
     log_config_filter       = "ERRORS_ONLY"
-  }
+  },
+  "cloud-nat-us-east1-vpc-local" = {
+    region                  ="us-east1"
+    router_name             = "router-nat-us-east1-vpc-local"
+    bgp                     = {
+      "asn"               ="64514",
+      "advertise_mode"    = "DEFAULT",
+      "advertised_groups" = ["ALL_SUBNETS"],
+    }
+    network                 = "vpc-local"
+    nat_ip_allocate_option  = false
+    source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
+    log_config_enable       = true
+    log_config_filter       = "ERRORS_ONLY"
+  },
+
+
+
 }
 
 /*

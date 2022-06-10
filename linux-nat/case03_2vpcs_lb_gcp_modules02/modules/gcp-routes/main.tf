@@ -22,7 +22,7 @@ resource "google_compute_route" "from_local_to_shared" {
   priority              = 1000
   //tags                  = ["no-ip"]
 }
-
+/* no needed as both networks will have their on nat gateway
 resource "google_compute_route" "from_local_to_internet" {  
   name                  = "from-local-to-internet"
   dest_range            = "0.0.0.0/0"
@@ -31,6 +31,7 @@ resource "google_compute_route" "from_local_to_internet" {
   priority              = 800
   tags                  = ["no-ip"]
 }
+*/
 /**************************************************************/
 
 data "google_compute_forwarding_rule" "shared" {

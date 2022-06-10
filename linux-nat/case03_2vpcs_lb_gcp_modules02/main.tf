@@ -121,35 +121,6 @@ output "template" {
 
 
 
-/* good code here but I will change the design
-output "name2" { //this is the good
-  value={for key, value in module.instance_template_creation:key=>value.self_link}
-//output
-//{
-//"nat-server" = "https://www.googleapis.com/compute/v1/projects/playground-s-11-c77f7b64/global/instanceTemplates/nat-server-20220606000717456600000001"
-//"nat-server2" = "https://www.googleapis.com/compute/v1/projects/playground-s-11-c77f7b64/global/instanceTemplates/nat-server-20220606000717456600000001"
-//... etc
-//}
-
-}
-
-output "name3" {
-  value=[for key,value in module.instance_template_creation:lookup(value,"self_link")if key=="nat-server"] 
-}
-
-locals {
-  map_mig_self_links={for key, value in module.instance_template_creation:key=>value.self_link}
-  self_link_real= join("",[for key,value in local.map_mig_self_links:value if key=="nat-server"])
-}
-output "name_final_good" {
-  value=local.self_link_real  
-}
-//with this one we remove the brackets and convert to string
-//instance_template=join("",[for key,value in local.map_mig_self_links:value if key=="nat-server"])
-*/
-
-
-//this is pending
 
 module "vm_mig_creation" {
   source  = "terraform-google-modules/vm/google//modules/mig"
