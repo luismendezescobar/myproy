@@ -1,4 +1,4 @@
-project_id="playground-s-11-b6da73ed"  #update the project here
+project_id="playground-s-11-9806b66f"  #update the project here
 //also add the project account on line 527
 
 vpc_info = {
@@ -522,7 +522,7 @@ instance_template_map = {
       ]        
     }]
     service_account={
-      email  = "796490740119-compute@developer.gserviceaccount.com"
+      email  = "919628400850@cloudservices.gserviceaccount.com	"
       scopes = ["cloud-platform"]
     }
     
@@ -536,10 +536,10 @@ mig_map = {
     region                    ="us-east1"
     distribution_policy_zones =["us-east1-b","us-east1-c"]
     update_policy =[{
-      instance_redistribution_type = "PROACTIVE"
-      max_surge_fixed              = null
+      instance_redistribution_type = "PROACTIVE" #tries to maintain the zon distribution
+      max_surge_fixed              = 0
       max_surge_percent            = null
-      max_unavailable_fixed        = null
+      max_unavailable_fixed        = 2
       max_unavailable_percent      = null
       min_ready_sec                = null
       replacement_method           = "RECREATE"  #will preserver the name
