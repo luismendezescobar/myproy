@@ -616,7 +616,7 @@ server_vm_info = {
       zone              = "us-east1-b"
       instance_type     = "e2-medium"
       //gcloud compute images list
-      source_image      = "centos-cloud/centos-stream-9"
+      source_image      = "centos-cloud/centos-7"
       boot_disk_size_gb = 100
       boot_disk_type    = "pd-standard" 
       auto_delete       = true
@@ -632,7 +632,8 @@ server_vm_info = {
       zone              = "us-east1-b"
       instance_type     = "e2-medium"
       //gcloud compute images list
-      source_image      = "efx-centos-7/efx-centos7"
+      #source_image      = "efx-centos-7/efx-centos7"
+      source_image      = "centos-cloud/centos-7"
       boot_disk_size_gb = 100
       boot_disk_type    = "pd-standard" 
       auto_delete       = true
