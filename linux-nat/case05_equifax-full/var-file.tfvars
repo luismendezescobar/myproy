@@ -1,6 +1,5 @@
-project_id="playground-s-11-f4e54a46"  #update the project here
+project_id="playground-s-11-9806b66f"  #update the project here
 //also add the project account on line 527
-
 
 vpc_info = {
     "vpc-shared"={
@@ -443,9 +442,8 @@ firewall_rules = {
       }      
     } ]    
   },
-
-
 }
+
 
 cloud_nat_map ={
   "cloud-nat-us-east1-vpc-shared" = {
@@ -497,8 +495,8 @@ instance_template_map = {
     zone              = "us-east1-b"
     region            = "us-east1"
     machine_type      = "e2-medium"
-    source_image      = "centos-stream-8"
-    source_image_family="centos-stream-8"
+    source_image      = "centos-stream-9"
+    source_image_family="centos-stream-9"
     source_image_project="centos-cloud"
     disk_size_gb      = "100"
     disk_type         = "pd-standard" 
@@ -524,7 +522,7 @@ instance_template_map = {
       ]        
     }]
     service_account={
-      email  = "136775448169-compute@developer.gserviceaccount.com"
+      email  = "960632049081-compute@developer.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
     
@@ -538,15 +536,15 @@ mig_map = {
     region                    ="us-east1"
     distribution_policy_zones =["us-east1-b","us-east1-c"]
     update_policy =[{
-      instance_redistribution_type = "PROACTIVE"
-      max_surge_fixed              = 1  
+      instance_redistribution_type = "PROACTIVE" #tries to maintain the zon distribution
+      max_surge_fixed              = 0
       max_surge_percent            = null
-      max_unavailable_fixed        = 1
+      max_unavailable_fixed        = 2
       max_unavailable_percent      = null
       min_ready_sec                = null
-      replacement_method           = "SUBSTITUTE"
-      minimal_action               = "REPLACE"
-      type                         = "PROACTIVE"
+      replacement_method           = "RECREATE"  #will preserver the name
+      minimal_action               = "REPLACE"   #what to do when there is a change in the mig
+      type                         = "PROACTIVE" #update right away
     }]
     health_check={
       type                = "tcp"
@@ -582,85 +580,69 @@ mig_map = {
 }
 
 
-load_balancer_info01 = {
-   
-    lb_name               = "lb-backend-shared"
+load_balancer_info = {
+  "lb-backend-shared" ={    
+    region                = "us-east1"
     protocol              = "TCP"
     load_balancing_scheme = "INTERNAL" 
     session_affinity      = "CLIENT_IP"
     balancing_mode        = "CONNECTION"
     vpc                   = "vpc-shared"
     forwarding_name       = "forwarding-rule-shared"   
-    ip_protocol           = "TCP"
-    load_balancing_scheme = "INTERNAL"
+    ip_protocol           = "TCP"    
     all_ports             = true
     allow_global_access   = false
     network               = "vpc-shared"
     subnetwork            = "vpc-shared-us-east1-sub"
-}
-load_balancer_info02 = {
-    lb_name               = "lb-backend-local"
+  },
+  "lb-backend-local" = {
+    region                = "us-east1"
     protocol              = "TCP"
     load_balancing_scheme = "INTERNAL" 
     session_affinity      = "CLIENT_IP"
     balancing_mode        = "CONNECTION"
     vpc                   = "vpc-local"
     forwarding_name       = "forwarding-rule-local"   
-    ip_protocol           = "TCP"
-    load_balancing_scheme = "INTERNAL"
+    ip_protocol           = "TCP"    
     all_ports             = true
     allow_global_access   = false
     network               = "vpc-local"
     subnetwork            = "vpc-local-us-east1-sub"            
+  }
 }
 
 server_vm_info = {
-    "shared-client01" = {
-        zone              = "us-east1-b"
-        instance_type     = "e2-medium"
-        //gcloud compute images list
-        source_image      = "centos-cloud/centos-stream-9"
-        boot_disk_size_gb = 100
-        boot_disk_type    = "pd-standard" 
-        auto_delete       = true
-        subnet_name       = "vpc-shared-us-east1-sub"
-        description       = "bastion to manage all"
-        init_script       = "./modules/create-vm/init.sh"  
-        external_ip       = ["false"]
-        can_ip_forward   = false
-        network_tags = ["no-ip"]
-        additional_disks = []
-    },
-    "local-client01" = {
-        zone              = "us-east1-b"
-        instance_type     = "e2-medium"
-        //gcloud compute images list
-        source_image      = "centos-cloud/centos-stream-9"
-        boot_disk_size_gb = 100
-        boot_disk_type    = "pd-standard" 
-        auto_delete       = true
-        subnet_name       = "vpc-local-us-east1-sub"
-        description       = "bastion to manage all"
-        init_script       = "./modules/create-vm/init.sh"  
-        external_ip       = ["false"]
-        can_ip_forward   = false
-        network_tags = ["no-ip"]
-        additional_disks = []
-    },    
- /*   "spoke" = {
-        zone              = "us-east1-b"        
-        instance_type     = "e2-medium"
-        source_image      = "centos-cloud/centos-stream-9"
-        boot_disk_size_gb = 100
-        boot_disk_type    = "pd-standard" 
-        auto_delete       = true
-        subnet_name       = "vpc-spoke-us-east1-sub"
-        description       = "client that will access all through the network peering"
-        init_script       = "./modules/create-vm/init.sh"  
-        external_ip       = ["false"]
-        can_ip_forward    = false
-        network_tags = ["no-ip"]   
-        additional_disks = []
-    },
-  */  
+  "shared-client01" = {
+      zone              = "us-east1-b"
+      instance_type     = "e2-medium"
+      //gcloud compute images list
+      source_image      = "centos-cloud/centos-7"
+      boot_disk_size_gb = 100
+      boot_disk_type    = "pd-standard" 
+      auto_delete       = true
+      subnet_name       = "vpc-shared-us-east1-sub"
+      description       = "bastion to manage all"
+      init_script       = "./modules/create-vm/init.sh"  
+      external_ip       = ["false"]
+      can_ip_forward   = false
+      network_tags = ["no-ip"]
+      additional_disks = []
+  },
+  "local-client01" = {
+      zone              = "us-east1-b"
+      instance_type     = "e2-medium"
+      //gcloud compute images list
+      #source_image      = "efx-centos-7/efx-centos7"
+      source_image      = "centos-cloud/centos-7"
+      boot_disk_size_gb = 100
+      boot_disk_type    = "pd-standard" 
+      auto_delete       = true
+      subnet_name       = "vpc-local-us-east1-sub"
+      description       = "bastion to manage all"
+      init_script       = "./modules/create-vm/init.sh"  
+      external_ip       = ["false"]
+      can_ip_forward   = false
+      network_tags = ["no-ip"]
+      additional_disks = []
+  },    
 }

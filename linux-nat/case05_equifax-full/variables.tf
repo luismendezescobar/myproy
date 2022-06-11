@@ -45,15 +45,6 @@ variable "firewall_rules" {
   }))
   default = {}
 }
-/*
-variable "cloud_router_map" {
-  type = map(object({    
-    region      = string
-    network     = string
-    bgp         = number
-  }))
-}
-*/
 
 variable "cloud_nat_map" {
   type = map(object({    
@@ -160,8 +151,27 @@ variable "mig_map"  {
   }))
 }
 
+/*
 variable "load_balancer_info01" {type = map }
 variable "load_balancer_info02" {type = map }
+*/
+variable "load_balancer_info" {
+  description = "backend and front end details"
+  type = map(object({
+    region                = string
+    protocol              = string
+    load_balancing_scheme = string
+    session_affinity      = string
+    balancing_mode        = string
+    vpc                   = string
+    forwarding_name       = string
+    ip_protocol           = string
+    all_ports             = bool
+    allow_global_access   = bool
+    network               = string
+    subnetwork            = string
+  }))
+}
 
 
 

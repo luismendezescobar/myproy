@@ -1,6 +1,6 @@
 project_id="playground-s-11-9806b66f"  #update the project here
 //also add the project account on line 527
-/*
+
 vpc_info = {
     "vpc-shared"={
         auto_create_subnetworks=false
@@ -474,9 +474,10 @@ cloud_nat_map ={
     log_config_enable       = true
     log_config_filter       = "ERRORS_ONLY"
   },
-}
 
-*/
+
+
+}
 
 /*
 gcloud compute images list
@@ -611,50 +612,37 @@ load_balancer_info = {
 }
 
 server_vm_info = {
-  "isolated-client01" = {
-      disk_size             = 20
-      compute_image_project = "sec-eng-images-prd-5d4d"
-      gce_image_family      = "efx-centos-7"
-      labels                = {
-        cost_center         = "3429"
-        division            = "0001"
-        cmdb_bus_svc_id     = "asve0048988"
-        data_class          = "1"
-      }
-      machine_type          = "e2-medium"
-      project               = "ta-cse-rd1-dev-npe-d026"
-      service_account       = {
-        email               = "tf-ta-cse-rd1-dev-npe@ta-cse-rd1-dev-npe-d026.iam.gserviceaccount.com"
-        scopes              = ["cloud-platform"]
-      }
-      metadata              = {
-        ssh-keys = "lxm"
-      }
-      startup_script_file    = "./modules/create-vm/init.sh" 
-      subnetwork             = "projects/ta-cse-rd1-dev-npe-d026/regions/us-east1/subnetworks/rd1-dev-vpc-1-useast1-subnet1-isolated"
-      zone              = "us-east1-b"      
+  "shared-client01" = {
+      zone              = "us-east1-b"
+      instance_type     = "e2-medium"
+      //gcloud compute images list
+      source_image      = "centos-cloud/centos-7"
+      boot_disk_size_gb = 100
+      boot_disk_type    = "pd-standard" 
+      auto_delete       = true
+      subnet_name       = "vpc-shared-us-east1-sub"
+      description       = "bastion to manage all"
+      init_script       = "./modules/create-vm/init.sh"  
+      external_ip       = ["false"]
+      can_ip_forward   = false
+      network_tags = ["no-ip"]
+      additional_disks = []
   },
-  "gke1-client01" = {
-      disk_size             = 20
-      compute_image_project = "sec-eng-images-prd-5d4d"
-      gce_image_family      = "efx-centos-7"
-      labels                = {
-        cost_center         = "3429"
-        division            = "0001"
-        cmdb_bus_svc_id     = "asve0048988"
-        data_class          = "1"
-      }
-      machine_type          = "e2-medium"
-      project               = "ta-cse-rd1-dev-npe-d026"
-      service_account       = {
-        email               = "tf-ta-cse-rd1-dev-npe@ta-cse-rd1-dev-npe-d026.iam.gserviceaccount.com"
-        scopes              = ["cloud-platform"]
-      }
-      metadata              = {
-        ssh-keys = "lxm"
-      }
-      startup_script_file    = "./modules/create-vm/init.sh" 
-      subnetwork             = "projects/efx-gcp-ta-svpc-npe-6c9a/regions/us-east1/subnetworks/ta-cse-rd1-dev-npe-gke1-0"
-      zone                   = "us-east1-b"      
+  "local-client01" = {
+      zone              = "us-east1-b"
+      instance_type     = "e2-medium"
+      //gcloud compute images list
+      #source_image      = "efx-centos-7/efx-centos7"
+      source_image      = "centos-cloud/centos-7"
+      boot_disk_size_gb = 100
+      boot_disk_type    = "pd-standard" 
+      auto_delete       = true
+      subnet_name       = "vpc-local-us-east1-sub"
+      description       = "bastion to manage all"
+      init_script       = "./modules/create-vm/init.sh"  
+      external_ip       = ["false"]
+      can_ip_forward   = false
+      network_tags = ["no-ip"]
+      additional_disks = []
   },    
 }

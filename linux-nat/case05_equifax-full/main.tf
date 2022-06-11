@@ -1,3 +1,5 @@
+
+
 module "vpc_creation" {
   for_each = var.vpc_info
   source  = "terraform-google-modules/network/google//modules/vpc"
@@ -119,9 +121,6 @@ output "template" {
   value=module.instance_template_creation.self_link
 }
 
-
-
-
 module "vm_mig_creation" {
   source  = "terraform-google-modules/vm/google//modules/mig"
   version = "7.7.0"
@@ -158,13 +157,25 @@ output "vm_mig_creation02" {
 }
 
 module "lb_creation" {
-  source                    = "./modules/lb-mig"  
-  region                    = "us-east1"
-  load_balancer_info01      = var.load_balancer_info01
-  load_balancer_info02      = var.load_balancer_info02
-  health_check              = module.vm_mig_creation.health_check_self_links 
-  mig_group                 = module.vm_mig_creation.instance_group
-
+  for_each              = var.load_balancer_info
+  source                = "./modules/lb-mig"  
+  region                = each.value.region
+  #load_balancer_info01      = var.load_balancer_info01
+  #load_balancer_info02      = var.load_balancer_info02
+  health_check          = module.vm_mig_creation.health_check_self_links 
+  mig_group             = module.vm_mig_creation.instance_group
+  lb_name               = each.key
+  protocol              = each.value.protocol
+  load_balancing_scheme = each.value.load_balancing_scheme
+  session_affinity      = each.value.session_affinity
+  balancing_mode        = each.value.balancing_mode
+  vpc                   = each.value.vpc
+  forwarding_name       = each.value.forwarding_name
+  ip_protocol           = each.value.ip_protocol
+  all_ports             = each.value.all_ports
+  allow_global_access   = each.value.allow_global_access
+  network               = each.value.network
+  subnetwork            = each.value.subnetwork
 }
 
 module "create_routes" {
@@ -173,8 +184,6 @@ module "create_routes" {
     module.lb_creation
   ]
 }
-
-
 
 module "vm_instances_creation" {
   for_each                  = var.server_vm_info
