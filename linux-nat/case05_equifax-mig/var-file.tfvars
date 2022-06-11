@@ -522,7 +522,7 @@ instance_template_map = {
       ]        
     }]
     service_account={
-      email  = "919628400850@cloudservices.gserviceaccount.com	"
+      email  = "919628400850@cloudservices.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
     
