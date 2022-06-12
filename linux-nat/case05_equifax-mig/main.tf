@@ -175,7 +175,7 @@ module "vm_instances_creation" {
   for_each                  = var.server_vm_info
   source                    = "git::https://github.com/Equifax/7265_GL_GCE_IAAS.git?ref=v2.1.4"
   blocksshkeys              = true
-  disk_size                 = each.value.boot_disk_size_gb
+  disk_size                 = each.value.disk_size
   compute_image_project     = each.value.compute_image_project
   gce_image_family          = each.value.gce_image_family
   labels                    = each.value.labels
