@@ -181,11 +181,14 @@ variable "server_vm_info" {
     disk_size             = number
     compute_image_project = string
     gce_image_family      = string
-    labels                = map 
+    labels                = map(string) 
     machine_type          = string
     project               = string
-    service_account       = map
-    metadata              = map
+    service_account       = object({
+      email   = string
+      scopes  = list(string)
+    })
+    metadata              = map(string)
     startup_script_file   = string
     subnetwork            = string
     zone                  = string
