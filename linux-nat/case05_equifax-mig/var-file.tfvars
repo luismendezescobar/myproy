@@ -651,7 +651,7 @@ server_vm_info = {
         scopes              = ["cloud-platform"]
       }
       metadata              = {
-        ssh-keys = "lxm"
+        ssh-keys = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC0esof5aGX6fplQar8TnlQDthPSQOfYP0GatUTgEvvhQYv+VKQww4kLqOb7nTff+vMATB8PZSVK1hQdW6jv7TOLteZuq66MsP81JnjefnRrTEND5r0/orzw6TH0kr66t+1Uj9HDAyEsC+nJBYvQ+z8rj0vVt1+QVAUXafP50CCUtbRIMmi64DzeofQUjvNO4F+CNvqRBK0T0XrXnFvJVLZUZ+89iZFj5TMmVo7OMRbBzufLBzgIV2tqN9m+/xlU8NKIs4X1ChTRrHOTYojGzSZizGA9m6Zmrza3zDQsqfqIKnb/QsDalbGkmkSUS/zp/oyxASLCbkRPGt3XiqYbFg9VPdLmIDK9jN1w0Ib9kQ9Z/dhsTg5CYwGF0o/yWK6XO8pwUxTX5x7iQKyVivdBRNTNBDhUmHE7k3rG6rpvgOceDPTQviKswqcx5QWLhE3XxUBnf653RgThSYmFfzXBvqtLXCpKVGeEu6m0OTi1EUM4wEpc6gRQPyPYYSwmg4d+9E= lxm412@USE-UUSDEV-005"
       }
       startup_script_file    = "./modules/create-vm/init.sh" 
       subnetwork             = "projects/efx-gcp-ta-svpc-npe-6c9a/regions/us-east1/subnetworks/ta-cse-rd1-dev-npe-gke1-0"
