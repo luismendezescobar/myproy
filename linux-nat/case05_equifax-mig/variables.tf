@@ -6,7 +6,7 @@ variable "project_id" {
 variable tf_service_account {
   type = string
 }
-
+/*
 variable "vpc_info" {
   description = "information about the vpc"
   type = map(object({
@@ -155,10 +155,6 @@ variable "mig_map"  {
   }))
 }
 
-/*
-variable "load_balancer_info01" {type = map }
-variable "load_balancer_info02" {type = map }
-*/
 variable "load_balancer_info" {
   description = "backend and front end details"
   type = map(object({
@@ -176,7 +172,7 @@ variable "load_balancer_info" {
     subnetwork            = string
   }))
 }
-
+*/
 
 
 variable "server_vm_info" {
