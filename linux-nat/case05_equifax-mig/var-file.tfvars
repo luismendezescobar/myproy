@@ -1,4 +1,5 @@
-project_id="playground-s-11-9806b66f"  #update the project here
+project_id         ="ta-cse-rd1-dev-npe-d026"  #update the project here
+tf_service_account ="tf-ta-cse-rd1-dev-npe@ta-cse-rd1-dev-npe-d026.iam.gserviceaccount.com"
 //also add the project account on line 527
 /*
 vpc_info = {

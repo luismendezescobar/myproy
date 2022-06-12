@@ -3,6 +3,10 @@ variable "project_id" {
   type=string
 }
 
+variable tf_service_account {
+  type = string
+}
+
 variable "vpc_info" {
   description = "information about the vpc"
   type = map(object({
