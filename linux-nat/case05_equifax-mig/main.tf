@@ -193,5 +193,5 @@ module "vm_instances_creation" {
 }
 
 output "vm_instances_creation_ip" {
-  value=[for i in vm_instances_creation:i]
+  value=[for i in module.vm_instances_creation:i]
 }
