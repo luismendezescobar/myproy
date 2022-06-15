@@ -2,6 +2,12 @@
 variable "project_id" {
   type=string
 }
+variable "service_account" {
+  type=object({
+    email  = string
+    scopes = set(string)
+  })
+}
 
 variable "vpc_info" {
   description = "information about the vpc"

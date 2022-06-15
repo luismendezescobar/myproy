@@ -21,6 +21,12 @@ resource "google_compute_route" "from_local_to_shared" {
   next_hop_ilb  = data.google_compute_forwarding_rule.local.id
   priority              = 1000
   //tags                  = ["no-ip"]
+  lifecycle {
+    ignore_changes = [
+      "next_hop_ilb"
+    ]
+  }
+
 }
 /* no needed as both networks will have their on nat gateway
 resource "google_compute_route" "from_local_to_internet" {  
@@ -46,6 +52,12 @@ resource "google_compute_route" "from_shared_to_local" {
   next_hop_ilb  = data.google_compute_forwarding_rule.shared.id
   priority              = 1000
   //tags                  = ["no-ip"]
+    lifecycle {
+    ignore_changes = [
+      "next_hop_ilb"
+    ]
+  }
+
 }
 /*
 resource "google_compute_route" "from_local_to_internet" {  

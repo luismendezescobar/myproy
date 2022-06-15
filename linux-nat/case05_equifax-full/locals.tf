@@ -1,9 +1,12 @@
 /*
 
 locals {
+  local_account= {
+    email= var.compute_account
+    scopes= ["cloud-platform"]
+  }
   
-  #file_instances_to_build = { for server in var.fileservers : server.name => server }
-  firewall_rules_map = { for item in var.firewall_rules : item. => server }
+  var.instance_template_map.nat-server.service_account.email= "649715744425-compute@developer.gserviceaccount.com"
 }
 
 */

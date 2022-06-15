@@ -109,7 +109,8 @@ module "instance_template_creation" {
   subnetwork_project  = var.project_id
   //modify the project id in the 
   additional_networks = var.instance_template_map.nat-server.additional_networks
-  service_account     = var.instance_template_map.nat-server.service_account
+  service_account     = var.service_account
+  
 
   depends_on = [
     module.cloud_nat_gtw_create
