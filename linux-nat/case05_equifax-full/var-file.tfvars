@@ -1,4 +1,4 @@
-project_id="playground-s-11-d56ef31e"  #update the project here
+project_id="playground-s-11-cfe13c7c"  #update the project here
 //also add the project account on line 527
 
 vpc_info = {
@@ -522,7 +522,7 @@ instance_template_map = {
       ]        
     }]
     service_account={
-      email  = "12325989730-compute@developer.gserviceaccount.com"
+      email  = "1019878552777-compute@developer.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
     
