@@ -23,7 +23,7 @@ resource "google_compute_route" "from_local_to_shared" {
   //tags                  = ["no-ip"]
   lifecycle {
     ignore_changes = [
-      "next_hop_ilb"
+      next_hop_ilb
     ]
   }
 
