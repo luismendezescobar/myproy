@@ -542,7 +542,7 @@ mig_map = {
       max_unavailable_fixed        = 0
       max_unavailable_percent      = null
       min_ready_sec                = null
-      replacement_method           = "SUBSTITUTE"  #will preserver the name with RECREATE
+      replacement_method           = "RECREATE"  #preserve names with RECREATE,SUBSTITUTE
       minimal_action               = "REPLACE"   #what to do when there is a change in the mig
       type                         = "PROACTIVE" #update right away
     }]
