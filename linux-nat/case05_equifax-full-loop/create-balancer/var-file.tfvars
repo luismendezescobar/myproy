@@ -45,7 +45,7 @@ instance_template_map = {
   },
 }
 
-/*
+
 mig_map = {
   "mig-nat" = {
     hostname                  = "mig-nat"
@@ -95,7 +95,7 @@ mig_map = {
   },
 }
 
-
+/*
 load_balancer_info = {
   "lb-backend-shared" ={    
     region                = "us-east1"

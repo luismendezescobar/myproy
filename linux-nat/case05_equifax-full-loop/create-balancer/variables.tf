@@ -36,7 +36,7 @@ variable "instance_template_map" {
   }))
   default = {}
 }
-/*
+
 variable "mig_map"  {
   type = map(object({
     hostname                  = string
@@ -87,7 +87,7 @@ variable "mig_map"  {
 
   }))
 }
-
+/*
 variable "load_balancer_info" {
   description = "backend and front end details"
   type = map(object({

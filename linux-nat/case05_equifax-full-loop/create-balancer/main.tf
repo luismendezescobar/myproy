@@ -42,12 +42,18 @@ output "name3" {
 locals {
   map_mig_self_links={for key, value in module.instance_template_creation:key=>value.self_link}
   #self_link_real= join("",[for key,value in local.map_mig_self_links:value if key=="nat-server"])
+  mig_map={for key, value in var.mig_map:key=>value}
+
 }
 output "name_final_good" {
   value=local.map_mig_self_links
 }
 //with this one we remove the brackets and convert to string
 //instance_template=join("",[for key,value in local.map_mig_self_links:value if key=="nat-server"])
+output "name4" {
+  value = local.mig_map
+  
+}
 
 
 
