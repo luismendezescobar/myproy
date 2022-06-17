@@ -88,10 +88,11 @@ variable "mig_map"  {
 
   }))
 }
-/*
+
 variable "load_balancer_info" {
   description = "backend and front end details"
   type = map(object({
+    mig_key               = string
     region                = string
     protocol              = string
     load_balancing_scheme = string
@@ -107,7 +108,7 @@ variable "load_balancer_info" {
   }))
 }
 
-
+/*
 
 variable "server_vm_info" {
   description = "the number of DB server instances"

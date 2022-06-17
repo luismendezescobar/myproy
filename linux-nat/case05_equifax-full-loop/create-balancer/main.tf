@@ -48,6 +48,8 @@ locals {
   mig_self_links = { for key, value in module.vm_mig_creation : key => value.self_link }
   health_check_self_links = { for key, value in module.vm_mig_creation : key => value.health_check_self_links }
   
+  //this is a test only 
+  hc_test=[for key, value in local.health_check_self_links : value if key == each.value.mig_key]  
 
 }
 /*
@@ -93,13 +95,18 @@ output "vm_mig_creation02" {
   //value = module.vm_mig_creation.self_link
   value = local.mig_self_links
 }
-/*
+
+output "vm_mig_creation03" {
+  value=local.hc_test
+}
+
+
 module "lb_creation" {
-  for_each              = var.load_balancer_info
   source                = "./modules/lb-mig"  
+  for_each              = var.load_balancer_info  
   region                = each.value.region
-  health_check          = module.vm_mig_creation.health_check_self_links 
-  mig_group             = module.vm_mig_creation.instance_group
+  health_check          = [for key, value in local.health_check_self_links : value if key == each.value.mig_key]  
+  mig_group             = join("", [for key, value in local.mig_self_links : value if key == each.value.mig_key])  
   lb_name               = each.key
   protocol              = each.value.protocol
   load_balancing_scheme = each.value.load_balancing_scheme
@@ -113,7 +120,7 @@ module "lb_creation" {
   network               = each.value.network
   subnetwork            = each.value.subnetwork
 }
-
+/*
 module "create_routes" {
   source                    = "./modules/gcp-routes"  
   depends_on = [

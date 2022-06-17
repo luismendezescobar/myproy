@@ -1,5 +1,5 @@
 //only for the backend
-#project_id="playground-s-11-e2db9207"
+#project_id="playground-s-11-cc118e44"
 /*
 gcloud compute images list
 
@@ -11,10 +11,10 @@ FAMILY: centos-stream-8
 */
 
 instance_template_map = {
-  "playground-s-11-e2db9207-01" = {
-    project_id           = "playground-s-11-e2db9207"
+  "playground-s-11-cc118e44-01" = {
+    project_id           = "playground-s-11-cc118e44"
     subnetwork           = "vpc-shared-us-central1-sub"
-    subnetwork_project   = "playground-s-11-e2db9207"
+    subnetwork_project   = "playground-s-11-cc118e44"
     source_image         = "centos-7"
     source_image_family  = "centos-7"
     source_image_project = "centos-cloud"
@@ -22,12 +22,12 @@ instance_template_map = {
     additional_networks = [{
       network            = "vpc-local"
       subnetwork         = "vpc-local-us-central1-sub"
-      subnetwork_project = "playground-s-11-e2db9207"
+      subnetwork_project = "playground-s-11-cc118e44"
       network_ip         = ""
       access_config      = []
     }]
     service_account = {
-      email  = "852885157260-compute@developer.gserviceaccount.com"
+      email  = "990449043808-compute@developer.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
     region = "us-central1"
@@ -46,8 +46,8 @@ instance_template_map = {
 
 
 mig_map = {
-  "playground-s-11-e2db9207-01" = {
-    project_id           = "playground-s-11-e2db9207"    
+  "playground-s-11-cc118e44-01" = {
+    project_id                = "playground-s-11-cc118e44"    
     region                    = "us-central1"
     distribution_policy_zones = ["us-central1-a", "us-central1-b"]
     hostname                  = "mig-nat-us-central1"
@@ -96,38 +96,44 @@ mig_map = {
   },
 }
 
-/*
+
 load_balancer_info = {
-  "lb-backend-shared" ={    
-    region                = "us-east1"
-    protocol              = "TCP"
-    load_balancing_scheme = "INTERNAL" 
-    session_affinity      = "CLIENT_IP"
-    balancing_mode        = "CONNECTION"
-    vpc                   = "vpc-shared"
+  "playground-s-11-cc118e44-01-lb-shared" ={    
+    mig_key               = "playground-s-11-cc118e44-01"
+    region                = "us-central1"
     forwarding_name       = "forwarding-rule-shared"   
-    ip_protocol           = "TCP"    
-    all_ports             = true
-    allow_global_access   = false
     network               = "vpc-shared"
-    subnetwork            = "vpc-shared-us-east1-sub"
-  },
-  "lb-backend-local" = {
-    region                = "us-east1"
+    subnetwork            = "vpc-shared-us-central1-sub"
+    vpc                   = "vpc-shared"    
+    //these not need to modify
     protocol              = "TCP"
     load_balancing_scheme = "INTERNAL" 
     session_affinity      = "CLIENT_IP"
-    balancing_mode        = "CONNECTION"
-    vpc                   = "vpc-local"
-    forwarding_name       = "forwarding-rule-local"   
+    balancing_mode        = "CONNECTION"    
     ip_protocol           = "TCP"    
     all_ports             = true
     allow_global_access   = false
+    
+  },
+  "playground-s-11-cc118e44-01-lb-local" = {
+    mig_key               = "playground-s-11-cc118e44-01"
+    region                = "us-central1"
+    forwarding_name       = "forwarding-rule-local"   
     network               = "vpc-local"
-    subnetwork            = "vpc-local-us-east1-sub"            
+    subnetwork            = "vpc-local-us-central1-sub"            
+    vpc                   = "vpc-local"
+
+    protocol              = "TCP"
+    load_balancing_scheme = "INTERNAL" 
+    session_affinity      = "CLIENT_IP"
+    balancing_mode        = "CONNECTION"    
+    ip_protocol           = "TCP"    
+    all_ports             = true
+    allow_global_access   = false
+    
   }
 }
-
+/*
 server_vm_info = {
   "shared-client01" = {
       zone              = "us-east1-b"
