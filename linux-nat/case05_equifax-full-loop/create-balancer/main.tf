@@ -44,7 +44,7 @@ output "name3" {
 
 locals {
   mig_tpl_self_links = { for key, value in module.instance_template_creation : key => value.self_link }
-  #tpl_self_link_real     = join("", [for key, value in local.mig_tpl_self_links : value if key == "projectx-nat-server"])
+
   mig_self_links = { for key, value in module.vm_mig_creation : key => value.self_link }
   health_check_self_links = { for key, value in module.vm_mig_creation : key => value.health_check_self_links }
   
@@ -68,7 +68,7 @@ module "vm_mig_creation" {
   project_id                = each.value.project_id
   region                    = each.value.region
   distribution_policy_zones = each.value.distribution_policy_zones
-  instance_template         = join("", [for key, value in local.map_mig_self_links : value if key == each.key])
+  instance_template         = join("", [for key, value in local.mig_tpl_self_links : value if key == each.key])
 
   hostname      = each.value.hostname
   update_policy = each.value.update_policy
