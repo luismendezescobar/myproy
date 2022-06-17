@@ -30,11 +30,10 @@ instance_template_map = {
       email  = "852885157260-compute@developer.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
-    //zone              = "us-central1-b"
     region = "us-central1"
+    name_prefix         = "nat-server-us-central1"
     //these are not required to modify
-    network_tags        = []
-    name_prefix         = "nat-server"
+    network_tags        = []    
     machine_type        = "e2-medium"
     disk_size_gb        = "50"
     disk_type           = "pd-standard"
