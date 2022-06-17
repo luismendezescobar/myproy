@@ -1,11 +1,9 @@
-//////////////////////////////////////////////////////////
-project_id="playground-s-11-96e22a43"  #update the project here
+project_id="playground-s-11-b5c1b21e"  #update the project here
 //also add the project account on line 527, no needed anymore
 service_account= {
-  email= "649715744425-compute@developer.gserviceaccount.com"
+  email= "313798316525-compute@developer.gserviceaccount.com"
   scopes= ["cloud-platform"]
 }
-  
 
 
 vpc_info = {
@@ -17,14 +15,7 @@ vpc_info = {
                 subnet_ip       = "10.10.10.0/24" 
                 subnet_region   =  "us-east1"
                 description     = "This subnet has a description"
-            },
-            {
-                subnet_name     = "vpc-shared-us-central1-sub"
-                subnet_ip       = "10.10.13.0/24" 
-                subnet_region   =  "us-central1"
-                description     = "This subnet has a description"
-            },
-
+            }
         ]
         secondary_ranges={}
     }
@@ -127,7 +118,7 @@ firewall_rules = {
       description           =null
       direction             ="INGRESS"
       priority              =null
-      ranges                =["10.10.10.0/24","10.10.13.0/24"]
+      ranges                =["10.10.10.0/24"]
       source_tags           =null
       source_service_accounts = null
       target_tags             = null
@@ -287,7 +278,7 @@ firewall_rules = {
       description           =null
       direction             ="INGRESS"
       priority              =null
-      ranges                =["10.10.10.0/24","10.10.13.0/24"]
+      ranges                =["10.10.10.0/24"]
       source_tags           =null
       source_service_accounts = null
       target_tags             = null
@@ -461,8 +452,8 @@ firewall_rules = {
 
 cloud_nat_map ={
   "cloud-nat-us-east1-vpc-shared" = {
-    region                  ="us-central1"
-    router_name             = "router-nat-us-central1-vpc-shared"
+    region                  ="us-east1"
+    router_name             = "router-nat-us-east1-vpc-shared"
     bgp                     = {
       "asn"               ="64514",
       "advertise_mode"    = "DEFAULT",
@@ -506,16 +497,16 @@ FAMILY: centos-stream-8
 instance_template_map = {
   "nat-server" = {
     name_prefix       = "nat-server"
-    zone              = "us-central1-b"
-    region            = "us-central1"
+    zone              = "us-east1-b"
+    region            = "us-east1"
     machine_type      = "e2-medium"
-    source_image      = "centos-7"
-    source_image_family="centos-7"
+    source_image      = "centos-stream-8"
+    source_image_family="centos-stream-8"
     source_image_project="centos-cloud"
     disk_size_gb      = "100"
     disk_type         = "pd-standard" 
     auto_delete       = "true"
-    subnetwork        = "vpc-shared-us-central1-sub"
+    subnetwork        = "vpc-shared-us-east1-sub"
     subnetwork_project= ""  //use var.project_id instead
     //subnet_name2      = "vpc-local-us-east1-sub"
     #description       = "linux centos nat server"
@@ -661,4 +652,3 @@ server_vm_info = {
       additional_disks = []
   },    
 }
-

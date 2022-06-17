@@ -1,69 +1,10 @@
 
-variable "project_id" {
-  type=string
-}
-
-variable "vpc_info" {
-  description = "information about the vpc"
-  type = map(object({
-    auto_create_subnetworks = bool
-    subnets = list(map(string)) //you can put any string that you want
-    secondary_ranges=map(list(object({ 
-      range_name = string
-      ip_cidr_range = string 
-    })))
-  }))
-  default = {}
-}
-
-variable "firewall_rules" {
-  description = "Firewall rules"
-  type = map(object({
-    network_name       = string
-    rules=list(object({        
-      name        =string
-      description =string
-      direction   =string
-      priority    =string
-      ranges      =list(string)
-      source_tags =list(string)
-      source_service_accounts = list(string)
-      target_tags             = list(string)
-      target_service_accounts = list(string)
-      allow   = list(object({
-        protocol    = string
-        ports       = list(string)              
-      }))
-      deny = list(object({
-        protocol = string
-        ports    = list(string)
-      }))
-      log_config = object({
-        metadata = string
-      })
-    }))
-  }))
-  default = {}
-}
-
-variable "cloud_nat_map" {
-  type = map(object({    
-    region      = string    
-    router_name =string
-    bgp         = any
-    network     = string
-    nat_ip_allocate_option  = bool
-    source_subnetwork_ip_ranges_to_nat = string
-    log_config_enable       = bool
-    log_config_filter       = string
-
-  }))
-}
 
 
 variable "instance_template_map" {
   description = "the number of DB server instances"
   type = map(object({
+    project_id        = string
     name_prefix       = string
     zone              = string
     region            = string
@@ -99,7 +40,7 @@ variable "instance_template_map" {
   }))
   default = {}
 }
-
+/*
 variable "mig_map"  {
   type = map(object({
     hostname                  = string
@@ -151,10 +92,6 @@ variable "mig_map"  {
   }))
 }
 
-/*
-variable "load_balancer_info01" {type = map }
-variable "load_balancer_info02" {type = map }
-*/
 variable "load_balancer_info" {
   description = "backend and front end details"
   type = map(object({
@@ -198,3 +135,4 @@ variable "server_vm_info" {
   }))
   default = {}
 }
+*/
