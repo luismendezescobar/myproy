@@ -105,7 +105,7 @@ module "lb_creation" {
   source                = "./modules/lb-mig"  
   for_each              = var.load_balancer_info  
   region                = each.value.region
-  health_check          = [for key, value in local.health_check_self_links : value if key == each.value.mig_key]  
+  health_check          = [for key, value in local.health_check_self_links : value[0] if key == each.value.mig_key]  
   mig_group             = join("", [for key, value in local.mig_self_links : value if key == each.value.mig_key])  
   lb_name               = each.key
   protocol              = each.value.protocol
