@@ -49,7 +49,7 @@ locals {
   health_check_self_links = { for key, value in module.vm_mig_creation : key => value.health_check_self_links }
   
   //this is a test only 
-  hc_test=[for key, value in local.health_check_self_links : value if key == each.value.mig_key]  
+  hc_test=[for key, value in local.health_check_self_links : value if key == "playground-s-11-cc118e44-01"]  
 
 }
 /*
