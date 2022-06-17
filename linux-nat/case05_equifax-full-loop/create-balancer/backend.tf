@@ -14,5 +14,5 @@ terraform {
 }
 provider "google" {
   #project = "playground-s-11-74401450"
-  project = var.project_id
+  #project = var.project_id
 }

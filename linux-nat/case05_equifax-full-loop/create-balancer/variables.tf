@@ -1,6 +1,3 @@
-
-
-
 variable "instance_template_map" {
   description = "the number of DB server instances"
   type = map(object({
@@ -15,7 +12,6 @@ variable "instance_template_map" {
     disk_size_gb      = string    
     disk_type         = string
     network_tags      = list(string)    
-    #description       = string
     init_script       = string
     auto_delete       = string        
     subnetwork        = string

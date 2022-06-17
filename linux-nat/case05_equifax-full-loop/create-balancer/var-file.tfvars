@@ -1,4 +1,5 @@
-
+//only for the backend
+project_id="playground-s-11-0a37ddf4"
 /*
 gcloud compute images list
 
@@ -23,9 +24,7 @@ instance_template_map = {
     disk_type         = "pd-standard" 
     auto_delete       = "true"
     subnetwork        = "vpc-shared-us-east1-sub"
-    subnetwork_project= ""  //use var.project_id instead
-    //subnet_name2      = "vpc-local-us-east1-sub"
-    #description       = "linux centos nat server"
+    subnetwork_project= "playground-s-11-0a37ddf4"          
     init_script       = "./modules/nat_init.sh"  
     external_ip       = ["false"]
     can_ip_forward   = "true"
@@ -38,9 +37,8 @@ instance_template_map = {
       network_ip    = ""
       access_config  = []        
     }]
-    //this part will be initalized in the top
     service_account={
-      email  = ""
+      email  = "267071246628-compute@developer.gserviceaccount.com	"
       scopes = ["cloud-platform"]
     }
     
