@@ -50,8 +50,8 @@ mig_map = {
     project_id           = "playground-s-11-e2db9207"    
     region                    = "us-central1"
     distribution_policy_zones = ["us-central1-a", "us-central1-b"]
+    hostname                  = "mig-nat-us-central1"
     //these are not needed to modify
-    hostname                  = "mig-nat"
     update_policy = [{
       instance_redistribution_type = "PROACTIVE" #tries to maintain the zon distribution
       max_surge_fixed              = 3
