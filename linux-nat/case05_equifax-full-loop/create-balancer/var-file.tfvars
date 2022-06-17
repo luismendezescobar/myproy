@@ -50,7 +50,7 @@ mig_map = {
   "playground-s-11-e2db9207" = {
     project_id           = "playground-s-11-e2db9207"    
     region                    = "us-central1"
-    distribution_policy_zones = ["us-central1-a", "us-east1-b"]
+    distribution_policy_zones = ["us-central1-a", "us-central1-b"]
     //these are not needed to modify
     hostname                  = "mig-nat"
     update_policy = [{
