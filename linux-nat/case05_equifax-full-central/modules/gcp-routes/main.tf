@@ -11,7 +11,7 @@ resource "google_compute_route" "from_local_to_internet" {
 */
 data "google_compute_forwarding_rule" "local" {
   name   ="forwarding-rule-local"  
-  region = "us-east1"
+  region = "us-central1"
 }
 
 resource "google_compute_route" "from_local_to_shared" {  
@@ -42,7 +42,7 @@ resource "google_compute_route" "from_local_to_internet" {
 
 data "google_compute_forwarding_rule" "shared" {
   name   ="forwarding-rule-shared"  
-  region = "us-east1"
+  region = "us-central1"
 }
 
 resource "google_compute_route" "from_shared_to_local" {  
