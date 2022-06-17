@@ -12,13 +12,13 @@ FAMILY: centos-stream-8
 
 instance_template_map = {
   "projectx-nat-server" = {
-    project_id        = "project_id"
+    project_id        = "playground-s-11-0a37ddf4"
     name_prefix       = "nat-server"
     zone              = "us-east1-b"
     region            = "us-east1"
     machine_type      = "e2-medium"
-    source_image      = "centos-stream-8"
-    source_image_family="centos-stream-8"
+    source_image      = "centos-7"
+    source_image_family="centos-7"
     source_image_project="centos-cloud"
     disk_size_gb      = "100"
     disk_type         = "pd-standard" 
@@ -33,7 +33,7 @@ instance_template_map = {
     additional_networks = [ {
       network       = "vpc-local"
       subnetwork    = "vpc-local-us-east1-sub"
-      subnetwork_project  = ""
+      subnetwork_project  = "playground-s-11-0a37ddf4"
       network_ip    = ""
       access_config  = []        
     }]
