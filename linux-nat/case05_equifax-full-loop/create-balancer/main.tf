@@ -119,6 +119,9 @@ module "lb_creation" {
   allow_global_access   = each.value.allow_global_access
   network               = each.value.network
   subnetwork            = each.value.subnetwork
+  depends_on = [
+    module.vm_mig_creation
+  ]
 }
 /*
 module "create_routes" {
