@@ -56,42 +56,38 @@ output "name_final_good" {
 
 
 
-/*
+
 module "vm_mig_creation" {
-  source  = "terraform-google-modules/vm/google//modules/mig"
-  version = "7.7.0"
-  # insert the 4 required variables here
-  project_id            = var.project_id
-  hostname              = var.mig_map.mig-nat.hostname
-  region                = var.mig_map.mig-nat.region
-  #autoscaling_mode      = "ON"
-  instance_template     = module.instance_template_creation.self_link   //we want this one
-  //target_size               = var.target_size
-  //target_pools              = var.target_pools
-  distribution_policy_zones =var.mig_map.mig-nat.distribution_policy_zones
-  update_policy         = var.mig_map.mig-nat.update_policy
-   // health check 
-  health_check          = var.mig_map.mig-nat.health_check
+  source                    = "terraform-google-modules/vm/google//modules/mig"
+  version                   = "7.7.0"
+  for_each                  = var.mig_map
+  project_id                = each.value.project_id
+  region                    = each.value.region
+  distribution_policy_zones = each.value.distribution_policy_zones
+  instance_template         = join("", [for key, value in local.map_mig_self_links : value if key == each.key])
 
+  hostname      = each.value.hostname
+  update_policy = each.value.update_policy
+  // health check 
+  health_check = each.value.health_check
   // autoscaler 
-  autoscaling_enabled          = var.mig_map.mig-nat.autoscaling_enabled
-  max_replicas                 = var.mig_map.mig-nat.max_replicas
-  min_replicas                 = var.mig_map.mig-nat.min_replicas
-  cooldown_period              = var.mig_map.mig-nat.cooldown_period
-  autoscaling_cpu              = var.mig_map.mig-nat.autoscaling_cpu
-  autoscaling_metric           = var.mig_map.mig-nat.autoscaling_metric
-  autoscaling_lb               = var.mig_map.mig-nat.autoscaling_lb
-  autoscaling_scale_in_control = var.mig_map.mig-nat.autoscaling_scale_in_control
-
+  autoscaling_enabled          = each.value.autoscaling_enabled
+  max_replicas                 = each.value.max_replicas
+  min_replicas                 = each.value.min_replicas
+  cooldown_period              = each.value.cooldown_period
+  autoscaling_cpu              = each.value.autoscaling_cpu
+  autoscaling_metric           = each.value.autoscaling_metric
+  autoscaling_lb               = each.value.autoscaling_lb
+  autoscaling_scale_in_control = each.value.autoscaling_scale_in_control
 }
 
 output "vm_mig_creation01" {
-  value=module.vm_mig_creation.health_check_self_links 
+  value = module.vm_mig_creation.health_check_self_links
 }
 output "vm_mig_creation02" {
-  value=module.vm_mig_creation.self_link  
+  value = module.vm_mig_creation.self_link
 }
-
+/*
 module "lb_creation" {
   for_each              = var.load_balancer_info
   source                = "./modules/lb-mig"  

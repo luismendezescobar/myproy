@@ -32,7 +32,7 @@ instance_template_map = {
     }
     //zone              = "us-central1-b"
     region = "us-central1"
-
+    //these are not required to modify
     network_tags        = []
     name_prefix         = "nat-server"
     machine_type        = "e2-medium"
@@ -47,10 +47,12 @@ instance_template_map = {
 
 
 mig_map = {
-  "mig-nat" = {
-    hostname                  = "mig-nat"
+  "playground-s-11-e2db9207" = {
+    project_id           = "playground-s-11-e2db9207"    
     region                    = "us-central1"
     distribution_policy_zones = ["us-central1-a", "us-east1-b"]
+    //these are not needed to modify
+    hostname                  = "mig-nat"
     update_policy = [{
       instance_redistribution_type = "PROACTIVE" #tries to maintain the zon distribution
       max_surge_fixed              = 3
