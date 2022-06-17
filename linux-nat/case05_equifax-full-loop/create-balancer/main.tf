@@ -100,7 +100,7 @@ output "vm_mig_creation03" {
   value=local.hc_test
 }
 
-
+/*
 module "lb_creation" {
   source                = "./modules/lb-mig"  
   for_each              = var.load_balancer_info  
@@ -123,7 +123,7 @@ module "lb_creation" {
     module.vm_mig_creation
   ]
 }
-/*
+
 module "create_routes" {
   source                    = "./modules/gcp-routes"  
   depends_on = [
