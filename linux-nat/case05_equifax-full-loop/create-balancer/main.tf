@@ -41,19 +41,15 @@ output "name3" {
 
 locals {
   map_mig_self_links={for key, value in module.instance_template_creation:key=>value.self_link}
-  #self_link_real= join("",[for key,value in local.map_mig_self_links:value if key=="nat-server"])
-  mig_map={for key, value in var.mig_map:key=>value}
+  self_link_real= join("",[for key,value in local.map_mig_self_links:value if key=="projectx-nat-server"])
+  #mig_map={for key, value in var.mig_map:key=>value}
 
 }
 output "name_final_good" {
-  value=local.map_mig_self_links
+  value=local.self_link_real
 }
 //with this one we remove the brackets and convert to string
 //instance_template=join("",[for key,value in local.map_mig_self_links:value if key=="nat-server"])
-output "name4" {
-  value = local.mig_map
-  
-}
 
 
 
@@ -66,7 +62,7 @@ module "vm_mig_creation" {
   hostname              = var.mig_map.mig-nat.hostname
   region                = var.mig_map.mig-nat.region
   #autoscaling_mode      = "ON"
-  instance_template     = module.instance_template_creation.self_link
+  instance_template     = module.instance_template_creation.self_link   //we want this one
   //target_size               = var.target_size
   //target_pools              = var.target_pools
   distribution_policy_zones =var.mig_map.mig-nat.distribution_policy_zones

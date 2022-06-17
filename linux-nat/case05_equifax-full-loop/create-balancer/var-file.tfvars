@@ -1,5 +1,5 @@
 //only for the backend
-project_id="playground-s-11-0a37ddf4"
+#project_id="playground-s-11-e2db9207"
 /*
 gcloud compute images list
 
@@ -12,10 +12,10 @@ FAMILY: centos-stream-8
 
 instance_template_map = {
   "projectx-nat-server" = {
-    project_id        = "playground-s-11-0a37ddf4"
+    project_id        = "playground-s-11-e2db9207"
     name_prefix       = "nat-server"
-    zone              = "us-east1-b"
-    region            = "us-east1"
+    zone              = "us-central1-b"
+    region            = "us-central1"
     machine_type      = "e2-medium"
     source_image      = "centos-7"
     source_image_family="centos-7"
@@ -23,8 +23,8 @@ instance_template_map = {
     disk_size_gb      = "100"
     disk_type         = "pd-standard" 
     auto_delete       = "true"
-    subnetwork        = "vpc-shared-us-east1-sub"
-    subnetwork_project= "playground-s-11-0a37ddf4"          
+    subnetwork        = "vpc-shared-us-central1-sub"
+    subnetwork_project= "playground-s-11-e2db9207"          
     init_script       = "./modules/nat_init.sh"  
     external_ip       = ["false"]
     can_ip_forward   = "true"
@@ -32,13 +32,13 @@ instance_template_map = {
     on_host_maintenance ="MIGRATE"
     additional_networks = [ {
       network       = "vpc-local"
-      subnetwork    = "vpc-local-us-east1-sub"
-      subnetwork_project  = "playground-s-11-0a37ddf4"
+      subnetwork    = "vpc-local-us-central1-sub"
+      subnetwork_project  = "playground-s-11-e2db9207"
       network_ip    = ""
       access_config  = []        
     }]
     service_account={
-      email  = "267071246628-compute@developer.gserviceaccount.com	"
+      email  = "852885157260-compute@developer.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
     
@@ -49,8 +49,8 @@ instance_template_map = {
 mig_map = {
   "mig-nat" = {
     hostname                  = "mig-nat"
-    region                    ="us-east1"
-    distribution_policy_zones =["us-east1-b","us-east1-c"]
+    region                    ="us-central1"
+    distribution_policy_zones =["us-central1-a","us-east1-b"]
     update_policy =[{
       instance_redistribution_type = "PROACTIVE" #tries to maintain the zon distribution
       max_surge_fixed              = 3

@@ -1,5 +1,5 @@
-project_id="playground-s-11-0a37ddf4"  #update the project here
-//also add the project account on line 527, no needed anymore
+project_id="playground-s-11-e2db9207"  #update the project here
+
 
 
 vpc_info = {
@@ -7,9 +7,9 @@ vpc_info = {
         auto_create_subnetworks=false
         subnets = [
             {
-                subnet_name     = "vpc-shared-us-east1-sub"
+                subnet_name     = "vpc-shared-us-central1-sub"
                 subnet_ip       = "10.10.10.0/24" 
-                subnet_region   =  "us-east1"
+                subnet_region   =  "us-central1"
                 description     = "This subnet has a description"
             }
         ]
@@ -19,9 +19,9 @@ vpc_info = {
         auto_create_subnetworks=false
         subnets = [
             {
-                subnet_name     = "vpc-local-us-east1-sub"
+                subnet_name     = "vpc-local-us-central1-sub"
                 subnet_ip       = "10.10.11.0/24" 
-                subnet_region   =  "us-east1"
+                subnet_region   =  "us-central1"
             }
         ]
         secondary_ranges={}
@@ -170,38 +170,6 @@ firewall_rules = {
       }      
     } ]    
   },
-  "vpc-shared-allow-from-spoke"= {
-    network_name = "vpc-shared"    
-    rules = [ {
-      name                  ="vpc-shared-allow-from-spoke"
-      description           =null
-      direction             ="INGRESS"
-      priority              =null
-      ranges                =["10.10.12.0/24"]
-      source_tags           =null
-      source_service_accounts = null
-      target_tags             = null
-      target_service_accounts = null
-      allow=[
-        {
-          protocol = "icmp"
-          ports = []
-        },
-        {
-          protocol = "tcp"
-          ports = []
-        },
-        {
-          protocol = "udp"
-          ports = []
-        },            
-      ]
-      deny=[]
-      log_config={
-          metadata="INCLUDE_ALL_METADATA"
-      }      
-    } ]    
-  },
   "vpc-local-allow-from-shared"= {
     network_name = "vpc-local"    
     rules = [ {
@@ -210,38 +178,6 @@ firewall_rules = {
       direction             ="INGRESS"
       priority              =null
       ranges                =["10.10.10.0/24"]
-      source_tags           =null
-      source_service_accounts = null
-      target_tags             = null
-      target_service_accounts = null
-      allow=[
-        {
-          protocol = "icmp"
-          ports = []
-        },
-        {
-          protocol = "tcp"
-          ports = []
-        },
-        {
-          protocol = "udp"
-          ports = []
-        },            
-      ]
-      deny=[]
-      log_config={
-          metadata="INCLUDE_ALL_METADATA"
-      }      
-    } ]    
-  },
-  "vpc-local-allow-from-spoke"= {
-    network_name = "vpc-local"    
-    rules = [ {
-      name                  ="vpc-local-allow-from-spoke"
-      description           =null
-      direction             ="INGRESS"
-      priority              =null
-      ranges                =["10.10.12.0/24"]
       source_tags           =null
       source_service_accounts = null
       target_tags             = null
@@ -319,8 +255,8 @@ firewall_rules = {
 
 cloud_nat_map ={
   "cloud-nat-us-east1-vpc-shared" = {
-    region                  ="us-east1"
-    router_name             = "router-nat-us-east1-vpc-shared"
+    region                  ="us-central1"
+    router_name             = "router-nat-us-central1-vpc-shared"
     bgp                     = {
       "asn"               ="64514",
       "advertise_mode"    = "DEFAULT",
@@ -333,8 +269,8 @@ cloud_nat_map ={
     log_config_filter       = "ERRORS_ONLY"
   },
   "cloud-nat-us-east1-vpc-local" = {
-    region                  ="us-east1"
-    router_name             = "router-nat-us-east1-vpc-local"
+    region                  ="us-central1"
+    router_name             = "router-nat-us-central1-vpc-local"
     bgp                     = {
       "asn"               ="64514",
       "advertise_mode"    = "DEFAULT",
