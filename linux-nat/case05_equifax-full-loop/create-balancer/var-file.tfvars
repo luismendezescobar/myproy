@@ -11,37 +11,37 @@ FAMILY: centos-stream-8
 */
 
 instance_template_map = {
-  "projectx-nat-server" = {
-    project_id        = "playground-s-11-e2db9207"
-    name_prefix       = "nat-server"
-    zone              = "us-central1-b"
-    region            = "us-central1"
-    machine_type      = "e2-medium"
-    source_image      = "centos-7"
-    source_image_family="centos-7"
-    source_image_project="centos-cloud"
-    disk_size_gb      = "100"
-    disk_type         = "pd-standard" 
-    auto_delete       = "true"
-    subnetwork        = "vpc-shared-us-central1-sub"
-    subnetwork_project= "playground-s-11-e2db9207"          
-    init_script       = "./modules/nat_init.sh"  
-    external_ip       = ["false"]
-    can_ip_forward   = "true"
-    network_tags = []  
-    on_host_maintenance ="MIGRATE"
-    additional_networks = [ {
-      network       = "vpc-local"
-      subnetwork    = "vpc-local-us-central1-sub"
-      subnetwork_project  = "playground-s-11-e2db9207"
-      network_ip    = ""
-      access_config  = []        
+  "playground-s-11-e2db9207" = {
+    project_id           = "playground-s-11-e2db9207"
+    subnetwork           = "vpc-shared-us-central1-sub"
+    subnetwork_project   = "playground-s-11-e2db9207"
+    source_image         = "centos-7"
+    source_image_family  = "centos-7"
+    source_image_project = "centos-cloud"
+    init_script          = "./modules/nat_init.sh"
+    additional_networks = [{
+      network            = "vpc-local"
+      subnetwork         = "vpc-local-us-central1-sub"
+      subnetwork_project = "playground-s-11-e2db9207"
+      network_ip         = ""
+      access_config      = []
     }]
-    service_account={
+    service_account = {
       email  = "852885157260-compute@developer.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
-    
+    //zone              = "us-central1-b"
+    region = "us-central1"
+
+    network_tags        = []
+    name_prefix         = "nat-server"
+    machine_type        = "e2-medium"
+    disk_size_gb        = "50"
+    disk_type           = "pd-standard"
+    auto_delete         = "true"
+ //  external_ip         = ["false"]
+    can_ip_forward      = "true"
+    on_host_maintenance = "MIGRATE"
   },
 }
 
@@ -49,20 +49,20 @@ instance_template_map = {
 mig_map = {
   "mig-nat" = {
     hostname                  = "mig-nat"
-    region                    ="us-central1"
-    distribution_policy_zones =["us-central1-a","us-east1-b"]
-    update_policy =[{
+    region                    = "us-central1"
+    distribution_policy_zones = ["us-central1-a", "us-east1-b"]
+    update_policy = [{
       instance_redistribution_type = "PROACTIVE" #tries to maintain the zon distribution
       max_surge_fixed              = 3
       max_surge_percent            = null
       max_unavailable_fixed        = 0
       max_unavailable_percent      = null
       min_ready_sec                = null
-      replacement_method           = "SUBSTITUTE"  #preserve names with RECREATE,SUBSTITUTE
-      minimal_action               = "REPLACE"   #what to do when there is a change in the mig
-      type                         = "PROACTIVE" #update right away
+      replacement_method           = "SUBSTITUTE" #preserve names with RECREATE,SUBSTITUTE
+      minimal_action               = "REPLACE"    #what to do when there is a change in the mig
+      type                         = "PROACTIVE"  #update right away
     }]
-    health_check={
+    health_check = {
       type                = "tcp"
       initial_delay_sec   = 30
       check_interval_sec  = 30
@@ -76,18 +76,18 @@ mig_map = {
       request_path        = ""
       host                = ""
     }
-    autoscaling_enabled     =true
-    max_replicas            = 5
-    min_replicas            = 2
-    cooldown_period         = 60
-    autoscaling_cpu         = [
+    autoscaling_enabled = true
+    max_replicas        = 5
+    min_replicas        = 2
+    cooldown_period     = 60
+    autoscaling_cpu = [
       {
         target = 0.6
       }
     ]
-    autoscaling_metric      = []
-    autoscaling_lb          = []
-    autoscaling_scale_in_control={
+    autoscaling_metric = []
+    autoscaling_lb     = []
+    autoscaling_scale_in_control = {
       fixed_replicas   = null
       percent_replicas = null
       time_window_sec  = null

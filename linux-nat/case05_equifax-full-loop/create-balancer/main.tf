@@ -1,52 +1,55 @@
 
 module "instance_template_creation" {
-  for_each        = var.instance_template_map
-  source          = "terraform-google-modules/vm/google//modules/instance_template"
-  version         = "~> 7.7.0"
-  name_prefix     = each.value.name_prefix
-  project_id      = each.value.project_id
-  region          = each.value.region
-  machine_type    = each.value.machine_type
-  tags            = each.value.network_tags
-  can_ip_forward  = each.value.can_ip_forward
-  startup_script  = file(each.value.init_script)
-  auto_delete     = each.value.auto_delete
-  disk_size_gb    = each.value.disk_size_gb
-  source_image_family=each.value.source_image_family
-  source_image_project=each.value.source_image_project
-  disk_type       = each.value.disk_type
+  for_each             = var.instance_template_map
+  source               = "terraform-google-modules/vm/google//modules/instance_template"
+  version              = "~> 7.7.0"
+  project_id           = each.value.project_id
+  subnetwork           = each.value.subnetwork
+  subnetwork_project   = each.value.subnetwork_project
+  additional_networks  = each.value.additional_networks
+  source_image         = each.value.source_image
+  source_image_family  = each.value.source_image_family
+  source_image_project = each.value.source_image_project
+  startup_script       = file(each.value.init_script)
+  service_account      = each.value.service_account
+  region               = each.value.region
+
+  tags                = each.value.network_tags
+  name_prefix         = each.value.name_prefix
+  machine_type        = each.value.machine_type
+  disk_size_gb        = each.value.disk_size_gb
+  disk_type           = each.value.disk_type
+  auto_delete         = each.value.auto_delete
+  can_ip_forward      = each.value.can_ip_forward
   on_host_maintenance = each.value.on_host_maintenance
-  subnetwork          = each.value.subnetwork
-  subnetwork_project  = each.value.subnetwork_project  
-  additional_networks = each.value.additional_networks
-  service_account     = each.value.service_account
-  
+
+
 
 }
 
 output "name2" { //this is the good
-  value={for key, value in module.instance_template_creation:key=>value.self_link}
-//output
-//{
-//"nat-server" = "https://www.googleapis.com/compute/v1/projects/playground-s-11-c77f7b64/global/instanceTemplates/nat-server-20220606000717456600000001"
-//"nat-server2" = "https://www.googleapis.com/compute/v1/projects/playground-s-11-c77f7b64/global/instanceTemplates/nat-server-20220606000717456600000001"
-//... etc
-//}
+  value = { for key, value in module.instance_template_creation : key => value.self_link }
+  //output
+  //{
+  //"nat-server" = "https://www.googleapis.com/compute/v1/projects/playground-s-11-c77f7b64/global/instanceTemplates/nat-server-20220606000717456600000001"
+  //"nat-server2" = "https://www.googleapis.com/compute/v1/projects/playground-s-11-c77f7b64/global/instanceTemplates/nat-server-20220606000717456600000001"
+  //... etc
+  //}
 
 }
 
 output "name3" {
-  value=[for key,value in module.instance_template_creation:lookup(value,"self_link")if key=="nat-server"] 
+  value = [for key, value in module.instance_template_creation : lookup(value, "self_link") if key == "nat-server"]
 }
 
 locals {
-  map_mig_self_links={for key, value in module.instance_template_creation:key=>value.self_link}
-  self_link_real= join("",[for key,value in local.map_mig_self_links:value if key=="projectx-nat-server"])
+  map_mig_self_links = { for key, value in module.instance_template_creation : key => value.self_link }
+  self_link_real     = join("", [for key, value in local.map_mig_self_links : value if key == "projectx-nat-server"])
   #mig_map={for key, value in var.mig_map:key=>value}
 
 }
 output "name_final_good" {
-  value=local.self_link_real
+  value = local.self_link_real
 }
 //with this one we remove the brackets and convert to string
 //instance_template=join("",[for key,value in local.map_mig_self_links:value if key=="nat-server"])

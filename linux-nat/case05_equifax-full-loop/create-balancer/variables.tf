@@ -2,23 +2,12 @@ variable "instance_template_map" {
   description = "the number of DB server instances"
   type = map(object({
     project_id        = string
-    name_prefix       = string
-    zone              = string
-    region            = string
-    machine_type      = string
+    subnetwork        = string
+    subnetwork_project= string
     source_image      = string
     source_image_family=string
     source_image_project=string
-    disk_size_gb      = string    
-    disk_type         = string
-    network_tags      = list(string)    
-    init_script       = string
-    auto_delete       = string        
-    subnetwork        = string
-    subnetwork_project= string
-    external_ip       = list(string)
-    can_ip_forward    = string
-    on_host_maintenance = string
+    init_script       = string    
     additional_networks =list(object({
       network             = string
       subnetwork          = string
@@ -33,6 +22,17 @@ variable "instance_template_map" {
       email  = string
       scopes = set(string)
     })
+   // zone              = string
+    region            = string      
+    network_tags      = list(string)    
+    name_prefix       = string
+    machine_type      = string
+    disk_size_gb      = string    
+    disk_type         = string
+    auto_delete       = string        
+   // external_ip       = list(string)
+    can_ip_forward    = string
+    on_host_maintenance = string
   }))
   default = {}
 }
