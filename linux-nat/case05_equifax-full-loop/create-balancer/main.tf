@@ -43,14 +43,18 @@ output "name3" {
 }
 
 locals {
-  map_mig_self_links = { for key, value in module.instance_template_creation : key => value.self_link }
-  self_link_real     = join("", [for key, value in local.map_mig_self_links : value if key == "projectx-nat-server"])
-  #mig_map={for key, value in var.mig_map:key=>value}
+  mig_tpl_self_links = { for key, value in module.instance_template_creation : key => value.self_link }
+  #tpl_self_link_real     = join("", [for key, value in local.mig_tpl_self_links : value if key == "projectx-nat-server"])
+  mig_self_links = { for key, value in module.vm_mig_creation : key => value.self_link }
+  health_check_self_links = { for key, value in module.vm_mig_creation : key => value.health_check_self_links }
+  
 
 }
+/*
 output "name_final_good" {
   value = local.self_link_real
 }
+*/
 //with this one we remove the brackets and convert to string
 //instance_template=join("",[for key,value in local.map_mig_self_links:value if key=="nat-server"])
 

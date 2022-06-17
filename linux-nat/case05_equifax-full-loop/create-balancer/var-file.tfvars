@@ -11,7 +11,7 @@ FAMILY: centos-stream-8
 */
 
 instance_template_map = {
-  "playground-s-11-e2db9207" = {
+  "playground-s-11-e2db9207-01" = {
     project_id           = "playground-s-11-e2db9207"
     subnetwork           = "vpc-shared-us-central1-sub"
     subnetwork_project   = "playground-s-11-e2db9207"
@@ -47,7 +47,7 @@ instance_template_map = {
 
 
 mig_map = {
-  "playground-s-11-e2db9207" = {
+  "playground-s-11-e2db9207-01" = {
     project_id           = "playground-s-11-e2db9207"    
     region                    = "us-central1"
     distribution_policy_zones = ["us-central1-a", "us-central1-b"]
