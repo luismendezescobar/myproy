@@ -93,9 +93,6 @@ output "vm_mig_creation02" {
   value = local.mig_group
 }
 
-output "vm_mig_creation03" {
-  value=local.hc_test
-}
 
 module "lb_creation" {
   source                = "./modules/lb-mig"  
@@ -129,10 +126,10 @@ module "create_routes" {
 }
 
 module "vm_instances_creation" {
-  for_each                  = var.server_vm_info
   source                    = "./modules/create-vm"  
+  for_each                  = var.server_vm_info
   server_name               = each.key
-  project_id                = var.project_id
+  project_id                = each.value.project_id
   zone                      = each.value.zone
   instance_description      = each.value.description
   network_tags             = each.value.network_tags

@@ -108,11 +108,10 @@ variable "load_balancer_info" {
   }))
 }
 
-/*
-
 variable "server_vm_info" {
   description = "the number of DB server instances"
   type = map(object({
+    project_id        = string
     zone              = string
     instance_type     = string
     source_image      = string
@@ -133,4 +132,3 @@ variable "server_vm_info" {
   }))
   default = {}
 }
-*/

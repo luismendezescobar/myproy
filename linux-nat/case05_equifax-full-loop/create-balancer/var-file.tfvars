@@ -136,6 +136,7 @@ load_balancer_info = {
 
 server_vm_info = {
   "shared-client01" = {
+      project_id        = "playground-s-11-8bec90e0"
       zone              = "us-central1-b"
       instance_type     = "e2-medium"
       //gcloud compute images list
@@ -152,6 +153,7 @@ server_vm_info = {
       additional_disks = []
   },
   "local-client01" = {
+      project_id        = "playground-s-11-8bec90e0"
       zone              = "us-central1-b"
       instance_type     = "e2-medium"
       //gcloud compute images list
