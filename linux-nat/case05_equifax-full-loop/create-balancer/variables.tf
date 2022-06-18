@@ -121,6 +121,7 @@ variable "server_vm_info" {
     description       = string
     init_script       = string
     auto_delete       = bool
+    subnetwork_project = string
     subnet_name       = string
     external_ip       = list(string)
     can_ip_forward    = bool

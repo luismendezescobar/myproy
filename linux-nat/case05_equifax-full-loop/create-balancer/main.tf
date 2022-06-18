@@ -135,7 +135,7 @@ module "vm_instances_creation" {
   network_tags             = each.value.network_tags
   instance_machine_type     = each.value.instance_type
   source_image              = each.value.source_image
-  subnetwork_project        = var.project_id
+  subnetwork_project        = each.value.subnetwork_project
   subnetwork                = each.value.subnet_name
   init_script               = each.value.init_script
   auto_delete               = each.value.auto_delete
