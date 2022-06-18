@@ -22,9 +22,6 @@ variable "session_affinity" {
 variable "balancing_mode" {
   type =string
 }
-variable "vpc" {
-  type =string
-}
 variable "forwarding_name" {
   type =string
 }
@@ -43,4 +40,6 @@ variable "network" {
 variable "subnetwork" {
   type =string
 }
-
+variable "project_id" {
+    type =string
+}

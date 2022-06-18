@@ -13,6 +13,7 @@ module "instance_template_creation" {
   startup_script       = file(each.value.init_script)
   service_account      = each.value.service_account
   region               = each.value.region
+  disk_encryption_key  = each.value.disk_encryption_key
 
   tags                = each.value.network_tags
   name_prefix         = each.value.name_prefix
@@ -22,9 +23,7 @@ module "instance_template_creation" {
   auto_delete         = each.value.auto_delete
   can_ip_forward      = each.value.can_ip_forward
   on_host_maintenance = each.value.on_host_maintenance
-
-
-
+  metadata            = each.value.metadata
 }
 
 output "name2" { //this is the good
@@ -97,6 +96,7 @@ output "vm_mig_creation02" {
 module "lb_creation" {
   source                = "./modules/lb-mig"  
   for_each              = var.load_balancer_info  
+  project_id            = each.value.project_id 
   region                = each.value.region
   health_check          = [for key, value in local.health_check_self_links : value[0] if key == each.value.mig_key]  
   mig_group             = join("", [for key, value in local.mig_group : value if key == each.value.mig_key])  
@@ -104,8 +104,7 @@ module "lb_creation" {
   protocol              = each.value.protocol
   load_balancing_scheme = each.value.load_balancing_scheme
   session_affinity      = each.value.session_affinity
-  balancing_mode        = each.value.balancing_mode
-  vpc                   = each.value.vpc
+  balancing_mode        = each.value.balancing_mode  
   forwarding_name       = each.value.forwarding_name
   ip_protocol           = each.value.ip_protocol
   all_ports             = each.value.all_ports

@@ -1,5 +1,5 @@
 //only for the backend
-#project_id="playground-s-11-8bec90e0"
+#project_id="playground-s-11-c33917a0"
 /*
 gcloud compute images list
 
@@ -11,10 +11,10 @@ FAMILY: centos-stream-8
 */
 
 instance_template_map = {
-  "playground-s-11-8bec90e0-01" = {
-    project_id           = "playground-s-11-8bec90e0"
+  "playground-s-11-c33917a0-01" = {
+    project_id           = "playground-s-11-c33917a0"
     subnetwork           = "vpc-shared-us-central1-sub"
-    subnetwork_project   = "playground-s-11-8bec90e0"
+    subnetwork_project   = "playground-s-11-c33917a0"
     source_image         = "centos-7"
     source_image_family  = "centos-7"
     source_image_project = "centos-cloud"
@@ -22,16 +22,17 @@ instance_template_map = {
     additional_networks = [{
       network            = "vpc-local"
       subnetwork         = "vpc-local-us-central1-sub"
-      subnetwork_project = "playground-s-11-8bec90e0"
+      subnetwork_project = "playground-s-11-c33917a0"
       network_ip         = ""
       access_config      = []
     }]
     service_account = {
-      email  = "344836071876-compute@developer.gserviceaccount.com"
+      email  = "378674978662-compute@developer.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
     region = "us-central1"
     name_prefix         = "nat-server-us-central1"
+    disk_encryption_key = ""
     //these are not required to modify
     network_tags        = []    
     machine_type        = "e2-medium"
@@ -41,13 +42,14 @@ instance_template_map = {
  //  external_ip         = ["false"]
     can_ip_forward      = "true"
     on_host_maintenance = "MIGRATE"
+    metadata            =  {}
   },
 }
 
 
 mig_map = {
-  "playground-s-11-8bec90e0-01" = {
-    project_id                = "playground-s-11-8bec90e0"    
+  "playground-s-11-c33917a0-01" = {
+    project_id                = "playground-s-11-c33917a0"    
     region                    = "us-central1"
     distribution_policy_zones = ["us-central1-a", "us-central1-b"]
     hostname                  = "mig-nat-us-central1"
@@ -98,13 +100,13 @@ mig_map = {
 
 
 load_balancer_info = {
-  "playground-s-11-8bec90e0-01-lb-shared" ={    
-    mig_key               = "playground-s-11-8bec90e0-01"
+  "playground-s-11-c33917a0-01-lb-shared" ={    
+    project_id            = "playground-s-11-c33917a0" 
+    mig_key               = "playground-s-11-c33917a0-01"
     region                = "us-central1"
     forwarding_name       = "forwarding-rule-shared"   
     network               = "vpc-shared"
-    subnetwork            = "vpc-shared-us-central1-sub"
-    vpc                   = "vpc-shared"    
+    subnetwork            = "vpc-shared-us-central1-sub"    
     //these not need to modify
     protocol              = "TCP"
     load_balancing_scheme = "INTERNAL" 
@@ -115,13 +117,13 @@ load_balancer_info = {
     allow_global_access   = false
     
   },
-  "playground-s-11-8bec90e0-01-lb-local" = {
-    mig_key               = "playground-s-11-8bec90e0-01"
+  "playground-s-11-c33917a0-01-lb-local" = {
+    project_id            = "playground-s-11-c33917a0" 
+    mig_key               = "playground-s-11-c33917a0-01"
     region                = "us-central1"
     forwarding_name       = "forwarding-rule-local"   
     network               = "vpc-local"
     subnetwork            = "vpc-local-us-central1-sub"            
-    vpc                   = "vpc-local"
 
     protocol              = "TCP"
     load_balancing_scheme = "INTERNAL" 
@@ -136,7 +138,7 @@ load_balancer_info = {
 
 server_vm_info = {
   "shared-client01" = {
-      project_id        = "playground-s-11-8bec90e0"
+      project_id        = "playground-s-11-c33917a0"
       zone              = "us-central1-b"
       instance_type     = "e2-medium"
       //gcloud compute images list
@@ -144,7 +146,7 @@ server_vm_info = {
       boot_disk_size_gb = 100
       boot_disk_type    = "pd-standard" 
       auto_delete       = true
-      subnetwork_project="playground-s-11-8bec90e0"
+      subnetwork_project="playground-s-11-c33917a0"
       subnet_name       = "vpc-shared-us-central1-sub"
       description       = "bastion to manage all"
       init_script       = "./modules/create-vm/init.sh"  
@@ -154,7 +156,7 @@ server_vm_info = {
       additional_disks = []
   },
   "local-client01" = {
-      project_id        = "playground-s-11-8bec90e0"
+      project_id        = "playground-s-11-c33917a0"
       zone              = "us-central1-b"
       instance_type     = "e2-medium"
       //gcloud compute images list
@@ -163,7 +165,7 @@ server_vm_info = {
       boot_disk_size_gb = 100
       boot_disk_type    = "pd-standard" 
       auto_delete       = true
-      subnetwork_project="playground-s-11-8bec90e0"
+      subnetwork_project="playground-s-11-c33917a0"
       subnet_name       = "vpc-local-us-central1-sub"
       description       = "bastion to manage all"
       init_script       = "./modules/create-vm/init.sh"  

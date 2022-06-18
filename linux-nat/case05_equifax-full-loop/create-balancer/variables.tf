@@ -23,7 +23,8 @@ variable "instance_template_map" {
       scopes = set(string)
     })
    // zone              = string
-    region            = string      
+    region            = string     
+    disk_encryption_key =string 
     network_tags      = list(string)    
     name_prefix       = string
     machine_type      = string
@@ -33,6 +34,7 @@ variable "instance_template_map" {
    // external_ip       = list(string)
     can_ip_forward    = string
     on_host_maintenance = string
+    metadata            =map(string) 
   }))
   default = {}
 }
@@ -92,19 +94,20 @@ variable "mig_map"  {
 variable "load_balancer_info" {
   description = "backend and front end details"
   type = map(object({
+    project_id            = string
     mig_key               = string
     region                = string
+    forwarding_name       = string
+    network               = string
+    subnetwork            = string
+
     protocol              = string
     load_balancing_scheme = string
     session_affinity      = string
-    balancing_mode        = string
-    vpc                   = string
-    forwarding_name       = string
+    balancing_mode        = string        
     ip_protocol           = string
     all_ports             = bool
-    allow_global_access   = bool
-    network               = string
-    subnetwork            = string
+    allow_global_access   = bool    
   }))
 }
 

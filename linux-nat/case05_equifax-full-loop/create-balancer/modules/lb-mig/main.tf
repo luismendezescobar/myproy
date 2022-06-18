@@ -3,6 +3,7 @@
 # backend service
 resource "google_compute_region_backend_service" "backend_service_shared_tcp" {
   name                  = var.lb_name ///this is the load balancer name
+  project               = var.project_id
   region                = var.region
   protocol              = var.protocol
   load_balancing_scheme = var.load_balancing_scheme
