@@ -32,7 +32,7 @@ instance_template_map = {
     }
     region = "us-central1"
     name_prefix         = "nat-server-us-central1"
-    disk_encryption_key = "projects/triggering-a-198-29c1cf36/locations/us/keyrings/my-keyring/cryptoKeys/my-key"
+    disk_encryption_key = "projects/triggering-a-198-29c1cf36/locations/us/keyRings/my-keyring/cryptoKeys/my-key"
     //these are not required to modify
     network_tags        = []    
     machine_type        = "e2-medium"
