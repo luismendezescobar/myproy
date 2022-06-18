@@ -48,9 +48,6 @@ locals {
   mig_group = { for key, value in module.vm_mig_creation : key => value.instance_group }
   health_check_self_links = { for key, value in module.vm_mig_creation : key => value.health_check_self_links }
   
-  //this is a test only 
-  hc_test=[for key, value in local.health_check_self_links : value[0] if key == "playground-s-11-cc118e44-01"]  
-
 }
 /*
 output "name_final_good" {
@@ -156,4 +153,3 @@ module "vm_instances_creation" {
   ]
 
 }
-*/
