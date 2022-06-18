@@ -99,35 +99,6 @@ output "vm_mig_creation02" {
 output "vm_mig_creation03" {
   value=local.hc_test
 }
-/*
-module "lb_creation" {
-  source                = "./modules/lb-mig"  
-  for_each              = var.load_balancer_info  
-  region                = each.value.region
-  health_check          = [
-    "https://www.googleapis.com/compute/v1/projects/playground-s-11-cc118e44/global/healthChecks/mig-nat-us-central1-tcp-healthcheck",
-  ]
-  mig_group             = "https://www.googleapis.com/compute/v1/projects/playground-s-11-cc118e44/regions/us-central1/instanceGroupManagers/mig-nat-us-central1-mig"
-  lb_name               = each.key
-  protocol              = each.value.protocol
-  load_balancing_scheme = each.value.load_balancing_scheme
-  session_affinity      = each.value.session_affinity
-  balancing_mode        = each.value.balancing_mode
-  vpc                   = each.value.vpc
-  forwarding_name       = each.value.forwarding_name
-  ip_protocol           = each.value.ip_protocol
-  all_ports             = each.value.all_ports
-  allow_global_access   = each.value.allow_global_access
-  network               = each.value.network
-  subnetwork            = each.value.subnetwork
-  depends_on = [
-    module.vm_mig_creation
-  ]
-}
-
-*/
-
-
 
 module "lb_creation" {
   source                = "./modules/lb-mig"  
@@ -152,7 +123,7 @@ module "lb_creation" {
   ]
 }
 
-/*
+
 module "create_routes" {
   source                    = "./modules/gcp-routes"  
   depends_on = [

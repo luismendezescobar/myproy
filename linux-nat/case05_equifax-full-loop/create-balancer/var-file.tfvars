@@ -133,17 +133,17 @@ load_balancer_info = {
     
   }
 }
-/*
+
 server_vm_info = {
   "shared-client01" = {
-      zone              = "us-east1-b"
+      zone              = "us-central1-b"
       instance_type     = "e2-medium"
       //gcloud compute images list
       source_image      = "centos-cloud/centos-7"
       boot_disk_size_gb = 100
       boot_disk_type    = "pd-standard" 
       auto_delete       = true
-      subnet_name       = "vpc-shared-us-east1-sub"
+      subnet_name       = "vpc-shared-us-central1-sub"
       description       = "bastion to manage all"
       init_script       = "./modules/create-vm/init.sh"  
       external_ip       = ["false"]
@@ -152,7 +152,7 @@ server_vm_info = {
       additional_disks = []
   },
   "local-client01" = {
-      zone              = "us-east1-b"
+      zone              = "us-central1-b"
       instance_type     = "e2-medium"
       //gcloud compute images list
       #source_image      = "efx-centos-7/efx-centos7"
@@ -160,7 +160,7 @@ server_vm_info = {
       boot_disk_size_gb = 100
       boot_disk_type    = "pd-standard" 
       auto_delete       = true
-      subnet_name       = "vpc-local-us-east1-sub"
+      subnet_name       = "vpc-local-us-central1-sub"
       description       = "bastion to manage all"
       init_script       = "./modules/create-vm/init.sh"  
       external_ip       = ["false"]
@@ -169,4 +169,3 @@ server_vm_info = {
       additional_disks = []
   },    
 }
-*/
