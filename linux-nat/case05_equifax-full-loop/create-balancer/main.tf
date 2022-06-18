@@ -45,7 +45,7 @@ output "name3" {
 locals {
   mig_tpl_self_links = { for key, value in module.instance_template_creation : key => value.self_link }
 
-  mig_self_links = { for key, value in module.vm_mig_creation : key => value.self_link }
+  mig_group = { for key, value in module.vm_mig_creation : key => value.instance_group }
   health_check_self_links = { for key, value in module.vm_mig_creation : key => value.health_check_self_links }
   
   //this is a test only 
@@ -93,7 +93,7 @@ output "vm_mig_creation01" {
 }
 output "vm_mig_creation02" {
   //value = module.vm_mig_creation.self_link
-  value = local.mig_self_links
+  value = local.mig_group
 }
 
 output "vm_mig_creation03" {
@@ -129,17 +129,12 @@ module "lb_creation" {
 
 
 
-
-
-
-
-
 module "lb_creation" {
   source                = "./modules/lb-mig"  
   for_each              = var.load_balancer_info  
   region                = each.value.region
   health_check          = [for key, value in local.health_check_self_links : value[0] if key == each.value.mig_key]  
-  mig_group             = join("", [for key, value in local.mig_self_links : value if key == each.value.mig_key])  
+  mig_group             = join("", [for key, value in local.mig_group : value if key == each.value.mig_key])  
   lb_name               = each.key
   protocol              = each.value.protocol
   load_balancing_scheme = each.value.load_balancing_scheme
