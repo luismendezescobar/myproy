@@ -1,5 +1,5 @@
 //only for the backend
-#project_id="playground-s-11-cc118e44"
+#project_id="playground-s-11-8bec90e0"
 /*
 gcloud compute images list
 
@@ -11,10 +11,10 @@ FAMILY: centos-stream-8
 */
 
 instance_template_map = {
-  "playground-s-11-cc118e44-01" = {
-    project_id           = "playground-s-11-cc118e44"
+  "playground-s-11-8bec90e0-01" = {
+    project_id           = "playground-s-11-8bec90e0"
     subnetwork           = "vpc-shared-us-central1-sub"
-    subnetwork_project   = "playground-s-11-cc118e44"
+    subnetwork_project   = "playground-s-11-8bec90e0"
     source_image         = "centos-7"
     source_image_family  = "centos-7"
     source_image_project = "centos-cloud"
@@ -22,12 +22,12 @@ instance_template_map = {
     additional_networks = [{
       network            = "vpc-local"
       subnetwork         = "vpc-local-us-central1-sub"
-      subnetwork_project = "playground-s-11-cc118e44"
+      subnetwork_project = "playground-s-11-8bec90e0"
       network_ip         = ""
       access_config      = []
     }]
     service_account = {
-      email  = "990449043808-compute@developer.gserviceaccount.com"
+      email  = "344836071876-compute@developer.gserviceaccount.com"
       scopes = ["cloud-platform"]
     }
     region = "us-central1"
@@ -46,8 +46,8 @@ instance_template_map = {
 
 
 mig_map = {
-  "playground-s-11-cc118e44-01" = {
-    project_id                = "playground-s-11-cc118e44"    
+  "playground-s-11-8bec90e0-01" = {
+    project_id                = "playground-s-11-8bec90e0"    
     region                    = "us-central1"
     distribution_policy_zones = ["us-central1-a", "us-central1-b"]
     hostname                  = "mig-nat-us-central1"
@@ -98,8 +98,8 @@ mig_map = {
 
 
 load_balancer_info = {
-  "playground-s-11-cc118e44-01-lb-shared" ={    
-    mig_key               = "playground-s-11-cc118e44-01"
+  "playground-s-11-8bec90e0-01-lb-shared" ={    
+    mig_key               = "playground-s-11-8bec90e0-01"
     region                = "us-central1"
     forwarding_name       = "forwarding-rule-shared"   
     network               = "vpc-shared"
@@ -115,8 +115,8 @@ load_balancer_info = {
     allow_global_access   = false
     
   },
-  "playground-s-11-cc118e44-01-lb-local" = {
-    mig_key               = "playground-s-11-cc118e44-01"
+  "playground-s-11-8bec90e0-01-lb-local" = {
+    mig_key               = "playground-s-11-8bec90e0-01"
     region                = "us-central1"
     forwarding_name       = "forwarding-rule-local"   
     network               = "vpc-local"
