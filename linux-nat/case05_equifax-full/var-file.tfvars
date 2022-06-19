@@ -1,7 +1,7 @@
-project_id="playground-s-11-b5c1b21e"  #update the project here
+project_id="playground-s-11-ecc1bbef"  #update the project here
 //also add the project account on line 527, no needed anymore
 service_account= {
-  email= "313798316525-compute@developer.gserviceaccount.com"
+  email= "921426650141-compute@developer.gserviceaccount.com"
   scopes= ["cloud-platform"]
 }
 
