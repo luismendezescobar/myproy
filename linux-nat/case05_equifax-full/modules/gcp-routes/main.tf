@@ -1,4 +1,4 @@
-/*
+
 data "google_compute_forwarding_rule" "local" {
   name   ="forwarding-rule-local"  
   region = "us-east1"
@@ -18,7 +18,7 @@ resource "google_compute_route" "from_local_to_shared" {
   }
 
 }
-*/
+
 /**************************************************************/
 
 data "google_compute_forwarding_rule" "shared" {
