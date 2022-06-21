@@ -1,7 +1,7 @@
-project_id="playground-s-11-02da921e"  #update the project here
+project_id="playground-s-11-407e632d"  #update the project here
 //also add the project account on line 527, no needed anymore
 service_account= {
-  email= "725421352577-compute@developer.gserviceaccount.com"
+  email= "1034234927924-compute@developer.gserviceaccount.com"
   scopes= ["cloud-platform"]
 }
 
@@ -207,6 +207,7 @@ firewall_rules = {
       }      
     } ]    
   },
+  /*
   "vpc-shared-allow-from-local"= {
     network_name = "vpc-shared"    
     rules = [ {
@@ -399,6 +400,7 @@ firewall_rules = {
       }      
     } ]    
   },
+  */
   "vpc-shared-allow-health-check"= {
     network_name = "vpc-shared"    
     rules = [ {
