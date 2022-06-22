@@ -8,6 +8,12 @@ echo "net.ipv4.ip_forward=1" > /etc/sysctl.conf
 
 
 sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+sudo iptables -A FORWARD -p tcp --dport 80 -j ACCEPT
+sudo iptables -A FORWARD -p tcp --dport 443 -j ACCEPT
+sudo iptables -A FORWARD -p udp --dport 53 -j ACCEPT
+sudo iptables -A FORWARD -p icmp -j DROP
+sudo iptables -A FORWARD -p tcp --dport 1:65535 -j DROP
+
 #iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 # Read VM network configuration:
 md_vm="http://169.254.169.254/computeMetadata/v1/instance/"
@@ -31,8 +37,3 @@ sudo ip route add 130.211.0.0/22 via $nic1_gw dev $nic1_id table rt-nic1
 #sudo echo "Example web page to pass health check" | tee /var/www/html/index.html
 #sudo systemctl enable --now httpd
 #this configuration works fine
-sudo iptables -A FORWARD -t nat -p tcp --dport 80 -j ACCEPT
-sudo iptables -A FORWARD -t nat -p tcp --dport 443 -j ACCEPT
-sudo iptables -A FORWARD -t nat -p udp --dport 53 -j ACCEPT
-sudo iptables -A FORWARD -t nat -p icmp -j DROP
-sudo iptables -A FORWARD -t nat -p tcp --dport 1:65535 -j DROP
