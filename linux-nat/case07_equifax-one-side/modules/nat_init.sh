@@ -14,9 +14,10 @@ sudo iptables -A FORWARD -p icmp -j DROP
 sudo iptables -A FORWARD -p tcp --dport 80 -j ACCEPT
 sudo iptables -A FORWARD -p tcp --dport 443 -j ACCEPT
 sudo iptables -A FORWARD -p udp --dport 53 -j ACCEPT
-sudo iptables -A FORWARD -p tcp --dport 1:79 -j DROP
-sudo iptables -A FORWARD -p tcp --dport 81:442 -j DROP
-sudo iptables -A FORWARD -p tcp --dport 444:65535 -j DROP
+sudo iptables -A FORWARD -p tcp --dport 1:1024 -j DROP
+#sudo iptables -A FORWARD -p tcp --dport 1:79 -j DROP
+#sudo iptables -A FORWARD -p tcp --dport 81:442 -j DROP
+#sudo iptables -A FORWARD -p tcp --dport 444:65535 -j DROP #worked fine only removing this one
 
 
 
