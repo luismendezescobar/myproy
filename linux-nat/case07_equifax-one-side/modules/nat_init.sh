@@ -10,11 +10,16 @@ sudo systemctl enable --now iptables
 
 sudo iptables -F
 sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+sudo iptables -A FORWARD -p icmp -j DROP
 sudo iptables -A FORWARD -p tcp --dport 80 -j ACCEPT
 sudo iptables -A FORWARD -p tcp --dport 443 -j ACCEPT
 sudo iptables -A FORWARD -p udp --dport 53 -j ACCEPT
-sudo iptables -A FORWARD -p icmp -j DROP
-sudo iptables -A FORWARD -p tcp --dport 1:65535 -j DROP
+sudo iptables -A FORWARD -p tcp --dport 1:79 -j DROP
+sudo iptables -A FORWARD -p tcp --dport 81:442 -j DROP
+sudo iptables -A FORWARD -p tcp --dport 444:65535 -j DROP
+
+
+
 
 #iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 # Read VM network configuration:
