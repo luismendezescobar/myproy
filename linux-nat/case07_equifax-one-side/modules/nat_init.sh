@@ -15,7 +15,7 @@ sudo iptables -A FORWARD -p tcp --dport 80 -j ACCEPT
 sudo iptables -A FORWARD -p tcp --dport 443 -j ACCEPT
 sudo iptables -A FORWARD -p udp --dport 53 -j ACCEPT
 sudo iptables -A FORWARD -p tcp --dport 1:1024 -j DROP
-sudo iptables -A FORWARD -p tcp --dport 1025:65535 -j REJECT
+#sudo iptables -A FORWARD -p tcp --dport 1025:65535 -j REJECT
 
 #if we add ports above 1024 is going to act up
 
