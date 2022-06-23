@@ -8,7 +8,7 @@ echo "net.ipv4.ip_forward=1" > /etc/sysctl.conf
 yum install iptables-services -y
 sudo systemctl enable --now iptables
 
-sudo iptables -F
+#sudo iptables -F
 sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 sudo iptables -A FORWARD -p icmp -j DROP
 sudo iptables -A FORWARD -p tcp --dport 80 -j ACCEPT
