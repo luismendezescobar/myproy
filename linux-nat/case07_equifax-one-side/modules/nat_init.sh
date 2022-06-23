@@ -8,18 +8,21 @@ echo "net.ipv4.ip_forward=1" > /etc/sysctl.conf
 yum install iptables-services -y
 sudo systemctl enable --now iptables
 
-#sudo iptables -F
-sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
-sudo iptables -A FORWARD -p icmp -j DROP
-sudo iptables -A FORWARD -p tcp --dport 80 -j ACCEPT
-sudo iptables -A FORWARD -p tcp --dport 443 -j ACCEPT
-sudo iptables -A FORWARD -p udp --dport 53 -j ACCEPT
-sudo iptables -A FORWARD -p tcp --dport 1:1024 -j DROP
-#sudo iptables -A FORWARD -p tcp --dport 1025:65535 -j REJECT
 
+sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+#sudo iptables -A FORWARD -p icmp -j DROP
+#sudo iptables -A FORWARD -p tcp --dport 80 -j ACCEPT
+#sudo iptables -A FORWARD -p tcp --dport 443 -j ACCEPT
+#sudo iptables -A FORWARD -p udp --dport 53 -j ACCEPT
+#sudo iptables -A FORWARD -p tcp --dport 1:1024 -j DROP
 #if we add ports above 1024 is going to act up
 
 
+
+
+
+
+sudo yum install tcpdump -y
 
 #iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 # Read VM network configuration:
