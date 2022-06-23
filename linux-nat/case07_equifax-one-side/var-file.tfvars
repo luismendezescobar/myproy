@@ -33,8 +33,8 @@ vpc_info = {
                 subnet_name     = "vpc-local-us-central1-sub"
                 subnet_ip       = "10.10.11.0/24" 
                 subnet_region   =  "us-central1"
-            }
-                        {
+            },
+            {
                 subnet_name     = "vpc-local-test-us-central1-sub"
                 subnet_ip       = "172.16.1.0/24" 
                 subnet_region   =  "us-central1"
