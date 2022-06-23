@@ -15,7 +15,14 @@ vpc_info = {
                 subnet_ip       = "10.10.10.0/24" 
                 subnet_region   =  "us-central1"
                 description     = "This subnet has a description"
-            }
+            },
+            {
+                subnet_name     = "vpc-shared-test-us-central1-sub"
+                subnet_ip       = "192.168.1.0/24" 
+                subnet_region   =  "us-central1"
+                description     = "This subnet has a description"
+            },
+
         ]
         secondary_ranges={}
     }
@@ -27,6 +34,12 @@ vpc_info = {
                 subnet_ip       = "10.10.11.0/24" 
                 subnet_region   =  "us-central1"
             }
+                        {
+                subnet_name     = "vpc-local-test-us-central1-sub"
+                subnet_ip       = "172.16.1.0/24" 
+                subnet_region   =  "us-central1"
+            }
+
         ]
         secondary_ranges={}
     } 
@@ -377,5 +390,40 @@ server_vm_info = {
       can_ip_forward   = false
       network_tags = ["no-ip"]
       additional_disks = []
-  },    
+  },
+  "shared-test01" = {
+      zone              = "us-central1-b"
+      instance_type     = "e2-medium"
+      //gcloud compute images list
+      source_image      = "centos-cloud/centos-7"
+      boot_disk_size_gb = 100
+      boot_disk_type    = "pd-standard" 
+      auto_delete       = true
+      subnet_name       = "vpc-shared-test-us-central1-sub"
+      description       = "bastion to manage all"
+      init_script       = "./modules/create-vm/init.sh"  
+      external_ip       = ["false"]
+      can_ip_forward   = false
+      network_tags = ["no-ip"]
+      additional_disks = []
+  },
+  "local-test01" = {
+      zone              = "us-central1-b"
+      instance_type     = "e2-medium"
+      //gcloud compute images list
+      #source_image      = "efx-centos-7/efx-centos7"
+      source_image      = "centos-cloud/centos-7"
+      boot_disk_size_gb = 100
+      boot_disk_type    = "pd-standard" 
+      auto_delete       = true
+      subnet_name       = "vpc-local-test-us-central1-sub"
+      description       = "bastion to manage all"
+      init_script       = "./modules/create-vm/init.sh"  
+      external_ip       = ["false"]
+      can_ip_forward   = false
+      network_tags = ["no-ip"]
+      additional_disks = []
+  },
+
+
 }
