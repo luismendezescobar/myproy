@@ -5,12 +5,12 @@ data "google_compute_forwarding_rule" "local" {
 }
 
 resource "google_compute_route" "from_local_to_shared" {  
-  name          = "from-local-to-shared"
-  dest_range    = "10.10.10.0/24"
+  name          = "from-local-to-shared-and-all"
+  #dest_range    = "10.10.10.0/24"
+  dest_range    = "0.0.0.0/0"
   network       = "vpc-local"  
   next_hop_ilb  = data.google_compute_forwarding_rule.local.id
-  priority              = 1000
-  //tags                  = ["no-ip"]
+  priority              = 900  
   lifecycle {
     ignore_changes = [
       next_hop_ilb
