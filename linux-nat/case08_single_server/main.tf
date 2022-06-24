@@ -114,15 +114,12 @@ module "vm_double_nic" {
 }
 
 
-
 module "create_routes" {
   source                    = "./modules/gcp-routes"  
   depends_on = [
     module.lb_creation
   ]
 }
-
-
 
 module "vm_instances_creation" {
   for_each                  = var.server_vm_info
