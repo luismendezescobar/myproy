@@ -75,16 +75,6 @@ module "cloud_nat_gtw_create" {
   ]
 }
 
-output "map1" {
-  value=var.instance_template_map.nat-server
-}
-output "map2" {
-  value=var.instance_template_map
-}
-output "map3" {
-  value=var.instance_template_map.nat-server.region
-}
-
 
 module "vm_double_nic" {
   for_each                  = var.server_vm_info_two_nics
