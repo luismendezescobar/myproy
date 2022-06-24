@@ -221,20 +221,6 @@ cloud_nat_map ={
     log_config_enable       = true
     log_config_filter       = "ERRORS_ONLY"
   },
-  /*"cloud-nat-us-central1-vpc-local" = {
-    region                  ="us-central1"
-    router_name             = "router-nat-us-central1-vpc-local"
-    bgp                     = {
-      "asn"               ="64514",
-      "advertise_mode"    = "DEFAULT",
-      "advertised_groups" = ["ALL_SUBNETS"],
-    }
-    network                 = "vpc-local"
-    nat_ip_allocate_option  = false
-    source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
-    log_config_enable       = true
-    log_config_filter       = "ERRORS_ONLY"
-  },*/
 }
 
 /*
@@ -259,8 +245,7 @@ instance_template_map = {
     disk_size_gb      = "100"
     disk_type         = "pd-standard" 
     auto_delete       = "true"
-    
-    subnetwork    = "vpc-local-us-central1-sub"    
+    subnetwork        = "vpc-shared-us-central1-sub"    
     subnetwork_project= ""  //use var.project_id instead
     //subnet_name2      = "vpc-local-us-central1-sub"
     #description       = "linux centos nat server"
@@ -270,15 +255,11 @@ instance_template_map = {
     network_tags = ["allow-health-check"]
     on_host_maintenance ="MIGRATE"
     additional_networks = [ {
-      network       = "vpc-shared"
-      subnetwork        = "vpc-shared-us-central1-sub"
+      network       = "vpc-local"
+      subnetwork    = "vpc-local-us-central1-sub"          
       subnetwork_project  = ""
       network_ip    = ""
-      access_config  = [// {
-        //nat_ip        = ""
-        //network_tier  = ""
-     // }
-      ]        
+      access_config  = []        
     }]
     //this part will be initalized in the top
     service_account={

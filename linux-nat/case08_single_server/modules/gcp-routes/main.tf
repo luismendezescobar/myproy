@@ -1,5 +1,8 @@
 
-resource "google_compute_route" "from_local_to_outside" {  
+
+
+
+resource "google_compute_route" "from_local_to_internet" {  
   name                  = "from-local-to-outside"
   dest_range            = "0.0.0.0/24"
   network               = "vpc-local"
