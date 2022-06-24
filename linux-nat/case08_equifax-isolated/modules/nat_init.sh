@@ -10,7 +10,7 @@ echo "net.ipv4.ip_forward=1" > /etc/sysctl.conf
 #sudo systemctl enable --now iptables
 
 
-#sudo iptables -F     
+sudo iptables -F     
 #sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 #sudo yum install tcpdump -y
 
