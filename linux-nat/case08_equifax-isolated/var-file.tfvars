@@ -16,13 +16,13 @@ vpc_info = {
                 subnet_region   =  "us-central1"
                 description     = "This subnet has a description"
             },
-            {
+     /*       {
                 subnet_name     = "vpc-shared-test-us-central1-sub"
                 subnet_ip       = "192.168.1.0/24" 
                 subnet_region   =  "us-central1"
                 description     = "This subnet has a description"
             },
-
+      */
         ]
         secondary_ranges={}
     }
@@ -34,12 +34,12 @@ vpc_info = {
                 subnet_ip       = "10.10.11.0/24" 
                 subnet_region   =  "us-central1"
             },
-            {
+       /*     {
                 subnet_name     = "vpc-local-test-us-central1-sub"
                 subnet_ip       = "172.16.1.0/24" 
                 subnet_region   =  "us-central1"
             }
-
+        */
         ]
         secondary_ranges={}
     } 
@@ -391,7 +391,7 @@ server_vm_info = {
       network_tags = ["no-ip"]
       additional_disks = []
   },
-  "shared-test01" = {
+ /* "shared-test01" = {
       zone              = "us-central1-b"
       instance_type     = "e2-medium"
       //gcloud compute images list
@@ -424,6 +424,6 @@ server_vm_info = {
       network_tags = ["no-ip"]
       additional_disks = []
   },
-
+*/
 
 }

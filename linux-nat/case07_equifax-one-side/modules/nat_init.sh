@@ -32,10 +32,10 @@ sudo yum install tcpdump -y
 # Read VM network configuration:
 md_vm="http://169.254.169.254/computeMetadata/v1/instance/"
 md_net="$md_vm/network-interfaces"
-nic0_gw="$(curl $md_net/0/gateway -H "Metadata-Flavor:Google" )"
-nic0_mask="$(curl $md_net/0/subnetmask -H "Metadata-Flavor:Google")"
-nic0_addr="$(curl $md_net/0/ip -H "Metadata-Flavor:Google")"
-nic0_id="$(ip addr show | grep $nic0_addr | awk '{print $NF}')"
+#nic0_gw="$(curl $md_net/0/gateway -H "Metadata-Flavor:Google" )"
+#nic0_mask="$(curl $md_net/0/subnetmask -H "Metadata-Flavor:Google")"
+#nic0_addr="$(curl $md_net/0/ip -H "Metadata-Flavor:Google")"
+#nic0_id="$(ip addr show | grep $nic0_addr | awk '{print $NF}')"
 nic1_gw="$(curl $md_net/1/gateway -H "Metadata-Flavor:Google")"
 nic1_mask="$(curl $md_net/1/subnetmask -H "Metadata-Flavor:Google")"
 nic1_addr="$(curl $md_net/1/ip -H "Metadata-Flavor:Google")"
@@ -65,3 +65,25 @@ sudo ip route add 192.168.1.0/24 via $nic1_gw dev $nic1_id table rt-nic1
 #sudo ip route add default via $nic1_gw dev $nic1_id table rt1
 #sudo ip rule add from $nic1_addr/$nic1_mask table rt1
 #sudo ip rule add to $nic1_addr/$nic1_mask  table rt1
+
+#we are going to create a temporal table to download files to install here
+md_vm="http://169.254.169.254/computeMetadata/v1/instance/"
+md_net="$md_vm/network-interfaces"
+nic1_gw="$(curl $md_net/1/gateway -H "Metadata-Flavor:Google")"
+nic1_mask="$(curl $md_net/1/subnetmask -H "Metadata-Flavor:Google")"
+nic1_addr="$(curl $md_net/1/ip -H "Metadata-Flavor:Google")"
+nic1_id="$(ip addr show | grep $nic1_addr | awk '{print $NF}')"
+echo "1 rt1" | sudo tee -a /etc/iproute2/rt_tables
+sudo ip route add $nic1_gw src $nic1_addr dev $nic1_id table rt1
+sudo ip route add default via $nic1_gw dev $nic1_id table rt1
+sudo ip rule add from $nic1_addr/$nic1_mask table rt1
+sudo ip rule add to $nic1_addr/$nic1_mask  table rt1
+
+#do what you want to install here
+. . . 
+. . . 
+
+#then delete the table here
+ip route show tab rt-nic1 
+ip route show tab rt1 
+ip route flush table rt1
