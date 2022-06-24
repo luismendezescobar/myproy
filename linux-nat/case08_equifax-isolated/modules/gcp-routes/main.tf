@@ -6,7 +6,6 @@ data "google_compute_forwarding_rule" "local" {
 
 resource "google_compute_route" "from_local_to_shared" {  
   name          = "from-local-to-shared-and-all"
-  #dest_range    = "10.10.10.0/24"
   dest_range    = "0.0.0.0/0"
   network       = "vpc-local"  
   next_hop_ilb  = data.google_compute_forwarding_rule.local.id
@@ -18,6 +17,22 @@ resource "google_compute_route" "from_local_to_shared" {
   }
 
 }
+
+resource "google_compute_route" "from_local_to_internet" {  
+  name          = "from-local-to-internet"
+  dest_range    = "10.10.10.0/24"  
+  network       = "vpc-local"  
+  next_hop_ilb  = data.google_compute_forwarding_rule.local.id
+  priority              = 1000  
+  lifecycle {
+    ignore_changes = [
+      next_hop_ilb
+    ]
+  }
+
+}
+
+
 
 /**************************************************************/
 /*
