@@ -1,0 +1,36 @@
+module "managed_notebooks" {
+  source                     = "../../modules/GMWB-notebooks"
+  #project                    = "ta-cse-rd1-dev-npe-d026"
+  project                    = "or2-msq-eqfx-trdr-t1iylu"
+  location                   = "us-central1"
+  access_type                = "SERVICE_ACCOUNT"
+  #notebook_service_account   = "tf-ta-cse-rd1-dev-npe@ta-cse-rd1-dev-npe-d026.iam.gserviceaccount.com"
+  notebook_service_account   = "profiles-controller-gmwb@or2-msq-eqfx-trdr-t1iylu.iam.gserviceaccount.com"
+  idle_shutdown              = true
+  idle_shutdown_timeout      = 180
+  install_gpu_driver         = false
+  machine_type               = "n1-standard-4"
+  #container_image_repository = "gcr.io/iaas-gcr-reg-prd-ad3d/vendor/deeplearning-platform-release/tf-cpu.2-8:m91"
+  container_image_repository = ""
+  #internal_ip_only           = true
+  internal_ip_only           = true
+  #notebook_network           = "projects/ta-cse-rd1-dev-npe-d026/global/networks/ta-cse-rd1-dev-npe-rd1-dev-vpc-1-useast1"
+  #notebook_network           = ""
+  notebook_network           = "projects/or2-msq-eqfx-trdr-t1iylu/global/networks/network-eqfx-trdr"
+  #notebook_subnet            = "projects/ta-cse-rd1-dev-npe-d026/regions/us-central1/subnetworks/ta-cse-rd1-dev-npe-vm-us-14-isolated"
+  #notebook_subnet            = ""
+  notebook_subnet            = "projects/or2-msq-eqfx-trdr-t1iylu/regions/us-central1/subnetworks/us-central1-a-network-eqfx-trdr-subnet"
+  notebook_disk_size         = 100
+  notebook_disk_type         = "PD_STANDARD"
+  #notebook_disk_cmek_key     = "projects/sec-crypto-iam-npe-c8ed/locations/us-central1/keyRings/ta-cse-rd1-dev-npe-d026_bap0010739/cryptoKeys/gmwb-us-central1"
+  notebook_disk_cmek_key     = ""
+  disable_download           = true
+  disable_nbconvert          = true
+  disable_terminal           = false
+  efx_labels = {
+    cost_center     = "3429"
+    division        = "0012"
+    cmdb_bus_svc_id = "asve0048988"
+    data_class      = "1"
+  }
+}

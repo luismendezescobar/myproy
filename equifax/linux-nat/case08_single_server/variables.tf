@@ -67,46 +67,43 @@ variable "cloud_nat_map" {
   }))
 }
 
-variable "server_vm_info_two_nics" {
-  description = "the number of DB server instances"
-  type = map(object({
-    zone              = string
-    instance_type     = string
-    source_image      = string
-    boot_disk_size_gb = number    
-    boot_disk_type    = string
-    network_tags     = list(string)    
-    description       = string
-    init_script       = string
-    auto_delete       = bool
-    subnet_name1       = string
-    subnet_name2       = string
-    external_ip       = list(string)
-    can_ip_forward    = bool
-    additional_disks = list(object({
-      name         = string
-      disk_size_gb = number
-      disk_type    = string
-    }))
-  }))
-  default = {}
-}
 
-variable "server_vm_info" {
+variable "server_nat_info" {
   description = "the number of DB server instances"
   type = map(object({
-    zone              = string
-    instance_type     = string
-    source_image      = string
-    boot_disk_size_gb = number    
-    boot_disk_type    = string
-    network_tags     = list(string)    
-    description       = string
-    init_script       = string
+    gce_image_family      = string
+    compute_image_project = string
+    project_id        = string
+    machine_type     = string
+    zone              = string        
+    labels            = map(string)
     auto_delete       = bool
-    subnet_name       = string
+    kms_key_self_link = string
+    disk_size         = number
+    disk_type         = string
+    subnetwork_project= string
+    subnetwork        = string
     external_ip       = list(string)
+    additional_networks =list(object({
+      network             = string
+      subnetwork          = string
+      subnetwork_project  = string
+      network_ip          = string
+      access_config = list(object({
+        nat_ip       = string
+        network_tier = string
+      }))
+    }))
+    service_account = object({
+      email  = string
+      scopes = list(string)
+    })
+    tags                = list(string)
+    metadata            = map(string)
+    startup_script       = string
+    description         =string
     can_ip_forward    = bool
+    allow_stopping_for_update=bool 
     additional_disks = list(object({
       name         = string
       disk_size_gb = number
