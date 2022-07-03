@@ -76,12 +76,6 @@ module "cloud_nat_gtw_create" {
 }
 
 
-module "create_routes" {
-  source                    = "./modules/gcp-routes"  
-  depends_on = [
-    module.vm_double_nic
-  ]
-}
 
 module "nat_single_server_creation" {
   source                    = "./modules/create-vm"
@@ -97,7 +91,7 @@ module "nat_single_server_creation" {
   kms_key_self_link         = each.value.kms_key_self_link
   disk_size                 = each.value.disk_size
   disk_type                 = each.value.disk_type
-  subnetwork_project        = var.project
+  subnetwork_project        = var.project_id
   subnetwork                = each.value.subnetwork
   external_ip               = each.value.external_ip
   additional_networks       = each.value.additional_networks
@@ -115,3 +109,10 @@ module "nat_single_server_creation" {
 
 }
 
+
+module "create_routes" {
+  source                    = "./modules/gcp-routes"  
+  depends_on = [
+    module.nat_single_server_creation
+  ]
+}
