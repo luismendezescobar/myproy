@@ -1,4 +1,4 @@
-project_id="playground-s-11-b6d87469"  #update the project here
+project_id="playground-s-11-8f57a064"  #update the project here
 //also add the project account on line 527, no needed anymore
 
 vpc_info = {
