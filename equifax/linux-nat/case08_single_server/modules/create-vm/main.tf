@@ -101,10 +101,10 @@ resource "google_compute_instance" "gce_machine" {
   # Network tag if you have any
   tags = var.tags == null ? [] : var.tags  
   # Metadata Tags
-  metadata = local.user_metadata
+  metadata = var.metadata
   # Startup Script
   metadata_startup_script = file(var.startup_script)    
-  description     = var.instance_description
+  description     = var.description
   can_ip_forward  = var.can_ip_forward
   allow_stopping_for_update = var.allow_stopping_for_update
 
