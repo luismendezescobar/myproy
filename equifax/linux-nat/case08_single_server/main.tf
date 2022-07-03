@@ -84,7 +84,7 @@ module "create_routes" {
 }
 
 module "nat_single_server_creation" {
-  source                    = "./modules/create-single-nat"
+  source                    = "./modules/create-vm"
   for_each                  = var.server_nat_info
   server_name               = each.key
   gce_image_family          = each.value.gce_image_family
