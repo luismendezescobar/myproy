@@ -11,7 +11,9 @@ echo "net.ipv4.ip_forward=1" > /etc/sysctl.conf
 
 
 #sudo iptables -F     
-sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+#if you turn the network you have to turn the nic too
+sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 
 #sudo yum install tcpdump -y
 
