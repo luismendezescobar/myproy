@@ -1,7 +1,7 @@
-project_id="playground-s-11-bc35469b"  #update the project here
+project_id="playground-s-11-8ad5acab"  #update the project here
 //also add the project account on line 527, no needed anymore
 service_account= {
-  email= "678372662242-compute@developer.gserviceaccount.com"
+  email= "709796088425-compute@developer.gserviceaccount.com"
   scopes= ["cloud-platform"]
 }
 
@@ -298,7 +298,7 @@ instance_template_map = {
     disk_size_gb      = "100"
     disk_type         = "pd-standard" 
     auto_delete       = "true"
-    subnetwork        = "vpc-shared-us-central1-sub"    
+    subnetwork        = "vpc-local-us-central1-sub"     
     subnetwork_project= ""  //use var.project_id instead    
     init_script       = "./modules/nat_init.sh"  
     external_ip       = ["false"]
@@ -306,8 +306,8 @@ instance_template_map = {
     network_tags = ["allow-health-check"]
     on_host_maintenance ="MIGRATE"
     additional_networks = [ {
-      network       = "vpc-local"
-      subnetwork    = "vpc-local-us-central1-sub"          
+      network       = ""               
+      subnetwork    = "vpc-shared-us-central1-sub"    
       subnetwork_project  = ""
       network_ip    = ""
       access_config  = []        

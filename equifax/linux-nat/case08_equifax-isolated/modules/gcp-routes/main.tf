@@ -17,7 +17,7 @@ resource "google_compute_route" "from_local_to_shared" {
   }
 
 }
-
+/*
 resource "google_compute_route" "from_local_to_internet" {  
   name          = "from-local-to-internet"
   dest_range    = "10.10.10.0/24"  
@@ -31,7 +31,7 @@ resource "google_compute_route" "from_local_to_internet" {
   }
 
 }
-
+*/
 
 
 /**************************************************************/
