@@ -16,13 +16,6 @@ vpc_info = {
                 subnet_region   =  "us-central1"
                 description     = "This subnet has a description"
             },
-     /*       {
-                subnet_name     = "vpc-shared-test-us-central1-sub"
-                subnet_ip       = "192.168.1.0/24" 
-                subnet_region   =  "us-central1"
-                description     = "This subnet has a description"
-            },
-      */
         ]
         secondary_ranges={}
     }
@@ -34,12 +27,17 @@ vpc_info = {
                 subnet_ip       = "10.10.11.0/24" 
                 subnet_region   =  "us-central1"
             },
-       /*     {
-                subnet_name     = "vpc-local-test-us-central1-sub"
-                subnet_ip       = "172.16.1.0/24" 
+        ]
+        secondary_ranges={}
+    } 
+    "vpc-google"={
+        auto_create_subnetworks=false
+        subnets = [
+            {
+                subnet_name     = "vpc-google-us-central1-sub"
+                subnet_ip       = "10.10.12.0/24" 
                 subnet_region   =  "us-central1"
-            }
-        */
+            },
         ]
         secondary_ranges={}
     } 
@@ -73,6 +71,28 @@ firewall_rules = {
     network_name = "vpc-local"    
     rules = [ {
       name                  ="vpc-local-ssh-allow"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["0.0.0.0/0"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[{
+          protocol = "tcp"
+          ports = [ "22" ]
+      }]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
+  },
+  "vpc-google-ssh-allow"= {
+    network_name = "vpc-google"    
+    rules = [ {
+      name                  ="vpc-google-ssh-allow"
       description           =null
       direction             ="INGRESS"
       priority              =null
@@ -154,7 +174,40 @@ firewall_rules = {
           metadata="INCLUDE_ALL_METADATA"
       }      
     } ]    
+  },
+  "vpc-google-allow-all-internal"= {
+    network_name = "vpc-google"    
+    rules = [ {
+      name                  ="vpc-google-allow-all-internal"
+      description           =null
+      direction             ="INGRESS"
+      priority              =null
+      ranges                =["10.10.12.0/24"]
+      source_tags           =null
+      source_service_accounts = null
+      target_tags             = null
+      target_service_accounts = null
+      allow=[
+        {
+          protocol = "icmp"
+          ports = []
+        },
+        {
+          protocol = "tcp"
+          ports = []
+        },
+        {
+          protocol = "udp"
+          ports = []
+        },            
+      ]
+      deny=[]
+      log_config={
+          metadata="INCLUDE_ALL_METADATA"
+      }      
+    } ]    
   },  
+  
   "vpc-shared-allow-health-check"= {
     network_name = "vpc-shared"    
     rules = [ {
@@ -246,9 +299,7 @@ instance_template_map = {
     disk_type         = "pd-standard" 
     auto_delete       = "true"
     subnetwork        = "vpc-shared-us-central1-sub"    
-    subnetwork_project= ""  //use var.project_id instead
-    //subnet_name2      = "vpc-local-us-central1-sub"
-    #description       = "linux centos nat server"
+    subnetwork_project= ""  //use var.project_id instead    
     init_script       = "./modules/nat_init.sh"  
     external_ip       = ["false"]
     can_ip_forward   = "true"
@@ -344,7 +395,7 @@ server_vm_info = {
       instance_type     = "e2-medium"
       //gcloud compute images list
       source_image      = "centos-cloud/centos-7"
-      boot_disk_size_gb = 100
+      boot_disk_size_gb = 30
       boot_disk_type    = "pd-standard" 
       auto_delete       = true
       subnet_name       = "vpc-shared-us-central1-sub"
@@ -361,7 +412,7 @@ server_vm_info = {
       //gcloud compute images list
       #source_image      = "efx-centos-7/efx-centos7"
       source_image      = "centos-cloud/centos-7"
-      boot_disk_size_gb = 100
+      boot_disk_size_gb = 30
       boot_disk_type    = "pd-standard" 
       auto_delete       = true
       subnet_name       = "vpc-local-us-central1-sub"
@@ -372,32 +423,16 @@ server_vm_info = {
       network_tags = ["no-ip"]
       additional_disks = []
   },
- /* "shared-test01" = {
-      zone              = "us-central1-b"
-      instance_type     = "e2-medium"
-      //gcloud compute images list
-      source_image      = "centos-cloud/centos-7"
-      boot_disk_size_gb = 100
-      boot_disk_type    = "pd-standard" 
-      auto_delete       = true
-      subnet_name       = "vpc-shared-test-us-central1-sub"
-      description       = "bastion to manage all"
-      init_script       = "./modules/create-vm/init.sh"  
-      external_ip       = ["false"]
-      can_ip_forward   = false
-      network_tags = ["no-ip"]
-      additional_disks = []
-  },
-  "local-test01" = {
+  "google-client01" = {
       zone              = "us-central1-b"
       instance_type     = "e2-medium"
       //gcloud compute images list
       #source_image      = "efx-centos-7/efx-centos7"
       source_image      = "centos-cloud/centos-7"
-      boot_disk_size_gb = 100
+      boot_disk_size_gb = 30
       boot_disk_type    = "pd-standard" 
       auto_delete       = true
-      subnet_name       = "vpc-local-test-us-central1-sub"
+      subnet_name       = "vpc-google-us-central1-sub"
       description       = "bastion to manage all"
       init_script       = "./modules/create-vm/init.sh"  
       external_ip       = ["false"]
@@ -405,6 +440,6 @@ server_vm_info = {
       network_tags = ["no-ip"]
       additional_disks = []
   },
-*/
+
 
 }
