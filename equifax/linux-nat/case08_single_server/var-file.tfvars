@@ -291,7 +291,7 @@ server_nat_info = {
         email  = "678372662242-compute@developer.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
-      tags                = []   
+      tags                = ["no-ip"]   
       metadata              = {}        
       startup_script       = "./modules/create-vm/init.sh"    
       description       = "Linux nat server for vertexIA"
@@ -318,7 +318,7 @@ server_nat_info = {
         email  = "678372662242-compute@developer.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
-      tags                = []   
+      tags                = ["no-ip"]   
       metadata              = {}        
       startup_script       = "./modules/create-vm/init.sh"    
       description       = "Linux nat server for vertexIA"
@@ -345,7 +345,7 @@ server_nat_info = {
         email  = "678372662242-compute@developer.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
-      tags                = []   
+      tags                = ["no-ip"]   
       metadata              = {}        
       startup_script       = "./modules/create-vm/init.sh"    
       description       = "Linux nat server for vertexIA"
