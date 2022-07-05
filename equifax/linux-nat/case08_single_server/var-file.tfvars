@@ -1,4 +1,4 @@
-project_id="playground-s-11-557b66f6"  #update the project here
+project_id="playground-s-11-bc0857b8"  #update the project here
 //also add the project account on line 527, no needed anymore
 
 vpc_info = {
@@ -263,7 +263,7 @@ server_nat_info = {
         access_config      = []
       }]
       service_account = {
-        email  = "797057444518-compute@developer.gserviceaccount.com"
+        email  = "834233547490-compute@developer.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
       tags                = []   
@@ -290,7 +290,7 @@ server_nat_info = {
       external_ip       = ["false"]
       additional_networks = []
       service_account = {
-        email  = "797057444518-compute@developer.gserviceaccount.com"
+        email  = "834233547490-compute@developer.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
       tags                = ["no-ip"]   
@@ -317,7 +317,7 @@ server_nat_info = {
       external_ip       = ["false"]
       additional_networks = []
       service_account = {
-        email  = "797057444518-compute@developer.gserviceaccount.com"
+        email  = "834233547490-compute@developer.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
       tags                = ["no-ip"]   
@@ -344,7 +344,7 @@ server_nat_info = {
       external_ip       = ["false"]
       additional_networks = []
       service_account = {
-        email  = "797057444518-compute@developer.gserviceaccount.com"
+        email  = "834233547490-compute@developer.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
       tags                = ["no-ip"]   
@@ -377,7 +377,7 @@ server_nat_info = {
         access_config      = []
       }]
       service_account = {
-        email  = "797057444518-compute@developer.gserviceaccount.com"
+        email  = "834233547490-compute@developer.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
       tags                = []   
