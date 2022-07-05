@@ -1,4 +1,4 @@
-project_id="playground-s-11-bc35469b"  #update the project here
+project_id="playground-s-11-557b66f6"  #update the project here
 //also add the project account on line 527, no needed anymore
 
 vpc_info = {
@@ -250,18 +250,20 @@ server_nat_info = {
       kms_key_self_link   = ""
       disk_size           = 30
       disk_type           = "pd-standard" 
-      subnetwork_project  = ""        
-      subnetwork          = "vpc-shared-us-central1-sub"
+      subnetwork_project  = ""              
+      #subnetwork          = "vpc-shared-us-central1-sub"
+      subnetwork         = "vpc-local-us-central1-sub"
       external_ip       = ["false"]
       additional_networks = [{
-        network            = "vpc-local" 
-        subnetwork         = "vpc-local-us-central1-sub"
+        network            = "" 
+        subnetwork          = "vpc-shared-us-central1-sub"
+        #subnetwork         = "vpc-local-us-central1-sub"
         subnetwork_project = ""
         network_ip         = ""
         access_config      = []
       }]
       service_account = {
-        email  = "678372662242-compute@developer.gserviceaccount.com"
+        email  = "797057444518-compute@developer.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
       tags                = []   
@@ -288,7 +290,7 @@ server_nat_info = {
       external_ip       = ["false"]
       additional_networks = []
       service_account = {
-        email  = "678372662242-compute@developer.gserviceaccount.com"
+        email  = "797057444518-compute@developer.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
       tags                = ["no-ip"]   
@@ -315,7 +317,7 @@ server_nat_info = {
       external_ip       = ["false"]
       additional_networks = []
       service_account = {
-        email  = "678372662242-compute@developer.gserviceaccount.com"
+        email  = "797057444518-compute@developer.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
       tags                = ["no-ip"]   
@@ -342,7 +344,7 @@ server_nat_info = {
       external_ip       = ["false"]
       additional_networks = []
       service_account = {
-        email  = "678372662242-compute@developer.gserviceaccount.com"
+        email  = "797057444518-compute@developer.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
       tags                = ["no-ip"]   
@@ -375,7 +377,7 @@ server_nat_info = {
         access_config      = []
       }]
       service_account = {
-        email  = "678372662242-compute@developer.gserviceaccount.com"
+        email  = "797057444518-compute@developer.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
       tags                = []   
