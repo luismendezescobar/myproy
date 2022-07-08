@@ -1,5 +1,5 @@
 
-
+/*
 module "vpc_creation" {
   for_each = var.vpc_info
   source  = "terraform-google-modules/network/google//modules/vpc"
@@ -75,7 +75,7 @@ module "cloud_nat_gtw_create" {
   ]
 }
 
-
+*/
 
 module "nat_single_server_creation" {
   source                    = "./modules/create-vm"

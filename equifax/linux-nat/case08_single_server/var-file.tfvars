@@ -1,4 +1,4 @@
-project_id="playground-s-11-bc0857b8"  #update the project here
+project_id="or2-msq-eqfx-trdr-t1iylu"  #update the project here
 //also add the project account on line 527, no needed anymore
 
 vpc_info = {
@@ -251,133 +251,19 @@ server_nat_info = {
       disk_size           = 30
       disk_type           = "pd-standard" 
       subnetwork_project  = ""              
-      subnetwork          = "vpc-shared-us-central1-sub"
+      subnetwork          = "us-central1-a-network-eqfx-trdr-subnet"
       #subnetwork         = "vpc-local-us-central1-sub"
       external_ip       = ["false"]
       additional_networks = [{
         network            = "" 
         #subnetwork          = "vpc-shared-us-central1-sub"
-        subnetwork         = "vpc-local-us-central1-sub"
+        subnetwork         = "shared-subnet"
         subnetwork_project = ""
         network_ip         = ""
         access_config      = []
       }]
       service_account = {
-        email  = "834233547490-compute@developer.gserviceaccount.com"
-        scopes = ["cloud-platform"]
-      }
-      tags                = []   
-      metadata              = {}        
-      startup_script       = "./modules/nat_init.sh"      
-      description       = "Linux nat server for vertexIA"
-      can_ip_forward   = true
-      allow_stopping_for_update = false      
-      additional_disks = []      
-  },
-  "isolated-client01" = {
-      gce_image_family      = "centos-7"
-      compute_image_project = "centos-cloud"
-      project_id            = ""
-      machine_type     = "e2-medium"
-      zone              = "us-central1-b"
-      labels = {}
-      auto_delete         = true
-      kms_key_self_link   = ""
-      disk_size           = 30
-      disk_type           = "pd-standard" 
-      subnetwork_project  = ""        
-      subnetwork          = "vpc-local-us-central1-sub"
-      external_ip       = ["false"]
-      additional_networks = []
-      service_account = {
-        email  = "834233547490-compute@developer.gserviceaccount.com"
-        scopes = ["cloud-platform"]
-      }
-      tags                = ["no-ip"]   
-      metadata              = {}        
-      startup_script       = "./modules/create-vm/init.sh"    
-      description       = "Linux nat server for vertexIA"
-      can_ip_forward   = false
-      allow_stopping_for_update = false      
-      additional_disks = []      
-  },
-  "shared-client01" = {
-      gce_image_family      = "centos-7"
-      compute_image_project = "centos-cloud"
-      project_id            = ""
-      machine_type     = "e2-medium"
-      zone              = "us-central1-b"
-      labels = {}
-      auto_delete         = true
-      kms_key_self_link   = ""
-      disk_size           = 30
-      disk_type           = "pd-standard" 
-      subnetwork_project  = ""        
-      subnetwork          = "vpc-shared-us-central1-sub"
-      external_ip       = ["false"]
-      additional_networks = []
-      service_account = {
-        email  = "834233547490-compute@developer.gserviceaccount.com"
-        scopes = ["cloud-platform"]
-      }
-      tags                = ["no-ip"]   
-      metadata              = {}        
-      startup_script       = "./modules/create-vm/init.sh"    
-      description       = "Linux nat server for vertexIA"
-      can_ip_forward   = false
-      allow_stopping_for_update = false      
-      additional_disks = []      
-  },
-  "google-client01" = {
-      gce_image_family      = "centos-7"
-      compute_image_project = "centos-cloud"
-      project_id            = ""
-      machine_type     = "e2-medium"
-      zone              = "us-central1-b"
-      labels = {}
-      auto_delete         = true
-      kms_key_self_link   = ""
-      disk_size           = 30
-      disk_type           = "pd-standard" 
-      subnetwork_project  = ""        
-      subnetwork          = "vpc-google-us-central1-sub"
-      external_ip       = ["false"]
-      additional_networks = []
-      service_account = {
-        email  = "834233547490-compute@developer.gserviceaccount.com"
-        scopes = ["cloud-platform"]
-      }
-      tags                = ["no-ip"]   
-      metadata              = {}        
-      startup_script       = "./modules/create-vm/init.sh"    
-      description       = "Linux nat server for vertexIA"
-      can_ip_forward   = false
-      allow_stopping_for_update = false      
-      additional_disks = []      
-  },
-  "nat-google-isolate" = {
-      gce_image_family      = "centos-7"
-      compute_image_project = "centos-cloud"
-      project_id            = ""
-      machine_type     = "e2-medium"
-      zone              = "us-central1-b"
-      labels = {}
-      auto_delete         = true
-      kms_key_self_link   = ""
-      disk_size           = 30
-      disk_type           = "pd-standard" 
-      subnetwork_project  = ""              
-      subnetwork         = "vpc-local-us-central1-sub"
-      external_ip       = ["false"]
-      additional_networks = [{
-        network            = "" 
-        subnetwork          = "vpc-google-us-central1-sub"
-        subnetwork_project = ""
-        network_ip         = ""
-        access_config      = []
-      }]
-      service_account = {
-        email  = "834233547490-compute@developer.gserviceaccount.com"
+        email  = "tf-gmwb@or2-msq-eqfx-trdr-t1iylu.iam.gserviceaccount.com"
         scopes = ["cloud-platform"]
       }
       tags                = []   

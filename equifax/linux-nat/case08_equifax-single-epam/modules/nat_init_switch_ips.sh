@@ -10,10 +10,17 @@ echo "net.ipv4.ip_forward=1" > /etc/sysctl.conf
 #sudo systemctl enable --now iptables
 #for testing we will leave these 2, but after testing is completed we are going to use the below configuration
 #sudo iptables -F
-#sudo iptables -t nat -A POSTROUTING -o ens5 -j MASQUERADE
+
+#we enable this line if we use centos
+#sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+
+#for ubuntu is like this one
+sudo sysctl net.ipv4.conf.all.forwarding=1
+sudo iptables --table nat --append POSTROUTING --out-interface ens5 -j MASQUERADE
+
 
 #the correct configuraton would be, remove the iptables -F then add the below rules
-sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+#sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 #sudo iptables -I FORWARD -p tcp --dport 80 -m state --state NEW -j ACCEPT
 #sudo iptables -I FORWARD -p tcp --dport 443 -m state --state NEW -j ACCEPT
 #sudo iptables -I FORWARD -p tcp -m state --state related,ESTABLISH -j ACCEPT
@@ -34,15 +41,14 @@ nic1_mask="$(curl $md_net/1/subnetmask -H "Metadata-Flavor:Google")"
 nic1_addr="$(curl $md_net/1/ip -H "Metadata-Flavor:Google")"
 nic1_id="$(ip addr show | grep $nic1_addr | awk '{print $NF}')"
 # Source based policy routing for nic1
-#sudo echo "100 rt-nic1" >> /etc/iproute2/rt_tables
-#sudo ip rule add pri 32000 from $nic1_gw/$nic1_mask table rt-nic1
-sleep 5
-#sudo ip route add 35.191.0.0/16 via $nic1_gw dev $nic1_id
-#sudo ip route add 130.211.0.0/22 via $nic1_gw dev $nic1_id
-#sudo ip route add 10.137.32.0/20 via $nic1_gw dev $nic1_id 
-#sudo ip route add 10.17.98.194/32 via $nic1_gw dev $nic1_id
-sudo ip route add 140.82.112.0/20 via $nic1_gw dev $nic1_id
+sudo echo "100 rt-nic1" >> /etc/iproute2/rt_tables
+sudo ip rule add pri 32000 from $nic1_gw/$nic1_mask table rt-nic1
+sleep 1
+sudo ip route add 35.191.0.0/16 via $nic1_gw dev $nic1_id table rt-nic1
+sudo ip route add 130.211.0.0/22 via $nic1_gw dev $nic1_id table rt-nic1
+sudo ip route add 10.137.32.0/20 via $nic1_gw dev $nic1_id table rt-nic1
+sudo ip route add 140.82.0.0/16 via $nic1_gw dev $nic1_id table rt-nic1
+sudo ip route add 8.8.8.8/32 via $nic1_gw dev $nic1_id table rt-nic1
 
-
-
-
+##doing some testing from here to below
+#this route is to go to git hub
