@@ -103,9 +103,7 @@ module "nat_single_server_creation" {
   can_ip_forward            = each.value.can_ip_forward
   allow_stopping_for_update = each.value.allow_stopping_for_update
   additional_disks          = each.value.additional_disks
-  depends_on = [
-    module.cloud_nat_gtw_create
-  ]
+
 
 }
 
