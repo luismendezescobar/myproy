@@ -98,5 +98,8 @@ variable "efx_labels" {
   }
 }
 
-
+variable "tag" {
+  type        = string
+  description = "tag for containers"
+}
 

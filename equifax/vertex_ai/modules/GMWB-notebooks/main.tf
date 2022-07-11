@@ -30,6 +30,7 @@ resource "google_notebooks_runtime" "runtime" {
       labels           = var.efx_labels
       container_images {
         repository = var.container_image_repository
+        tag        = var.tag 
       }
       data_disk {
         initialize_params {
