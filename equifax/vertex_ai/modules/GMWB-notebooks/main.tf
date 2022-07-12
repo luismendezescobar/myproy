@@ -28,6 +28,7 @@ resource "google_notebooks_runtime" "runtime" {
       network          = var.notebook_network
       subnet           = var.notebook_subnet
       labels           = var.efx_labels
+      
       container_images {
         repository = var.container_image_repository
         tag        = var.tag 

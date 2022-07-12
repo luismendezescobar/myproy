@@ -33,6 +33,7 @@ variable "machine_type" {
 variable "container_image_repository" {
   type        = string
   description = "The path to the container image repository. For example: gcr.io/{project_id}/{imageName}"
+  default = ""
 }
 variable "internal_ip_only" {
   type        = bool
@@ -101,5 +102,6 @@ variable "efx_labels" {
 variable "tag" {
   type        = string
   description = "tag for containers"
+  default = ""
 }
 

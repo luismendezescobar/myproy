@@ -10,10 +10,8 @@ module "managed_notebooks" {
   idle_shutdown_timeout      = 180
   install_gpu_driver         = false
   machine_type               = "n1-standard-4"
-  container_image_repository = "gcr.io/deeplearning-platform-release/tf-cpu.2-8:latest"
-  tag                        = "latest"
-  #container_image_repository = ""
-  #internal_ip_only           = true
+  #container_image_repository = "gcr.io/deeplearning-platform-release/tf-cpu.2-8:latest"
+  #tag                        = "latest"
   internal_ip_only           = true
   #notebook_network           = "projects/ta-cse-rd1-dev-npe-d026/global/networks/ta-cse-rd1-dev-npe-rd1-dev-vpc-1-useast1"
   #notebook_network           = ""
