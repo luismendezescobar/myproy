@@ -1,3 +1,5 @@
+gcloud enable api container.googleapis.com
+
 gcloud container clusters create cluster \
     --enable-master-authorized-networks \
     --network network \
