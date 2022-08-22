@@ -1,4 +1,4 @@
-project_id="playground-s-11-20fe9f00" 
+project_id="triggering-a-198-4162dc2d" 
 
 vpc_info = {
     "network"={
