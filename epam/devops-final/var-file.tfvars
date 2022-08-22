@@ -8,13 +8,15 @@ vpc_info = {
             subnet_name     = "us-central-subnet"
             subnet_ip       = "10.1.0.0/24" 
             subnet_region   =  "us-central1"
-            description     = "This subnet has a description"
+            description     = "Subnet for kubernetes"
+            subnet_private_access = "true"
           },
           {
             subnet_name     = "private-services"
             subnet_ip       = "10.4.0.0/20" 
             subnet_region   =  "us-central1"
-            description     = "This subnet has a description"
+            description     = "Subnet for other services"
+            subnet_private_access = "true"
           },
         ]
         secondary_ranges={

@@ -1,0 +1,21 @@
+gcloud container clusters cluster \
+    --enable-master-authorized-networks \
+    --network network \
+    --subnetwork us-central-subnet \
+    --cluster-secondary-range-name pods \
+    --services-secondary-range-name services \
+    --enable-private-nodes \
+    --enable-ip-alias \
+    --master-ipv4-cidr 172.16.0.16/28 \
+    --no-enable-basic-auth \
+    --no-issue-client-certificate \
+    --service-account=kubernetes@triggering-a-198-4162dc2d.iam.gserviceaccount.com
+
+
+
+    gcloud container clusters create private-cluster-3 \
+    --create-subnetwork name=my-subnet-3 \
+    --no-enable-master-authorized-networks \
+    --enable-ip-alias \
+    --enable-private-nodes \
+    --master-ipv4-cidr 172.16.0.32/28
