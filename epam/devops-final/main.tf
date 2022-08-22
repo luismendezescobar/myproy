@@ -78,7 +78,13 @@ resource "google_service_account" "service_account_kubernetes" {
   display_name = "Kubernetes Service Account"
 }
 
-module "projects_iam_bindings" {
+resource "google_service_account" "service_account_next_cloud" {
+  account_id   = "nextcloud"
+  display_name = "Account for nextcloud"
+}
+
+
+module "projects_iam_bindings_" {
  source  = "terraform-google-modules/iam/google//modules/projects_iam"
  version = "~> 6.4"
 
@@ -103,38 +109,18 @@ module "projects_iam_bindings" {
    "roles/storage.objectViewer" = [
      "serviceAccount:kubernetes@${var.project_id}.iam.gserviceaccount.com",
    ],
- }
- depends_on = [
-   google_service_account.service_account_kubernetes
- ]
-}
 
-resource "google_service_account" "service_account_next_cloud" {
-  account_id   = "nextcloud"
-  display_name = "Account for nextcloud"
-}
 
-module "projects_iam_bindings" {
- source  = "terraform-google-modules/iam/google//modules/projects_iam"
- version = "~> 6.4"
-
- projects = [var.project_id]
-
- bindings = {
    "roles/storage.objectAdmin" = [
      "serviceAccount:nextcloud@${var.project_id}.iam.gserviceaccount.com",
    ],
+
  }
  depends_on = [
+   google_service_account.service_account_kubernetes,
    google_service_account.service_account_next_cloud
  ]
 }
-
-
-
-
-
-
 
 
 
