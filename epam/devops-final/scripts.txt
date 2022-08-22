@@ -1,4 +1,4 @@
-gcloud container clusters cluster \
+gcloud container clusters create cluster \
     --enable-master-authorized-networks \
     --network network \
     --subnetwork us-central-subnet \
@@ -6,16 +6,37 @@ gcloud container clusters cluster \
     --services-secondary-range-name services \
     --enable-private-nodes \
     --enable-ip-alias \
-    --master-ipv4-cidr 172.16.0.16/28 \
+    --master-ipv4-cidr 172.16.0.0/28 \
     --no-enable-basic-auth \
     --no-issue-client-certificate \
-    --service-account=kubernetes@triggering-a-198-4162dc2d.iam.gserviceaccount.com
+    --service-account=kubernetes@triggering-a-198-4162dc2d.iam.gserviceaccount.com \
+    --region=us-central1 \
+    --num-nodes=2 \
+    --machine-type=n1-standard-1
 
 
 
-    gcloud container clusters create private-cluster-3 \
-    --create-subnetwork name=my-subnet-3 \
-    --no-enable-master-authorized-networks \
-    --enable-ip-alias \
-    --enable-private-nodes \
-    --master-ipv4-cidr 172.16.0.32/28
+# Authorize a range
+gcloud container clusters update private-cluster-2 \
+    --enable-master-authorized-networks \
+    --master-authorized-networks 10.4.0.0/20
+
+#authorize cloud shell
+dig +short myip.opendns.com @resolver1.opendns.com
+
+
+gcloud container clusters update private-cluster-1 \
+    --enable-master-authorized-networks \
+    --master-authorized-networks EXISTING_AUTH_NETS,SHELL_IP/32
+
+
+EXISTING_AUTH_NETS: the IP addresses of your existing list of authorized networks. You can find your authorized networks in the console or by running the following command:
+
+
+gcloud container clusters describe private-cluster-1 --format "flattened(masterAuthorizedNetworksConfig.cidrBlocks[])"
+SHELL_IP: the external IP address of your Cloud Shell.
+
+gcloud container clusters get-credentials private-cluster-1 \
+    --project PROJECT_ID
+
+kubectl get nodes
