@@ -54,7 +54,7 @@ kubectl get nodes
 ----------------------------------------------
 this one worked fine
 
-project_id="triggering-a-198-9cef956e" 
+project_id="triggering-a-198-54c59714" 
 gcloud services enable container.googleapis.com
 
 
@@ -64,7 +64,8 @@ gcloud container clusters create cluster --num-nodes 1 \
 --machine-type=n1-standard-1 \
 --zone=us-central1-a \
 --num-nodes=1 \
---node-locations="us-central1-a,us-central1-b"
+--node-locations="us-central1-a,us-central1-b" \
+--service-account=kubernetes@triggering-a-198-8fd39b23.iam.gserviceaccount.com
 
 kubectl get nodes
 
@@ -77,6 +78,18 @@ gcloud sql databases create nextcloud \
 --collation=utf8mb4_general_ci
 
 gcloud sql users create nextcloud \
---host=ip gotten from teh shell \
+--host=0.0.0.0/0 \
 --instance=database \
 --password=password
+
+export GCP_PROJECT=triggering-a-198-9cef956e
+gcloud builds submit --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/nextcloud:21.0.1-apache .
+
+access key:
+GOOG1EGB6RA5LBTOD7PZCMGGWGSRTWJJPM2GOQ6CFY7WDABP5UR2SW5CUSFGQ
+secret:
+O1rfz2JrwqL0KNskyFxc2FgM250hWwrR+5VDt+r5
+
+
+kubectl create secret generic nextcloud-mysql --from-literal=username=nextcloud --from-literal=password=password
+kubectl create secret generic nextcloud-admin --from-literal=username=admin --from-literal=password=admin123
