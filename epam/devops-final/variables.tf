@@ -61,3 +61,13 @@ variable "cloud_nat_map" {
 
   }))
 }
+
+
+variable "bucket_location" {
+  type = string
+  default = "us-central1"
+}
+
+variable "storage_class" {
+  type = string
+}

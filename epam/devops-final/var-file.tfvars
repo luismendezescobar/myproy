@@ -88,3 +88,7 @@ cloud_nat_map ={
   },
 
 }
+
+
+storage_class = "REGIONAL"
+bucket_location="us-central1"

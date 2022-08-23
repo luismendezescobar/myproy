@@ -1,5 +1,8 @@
-gcloud enable api container.googleapis.com
+project_id="triggering-a-198-8fd39b23" 
+gcloud services enable container.googleapis.com
 
+
+#this one didn't worked
 gcloud container clusters create cluster \
     --enable-master-authorized-networks \
     --network network \
@@ -11,34 +14,69 @@ gcloud container clusters create cluster \
     --master-ipv4-cidr 172.16.0.0/28 \
     --no-enable-basic-auth \
     --no-issue-client-certificate \
-    --service-account=kubernetes@triggering-a-198-4162dc2d.iam.gserviceaccount.com \
-    --region=us-central1 \
-    --num-nodes=2 \
-    --machine-type=n1-standard-1
-
-
+    --service-account=kubernetes@triggering-a-198-8fd39b23.iam.gserviceaccount.com \
+    --machine-type=n1-standard-1 \
+    --zone=us-central1-a \
+    --num-nodes=1 \
+    --node-locations="us-central1-a,us-central1-b"
 
 # Authorize a range
-gcloud container clusters update private-cluster-2 \
+gcloud container clusters update cluster \
     --enable-master-authorized-networks \
-    --master-authorized-networks 10.4.0.0/20
+    --master-authorized-networks 10.4.0.0/20 \
+    --zone us-central1-a
+    
+
 
 #authorize cloud shell
 dig +short myip.opendns.com @resolver1.opendns.com
 
 
-gcloud container clusters update private-cluster-1 \
+gcloud container clusters update cluster \
     --enable-master-authorized-networks \
-    --master-authorized-networks EXISTING_AUTH_NETS,SHELL_IP/32
+    --zone us-central1-a
+    --master-authorized-networks 10.4.0.0/20,34.138.77.71/32,35.232.244.172
 
 
-EXISTING_AUTH_NETS: the IP addresses of your existing list of authorized networks. You can find your authorized networks in the console or by running the following command:
+EXISTING_AUTH_NETS: the IP addresses of your existing list of authorized networks.
+You can find your authorized networks in the console or by running the following command:
 
 
-gcloud container clusters describe private-cluster-1 --format "flattened(masterAuthorizedNetworksConfig.cidrBlocks[])"
+gcloud container clusters describe cluster --format "flattened(masterAuthorizedNetworksConfig.cidrBlocks[])" \
+--zone us-central1-a
 SHELL_IP: the external IP address of your Cloud Shell.
 
-gcloud container clusters get-credentials private-cluster-1 \
-    --project PROJECT_ID
+gcloud container clusters get-credentials cluster \
+--zone us-central1-a \
+--project triggering-a-198-8fd39b23
 
 kubectl get nodes
+----------------------------------------------
+this one worked fine
+
+project_id="triggering-a-198-8fd39b23" 
+gcloud services enable container.googleapis.com
+
+
+gcloud container clusters create cluster --num-nodes 1 \
+--network network \
+--subnetwork us-central-subnet \
+--machine-type=n1-standard-1 \
+--zone=us-central1-a \
+--num-nodes=1 \
+--node-locations="us-central1-a,us-central1-b"
+
+kubectl get nodes
+
+create sql instance on the console
+
+
+gcloud sql databases create nextcloud \
+--instance=database \
+--charset=utf8mb4 \
+--collation=utf8mb4_general_ci
+
+gcloud sql users create nextcloud \
+--host=ip gotten from teh shell \
+--instance=database \
+--password=password

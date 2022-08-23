@@ -124,7 +124,13 @@ module "projects_iam_bindings_" {
 
 
 
+resource "google_storage_bucket" "default" {
 
+  name = var.project_id
+  storage_class = var.storage_class
+  location = var.bucket_location
+
+}
 
 
 
