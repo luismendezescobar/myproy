@@ -54,7 +54,7 @@ kubectl get nodes
 ----------------------------------------------
 this one worked fine
 
-project_id="triggering-a-198-8fd39b23" 
+project_id="triggering-a-198-9cef956e" 
 gcloud services enable container.googleapis.com
 
 
