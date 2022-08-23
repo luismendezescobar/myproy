@@ -32,7 +32,7 @@ module "firewall_rules_create" {
     module.subnets_creation
   ]
 }
-
+/*
 module "cloud_router_creation" {
   for_each=var.cloud_nat_map
   source  = "terraform-google-modules/cloud-router/google"
@@ -72,7 +72,7 @@ module "cloud_nat_gtw_create" {
   ]
 }
 
-
+*/
 resource "google_service_account" "service_account_kubernetes" {
   account_id   = "kubernetes"
   display_name = "Kubernetes Service Account"
