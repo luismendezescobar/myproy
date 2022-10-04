@@ -65,7 +65,7 @@ gcloud container clusters create cluster --num-nodes 1 \
 --zone=us-central1-a \
 --num-nodes=1 \
 --node-locations="us-central1-a,us-central1-b" \
---service-account=kubernetes@triggering-a-198-8fd39b23.iam.gserviceaccount.com
+--service-account=kubernetes@${project_id}.iam.gserviceaccount.com
 
 kubectl get nodes
 
@@ -82,14 +82,84 @@ gcloud sql users create nextcloud \
 --instance=database \
 --password=password
 
-export GCP_PROJECT=triggering-a-198-9cef956e
-gcloud builds submit --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/nextcloud:21.0.1-apache .
+
+gcloud builds submit --tag gcr.io/${project_id}/nextcloud:21.0.1-apache .
 
 access key:
-GOOG1EGB6RA5LBTOD7PZCMGGWGSRTWJJPM2GOQ6CFY7WDABP5UR2SW5CUSFGQ
-secret:
-O1rfz2JrwqL0KNskyFxc2FgM250hWwrR+5VDt+r5
+GOOG1EMMNYFRZ63PLKIGLCRA7XIFF3BUJMH3SWIBWDZ2OWSERJ2P6VYVJUCEI
+Secret
+RKjdvRXwEp7p/Mikyukbyt/ko5kpNJu3oebybvwn
+
+
 
 
 kubectl create secret generic nextcloud-mysql --from-literal=username=nextcloud --from-literal=password=password
 kubectl create secret generic nextcloud-admin --from-literal=username=admin --from-literal=password=admin123
+
+
+
+==============================correct way to fill out the file==============================
+image:
+  repository: gcr.io/triggering-a-198-54c59714/nextcloud
+  tag: 21.0.1-apache
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+
+nextcloud:
+  host: nextcloud.kube.home
+  existingSecret:
+    secretName: nextcloud-admin
+    usernameKey: username
+    passwordKey: password
+  configs:
+    gcs.config.php: |-
+      <?php
+      $CONFIG = array(
+        'objectstore' => array(
+          'class' => '\\OC\\Files\\ObjectStore\\S3',
+          'arguments' => array(
+            'bucket'         => 'triggering-a-198-54c59714',  ##bucket goes here
+            'autocreate'     => false,
+            'key'            => 'GOOG1EMMNYFRZ63PLKIGLCRA7XIFF3BUJMH3SWIBWDZ2OWSERJ2P6VYVJUCEI',
+            'secret'         => 'RKjdvRXwEp7p/Mikyukbyt/ko5kpNJu3oebybvwn',
+            'hostname'       => 'storage.googleapis.com',
+            'region'         => 'auto',
+            'use_ssl'        => true,
+            'use_path_style' => false,
+          )
+        )
+      );
+    memorystore.config.php: |-
+      <?php
+      $CONFIG = array(
+        'memcache.local' => '\OC\Memcache\Redis',
+        'redis' => array(
+          'host' => '10.140.38.99',   #internal ip of redis
+          'port' => 6379,
+        ),
+      );
+
+internalDatabase:
+  enabled: false
+
+externalDatabase:
+  enabled: true
+  type: mysql
+  host: 35.232.106.182            ##External ip of cloud sql here
+  database: nextcloud
+  existingSecret:
+    secretName: nextcloud-mysql
+    usernameKey: username
+    passwordKey: password
+
+service:
+  type: NodePort
+  nodePort: 30000
+
+persistence:
+  enabled: true
+
+
