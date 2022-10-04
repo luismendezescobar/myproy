@@ -11,7 +11,7 @@ resource "random_string" "random" {
 
 
 
-resource "azurerm_storage_account" "example" {
+resource "azurerm_storage_account" "my_storage_account" {
   name                     = "mystorage-${resource.random_string.random.result}"
   resource_group_name      = azurerm_resource_group.my_resource_group.name
   location                 = azurerm_resource_group.my_resource_group.location
@@ -21,4 +21,11 @@ resource "azurerm_storage_account" "example" {
   tags = {
     environment = "staging"
   }
+}
+
+
+resource "azurerm_storage_container" "my_blob_container" {
+  name                  = "statecontainer"
+  storage_account_name  = azurerm_storage_account.my_storage_account.name
+  container_access_type = "private"
 }
