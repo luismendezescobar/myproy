@@ -5,7 +5,7 @@ data "azurerm_resource_group" "my_resource_group" {
 }
 
 resource "random_string" "random" {  
-  length  = 16
+  length  = 10
   special = false
 }
 
