@@ -1,7 +1,7 @@
 /*create teh storage account to be used with the main file*/
 data "azurerm_resource_group" "my_resource_group" {
   name     = "1-93db68cb-playground-sandbox"
-  location = "East US"
+  #location = "East US"
 }
 
 resource "random_string" "random" {  
