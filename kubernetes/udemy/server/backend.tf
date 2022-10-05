@@ -1,13 +1,8 @@
-
-data "azurerm_resource_group" "my_resource_group" {
-  name     = "1-93db68cb-playground-sandbox"
-}
-
 terraform{
     backend "azurerm"{
-        resource_group_name =data.azurerm_resource_group.my_resource_group.name                    #variables can not be used, you have to put this manually here
-        storage_account_name="mystorage282022"              #"myaccount1292022"   ##this has to be created manually##       #variables can not be used, you have to put this manually here
-        container_name      ="statecontainer-app-servers"                       ##this has to be created manually
+        resource_group_name ="1-93db68cb-playground-sandbox"                    #variables can not be used, you have to put this manually here
+        storage_account_name="mystorage1kchrcu6gu"              #"myaccount1292022"   ##this has to be created manually##       #variables can not be used, you have to put this manually here
+        container_name      ="statecontainer"                       ##this has to be created manually
         key                 ="terraform.tfstate"
     }
     required_providers {
