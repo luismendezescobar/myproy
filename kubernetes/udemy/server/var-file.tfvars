@@ -3,11 +3,11 @@
 #az network vnet subnet list --resource-group 1-0e84c6ac-playground-sandbox --vnet-name myvpc 
 
 server_vm_info_linux = {
-    "server-ansible02" = {
+    "linux01" = {
         location                  = "WestUS"        
         size                      = "Standard_DS1_v2"
         nic_name                  = "nic-production"
-        azure_subnet_id           ="/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-93db68cb-playground-sandbox/providers/Microsoft.Network/virtualNetworks/1-93db68cb-playground-sandbox-vnet/subnets/default"
+        azure_subnet_id           ="/subscriptions/964df7ca-3ba4-48b6-a695-1ed9db5723f8/resourceGroups/1-93db68cb-playground-sandbox/providers/Microsoft.Network/virtualNetworks/myvpc/subnets/default"
         private_ip_address_allocation = "Dynamic"
         admin_username            = "luis10"
         admin_password            = "Passw0rd12345!"        
