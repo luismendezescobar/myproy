@@ -67,15 +67,23 @@ resource "azurerm_linux_virtual_machine" "server_linux" {
     storage_account_type      = var.storage_account_type
     disk_size_gb              = var.disk_size_gb
   }
-  source_image_id             = var.source_image_id
+  #source_image_id             = var.source_image_id
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "16.04-LTS"
+    version   = "latest"
+  }
   
     
 
 # Uncomment for PROD 
+
  boot_diagnostics {  
     storage_account_uri       = var.primary_blob_endpoint
     
  }
+ 
 }
 
 
