@@ -64,7 +64,7 @@ subguid                         ="3258efe1-d8e7-4e11-aa41-7ece0bcd7d88"         
 azure_resource_group_name       ="rg-blueyonder-uat"
 
 
-storage_account_for_boot_diag   ="bootdiag02102022app"
-storage_container_for_boot_diag ="bootblob"
+storage_account_for_boot_diag   ="mystorage1kchrcu6gu"
+storage_container_for_boot_diag ="statecontainer"
 
 storage_account_for_witness="witness2102022app"              #we are going to leave the witness account, I'm not sure if will be used.
