@@ -44,7 +44,7 @@ resource "azurerm_availability_set" "sqlAS" {
 
 
 
-module "vm- linux-uswest" {
+module "vm-linux" {
   for_each                  = var.server_vm_info_linux
   source                    = "./modules/create-vm-linux"  
   server_name               = each.key                                #this is the server name
