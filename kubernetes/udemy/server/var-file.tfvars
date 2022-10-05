@@ -60,7 +60,7 @@ cluster_front_end_ip= "10.15.128.54"    ##the ip of the cluster_front_end must b
 ########################dynamic variables##############################
 
 
-subguid                         ="3258efe1-d8e7-4e11-aa41-7ece0bcd7d88"          #MMS Shared Services ### this number is inside the resource group properties 
+subguid                         ="964df7ca-3ba4-48b6-a695-1ed9db5723f8"          #MMS Shared Services ### this number is inside the resource group properties 
 azure_resource_group_name       ="rg-blueyonder-uat"
 
 
