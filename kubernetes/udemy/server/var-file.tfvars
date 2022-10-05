@@ -2,67 +2,35 @@
 #az network vnet create --name myvpc --resource-group 1-0e84c6ac-playground-sandbox --subnet-name default --location "Central US"
 #az network vnet subnet list --resource-group 1-0e84c6ac-playground-sandbox --vnet-name myvpc 
 
-server_vm_info = { 
-    "bywus-app-uat1" = {        
-        location                  = "WestUS"                
-        size                     = "Standard_E8ds_v5"        
-        nic_name                  = "nic-production01"
-        azure_subnet_id           = "/subscriptions/3258efe1-d8e7-4e11-aa41-7ece0bcd7d88/resourceGroups/rg-west-ETS_NETWORK/providers/Microsoft.Network/virtualNetworks/vnet-west-MMS-SharedServices/subnets/sb-blueyonderuat-app"
-        private_ip_address_allocation = "Static"
-        static_ip                 = "10.15.128.52"
-        admin_username            = "localvmadmin"
+server_vm_info_linux = {
+    "server-ansible02" = {
+        location                  = "WestUS"        
+        size                      = "Standard_DS1_v2"
+        nic_name                  = "nic-production"
+        azure_subnet_id           ="/subscriptions/3258efe1-d8e7-4e11-aa41-7ece0bcd7d88/resourceGroups/rg-west-ETS_NETWORK/providers/Microsoft.Network/virtualNetworks/vnet-west-MMS-SharedServices/subnets/MMS-Development"
+        private_ip_address_allocation = "Dynamic"
+        admin_username            = "luis10"
         admin_password            = "Passw0rd12345!"        
         disk_size_gb              = 127
         caching_type              = "ReadWrite"
         storage_account_type      = "Standard_LRS"        
-        source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2022.02.15"
+        source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/CentOS-8-CIS/versions/2021.05.15"
         enable_automatic_updates  = "false"
         patch_mode                = "Manual"        
-        custom_data               = "./files/server01.txt"
-
-    additional_disks = [{
-            name                    ="data-disk"
-            disk_size_gb            = 100
-            storage_account_type    = "Premium_LRS"
-            create_option           = "Empty"
-            caching                 = "ReadWrite"
-            lun_number              = 10            
-        },
-        ]  
-    },
-    "bywus-app-uat2" = {        
-        location                  = "WestUS"               
-        size                      = "Standard_E8ds_v5"       
-        nic_name                  = "nic-production02"
-        azure_subnet_id           = "/subscriptions/3258efe1-d8e7-4e11-aa41-7ece0bcd7d88/resourceGroups/rg-west-ETS_NETWORK/providers/Microsoft.Network/virtualNetworks/vnet-west-MMS-SharedServices/subnets/sb-blueyonderuat-app"
-        private_ip_address_allocation = "Static"
-        static_ip                 = "10.15.128.53"
-        admin_username            = "localvmadmin"
-        admin_password            = "Passw0rd12345!"        
-        disk_size_gb              = 127
-        caching_type              = "ReadWrite"
-        storage_account_type      = "Standard_LRS"        
-        source_image_id           = "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/rg-Core-SIG/providers/Microsoft.Compute/galleries/CoreSigProd/images/Windows-2019-CIS/versions/2022.02.15"
-        enable_automatic_updates  = "false"
-        patch_mode                = "Manual"        
-        custom_data               = "./files/server01.txt"
+        join_domain               = "true"
 
         additional_disks = [{
             name                    ="data-disk"
-            disk_size_gb            = 100
+            disk_size_gb            = 10
             storage_account_type    = "Premium_LRS"
             create_option           = "Empty"
             caching                 = "ReadWrite"
             lun_number              = 10            
-        },
-        ]        
-    },   
+        },        ]
+    }
 }
 
 
-
-
-server_vm_info_linux = {}
 
 resource_tags                   = {
     core-app-name   = "Blue Yonder"

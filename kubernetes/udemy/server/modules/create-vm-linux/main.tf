@@ -44,7 +44,7 @@ resource "azurerm_network_interface" "server_dev_nic" {
 
 #03.next step, create the vm
 
-resource "azurerm_linux_virtual_machine" "server_ansible" {
+resource "azurerm_linux_virtual_machine" "server_linux" {
   name                        = var.server_name
   location                    = var.location
   resource_group_name         = var.resource_group_name
@@ -107,102 +107,3 @@ resource "azurerm_virtual_machine_data_disk_attachment" "azure_disk_attach" {
 
 
 
-
-/*
-resource "azurerm_template_deployment" "join-server" {
-  
-  name                = join("-", [lower(var.server_name), "joinad-template"])
-  resource_group_name = var.resource_group_name
-
-  template_body = <<DEPLOY
-{
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "vmList": {
-            "type": "string",
-            "minLength": 1,
-            "metadata": {
-                "description": "List of virtual machines to be domain joined, if using multiple VMs, make their names comma separate. E.g. VM01, VM02, VM03."
-            }
-        },
-        "domainFQDN": {
-            "type": "string",
-            "defaultValue": "na.corp.mckesson.com",
-            "metadata": {
-                "description": "Domain FQDN where the virtual machine will be joined"
-            }
-        },
-        "ouPath": {
-            "type": "string",
-            "defaultValue": "OU=AZ,OU=DM,OU=Delegated,DC=na,DC=corp,DC=mckesson,DC=com",
-            "metadata": {
-                "description": "Specifies an organizational unit (OU) for the domain account. Enter the full distinguished name of the OU in quotation marks. Example: OU=testOU; DC=domain; DC=Domain; DC=com"
-            }
-        }
-    },
-    "variables": {
-        "domainJoinOptions": "3",
-        "domainToJoin": "na.corp.mckesson.com",
-        "ouPath": "OU=AZ,OU=DM,OU=Delegated,DC=na,DC=corp,DC=mckesson,DC=com",
-        "keyVaultRef": "/subscriptions/bf8f2b46-7581-485d-a21e-9ecfc670b79e/resourceGroups/zcontainerd/providers/Microsoft.KeyVault/vaults/dmjoin-kv",
-        "domainusername": "dcay7pp",
-        "domainpassword": "dcay7pppass",
-        "vmListArray": "[split(parameters('vmList'),',')]",
-        "templatelink": "https://mckcore.blob.core.windows.net/agents/JoinADDomain/JoinADDomain/domainjoinbackend.json?sp=r&st=2021-05-21T19:59:43Z&se=2027-01-09T04:59:43Z&spr=https&sv=2020-02-10&sr=c&sig=Q%2B2o6yWWGhXh9ECRkzUhOjZdQnvoSw01FxBfmo17fsc%3D"
-    },
-    "resources": [
-        {
-            "apiVersion": "2017-05-10",
-            "name": "linkedTemplate",
-            "type": "Microsoft.Resources/deployments",
-            "dependsOn": [],
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('templatelink')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "vmList": {
-                        "value": "[parameters('vmList')]"
-                    },
-                    "domainToJoin": {
-                        "value": "[variables('domainToJoin')]"
-                    },
-                    "domainUsername": {
-                        "value": "[variables('domainUsername')]"
-                    },
-                    "domainPassword": {
-                        "reference": {
-                            "keyVault": {
-                                "id": "[variables('keyVaultRef')]"
-                            },
-                            "secretName": "[variables('domainpassword')]"
-                        }
-                    },
-                    "ouPath": {
-                        "value": "[variables('ouPath')]"
-                    }
-                }
-            }
-        }
-    ]
-}
-
-
-
-DEPLOY
-
-  # these key-value pairs are passed into the ARM Template's `parameters` block
-  # replace the parameters below to fit your solution
-  parameters= {
-    vmList                           = var.server_name
-    
-  }
-
-  deployment_mode = "Incremental"
-  depends_on = [azurerm_virtual_machine_data_disk_attachment.azure_disk_attach]
-
-}
-*/
