@@ -78,12 +78,12 @@ resource "azurerm_linux_virtual_machine" "server_linux" {
     
 
 # Uncomment for PROD 
-
+/*
  boot_diagnostics {  
     storage_account_uri       = var.primary_blob_endpoint
     
  }
- 
+ */
 }
 
 

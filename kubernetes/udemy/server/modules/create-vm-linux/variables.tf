@@ -62,11 +62,11 @@ variable "source_image_id" {
   type = string
 }
 
-
+/*
 variable "primary_blob_endpoint" {
   type = string
 }
-
+*/
 
 
   
