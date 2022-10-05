@@ -61,7 +61,7 @@ cluster_front_end_ip= "10.15.128.54"    ##the ip of the cluster_front_end must b
 
 
 subguid                         ="964df7ca-3ba4-48b6-a695-1ed9db5723f8"          #MMS Shared Services ### this number is inside the resource group properties 
-azure_resource_group_name       ="rg-blueyonder-uat"
+azure_resource_group_name       ="1-93db68cb-playground-sandbox"
 
 
 storage_account_for_boot_diag   ="mystorage1kchrcu6gu"
