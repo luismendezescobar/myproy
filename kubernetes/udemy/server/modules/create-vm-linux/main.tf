@@ -108,7 +108,7 @@ resource "azurerm_managed_disk" "azure_machine_disks" {
 resource "azurerm_virtual_machine_data_disk_attachment" "azure_disk_attach" {
     for_each               = local.vm_disks
     managed_disk_id        = lookup(azurerm_managed_disk.azure_machine_disks[each.value.name], "id", null)
-    virtual_machine_id     = azurerm_linux_virtual_machine.server_ansible.id
+    virtual_machine_id     = azurerm_linux_virtual_machine.server_linux.id
     caching                = each.value.caching
     lun                    = each.value.lun_number    
 }
