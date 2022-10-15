@@ -23,6 +23,5 @@ def solution(nums,target):
         
 
 print(solution([2,4,5,5,5,5,5,7,9,9],3))
-#output [2,6]
 
 

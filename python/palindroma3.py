@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-import random
-import string
-
+#import random
+#import string
 
 
 def solution(n, k):    
@@ -33,7 +32,7 @@ def solution(n, k):
                 pool_index+=1
             
             #print(pal)                    
-            return pal                      
+            return "".join(pal)                      
 
 
     else:        
@@ -56,17 +55,18 @@ def solution(n, k):
                 pal[i]=pool[pool_index]                
                 pool_index+=1
                           
-            return pal     
+            return "".join(pal)     
 
 
     print("invalid n and k values, try with a k valuer lower")
+    return None
     
 
 
 
 
 
-n=4
+n=15
 k=2
 
 

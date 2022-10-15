@@ -17,3 +17,5 @@ def solution(paths):
 
 print(solution([["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]))
 print(solution([["B","C"],["D","B"],["C","A"]]))
+
+
