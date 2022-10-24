@@ -7,4 +7,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 80
 
-CMD ["python",pets-adopt.py]
+CMD ["python","pets-adopt.py"]
