@@ -1,9 +1,9 @@
 change the project in the code
 git clone https://github.com/luismendezescobar/myproy.git
 
-cd myproy/python/flask/pets-adopt
+cd myproy/python/flask/pets-adopt-02
 docker build -t pets-image .
 
 PROJECT_ID="playground-s-11-466b1a34"
-docker tag pets-image gcr.io/$PROJECT_ID/pets-image:v1
-docker push gcr.io/$PROJECT_ID/pets-image:v1
+docker tag pets-image gcr.io/$PROJECT_ID/pets-image:v2
+docker push gcr.io/$PROJECT_ID/pets-image:v2
