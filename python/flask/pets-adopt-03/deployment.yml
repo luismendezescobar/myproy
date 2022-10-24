@@ -2,13 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    deployment.kubernetes.io/revision: "2"
+    deployment.kubernetes.io/revision: "3"
   labels:
     app: pets2
   name: pets2
   namespace: default
 spec:  
-  replicas: 4  
+  replicas: 3  
   selector:
     matchLabels:
       app: pets2
@@ -23,7 +23,7 @@ spec:
         app: pets2
     spec:
       containers:
-      - image: gcr.io/playground-s-11-466b1a34/pets-image:v2
+      - image: gcr.io/playground-s-11-466b1a34/pets-image:v3
         name: pets-image
 ---
 apiVersion: v1
