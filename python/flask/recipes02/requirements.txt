@@ -1,0 +1,3 @@
+pip install flask
+pip install wtforms
+pip install flask_wtf

@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-webapp-color
+  labels:
+    app: nginx
+    tier: frontend
+    data: luis
+spec:
+  containers:
+  - name: simple-webapp-color
+    image: simple-webapp-color
+    ports:
+      - containerPort:8080
+    env:
+      - name: APP_COLOR
+        value: pink
+  
+### also can be like this
+    envFrom:
+      - name: APP_COLOR
+        valueFrom:
+          configMapKeyRef:
+            name: app-config
+            key: APP_COLOR
+
+    env:
+      - name: APP_COLOR
+        valueFrom:
+          secretKeyRef:
+
+---------------------------------------------
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-webapp-color
+  labels:
+    name: simple-webapp-color
+spec:
+  containers:
+  - name: simple-webapp-color
+    image: simple-webapp-color
+    ports:
+      - containerPort:8080
+    envFrom:
+    - configMapRef:      
+        name: app-config
