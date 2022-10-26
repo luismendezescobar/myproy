@@ -25,3 +25,15 @@ spec:
       containers:
       - image: gcr.io/playground-s-11-9aa19703/pets-image:v1
         name: pets-image
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pet-lb
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: pets
