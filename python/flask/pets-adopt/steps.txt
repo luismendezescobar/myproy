@@ -23,5 +23,10 @@ gcloud services enable artifactregistry.googleapis.com
 gcloud artifacts repositories create quickstart-docker-repo --repository-format=docker \
 --location=us-central1 --description="Docker repository"
 
-docker tag pets-image us-central1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/pets-image:tag1
-docker push us-central1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/pets-image:tag1
+
+gcloud auth configure-docker us-central1-docker.pkg.dev
+docker tag pets-image us-central1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/pets-image:v1
+docker push us-central1-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo/pets-image:v1
+
+docker pull \
+    us-central1-docker.pkg.dev/triggering-a-198-f6ace160/quickstart-docker-repo/pets-image:v1
