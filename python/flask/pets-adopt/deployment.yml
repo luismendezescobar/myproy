@@ -23,7 +23,7 @@ spec:
         app: pets
     spec:
       containers:
-      - image: gcr.io/triggering-a-198-9f5f2f49/pets-image:v1
+      - image: gcr.io/triggering-a-198-f6ace160/pets-image:v1
         name: pets-image
 ---
 apiVersion: v1

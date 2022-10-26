@@ -14,11 +14,11 @@ docker tag pets-image us-docker.pkg.dev/$PROJECT_ID/pets-image:v1
 
 
 
-PROJECT_ID="triggering-a-198-9f5f2f49"
+PROJECT_ID="triggering-a-198-f6ace160"
 docker build -t pets-image .
 
 
-gcloud services enable 
+gcloud services enable artifactregistry.googleapis.com
 
 gcloud artifacts repositories create quickstart-docker-repo --repository-format=docker \
 --location=us-central1 --description="Docker repository"
