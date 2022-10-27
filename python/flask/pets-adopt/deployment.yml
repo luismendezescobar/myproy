@@ -43,7 +43,7 @@ spec:
     name: pets
   minReplicas: 1
   maxReplicas: 4
-targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 50
 ---
 apiVersion: v1
 kind: Service
