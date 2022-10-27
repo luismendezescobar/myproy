@@ -34,7 +34,7 @@ spec:
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: pets-Hautoscaler
+  name: pets-autoscaler
   namespace: default
 spec:
   scaleTargetRef:
