@@ -37,7 +37,7 @@ metadata:
   name: pets-Hautoscaler
   namespace: default
 spec:
-  scaleTArgetRef:
+  scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: pets
