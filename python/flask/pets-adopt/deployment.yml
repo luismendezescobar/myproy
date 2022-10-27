@@ -8,7 +8,7 @@ metadata:
   name: pets
   namespace: default
 spec:  
-  replicas: 6  
+  replicas: 2  
   selector:
     matchLabels:
       app: pets
