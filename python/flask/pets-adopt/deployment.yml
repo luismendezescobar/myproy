@@ -35,12 +35,12 @@ apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: acg-test
-  namespace: acg
+  namespace: default
 spec:
   scaleTArgetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: acg-deploy
+    name: pets
   minReplicas: 1
   maxReplicas: 4
 targetCPUUtilizationPercentage: 50
