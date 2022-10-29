@@ -1,7 +1,9 @@
 /*based on this article
 https://dev.to/stack-labs/securing-the-connectivity-between-a-gke-application-and-a-cloud-sql-database-4d6b
 */
-/*Manual commands, run this before the terraform
+/*
+
+1. Manual commands, run this before the terraform
 PROJECT_ID="triggering-a-198-d7358e38"
 REGION="us-west1"
 gcloud services enable secretmanager.googleapis.com --project $PROJECT_ID
@@ -9,11 +11,12 @@ gcloud services enable secretmanager.googleapis.com --project $PROJECT_ID
 gcloud beta secrets create wordpress-admin-user-password --locations $REGION --replication-policy user-managed
 echo -n "changeme" | gcloud beta secrets versions add wordpress-admin-user-password --data-file=-
 */
-
+/*
+2. Run terraform now
 
 /*
 
-
+3. run all the below commands along with the yamls
 create the Kubernetes service account:
 
 #connect to kubernetes
