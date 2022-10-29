@@ -14,14 +14,6 @@ variable "gcp_service_list" {
   ]
 }
 
-resource "google_project_service" "gcp_services" {
-  for_each = toset(var.gcp_service_list)
-  project = "your-project-id"
-  service = each.key
-}
-
-
-
 /*variables for network*/
 variable "authorized_source_ranges" {
   type        = list(string)
