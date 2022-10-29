@@ -28,19 +28,14 @@ create the Kubernetes service account:
 gcloud container clusters get-credentials private --region $REGION --project $PROJECT_ID
 
 #crate namespace in kubernetes
-$ kubectl create namespace wordpress
+kubectl create namespace wordpress
 
 #replace the project id in the yaml file:service-account.yaml
-PROJECT_ID="poner el project id aqui"
+cd yamls
 sed -i "s/<PROJECT_ID>/$PROJECT_ID/g;" 01-service-account.yaml
 
 I would use better this one
 kubectl apply -f 01-service-account.yaml -n wordpress
-
-#instead of this one
-$ kubectl create -f yamls/service-account.yaml -n wordpress
-
-
 
 
 
@@ -77,5 +72,25 @@ exit
 
 Listing private connections
 gcloud services vpc-peerings list \
-    --network=network-eqfx-trdr \
-    --project=or2-msq-eqfx-trdr-t1iylu
+    --network=custom \
+    --project=$PROJECT_ID
+
+List allocated IP address ranges
+gcloud compute addresses list --global --filter="purpose=VPC_PEERING"
+
+
+
+cd ..
+sed -i "s/<CLOUD_SQL_PROJECT_ID>/$PROJECT_ID/g;s/<CLOUD_SQL_INSTANCE_NAME>/$(terraform output cloud-sql-instance-name | tr -d '"')/g;s/<CLOUD_SQL_REGION>/$REGION/g;" yamls/02-sql-proxy-deployment.yaml
+
+cd yamls
+kubectl apply -f 02-sql-proxy-deployment.yaml -n wordpress
+kubectl get pods -l app=cloud-sql-proxy -n wordpress
+kubectl logs cloud-sql-proxy-fb9968d49-hqlwb -n wordpress
+
+kubectl create secret generic mysql \
+    --from-literal=password=$(gcloud secrets versions access latest --secret=wordpress-admin-user-password --project $PROJECT_ID) -n wordpress
+gcloud compute addresses create wordpress --global    
+gcloud compute addresses list --global
+kubectl apply -f 03-wordpress-deployment.yaml -n wordpress
+kubectl get pods -l app=wordpress -n wordpress --watch

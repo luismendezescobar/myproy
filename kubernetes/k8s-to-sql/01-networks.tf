@@ -103,6 +103,14 @@ resource "google_compute_firewall" "web" {
 
 /*Represents a Global Address resource. 
 Global addresses are used for HTTP(S) load balancing.*/
+/*
+with this command you can list the range that was created with the below terraform
+resource
+gcloud compute addresses list --global --filter="purpose=VPC_PEERING"
+by example it's going to create the below 
+ADDRESS/RANGE: 10.11.19.0/24
+*/
+
 resource "google_compute_global_address" "private-ip-peering" {
   name          = "google-managed-services-custom"
   purpose       = "VPC_PEERING"
