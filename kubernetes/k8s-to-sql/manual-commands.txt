@@ -87,18 +87,8 @@ gcloud compute addresses list --global
 kubectl apply -f 03-wordpress-deployment.yaml -n wordpress
 kubectl get pods -l app=wordpress -n wordpress --watch
 
-kubectl apply -f 
 
-export PUBLIC_DNS_NAME=
-export PUBLIC_DNS_ZONE_NAME=
 
-gcloud dns record-sets transaction start --zone=$PUBLIC_DNS_ZONE_NAME
-gcloud dns record-sets transaction add $(gcloud compute addresses list --filter=name=wordpress --format="value(ADDRESS)") --name=wordpress.$PUBLIC_DNS_NAME. --ttl=300 --type=A --zone=$PUBLIC_DNS_ZONE_NAME
-gcloud dns record-sets transaction execute --zone=$PUBLIC_DNS_ZONE_NAME
-
-sed -i "s/<DOMAIN_NAME>/wordpress.$PUBLIC_DNS_NAME/g;" infra/k8s/web/ssl.yaml
-
-kubectl create -f infra/k8s/web/ssl.yaml -n wordpress
 
 export PUBLIC_DNS_NAME=luismendeze.com
 export PUBLIC_DNS_ZONE_NAME=luismendeze.com
