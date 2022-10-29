@@ -76,6 +76,7 @@ metadata:
   annotations:
     cloud.google.com/neg: '{"ingress": true}'
     cloud.google.com/backend-config: '{"default": "wordpress"}'   #this to enable cloud armour
+    networking.gke.io/managed-certificates: "wordpress" #for certificate
 spec:
   type: ClusterIP
   ports:
