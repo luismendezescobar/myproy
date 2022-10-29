@@ -1,0 +1,53 @@
+/*based on this article
+https://dev.to/stack-labs/securing-the-connectivity-between-a-gke-application-and-a-cloud-sql-database-4d6b
+*/
+/*Manual commands, run this before the terraform
+PROJECT_ID="poner el project id aqui"
+REGION="us-west1"
+gcloud services enable secretmanager.googleapis.com --project $PROJECT_ID
+
+gcloud beta secrets create wordpress-admin-user-password --locations $REGION --replication-policy user-managed
+echo -n "changeme" | gcloud beta secrets versions add wordpress-admin-user-password --data-file=-
+*/
+
+
+/*
+
+
+create the Kubernetes service account:
+
+#connect to kubernetes
+gcloud container clusters get-credentials private --region $REGION --project $PROJECT_ID
+
+#crate namespace in kubernetes
+$ kubectl create namespace wordpress
+
+#replace the project id in the yaml file:service-account.yaml
+PROJECT_ID="poner el project id aqui"
+sed -i "s/<PROJECT_ID>/$PROJECT_ID/g;" data/service-account.yaml
+
+I would use better this one
+kubectl apply -f yamls/service-account.yaml -n wordpress
+
+#instead of this one
+$ kubectl create -f yamls/service-account.yaml -n wordpress
+
+
+
+
+
+
+The Kubernetes service account will be used by the Cloud SQL Proxy deployment 
+to access the Cloud SQL instance.
+Allow the Kubernetes service account to impersonate the created 
+Google service account by an IAM policy binding between the two:
+
+
+gcloud iam service-accounts add-iam-policy-binding \
+  --role roles/iam.workloadIdentityUser \
+  --member "serviceAccount:$PROJECT_ID.svc.id.goog[wordpress/cloud-sql-access]" \
+  cloud-sql-access@$PROJECT_ID.iam.gserviceaccount.com
+
+
+
+*/

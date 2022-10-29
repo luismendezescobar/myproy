@@ -1,0 +1,84 @@
+piVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+        - image: wordpress
+          name: wordpress
+          env:
+          - name: WORDPRESS_DB_HOST
+            value: cloud-sql-proxy:3306
+          - name: WORDPRESS_DB_USER
+            value: wordpress
+          - name: WORDPRESS_DB_NAME
+            value: wordpress
+          - name: WORDPRESS_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql
+                key: password
+          ports:
+            - containerPort: 80
+              name: wordpress
+          volumeMounts:
+            - name: wordpress-persistent-storage
+              mountPath: /var/www/html
+          livenessProbe:
+            initialDelaySeconds: 30
+            httpGet:
+              port: 80
+              path: /wp-admin/install.php # at the very beginning, this is the only accessible page. Don't forget to change to /wp-login.php 
+          readinessProbe:
+            httpGet:
+              port: 80
+              path: /wp-admin/install.php
+          resources:
+            requests:
+              cpu: 1000m
+              memory: 2Gi
+            limits:
+              cpu: 1200m
+              memory: 2Gi
+      volumes:
+        - name: wordpress-persistent-storage
+          persistentVolumeClaim:
+            claimName: wordpress
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: wordpress
+spec:
+  storageClassName: "premium-rwo"
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: wordpress

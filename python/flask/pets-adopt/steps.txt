@@ -14,7 +14,7 @@ docker tag pets-image us-docker.pkg.dev/$PROJECT_ID/pets-image:v1
 
 
 
-PROJECT_ID="triggering-a-198-f6ace160"
+PROJECT_ID="playground-s-11-57768110"
 docker build -t pets-image .
 
 

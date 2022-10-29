@@ -12,6 +12,7 @@ spec:
   selector:
     matchLabels:
       app: pets
+  minReadySeconds: 5  #time that the new created pod needs to be ready in order to continue deleting or creating more pods
   strategy:
     rollingUpdate:
       maxSurge: 25%
