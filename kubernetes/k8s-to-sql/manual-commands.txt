@@ -4,7 +4,7 @@ https://dev.to/stack-labs/securing-the-connectivity-between-a-gke-application-an
 /*
 
 1. Manual commands, run this before the terraform
-PROJECT_ID="triggering-a-198-1b0562d3"
+PROJECT_ID="triggering-a-198-db226a4e"
 REGION="us-west1"
 gcloud services enable secretmanager.googleapis.com --project $PROJECT_ID
 gcloud beta secrets create wordpress-admin-user-password --locations $REGION --replication-policy user-managed
@@ -96,4 +96,5 @@ gcloud dns record-sets transaction start --zone=$PUBLIC_DNS_ZONE_NAME
 gcloud dns record-sets transaction add $(gcloud compute addresses list --filter=name=wordpress --format="value(ADDRESS)") --name=wordpress.$PUBLIC_DNS_NAME. --ttl=300 --type=A --zone=$PUBLIC_DNS_ZONE_NAME
 gcloud dns record-sets transaction execute --zone=$PUBLIC_DNS_ZONE_NAME
 sed -i "s/<DOMAIN_NAME>/wordpress.$PUBLIC_DNS_NAME/g;" infra/k8s/web/ssl.yaml
+
 kubectl create -f ssl.yaml -n wordpress
