@@ -7,7 +7,6 @@ https://dev.to/stack-labs/securing-the-connectivity-between-a-gke-application-an
 PROJECT_ID="triggering-a-198-1b0562d3"
 REGION="us-west1"
 gcloud services enable secretmanager.googleapis.com --project $PROJECT_ID
-gcloud services enable secretmanager.googleapis.com --project $PROJECT_ID
 gcloud beta secrets create wordpress-admin-user-password --locations $REGION --replication-policy user-managed
 echo -n "changeme" | gcloud beta secrets versions add wordpress-admin-user-password --data-file=-
 */
@@ -31,8 +30,6 @@ sed -i "s/<PROJECT_ID>/$PROJECT_ID/g;" 01-service-account.yaml
 
 I would use better this one
 kubectl apply -f 01-service-account.yaml -n wordpress
-
-
 
 
 The Kubernetes service account will be used by the Cloud SQL Proxy deployment 
@@ -80,7 +77,7 @@ sed -i "s/<CLOUD_SQL_PROJECT_ID>/$PROJECT_ID/g;s/<CLOUD_SQL_INSTANCE_NAME>/$(ter
 
 cd yamls
 kubectl apply -f 02-sql-proxy-deployment.yaml -n wordpress
-kubectl get pods -l app=cloud-sql-proxy -n wordpress
+kubectl get pods -l app=cloud-sql-proxy -n wordpress --watch
 kubectl logs cloud-sql-proxy-fb9968d49-hqlwb -n wordpress
 
 kubectl create secret generic mysql \
@@ -89,3 +86,24 @@ gcloud compute addresses create wordpress --global
 gcloud compute addresses list --global
 kubectl apply -f 03-wordpress-deployment.yaml -n wordpress
 kubectl get pods -l app=wordpress -n wordpress --watch
+
+kubectl apply -f 
+
+export PUBLIC_DNS_NAME=
+export PUBLIC_DNS_ZONE_NAME=
+
+gcloud dns record-sets transaction start --zone=$PUBLIC_DNS_ZONE_NAME
+gcloud dns record-sets transaction add $(gcloud compute addresses list --filter=name=wordpress --format="value(ADDRESS)") --name=wordpress.$PUBLIC_DNS_NAME. --ttl=300 --type=A --zone=$PUBLIC_DNS_ZONE_NAME
+gcloud dns record-sets transaction execute --zone=$PUBLIC_DNS_ZONE_NAME
+
+sed -i "s/<DOMAIN_NAME>/wordpress.$PUBLIC_DNS_NAME/g;" infra/k8s/web/ssl.yaml
+
+kubectl create -f infra/k8s/web/ssl.yaml -n wordpress
+
+export PUBLIC_DNS_NAME=luismendeze.com
+export PUBLIC_DNS_ZONE_NAME=luismendeze.com
+gcloud dns record-sets transaction start --zone=$PUBLIC_DNS_ZONE_NAME
+gcloud dns record-sets transaction add $(gcloud compute addresses list --filter=name=wordpress --format="value(ADDRESS)") --name=wordpress.$PUBLIC_DNS_NAME. --ttl=300 --type=A --zone=$PUBLIC_DNS_ZONE_NAME
+gcloud dns record-sets transaction execute --zone=$PUBLIC_DNS_ZONE_NAME
+sed -i "s/<DOMAIN_NAME>/wordpress.$PUBLIC_DNS_NAME/g;" infra/k8s/web/ssl.yaml
+kubectl create -f ssl.yaml -n wordpress
