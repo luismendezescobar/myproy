@@ -8,6 +8,7 @@ variable "region" {
 variable "authorized_source_ranges" {
   type        = list(string)
   description = "Addresses or CIDR blocks which are allowed to connect to GKE API Server."
+  default=[""]
 }
 
 /*variables for GKE*/
