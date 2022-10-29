@@ -1,4 +1,4 @@
-piVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wordpress
@@ -47,10 +47,10 @@ spec:
               path: /wp-admin/install.php
           resources:
             requests:
-              cpu: 1000m
-              memory: 2Gi
+              cpu: 600m
+              memory: 1Gi
             limits:
-              cpu: 1200m
+              cpu: 700m
               memory: 2Gi
       volumes:
         - name: wordpress-persistent-storage
@@ -82,3 +82,27 @@ spec:
     targetPort: 80
   selector:
     app: wordpress
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "wordpress"
+    kubernetes.io/ingress.class: "gce"
+  name: wordpress
+spec:
+  defaultBackend:
+    service:
+      name: wordpress
+      port:
+        number: 80
+  rules:
+  - http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: wordpress
+            port:
+              number: 80

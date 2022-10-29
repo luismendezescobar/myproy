@@ -9,7 +9,7 @@ spec:
     matchLabels:
       app: cloud-sql-proxy
   strategy: {}
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:

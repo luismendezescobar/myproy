@@ -3,6 +3,24 @@ variable "region" {
   type = string
   default = "us-west1"
 }
+variable "gcp_service_list" {
+  description ="The list of apis necessary for the project"
+  type = list(string)
+  default = [
+    "secretmanager.googleapis.com",
+    "container.googleapis.com",
+    "servicenetworking.googleapis.com",
+    "sqladmin.googleapis.com"
+  ]
+}
+
+resource "google_project_service" "gcp_services" {
+  for_each = toset(var.gcp_service_list)
+  project = "your-project-id"
+  service = each.key
+}
+
+
 
 /*variables for network*/
 variable "authorized_source_ranges" {

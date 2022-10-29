@@ -1,3 +1,20 @@
+#enable all the necesary apis
+
+variable "gcp_service_list" {
+  description ="The list of apis necessary for the project"
+  type = list(string)
+  default = [
+    "cloudresourcemanager.googleapis.com",
+    "serviceusage.googleapis.com"
+  ]
+}
+
+resource "google_project_service" "gcp_services" {
+  for_each = toset(var.gcp_service_list)
+  project = "your-project-id"
+  service = each.key
+}
+
 #first define the network and 2 subnetworks
 
 resource "google_compute_network" "custom" {
