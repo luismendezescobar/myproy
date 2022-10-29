@@ -2,7 +2,7 @@
 https://dev.to/stack-labs/securing-the-connectivity-between-a-gke-application-and-a-cloud-sql-database-4d6b
 */
 /*Manual commands, run this before the terraform
-PROJECT_ID="poner el project id aqui"
+PROJECT_ID="triggering-a-198-d7358e38"
 REGION="us-west1"
 gcloud services enable secretmanager.googleapis.com --project $PROJECT_ID
 

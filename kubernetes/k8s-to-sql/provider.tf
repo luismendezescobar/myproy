@@ -8,5 +8,6 @@ terraform {
 }
 
 provider "google" {
-  region  = "europe-west1"
+  region  = "us-west1"
+  project="triggering-a-198-d7358e38"
 }
