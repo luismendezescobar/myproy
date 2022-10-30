@@ -90,7 +90,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "wordpress"
     kubernetes.io/ingress.class: "gce"
-    networking.gke.io/managed-certificates: "wordpress" #for certificate
+    networking.gke.io/managed-certificates: "wordpress" #this is to move from http to https only in 06-frontend-config.yaml
   name: wordpress
 spec:
   defaultBackend:
