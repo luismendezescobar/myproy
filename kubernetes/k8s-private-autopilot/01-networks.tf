@@ -17,7 +17,7 @@ resource "google_compute_subnetwork" "web" {
   name          = "web"
   ip_cidr_range = "10.10.10.0/24"
   network       = google_compute_network.custom.id
-  region        = var.region
+  region        = data.google_client_config.this.region
 
   secondary_ip_range  = [
     {
@@ -37,7 +37,7 @@ resource "google_compute_subnetwork" "data" {
   name          = "data"
   ip_cidr_range = "10.20.10.0/24"
   network       = google_compute_network.custom.id
-  region        = var.region
+  region        = data.google_client_config.this.region
 
   private_ip_google_access = true
 }
@@ -45,7 +45,7 @@ resource "google_compute_subnetwork" "data" {
 //////////////////////////Now we are going to create cloud NAT////////////////////////////////////////////////
 resource "google_compute_address" "web" {           #internal static ip??
   name    = "web"
-  region  = var.region
+  region  = data.google_client_config.this.region
 }
 
 resource "google_compute_router" "web" {

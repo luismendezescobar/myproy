@@ -1,4 +1,5 @@
 data "google_client_config" "this" {  
+  #get the project id and region from the provider
 }
 
 resource "google_container_cluster" "private" {
