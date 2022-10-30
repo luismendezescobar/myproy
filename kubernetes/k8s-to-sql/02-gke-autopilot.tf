@@ -14,7 +14,7 @@ resource "google_container_cluster" "private" {
     enable_private_nodes    = true #In a private cluster, nodes only have RFC 1918 
                                    #private addresses and communicate with 
                                    #the master's private endpoint via private networking.   
-    enable_private_endpoint = true    #access through the public endpoint is disabled
+    enable_private_endpoint = false    #access through the public endpoint is disabled
     master_ipv4_cidr_block  = var.gke_master_ipv4_cidr_block  #range for the master plane
   }
   /*  for this lab we are going to access from the cloud shell 
