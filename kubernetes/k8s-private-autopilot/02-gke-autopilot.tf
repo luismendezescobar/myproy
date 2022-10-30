@@ -1,11 +1,11 @@
-data "google_project" "project" {
+data "google_client_config" "this" {  
 }
 
 resource "google_container_cluster" "private" {
   provider                 = google-beta
 
   name                     = "cluster-1"
-  location                 = data.google_project.project.region #var.region
+  location                 = data.google_client_config.this.region  #var.region
 
   network                  = google_compute_network.custom.name
   subnetwork               = google_compute_subnetwork.web.id
