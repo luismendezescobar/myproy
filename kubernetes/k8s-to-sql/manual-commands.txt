@@ -25,11 +25,11 @@ gcloud container clusters get-credentials private --region $REGION --project $PR
 kubectl create namespace wordpress
 
 #replace the project id in the yaml file:service-account.yaml
-cd yamls
-sed -i "s/<PROJECT_ID>/$PROJECT_ID/g;" 01-service-account.yaml
+
+sed -i "s/<PROJECT_ID>/$PROJECT_ID/g;" yamls/01-service-account.yaml
 
 I would use better this one
-kubectl apply -f 01-service-account.yaml -n wordpress
+kubectl apply -f yamls/01-service-account.yaml -n wordpress
 
 
 The Kubernetes service account will be used by the Cloud SQL Proxy deployment 
@@ -48,7 +48,7 @@ gcloud iam service-accounts add-iam-policy-binding \
 */
 
 
-/*
+/* not always is needed.
 if you get  ipv6 error , run this command
 sudo -i
 
@@ -70,31 +70,30 @@ gcloud services vpc-peerings list \
 List allocated IP address ranges
 gcloud compute addresses list --global --filter="purpose=VPC_PEERING"
 
-
-
-cd ..
 sed -i "s/<CLOUD_SQL_PROJECT_ID>/$PROJECT_ID/g;s/<CLOUD_SQL_INSTANCE_NAME>/$(terraform output cloud-sql-instance-name | tr -d '"')/g;s/<CLOUD_SQL_REGION>/$REGION/g;" yamls/02-sql-proxy-deployment.yaml
 
-cd yamls
-kubectl apply -f 02-sql-proxy-deployment.yaml -n wordpress
+kubectl apply -f yamls/02-sql-proxy-deployment.yaml -n wordpress
 kubectl get pods -l app=cloud-sql-proxy -n wordpress --watch
 kubectl logs cloud-sql-proxy-fb9968d49-hqlwb -n wordpress
 
 kubectl create secret generic mysql \
     --from-literal=password=$(gcloud secrets versions access latest --secret=wordpress-admin-user-password --project $PROJECT_ID) -n wordpress
+
 gcloud compute addresses create wordpress --global    
 gcloud compute addresses list --global
-kubectl apply -f 03-wordpress-deployment.yaml -n wordpress
+
+kubectl apply -f yamls/03-wordpress-deployment.yaml -n wordpress
 kubectl get pods -l app=wordpress -n wordpress --watch
 
+kubectl apply -f yamls/04-backend.yaml -n wordpress
 
-
-
+/*it's not needed as it will be done in godaddy*/
 export PUBLIC_DNS_NAME=luismendeze.com
 export PUBLIC_DNS_ZONE_NAME=luismendeze.com
 gcloud dns record-sets transaction start --zone=$PUBLIC_DNS_ZONE_NAME
 gcloud dns record-sets transaction add $(gcloud compute addresses list --filter=name=wordpress --format="value(ADDRESS)") --name=wordpress.$PUBLIC_DNS_NAME. --ttl=300 --type=A --zone=$PUBLIC_DNS_ZONE_NAME
 gcloud dns record-sets transaction execute --zone=$PUBLIC_DNS_ZONE_NAME
 sed -i "s/<DOMAIN_NAME>/wordpress.$PUBLIC_DNS_NAME/g;" infra/k8s/web/ssl.yaml
+*/
 
-kubectl create -f ssl.yaml -n wordpress
+kubectl create -f yamls/05-ssl.yaml -n wordpress
