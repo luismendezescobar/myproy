@@ -12,7 +12,7 @@ resource "google_project_iam_binding" "binding" {
   count=length(var.roles_for_gke_service_account)
   role = var.roles_for_gke_service_account[count.index]
   members = [
-    "ServiceAccount:${resource.google_service_account.default.email}"
+    "serviceAccount:${resource.google_service_account.default.email}"
   ]     
 }
 
