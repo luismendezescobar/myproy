@@ -7,7 +7,7 @@ resource "google_service_account" "default" {
   display_name = "Service Account for kubernetes cluster"
 }
 
-resource "google_project_iam_policy" "binding" {
+resource "google_iam_policy" "binding" {
   dynamic  binding {
     for_each=toset(var.roles_for_gke_service_account)
     content{
