@@ -69,4 +69,8 @@ resource "google_container_cluster" "private" {
   release_channel {
     channel = "REGULAR"
   }
+
+  depends_on = [
+    google_project_iam_binding.binding
+  ]
 }
