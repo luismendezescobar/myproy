@@ -15,7 +15,7 @@ resource "google_container_cluster" "private" {
     enable_private_nodes    = true #In a private cluster, nodes only have RFC 1918 
                                    #private addresses and communicate with 
                                    #the master's private endpoint via private networking.   
-    enable_private_endpoint = false    #access through the public endpoint is disabled
+    enable_private_endpoint = true    #access through the public endpoint is disabled
     master_ipv4_cidr_block  = var.gke_master_ipv4_cidr_block  #range for the master plane
   }
   /*  for this lab we are going to access from the cloud shell 
@@ -32,7 +32,7 @@ resource "google_container_cluster" "private" {
     recurring_window {
       start_time = "2021-06-18T00:00:00Z"
       end_time   = "2050-01-01T04:00:00Z"
-      recurrence = "FREQ=WEEKLY"
+      recurrence = "FREQ=WEEKLY;BYDAY=SA,SU"
     }
   }
 
