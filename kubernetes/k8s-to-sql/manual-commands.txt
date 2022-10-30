@@ -16,27 +16,25 @@ echo -n "changeme" | gcloud beta secrets versions add wordpress-admin-user-passw
 /*
 
 3. run all the below commands along with the yamls
-create the Kubernetes service account:
+create the Kubernetes service account: 
+(it's created with the yaml!! see line ~33 01-service-account.yaml)
 
 #connect to kubernetes
 gcloud container clusters get-credentials private --region $REGION --project $PROJECT_ID
 
-#crate namespace in kubernetes
+#create namespace in kubernetes
 kubectl create namespace wordpress
 
 #replace the project id in the yaml file:service-account.yaml
 
 sed -i "s/<PROJECT_ID>/$PROJECT_ID/g;" yamls/01-service-account.yaml
 
-I would use better this one
 kubectl apply -f yamls/01-service-account.yaml -n wordpress
-
 
 The Kubernetes service account will be used by the Cloud SQL Proxy deployment 
 to access the Cloud SQL instance.
 Allow the Kubernetes service account to impersonate the created 
 Google service account by an IAM policy binding between the two:
-
 
 gcloud iam service-accounts add-iam-policy-binding \
   --role roles/iam.workloadIdentityUser \
@@ -96,4 +94,8 @@ gcloud dns record-sets transaction execute --zone=$PUBLIC_DNS_ZONE_NAME
 sed -i "s/<DOMAIN_NAME>/wordpress.$PUBLIC_DNS_NAME/g;" infra/k8s/web/ssl.yaml
 */
 
-kubectl create -f yamls/05-ssl.yaml -n wordpress
+#to create the certificate
+kubectl create -f yamls/05-ssl.yaml -n wordpress  
+
+#to redirect all from http to https
+kubectl apply -f yamls/06-frontend-config.yaml -n wordpress
