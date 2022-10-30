@@ -1,6 +1,6 @@
-
 data "google_project" "project" {
 }
+
 resource "google_container_cluster" "private" {
   provider                 = google-beta
 
