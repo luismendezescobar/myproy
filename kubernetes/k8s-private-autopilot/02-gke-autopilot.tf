@@ -7,16 +7,13 @@ resource "google_service_account" "default" {
   display_name = "Service Account for kubernetes cluster"
 }
 
-resource "google_iam_policy" "binding" {
-  dynamic  binding {
-    for_each=toset(var.roles_for_gke_service_account)
-    content{
-      role = binding.value
-      members = [
-        "ServiceAccount:${resource.google_service_account.default.email}"
-      ]
-    }
-  }  
+resource "google_project_iam_binding" "binding" {  
+  project= data.google_client_config.this.project
+  count=length(var.roles_for_gke_service_account)
+  role = var.roles_for_gke_service_account[count.index]
+  members = [
+    "ServiceAccount:${resource.google_service_account.default.email}"
+  ]     
 }
 
 
