@@ -13,7 +13,7 @@ variable "gcp_service_list" {
 variable "authorized_source_ranges" {
   type        = list(string)
   description = "Addresses or CIDR blocks which are allowed to connect to GKE API Server."
-  default=["35.196.157.253/32"]
+  default=["34.74.91.220/32"]
 }
 
 /*variables for GKE*/
