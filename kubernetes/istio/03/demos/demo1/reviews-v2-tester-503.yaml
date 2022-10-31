@@ -12,7 +12,8 @@ spec:
           exact: tester    
     fault:
       abort:
-        percentage: 50
+        percentage: 
+          value: 50
         httpStatus: 503
     route:
     - destination:
