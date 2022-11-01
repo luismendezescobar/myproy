@@ -1,3 +1,7 @@
+#this is not needed as by default istio enables tls
+#https://istio.io/latest/docs/tasks/security/authentication/authn-policy/
+
+
 apiVersion: authentication.istio.io/v1alpha1
 kind: Policy
 metadata:

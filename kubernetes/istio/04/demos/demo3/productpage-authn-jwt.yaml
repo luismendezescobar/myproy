@@ -1,14 +1,12 @@
-apiVersion: authentication.istio.io/v1alpha1
-kind: Policy
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
 metadata:
   name: productpage-authn
+  namespace: default
 spec:
-  targets:
-  - name: productpage
-  peers:
-  - mtls: {}
-  origins:
-  - jwt:
-      issuer: "testing@secure.istio.io"
+  selector:
+    matchLabels:
+      app: productpage        
+  jwtRules:
+    - issuer: "testing@secure.istio.io"
       jwksUri: "https://raw.githubusercontent.com/istio/istio/release-1.4/security/tools/jwt/samples/jwks.json"
-  principalBinding: USE_ORIGIN
