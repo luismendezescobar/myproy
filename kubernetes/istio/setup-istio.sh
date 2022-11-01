@@ -54,7 +54,7 @@ kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
 
 kubectl get svc istio-ingressgateway -n istio-system
 cd ~
-git clone https://github.com/luismendezescobar/myproy.git
+#git clone https://github.com/luismendezescobar/myproy.git
 git clone https://github.com/istio/istio.git
 
 cd myproy/kubernetes/istio
