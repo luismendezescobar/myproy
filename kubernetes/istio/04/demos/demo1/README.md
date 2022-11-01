@@ -18,19 +18,24 @@ Check default mesh policy:
 
 ```
 kubectl describe meshpolicy default
+
+should it be:
+kubectl get PeerAuthentication -n istio-system
 ```
 
 Find the legacy app container:
 
 ```
-docker container ls --filter name=k8s_sleep
 
-$id=$(docker container ls --filter name=k8s_sleep --format '{{ .ID}}')
-```
 
 Run a shell in the container:
 
+ k get pods -n legacy
+
 ```
+kubectl exec -it POD_NAME -c containername /bin/bash
+kubectl exec -it sleep-5c984f7c68-8ngn5 -c sleep sh -n legacy
+
 docker container exec -it $id sh
 ```
 
