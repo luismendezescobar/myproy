@@ -10,9 +10,9 @@ export MESH_ID="proj-${PROJECT_NUMBER}"
 
 
 gcloud services enable container.googleapis.com --project $PROJECT_ID
-
+sleep 3
 gcloud config set compute/zone ${CLUSTER_ZONE}
-
+sleep 3
 gcloud beta container clusters create ${CLUSTER_NAME} \
     --machine-type=n1-standard-2 \
     --num-nodes=3 \
