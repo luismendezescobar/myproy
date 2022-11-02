@@ -32,6 +32,11 @@ spec:
     port: 443
   - name: kiali
     port: 15029
+  - name: grafana    
+    port: 15031
+  - name: prometheus
+    port: 15030
+
   selector:
     istio: ingressgateway
     app: istio-ingressgateway
