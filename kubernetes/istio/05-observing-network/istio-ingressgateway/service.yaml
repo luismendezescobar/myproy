@@ -36,6 +36,8 @@ spec:
     port: 15031
   - name: prometheus
     port: 15030
+  - name: jaegar
+    port: 15032
 
   selector:
     istio: ingressgateway
