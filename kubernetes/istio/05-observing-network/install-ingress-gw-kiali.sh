@@ -5,4 +5,4 @@ jsonpath={.items[*].metadata.labels.'istio\.io\/rev'}'{"\n"}')
 kubectl label namespace $GATEWAY_NS \
 istio.io/rev=$REVISION --overwrite
 kubectl apply -n $GATEWAY_NS \
-  -f /stio-ingressgateway
+  -f ./istio-ingressgateway
