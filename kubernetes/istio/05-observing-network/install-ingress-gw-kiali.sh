@@ -16,4 +16,4 @@ kubectl apply -n $GATEWAY_NS \
 #upload an executable
 #git update-index --chmod=+x install-ingress-gw-kiali.sh
 
-curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.12 TARGET_ARCH=x86_64 sh -
+#curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.12 TARGET_ARCH=x86_64 sh -

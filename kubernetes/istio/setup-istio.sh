@@ -24,7 +24,7 @@ gcloud beta container clusters create ${CLUSTER_NAME} \
 
 kubectl create clusterrolebinding cluster-admin-binding   --clusterrole=cluster-admin   --user=$(whoami)@linuxacademygclabs.com
 
-curl https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.12 > asmcli
+curl https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.15 > asmcli
 chmod +x asmcli
 
 ./asmcli install \
