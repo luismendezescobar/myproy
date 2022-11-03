@@ -109,6 +109,8 @@ echo ${GCLB_IP}
 #where ${PROJECT} is your unique project number.
 gcloud endpoints services deploy 04-dns-spec.yaml
 
+##################################### Provision the TLS certificate ######
+kubectl apply -f 05-managed-cert.yaml
 
 
 
