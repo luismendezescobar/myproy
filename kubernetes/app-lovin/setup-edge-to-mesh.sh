@@ -120,12 +120,18 @@ kubectl apply -f 05-managed-cert.yaml
 #Inspect the ManagedCertificate resource to check the progress of 
 #certificate generation:
 kubectl describe managedcertificate gke-ingress-cert -n asm-ingress
+#Deploy ingress.yaml in your cluster:
+kubectl apply -f 06-ingress.yaml
 
-
-
-
-
-
+#Install the self-signed ingress gateway certificate
+openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
+ -subj "/CN=frontend.endpoints.${PROJECT}.cloud.goog/O=Edge2Mesh Inc" \
+ -keyout frontend.endpoints.${PROJECT}.cloud.goog.key \
+ -out frontend.endpoints.${PROJECT}.cloud.goog.crt
+#Create the Secret in the asm-ingress namespace:
+kubectl -n asm-ingress create secret tls edge2mesh-credential \
+ --key=frontend.endpoints.${PROJECT}.cloud.goog.key \
+ --cert=frontend.endpoints.${PROJECT}.cloud.goog.crt
 
 
 
