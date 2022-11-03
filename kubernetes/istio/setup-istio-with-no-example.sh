@@ -14,7 +14,7 @@ sleep 3
 gcloud config set compute/zone ${CLUSTER_ZONE}
 sleep 3
 gcloud beta container clusters create ${CLUSTER_NAME} \
-    --machine-type=n1-standard-2 \
+    --machine-type=n1-standard-1 \
     --num-nodes=3 \
     --workload-pool=${WORKLOAD_POOL} \
     --enable-stackdriver-kubernetes \
