@@ -122,7 +122,8 @@ kubectl apply -f 05-managed-cert.yaml
 kubectl describe managedcertificate gke-ingress-cert -n asm-ingress
 #Deploy ingress.yaml in your cluster:
 kubectl apply -f 06-ingress.yaml
-
+#check status of lb
+kubectl describe ingress gke-ingress -n asm-ingress
 ######################## Install the self-signed ingress gateway certificate  ######
 
 openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
@@ -145,4 +146,8 @@ curl -LO \
 
 kubectl apply -f kubernetes-manifests.yaml -n onlineboutique
 
-kubectl apply -f frontend-virtualservice.yaml
+kubectl apply -f 08-frontend-virtualservice.yaml
+#Access the following link:
+echo "https://frontend.endpoints.${PROJECT}.cloud.goog"
+
+#Maaagic

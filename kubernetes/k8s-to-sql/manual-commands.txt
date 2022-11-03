@@ -1,5 +1,5 @@
 /*based on this article
-https://dev.to/stack-labs/securing-the-connectivity-between-a-gke-application-and-a-cloud-sql-database-4d6b
+https://dev.to/stack-lbs/securing-the-connectivity-between-a-gke-application-and-a-cloud-sql-database-4d6b
 */
 /*
 
