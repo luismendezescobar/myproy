@@ -76,3 +76,48 @@ kubectl apply -f 01-ingress-deployment.yaml
 kubectl apply -f 02-ingress-service.yaml
 #Deploy ingress-service.yaml in your cluster to create the Service resource:
 kubectl apply -f 03-ingress-backendconfig.yaml
+
+#we still need the INGRESS resource to be deployed that will tied up
+#all the configurations on 02-ingress-service.yaml and
+#03-ingress-backenconfig.yaml
+#but that will done after the creation of the cloud armour creation
+
+######################################### create the cloud armour ####################
+#In Cloud Shell, create a security policy that is called edge-fw-policy:
+gcloud compute security-policies create edge-fw-policy \
+    --description "Block XSS attacks"
+
+#Create a security policy rule that uses the preconfigured XSS filters:
+gcloud compute security-policies rules create 1000 \
+    --security-policy edge-fw-policy \
+    --expression "evaluatePreconfiguredExpr('xss-stable')" \
+    --action "deny-403" \
+    --description "XSS attack filtering"
+######################################## Get the static ip and configure DNS #########
+#In Cloud Shell, create a global static IP for the Google Cloud load balancer:
+#This static IP is used by the Ingress resource and allows the IP to remain 
+#the same, even if the external load balancer changes.
+gcloud compute addresses create ingress-ip --global
+#Get the static IP address:
+export GCLB_IP=$(gcloud compute addresses describe ingress-ip --global --format "value(address)")
+echo ${GCLB_IP}
+
+#This tutorial uses Endpoints instead of creating a managed DNS zone. 
+#Endpoints provides a free Google-managed DNS record for a public IP.
+#The YAML specification defines the public DNS record in the form of:
+#frontend.endpoints.${PROJECT}.cloud.goog, 
+#where ${PROJECT} is your unique project number.
+gcloud endpoints services deploy dns-spec.yaml
+
+
+
+
+
+
+
+
+
+
+
+
+

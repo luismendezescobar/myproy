@@ -1,0 +1,14 @@
+#The YAML specification defines the public DNS record in the form of:
+#frontend.endpoints.${PROJECT}.cloud.goog, 
+#where ${PROJECT} is your unique project number.
+
+swagger: "2.0"
+info:
+  description: "Cloud Endpoints DNS"
+  title: "Cloud Endpoints DNS"
+  version: "1.0.0"
+paths: {}
+host: "frontend.endpoints.${PROJECT}.cloud.goog"
+x-google-endpoints:
+- name: "frontend.endpoints.${PROJECT}.cloud.goog"
+  target: "${GCLB_IP}"
