@@ -5,4 +5,4 @@ metadata:
   namespace: asm-ingress
 spec:
   domains:
-    - "frontend.endpoints..cloud.goog"
+    - "frontend.endpoints.${PROJECT}.cloud.goog"

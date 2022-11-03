@@ -110,10 +110,16 @@ echo ${GCLB_IP}
 gcloud endpoints services deploy 04-dns-spec.yaml
 
 ##################################### Provision the TLS certificate ######
+#This YAML file specifies that the DNS name created through Endpoints 
+#is used to provision a public certificate. Because Google fully manages 
+#the lifecycle of these public certificates, they are automatically generated 
+#and rotated on a regular basis without direct user intervention.
+
 kubectl apply -f 05-managed-cert.yaml
 
-
-
+#Inspect the ManagedCertificate resource to check the progress of 
+#certificate generation:
+kubectl describe managedcertificate gke-ingress-cert -n asm-ingress
 
 
 
