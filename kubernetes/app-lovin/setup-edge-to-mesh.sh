@@ -123,7 +123,8 @@ kubectl describe managedcertificate gke-ingress-cert -n asm-ingress
 #Deploy ingress.yaml in your cluster:
 kubectl apply -f 06-ingress.yaml
 
-#Install the self-signed ingress gateway certificate
+######################## Install the self-signed ingress gateway certificate  ######
+
 openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
  -subj "/CN=frontend.endpoints.${PROJECT}.cloud.goog/O=Edge2Mesh Inc" \
  -keyout frontend.endpoints.${PROJECT}.cloud.goog.key \
@@ -132,6 +133,16 @@ openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
 kubectl -n asm-ingress create secret tls edge2mesh-credential \
  --key=frontend.endpoints.${PROJECT}.cloud.goog.key \
  --cert=frontend.endpoints.${PROJECT}.cloud.goog.crt
+#Deploy ingress-gateway.yaml in your cluster:
+kubectl apply -f 07-ingress-gateway.yaml
 
+#############################   Installing the Online Boutique sample app ### ####
+kubectl create namespace onlineboutique
+kubectl label namespace onlineboutique istio-injection=enabled
+#Download the Kubernetes YAML files for the Online Boutique sample app:
+curl -LO \
+    https://raw.githubusercontent.com/GoogleCloudPlatform/microservices-demo/main/release/kubernetes-manifests.yaml
 
+kubectl apply -f kubernetes-manifests.yaml -n onlineboutique
 
+kubectl apply -f frontend-virtualservice.yaml
