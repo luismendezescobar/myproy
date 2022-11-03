@@ -107,7 +107,7 @@ echo ${GCLB_IP}
 #The YAML specification defines the public DNS record in the form of:
 #frontend.endpoints.${PROJECT}.cloud.goog, 
 #where ${PROJECT} is your unique project number.
-gcloud endpoints services deploy dns-spec.yaml
+gcloud endpoints services deploy 04-dns-spec.yaml
 
 
 
