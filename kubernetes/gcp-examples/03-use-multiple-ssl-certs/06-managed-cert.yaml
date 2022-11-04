@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: gke-ingress-cert-02
+  namespace: default
+spec:
+  domains:
+    - "frontend.endpoints.hello-11-3-22-again.cloud.goog"

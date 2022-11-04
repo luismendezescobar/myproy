@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-gmc-ingress
+  annotations:
+    networking.gke.io/managed-certificates: "gke-ingress-cert-01,gke-ingress-cert-02"
+spec:
+  rules:
+  - host: frontend.endpoints.hello-11-3-22.cloud.goog
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        backend:
+          service:
+            name: my-mc-service
+            port:
+              number: 60001
+  - host: frontend.endpoints.hello-11-3-22-again.cloud.goog
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        backend:
+          service:
+            name: my-mc-service
+            port:
+              number: 60002
