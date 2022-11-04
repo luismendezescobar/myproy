@@ -1,8 +1,8 @@
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: gke-ingress-cert-01
+  name: gke-ingress-cert-02
   namespace: default
 spec:
   domains:
-    - "frontend.endpoints.triggering-a-198-8487f60b.cloud.goog"
+    - "luismendeze.com"
