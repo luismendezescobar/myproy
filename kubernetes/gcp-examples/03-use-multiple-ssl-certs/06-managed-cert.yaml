@@ -5,4 +5,4 @@ metadata:
   namespace: default
 spec:
   domains:
-    - "frontend.endpoints.hello-11-3-22-again.cloud.goog"
+    - "luismendeze.com"

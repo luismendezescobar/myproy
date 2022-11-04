@@ -5,4 +5,4 @@ metadata:
   namespace: default
 spec:
   domains:
-    - "frontend.endpoints.hello-11-3-22.cloud.goog"
+    - "frontend.endpoints.triggering-a-198-8487f60b.cloud.goog"
