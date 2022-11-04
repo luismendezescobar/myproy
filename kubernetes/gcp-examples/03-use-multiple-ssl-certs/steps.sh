@@ -18,15 +18,11 @@ kubectl apply -f 02-service.yaml
 #In Cloud Shell, create a global static IP for the Google Cloud load balancer:
 #This static IP is used by the Ingress resource and allows the IP to remain 
 #the same, even if the external load balancer changes.
-gcloud compute addresses create ingress-ip-01 --global
+gcloud compute addresses create ingress-ip --global
 #Get the static IP address:
-export GCLB_IP_01=$(gcloud compute addresses describe ingress-ip-01 --global --format "value(address)")
-echo ${GCLB_IP_01}
+export GCLB_IP=$(gcloud compute addresses describe ingress-ip --global --format "value(address)")
+echo ${GCLB_IP}
 
-gcloud compute addresses create ingress-ip-02 --global
-#Get the static IP address:
-export GCLB_IP_02=$(gcloud compute addresses describe ingress-ip-02 --global --format "value(address)")
-echo ${GCLB_IP_02}
 
 #This tutorial uses Endpoints instead of creating a managed DNS zone. 
 #Endpoints provides a free Google-managed DNS record for a public IP.
@@ -41,9 +37,9 @@ gcloud endpoints services deploy 03-dns-spec.yaml
 #the lifecycle of these public certificates, they are automatically generated 
 #and rotated on a regular basis without direct user intervention.
 
-kubectl apply -f 05-managed-cert.yaml
+kubectl apply -f 04-managed-cert.yaml
 
-kubectl apply -f 06-managed-cert.yaml
+kubectl apply -f 05-managed-cert.yaml
 
 #Inspect the ManagedCertificate resource to check the progress of 
 #certificate generation:
@@ -52,9 +48,9 @@ kubectl describe managedcertificate gke-ingress-cert-02
 
 
 
-kubectl apply -f 07-ingress.yaml
+kubectl apply -f 06-ingress.yaml
 
 #test first domain
-curl -v https://frontend.endpoints.hello-11-3-22.cloud.goog
+curl -v https://hello.endpoints.triggering-a-198-8487f60b.cloud.goog
 
-curl -v https://frontend.endpoints.hello-11-3-22-again.cloud.goog
+curl -v https://luismendeze.com

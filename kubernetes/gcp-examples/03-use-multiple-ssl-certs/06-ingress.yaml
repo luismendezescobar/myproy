@@ -4,6 +4,7 @@ metadata:
   name: my-gmc-ingress
   annotations:
     networking.gke.io/managed-certificates: "gke-ingress-cert-01,gke-ingress-cert-02"
+    kubernetes.io/ingress.global-static-ip-name: "ingress-ip"
 spec:
   rules:
   - host: hello.endpoints.triggering-a-198-8487f60b.cloud.goog
