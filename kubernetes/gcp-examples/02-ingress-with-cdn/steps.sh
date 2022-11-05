@@ -29,4 +29,4 @@ curl -v ADDRESS/?cache=true
 
 #also you can validate with this command:
 for i in {1..15};do curl -s -w "%{time_total}\n" -o /dev/null http://(your-frontend-ip)/index.html; done
-
+for i in {1..15};do curl -s -w "%{time_total}\n" -o /dev/null http://34.160.40.175; done
