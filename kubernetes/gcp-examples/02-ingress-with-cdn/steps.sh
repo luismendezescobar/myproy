@@ -23,3 +23,10 @@ gcloud compute addresses create cdn-how-to-address --global
 kubectl apply -f 04-ingress.yaml
 
 kubectl describe ingress my-ingress --namespace=cdn-how-to | grep "Address"
+
+#Validate Cloud CDN caching
+curl -v ADDRESS/?cache=true
+
+#also you can validate with this command:
+for i in {1..15};do curl -s -w "%{time_total}\n" -o /dev/null http://(your-frontend-ip)/index.html; done
+
