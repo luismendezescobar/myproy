@@ -9,6 +9,6 @@ spec:
   ports:
   - port: 80
     name: web
-  clusterIP: None
+  #clusterIP: None
   selector:
     app: web
