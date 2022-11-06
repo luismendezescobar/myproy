@@ -87,3 +87,100 @@ kind: ServiceAccount
 metadata:
   name: asm-ingressgateway
   namespace: asm-ingress
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: asm-ingressgateway
+  namespace: asm-ingress
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
+    cloud.google.com/backend-config: '{"default": "ingress-backendconfig"}'
+    cloud.google.com/app-protocols: '{"https":"HTTP2"}' # HTTP/2 with TLS encryption
+  labels:
+    asm: ingressgateway
+spec:
+  ports:
+  # status-port exposes a /healthz/ready endpoint that can be used with GKE Ingress health checks
+  - name: status-port
+    port: 15021
+    protocol: TCP
+    targetPort: 15021
+  # Any ports exposed in Gateway resources should be exposed here.
+  - name: http2
+    port: 80
+    targetPort: 8080
+  - name: https
+    port: 443
+    targetPort: 8443
+  selector:
+    asm: ingressgateway
+  type: ClusterIP
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: ingress-backendconfig
+  namespace: asm-ingress
+spec:
+  healthCheck:
+    requestPath: /healthz/ready
+    port: 15021
+    type: HTTP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gke-ingress
+  namespace: asm-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "ingress-ip"
+    kubernetes.io/ingress.class: "gce"
+spec:
+  defaultBackend:
+    service:
+      name: asm-ingressgateway
+      port:
+        number: 80
+  rules:
+  - http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: asm-ingressgateway
+            port:
+              number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+    name: asm-ingressgateway
+    namespace: asm-ingress
+spec:
+  selector:
+    asm: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: https
+      protocol: HTTPS
+    hosts:
+    - "*" # IMPORTANT: Must use wildcard here when using SSL, see note below
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: frontend-ingress  
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - asm-ingress/asm-ingressgateway
+  http:
+  - route:
+    - destination:
+        host: wordpress
+        port:
+          number: 80
