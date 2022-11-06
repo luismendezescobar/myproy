@@ -21,7 +21,7 @@ spec:
   selector:
     app: wordpress
     tier: frontend
-  type: ClusterIp
+  type: ClusterIP
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
