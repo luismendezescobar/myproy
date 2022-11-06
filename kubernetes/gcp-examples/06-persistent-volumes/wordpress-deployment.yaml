@@ -3,16 +3,11 @@ kind: Ingress
 metadata:
   name: fanout-ingress
 spec:
-  rules:
-  - http:
-      paths:
-      - path: /*
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: wordpress
-            port:
-              number: 80
+  defaultBackend:
+    service:
+      name: wordpress
+      port:
+        number: 80
 ---
 apiVersion: v1
 kind: Service
