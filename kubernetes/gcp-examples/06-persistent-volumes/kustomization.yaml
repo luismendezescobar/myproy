@@ -1,3 +1,4 @@
+#https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/
 #from here all is executed, it needs to be executed 
 #from the command line
 secretGenerator:

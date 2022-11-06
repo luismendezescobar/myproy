@@ -21,7 +21,7 @@ gcloud beta container clusters create ${CLUSTER_NAME} \
     --subnetwork=default \
     --release-channel=regular \
     --labels mesh_id=${MESH_ID} \
-    --max-nodes=5
+    --max-nodes=5 \
     --enable-autoscaling
 
 kubectl create clusterrolebinding cluster-admin-binding   --clusterrole=cluster-admin   --user=$(whoami)@linuxacademygclabs.com

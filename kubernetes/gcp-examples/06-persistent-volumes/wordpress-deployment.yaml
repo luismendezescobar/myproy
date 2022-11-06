@@ -1,8 +1,16 @@
+#this one actually creates the load balancer, see 04-backend.yaml file there are links 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: my-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+  name: wordpress
 spec:
+  defaultBackend:
+    service:
+      name: wordpress
+      port:
+        number: 80
   rules:
   - http:
       paths:
@@ -20,7 +28,10 @@ metadata:
   name: wordpress
   labels:
     app: wordpress
+  annotations:
+    cloud.google.com/backend-config: '{"default": "wordpress"}'
 spec:
+  type: ClusterIP
   ports:
     - port: 80
       protocol: TCP
@@ -28,7 +39,6 @@ spec:
   selector:
     app: wordpress
     tier: frontend
-  type: NodePort
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -37,6 +47,7 @@ metadata:
   labels:
     app: wordpress
 spec:
+  storageClassName: "premium-rwo"
   accessModes:
     - ReadWriteOnce
   resources:
