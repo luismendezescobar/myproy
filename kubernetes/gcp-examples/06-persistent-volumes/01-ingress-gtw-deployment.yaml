@@ -164,8 +164,8 @@ spec:
   servers:
   - port:
       number: 80
-      name: https
-      protocol: HTTPS
+      name: http
+      protocol: HTTP
     hosts:
     - "*" # IMPORTANT: Must use wildcard here when using SSL, see note below
 ---
