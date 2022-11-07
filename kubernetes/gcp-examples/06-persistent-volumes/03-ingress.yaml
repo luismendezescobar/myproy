@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gke-ingress
+  namespace: asm-ingress
+  annotations:    
+    kubernetes.io/ingress.global-static-ip-name: "ingress-ip"    
+    kubernetes.io/ingress.class: "gce"
+spec:
+  defaultBackend:
+    service:
+      name: asm-ingressgateway
+      port:
+        number: 80
+  rules:
+  - http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: asm-ingressgateway
+            port:
+              number: 80

@@ -1,3 +1,6 @@
+#in this example we created something similar to the example number 04-from-edge-to-mesh
+#but we used the book revision app and only used port 80
+
 #create a namespace and label it for istio pod injection
 kubectl create ns asm-ingress
 REVISION=$(kubectl get deploy -n istio-system -l app=istiod -o \
@@ -12,8 +15,8 @@ k apply -f istio-ingressgateway/
 
 
 
-#k apply -f 02-backend-config.yaml
-#k apply -f 03-ingress.yaml
+k apply -f 02-backend-config.yaml
+k apply -f 03-ingress.yaml
 k apply -f 04-gateway.yaml
 
 

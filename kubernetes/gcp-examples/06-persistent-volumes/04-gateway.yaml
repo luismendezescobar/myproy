@@ -1,29 +1,29 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: frontend-gateway  
+    name: asm-ingressgateway
 spec:
   selector:
-    istio: istio-ingressgateway
+    istio: ingressgateway
   servers:
   - port:
       number: 80
       name: http
       protocol: HTTP
     hosts:
-    - "*"
+    - "*" # IMPORTANT: Must use wildcard here when using SSL, see note below
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: frontend-ingress
+  name: bookinfo
 spec:
   hosts:
   - "*"
   gateways:
-  - frontend-gateway
-  http:
-  - route:
+  - asm-ingressgateway
+  http:  
+    route:
     - destination:
         host: wordpress
         port:
