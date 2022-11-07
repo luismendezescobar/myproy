@@ -23,7 +23,6 @@ metadata:
     istio: ingressgateway
     asm: ingressgateway
 spec:
-  loadBalancerIP: 34.160.163.94
   ports:
   # status-port exposes a /healthz/ready endpoint that can be used with GKE Ingress health checks
   - name: status-port
