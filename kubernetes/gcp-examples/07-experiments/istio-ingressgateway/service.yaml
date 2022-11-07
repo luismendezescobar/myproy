@@ -17,7 +17,7 @@ metadata:
   name: asm-ingressgateway
   namespace: asm-ingress
   annotations:    
-    #cloud.google.com/backend-config: '{"default": "ingress-backendconfig"}'
+    cloud.google.com/backend-config: '{"default": "ingress-backendconfig"}'
   labels:
     app: istio-ingressgateway
     istio: ingressgateway
