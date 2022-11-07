@@ -2,7 +2,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
     name: asm-ingressgateway
-    namespace: asm-ingress
 spec:
   selector:
     asm: ingressgateway
@@ -22,7 +21,7 @@ spec:
   hosts:
   - "*"
   gateways:
-  - asm-ingress/asm-ingressgateway
+  - asm-ingressgateway
   http:
   - match:
     - uri:
