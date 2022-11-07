@@ -96,7 +96,7 @@ metadata:
   annotations:
     cloud.google.com/neg: '{"ingress": true}'
     cloud.google.com/backend-config: '{"default": "ingress-backendconfig"}'
-    cloud.google.com/app-protocols: '{"https":"HTTP2"}' # HTTP/2 with TLS encryption
+#   cloud.google.com/app-protocols: '{"https":"HTTP2"}' # HTTP/2 with TLS encryption
   labels:
     asm: ingressgateway
 spec:
@@ -156,31 +156,42 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-    name: asm-ingressgateway
-    namespace: asm-ingress
+  name: bookinfo-gateway
+  namespace: asm-ingress
 spec:
   selector:
-    asm: ingressgateway
+    istio: ingressgateway 
   servers:
   - port:
       number: 80
       name: http
       protocol: HTTP
     hosts:
-    - "*" # IMPORTANT: Must use wildcard here when using SSL, see note below
+    - "*"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: frontend-ingress  
+  name: bookinfo
 spec:
   hosts:
   - "*"
   gateways:
-  - asm-ingress/asm-ingressgateway
+  - asm-ingress/bookinfo-gateway
   http:
-  - route:
+  - match:
+    - uri:
+        exact: /productpage
+    - uri:
+        prefix: /static
+    - uri:
+        exact: /login
+    - uri:
+        exact: /logout
+    - uri:
+        prefix: /api/v1/products
+    route:
     - destination:
-        host: wordpress
+        host: productpage
         port:
-          number: 80
+          number: 9080
