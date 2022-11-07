@@ -16,14 +16,14 @@ kind: Service
 metadata:
   name: asm-ingressgateway
   namespace: asm-ingress
-  annotations:
-    cloud.google.com/neg: '{"ingress": true}'
+  annotations:    
     cloud.google.com/backend-config: '{"default": "ingress-backendconfig"}'
   labels:
     app: istio-ingressgateway
     istio: ingressgateway
     asm: ingressgateway
 spec:
+  loadBalancerIP: 34.160.163.94
   ports:
   # status-port exposes a /healthz/ready endpoint that can be used with GKE Ingress health checks
   - name: status-port
@@ -38,4 +38,4 @@ spec:
   selector:
     istio: ingressgateway
     app: istio-ingressgateway
-  type: ClusterIP
+  type: LoadBalancer
