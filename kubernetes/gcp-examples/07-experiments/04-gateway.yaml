@@ -4,7 +4,7 @@ metadata:
     name: asm-ingressgateway
 spec:
   selector:
-    asm: ingressgateway
+    istio: ingressgateway
   servers:
   - port:
       number: 80
