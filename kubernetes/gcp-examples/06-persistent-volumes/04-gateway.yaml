@@ -25,6 +25,6 @@ spec:
   http:  
   - route:
     - destination:
-      host: wordpress
-      port:
-        number: 80
+        host: wordpress
+        port:
+          number: 80
