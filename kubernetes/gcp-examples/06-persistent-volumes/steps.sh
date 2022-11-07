@@ -15,17 +15,19 @@ REVISION=$(kubectl get deploy -n istio-system -l app=istiod -o \
 jsonpath={.items[*].metadata.labels.'istio\.io\/rev'}'{"\n"}')
 echo $REVISION
 kubectl label namespace asm-ingress istio-injection- istio.io/rev=$REVISION --overwrite
+
 gcloud compute addresses create ingress-ip --global
+
 kubectl create secret generic mysql-pass \
     --from-literal=password="Passw0rd"
 
-
-
-
-
-
-
 alias k=kubectl
+
+
+
+
+
+
 #creates the istio ingress gateway
 k apply -f istio-ingressgateway/
 

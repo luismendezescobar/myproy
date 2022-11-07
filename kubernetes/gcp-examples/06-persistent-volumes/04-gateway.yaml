@@ -23,8 +23,8 @@ spec:
   gateways:
   - asm-ingressgateway
   http:  
-    route:
+  - route:
     - destination:
-        host: wordpress
-        port:
-          number: 80
+      host: wordpress
+      port:
+        number: 80
