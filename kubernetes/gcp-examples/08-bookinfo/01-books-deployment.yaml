@@ -1,0 +1,172 @@
+# ===========
+# = Gateway =
+# ===========
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gw
+  labels:
+    app: gw
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gw
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: gw
+        version: v1
+    spec:
+      containers:
+      - name: gw
+        image: kruschecompany/mesh:gateway
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gw
+spec:
+  selector:
+    app: gw
+  ports:
+    - name: http
+      port: 8080
+ 
+# =========
+# = Books = 
+# =========
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: books-v1
+  labels:
+    app: books
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: books
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: books
+        version: v1
+    spec:
+      containers:
+      - name: books
+        image: kruschecompany/mesh:books_v1
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: books-v2
+  labels:
+    app: books
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: books
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: books
+        version: v2
+    spec:
+      containers:
+      - name: books
+        image: kruschecompany/mesh:books_v2
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: books
+spec:
+  selector:
+    app: books
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+ 
+ 
+# ===========
+# = Ratings =
+# ===========
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ratings-v1
+  labels:
+    app: ratings
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ratings
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: ratings
+        version: v1
+    spec:
+      containers:
+      - name: ratings
+        image: kruschecompany/mesh:ratings_v1
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ratings-v2
+  labels:
+    app: ratings
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ratings
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: ratings
+        version: v2
+    spec:
+      containers:
+      - name: ratings
+        image: kruschecompany/mesh:ratings_v2
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ratings
+spec:
+  selector:
+    app: ratings
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
