@@ -14,7 +14,7 @@ spec:
     hosts:
     - "*" # IMPORTANT: Must use wildcard here when using SSL, see note below
 ---
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1alpha3 #this one works fine
 kind: VirtualService
 metadata:
   name: bookinfo
