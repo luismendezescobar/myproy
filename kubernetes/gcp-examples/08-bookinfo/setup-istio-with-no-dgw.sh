@@ -12,17 +12,35 @@ export MESH_ID="proj-${PROJECT_NUMBER}"
 gcloud services enable container.googleapis.com --project $PROJECT_ID
 sleep 3
 gcloud config set compute/zone ${CLUSTER_ZONE}
+gcloud config list
+kubectl config get-contexts
+
 sleep 3
 gcloud beta container clusters create ${CLUSTER_NAME} \
     --machine-type=n1-standard-1 \
-    --num-nodes=3 \
+    --num-nodes=1 \
     --workload-pool=${WORKLOAD_POOL} \
     --enable-stackdriver-kubernetes \
     --subnetwork=default \
     --release-channel=regular \
     --labels mesh_id=${MESH_ID} \
-    --max-nodes=5 \
+    --max-nodes=1 \
     --enable-autoscaling
+
+POOL_NAME="primary-pool"
+gcloud container node-pools create ${POOL_NAME} \
+    --cluster ${CLUSTER_NAME}  \
+    --machine-type=e2-medium \
+    --num-nodes=2 \
+    --min-nodes=1 \
+    --max-nodes=10 \
+    --enable-autoscaling \
+    --zone ${CLUSTER_ZONE}
+
+#delete the default node pool
+gcloud container node-pools delete default-pool \
+    --cluster ${CLUSTER_NAME}
+
 
 kubectl create clusterrolebinding cluster-admin-binding   --clusterrole=cluster-admin   --user=$(whoami)@linuxacademygclabs.com
 
