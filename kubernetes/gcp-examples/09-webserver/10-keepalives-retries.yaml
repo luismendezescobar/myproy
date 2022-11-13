@@ -5,6 +5,8 @@ metadata:
 spec:
   host: webserver
   trafficPolicy:
+    tls:
+    mode: ISTIO_MUTUAL
     connectionPool:
       tcp:
         maxConnections: 100
