@@ -11,7 +11,7 @@ REVISION=$(kubectl get deploy -n istio-system -l app=istiod -o \
 jsonpath={.items[*].metadata.labels.'istio\.io\/rev'}'{"\n"}')
 echo $REVISION
 kubectl label namespace asm-ingress istio-injection- istio.io/rev=$REVISION --overwrite
-gcloud compute addresses create ingress-ip --global
+#gcloud compute addresses create ingress-ip --global
 
 
 alias k=kubectl
@@ -38,9 +38,8 @@ kubectl label namespace mesh istio-injection- istio.io/rev=$REVISION --overwrite
 
 
 
-k apply -f 02-backend-config.yaml
-k apply -f 03-ingress.yaml
-k apply -f 04-gateway.yaml
+k apply -f 01-books-deployment.yaml -n mesh
+k apply -f 02-istio-gateway.yaml -n mesh
+k apply -f 03-istio-destinationrule.yaml -n mesh 
 
 
-kubectl apply -f ~/asm_output/istio-1.15.3-asm.1/samples/bookinfo/platform/kube/bookinfo.yaml
