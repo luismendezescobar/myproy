@@ -39,7 +39,7 @@ metadata:
   name: webserverv1
 spec:
   progressDeadlineSeconds: 600
-  replicas: 3
+  replicas: 2
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -80,7 +80,7 @@ metadata:
   name: webserverv2
 spec:
   progressDeadlineSeconds: 600
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: webserver

@@ -3,7 +3,7 @@
 #we use the below example from another tutorial
 #it's similar to the notebook app
 #https://kruschecompany.com/istio-service-mesh-kubernetes/
-git update-index --chmod=+x start.sh
+git update-index --chmod=+x setup-istio-with-no-dgw.sh
 
 #create a namespace and label it for istio pod injection
 kubectl create ns asm-ingress
@@ -15,17 +15,12 @@ kubectl label namespace asm-ingress istio-injection- istio.io/rev=$REVISION --ov
 
 
 alias k=kubectl
-cd ~/myproy/kubernetes/gcp-examples/08-bookinfo/
-k apply -f istio-ingressgateway/
+cd ~/myproy/kubernetes/gcp-examples/09-webserver/
+kubectl apply -f istio-ingressgateway/
 
 
 #Create a namespace for the application
 #and label to ahve the istion injection enabled
-
-kubectl create ns mesh
-kubectl label namespace mesh istio-injection- istio.io/rev=$REVISION --overwrite
-
-
 
 #This is a set of standard api deployments and services 
 #for deploying a regular application in kubernetes. 
@@ -39,7 +34,7 @@ kubectl label namespace mesh istio-injection- istio.io/rev=$REVISION --overwrite
 
 
 
-k apply -f example.yaml 
+k apply -f 01-example.yaml 
 
 
 
