@@ -35,6 +35,6 @@ kubectl apply -f istio-ingressgateway/
 
 
 k apply -f 01-example.yaml 
-
+k apply -f 12-gateway.yaml
 
 
