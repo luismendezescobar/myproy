@@ -1,0 +1,62 @@
+#https://octopus.com/blog/istio/istio-serviceentry
+#The first step is to expose the host 
+#raw.githubusercontent.com 
+#to the Istio service registry, 
+#which is achieved with a ServiceEntry resource.
+###
+#In the YAML below we expose the host raw.githubusercontent.com, 
+#identified as being external to the Istio mesh via the MESH_EXTERNAL property, 
+#accepting HTTPS traffic on the standard port of 443, 
+#and resolved to an IP address using the DNS server available inside
+#the Kubernetes cluster with the DNS property:
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: github
+spec:
+  hosts:
+  - "raw.githubusercontent.com"
+  location: MESH_EXTERNAL
+  ports:
+  - number: 443
+    name: https
+    protocol: TLS
+  resolution: DNS
+---
+#With the external service now part of 
+#the Istio service registry, we need to direct traffic to it. 
+#This is achieved with the VirtualService resource.
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: webserver
+spec:
+  hosts:
+  - webserver
+  http:
+  - match:
+    - uri:
+        regex: ".*"
+    rewrite:
+      uri: "/mcasperson/NodejsProxy/master/externalservice1.txt"
+      authority: raw.githubusercontent.com
+    route:
+    - destination:
+        host: raw.githubusercontent.com
+        port:
+          number: 443
+---
+#Because we have redirected a HTTP call to an internal Service resource 
+#to a HTTPS external location, we need to configure a DestinationRule resource 
+#to act as a TLS client. In the YAML below, we have configured
+#the DestinationRule resource to SIMPLE TLS mode, which indicates that 
+#requests to the host should be conducted over a TLS connection:
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: github
+spec:
+  host: "raw.githubusercontent.com"
+  trafficPolicy:
+    tls:
+      mode: SIMPLE
