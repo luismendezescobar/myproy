@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: webserver
+spec:
+  hosts:
+  - webserver
+  http:
+#We have used an exact match to the root path 
+#to redirect the request to http://webserverv1/redirected:  
+  - match:
+    - uri:
+        exact: "/"
+    redirect:
+      uri: /redirected
+      authority: webserverv1

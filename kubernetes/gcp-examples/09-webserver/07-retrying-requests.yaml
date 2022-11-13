@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: webserver
+spec:
+  hosts:
+  - webserver
+  http:
+  - route:
+    - destination:
+        host: webserver
+        subset: v1
+#Here we configure the VirtualService resource to retry any request 
+#that resulted in any 500 error code, up to 3 times, and with a delay:            
+    retries:
+      attempts: 3
+      perTryTimeout: "2s"
+      retryOn: "5xx"      
+    timeout: "10s" 

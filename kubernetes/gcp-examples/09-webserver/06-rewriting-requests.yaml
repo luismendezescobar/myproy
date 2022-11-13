@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: webserver
+spec:
+  hosts:
+  - webserver
+  http:
+  - route:
+    - destination:
+        host: webserverv1  
+#We have used an exact match to the root path 
+#to rewrite the request to http://webserverv1/rewritten:
+match:        
+    match:
+    - uri:
+        exact: "/"
+    rewrite:
+      uri: /rewritten

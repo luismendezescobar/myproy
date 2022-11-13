@@ -39,8 +39,7 @@ kubectl label namespace mesh istio-injection- istio.io/rev=$REVISION --overwrite
 
 
 
-k apply -f 01-books-deployment.yaml -n mesh
-k apply -f 02-istio-gateway.yaml -n mesh
-k apply -f 03-istio-destinationrule.yaml -n mesh 
+k apply -f example.yaml 
+
 
 

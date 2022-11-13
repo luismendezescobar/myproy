@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: webserver
+spec:
+  hosts:
+  - webserver
+  http:
+  - route:
+    - destination:
+        host: webserverv1
+#The fault property has been configured to add a delay of 5 seconds 
+#to 50% of network requests:        
+    fault:
+      delay:
+        percentage:
+          value: 50
+        fixedDelay: 5s  
