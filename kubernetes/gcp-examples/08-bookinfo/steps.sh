@@ -15,6 +15,7 @@ kubectl label namespace asm-ingress istio-injection- istio.io/rev=$REVISION --ov
 
 
 alias k=kubectl
+cd ~/myproy/kubernetes/gcp-examples/08-bookinfo/
 k apply -f istio-ingressgateway/
 
 

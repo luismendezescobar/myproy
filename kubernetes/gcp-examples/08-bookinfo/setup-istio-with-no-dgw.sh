@@ -39,7 +39,7 @@ gcloud container node-pools create ${POOL_NAME} \
 
 #delete the default node pool
 gcloud container node-pools delete default-pool \
-    --cluster ${CLUSTER_NAME}
+    --cluster ${CLUSTER_NAME}  --quiet 
 
 
 kubectl create clusterrolebinding cluster-admin-binding   --clusterrole=cluster-admin   --user=$(whoami)@linuxacademygclabs.com
@@ -75,6 +75,6 @@ cd ~
 #git clone https://github.com/luismendezescobar/myproy.git
 git clone https://github.com/istio/istio.git
 
-k apply -f  istio-1.15.3-asm.1/samples/addons/kiali.yaml
+kubectl apply -f  ~/asm_output/istio-1.15.3-asm.1/samples/addons/kiali.yaml
 
 cd myproy/kubernetes/istio

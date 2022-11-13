@@ -19,7 +19,7 @@ metadata:
   name: mesh-gw
 spec:
   hosts:
-  - "*" # <- replace on load balancer ip
+  - "34.82.18.77" # <- replace on load balancer ip
   gateways:
   - mesh
   http:
