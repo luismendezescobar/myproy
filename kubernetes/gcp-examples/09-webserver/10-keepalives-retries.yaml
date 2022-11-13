@@ -5,8 +5,13 @@ metadata:
 spec:
   host: webserver
   trafficPolicy:
-    loadBalancer:
-      simple: ROUND_ROBIN
+    connectionPool:
+      tcp:
+        maxConnections: 100
+        connectTimeout: 30ms
+        tcpKeepalive:
+          time: 7200s
+          interval: 75s
   subsets:
   - name: v1
     labels:
@@ -14,5 +19,3 @@ spec:
   - name: v2
     labels:
       version: v2
-
-#curl http://34.83.246.154/?[1-10]
