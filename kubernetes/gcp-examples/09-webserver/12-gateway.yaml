@@ -4,9 +4,9 @@ metadata:
   name: default-gateway
 spec:
   selector:
-    #istio: ingressgateway
-    #app: istio-ingressgateway
-    asm: ingressgateway
+    #istio: ingressgateway #worked fine
+    app: istio-ingressgateway
+    #asm: ingressgateway #didn't work
   servers:
   - hosts:
     - '*'
