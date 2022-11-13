@@ -75,4 +75,6 @@ cd ~
 #git clone https://github.com/luismendezescobar/myproy.git
 git clone https://github.com/istio/istio.git
 
+k apply -f  istio-1.15.3-asm.1/samples/addons/kiali.yaml
+
 cd myproy/kubernetes/istio

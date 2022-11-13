@@ -3,6 +3,7 @@
 #we use the below example from another tutorial
 #it's similar to the notebook app
 #https://kruschecompany.com/istio-service-mesh-kubernetes/
+git update-index --chmod=+x start.sh
 
 #create a namespace and label it for istio pod injection
 kubectl create ns asm-ingress
