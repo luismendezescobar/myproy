@@ -75,6 +75,7 @@ cd ~
 #git clone https://github.com/luismendezescobar/myproy.git
 git clone https://github.com/istio/istio.git
 
-kubectl apply -f  ~/asm_output/istio-1.15.3-asm.1/samples/addons/kiali.yaml
+with this one you can install all the istio addons
+kubectl apply -f  ~/asm_output/istio-1.15.3-asm.1/samples/addons/
 
 cd myproy/kubernetes/istio
