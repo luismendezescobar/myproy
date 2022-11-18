@@ -59,7 +59,7 @@ module "gke" {
     {
       name                      = "another-node-pool"
       machine_type              = "e2-medium"
-      node_locations            = "us-east1-b,us-east1-c,us-east1-d"
+      node_locations            = "us-east1-b"
       min_count                 = 1
       max_count                 = 10
       local_ssd_count           = 0
