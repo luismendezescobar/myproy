@@ -68,13 +68,13 @@ module "gke" {
       enable_gvnic              = false
       auto_repair               = true
       auto_upgrade              = true
-      service_account           = resource.google_service_account.default.email
+      service_account           = "k8s-cluster-account@${var.project_id}.iam.gserviceaccount.com" #resource.google_service_account.default.email
       preemptible               = false
       initial_node_count        = 1
     },
     {
       name                      = "spot-node-pool"
-      machine_type              = "e2-standard-2"
+      machine_type              = "e2-small"
       node_locations            = "us-east1-c"#"us-east1-b,us-east1-c,us-east1-d"
       min_count                 = 1
       max_count                 = 3
@@ -87,7 +87,7 @@ module "gke" {
       enable_gvnic              = false
       auto_repair               = true
       auto_upgrade              = true
-      service_account           = resource.google_service_account.default.email
+      service_account           = "k8s-cluster-account@${var.project_id}.iam.gserviceaccount.com"
       preemptible               = true
       initial_node_count        = 1
     },
