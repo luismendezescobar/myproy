@@ -18,12 +18,13 @@ variable "roles_for_gke_service_account" {
 
 }
 
-/*general variables*/
+/*to enable all the required apis*/
 variable "gcp_service_list" {
   description ="The list of apis necessary for the project"
   type = list(string)
   default = [
     "container.googleapis.com",
-    "servicenetworking.googleapis.com"
+    "compute.googleapis.com",
+    #"servicenetworking.googleapis.com",
   ]
 }

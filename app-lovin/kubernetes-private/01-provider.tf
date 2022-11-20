@@ -1,3 +1,6 @@
+/*we used this article
+https://antonputra.com/google/create-gke-cluster-using-terraform/#gke-workload-identity-tutorial-example-2
+*/
 terraform {
 /*backend "gcs" {
     bucket  = "mybucket5-19-2022-02"
@@ -8,7 +11,7 @@ terraform {
   required_providers { 
     google = {
       source = "hashicorp/google"
-      version = "~>4.43.0"       //this is the hashicorp modules version
+      version = "~>4.43"       //this is the hashicorp modules version
     }
   }
 }

@@ -1,36 +1,40 @@
 #enable all the necesary apis
-
 resource "google_project_service" "gcp_services" {
   for_each = toset(var.gcp_service_list)  
   service = each.key
 }
-
-#first define the network and 2 subnetworks
-
+#create the vpc
 resource "google_compute_network" "custom" {
-  name                    = "custom"
+  name                    = "main-vpc"
   auto_create_subnetworks = "false" 
   routing_mode            = "GLOBAL"
+  mtu                             = 1460
+  delete_default_routes_on_create = false
+  depends_on = [
+    google_project_service.gcp_services
+  ]
 }
-
+#create the subnet for kubernetes
 resource "google_compute_subnetwork" "subnet-gke-east1" {
   name          = "subnet-gke-east1"
   ip_cidr_range = "10.71.0.0/20"
   network       = google_compute_network.custom.id
   region        = data.google_client_config.this.region
+#private ip won't have route to the internet, therefore you have to
+#create your nat configuration (in the next file)
+  private_ip_google_access = true
 
   secondary_ip_range  = [
     {
-        range_name    = "pods"
+        range_name    = "gke-private-1-pods"
         ip_cidr_range = "10.72.0.0/14"
     },
     {
-        range_name    = "services"
+        range_name    = "gke-private-1-services"
         ip_cidr_range = "10.76.0.0/20"
     },
   ]
 
-  private_ip_google_access = true
 }
 
 /*--------Configure firewall ----------------------------------

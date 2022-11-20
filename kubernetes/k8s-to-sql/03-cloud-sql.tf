@@ -9,7 +9,7 @@ resource "google_sql_database_instance" "mysql" {
   # Instance info
   name             = "mysql-private-${random_string.db_name_suffix.result}"
   region           = var.region
-  database_version = var.mysql_database_version
+  database_version = var.authorized_source_ranges
 
   settings {
 
