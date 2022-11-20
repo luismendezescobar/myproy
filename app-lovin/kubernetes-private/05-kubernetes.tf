@@ -103,11 +103,11 @@ module "gke" {
   node_pools_labels = {
     all = {}
     first-node-pool = {
-      first-node-pool = true,
+      first-node-pool = "true",
       role            = "general"
     }
     spot-node-pool ={
-      spot-node-pool = true,
+      spot-node-pool = "true",
       role           = "devops"
     }
 
@@ -123,18 +123,18 @@ module "gke" {
 
   node_pools_taints = {
     all = []
-
+    /* 
     first-node-pool = [
       {
         key    = "default-node-pool"
         value  = true
         effect = "PREFER_NO_SCHEDULE"
       },
-    ]
+    ]*/
     spot-node-pool = [
       {
         key    = "spot-node-pool"
-        value  = true
+        value  = "true"
         effect = "NO_SCHEDULE"
       },
     ]
