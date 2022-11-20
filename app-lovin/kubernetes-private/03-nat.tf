@@ -2,7 +2,7 @@
 resource "google_compute_router" "router" {
   name    = "router-${google_compute_network.main_vpc.name}"
   region  = var.region
-  network = google_compute_network.main.id
+  network = google_compute_network.main_vpc.id
 }
 
 
@@ -27,9 +27,9 @@ resource "google_compute_router_nat" "nat" {
 
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_address
 resource "google_compute_address" "nat_ip" {
-  name         = "nat_ip"
+  name         = "nat-ip"
   address_type = "EXTERNAL"
   network_tier = "PREMIUM"
 
-  depends_on = [google_project_service.compute]
+  depends_on = [google_project_service.gcp_services]
 }
