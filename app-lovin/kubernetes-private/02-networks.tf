@@ -4,7 +4,7 @@ resource "google_project_service" "gcp_services" {
   service = each.key
 }
 #create the vpc
-resource "google_compute_network" "custom" {
+resource "google_compute_network" "main_vpc" {
   name                    = "main-vpc"
   auto_create_subnetworks = "false" 
   routing_mode            = "GLOBAL"

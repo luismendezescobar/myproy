@@ -1,6 +1,6 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_router
 resource "google_compute_router" "router" {
-  name    = "router-${google_compute_network.main.name}"
+  name    = "router-${google_compute_network.main_vpc.name}"
   region  = var.region
   network = google_compute_network.main.id
 }
