@@ -62,7 +62,7 @@ resource "google_sql_database" "teamcity" {
 resource "google_sql_user" "teamcity_sql_user" {
   name = "teamcity-sql-admin"
   instance = google_sql_database_instance.mysql.name
-  password = data.google_secret_manager_secret_version.wordpress-admin-user-password.secret_data
+  password = data.google_secret_manager_secret_version.teamcity-admin-user-password.secret_data
 }
 
 output "cloud-sql-connection-name" {
