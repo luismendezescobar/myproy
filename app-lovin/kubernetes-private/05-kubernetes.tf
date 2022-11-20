@@ -28,7 +28,7 @@ module "gke" {
   name                       = "gke-private-1"
   region                     = "us-east1"
   zones                      = ["us-east1-b", "us-east1-c", "us-east1-d"]
-  network                    = resource.google_compute_network.custom.name
+  network                    = resource.google_compute_network.main_vpc.name
   subnetwork                 = resource.google_compute_subnetwork.subnet-gke-east1.name
   ip_range_pods              = "gke-private-1-pods"
   ip_range_services          = "gke-private-1-services"

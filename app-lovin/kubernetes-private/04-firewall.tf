@@ -6,7 +6,7 @@ instance port to only GKE nodes.
 
 resource "google_compute_firewall" "mysql" {
   name    = "allow-only-gke-cluster"
-  network = google_compute_network.custom.name
+  network = google_compute_network.main_vpc.name
 
   allow {
     protocol = "tcp"

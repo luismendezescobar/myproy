@@ -18,7 +18,7 @@ resource "google_compute_network" "main_vpc" {
 resource "google_compute_subnetwork" "subnet-gke-east1" {
   name          = "subnet-gke-east1"
   ip_cidr_range = "10.71.0.0/20"
-  network       = google_compute_network.custom.id
+  network       = google_compute_network.main_vpc.id
   region        = data.google_client_config.this.region
 #private ip won't have route to the internet, therefore you have to
 #create your nat configuration (in the next file)
