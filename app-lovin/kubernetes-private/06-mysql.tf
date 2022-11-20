@@ -29,6 +29,7 @@ resource "google_sql_database_instance" "mysql" {
     ip_configuration {
       ipv4_enabled        = false
       private_network     = google_compute_network.main_vpc.id
+      require_ssl         = false
     }
 
     # Backups
