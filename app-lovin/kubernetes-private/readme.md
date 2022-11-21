@@ -13,6 +13,9 @@ k exec -it teamcity-deployment-7b56bc4dcd-gzs8q -c teamcity /bin/bash
 
 k exec -it nginx-85b98978db-ssm4k -c nginx /bin/bash
 
+k exec -it teamcity-deployment-6cb4fcb758-55j9m -c teamcity /bin/bash
+
+
 #this is to get the authentication token
 cat /opt/teamcity/logs/teamcity-server.log  |grep "Super user authentication token"
 

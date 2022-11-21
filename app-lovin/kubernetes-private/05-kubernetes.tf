@@ -57,11 +57,11 @@ module "gke" {
   #]
 
   node_pools = [
-    /*{
+    {
       name                      = "first-node-pool"
       machine_type              = "e2-small"   #"e2-standard-2"
       node_locations            = "us-east1-b" #"us-east1-b,us-east1-c,us-east1-d"
-      min_count                 = 0
+      min_count                 = 1
       max_count                 = 3
       local_ssd_count           = 0
       spot                      = false
@@ -74,9 +74,8 @@ module "gke" {
       auto_upgrade              = true
       //service_account           = "k8s-cluster-account@${var.project_id}.iam.gserviceaccount.com" #resource.google_service_account.default.email
       preemptible               = false
-      initial_node_count        = 0
-    },
-    */
+      initial_node_count        = 1
+    },    
     {
       name                      = "spot-node-pool"
       machine_type              = "e2-standard-2"
@@ -107,12 +106,12 @@ module "gke" {
 
   node_pools_labels = {
     all = {}
-    /*
+    
     first-node-pool = {
       first-node-pool = "true",
       role            = "general"
     }
-    */
+    
     spot-node-pool ={
       spot-node-pool = "true",
       role           = "devops"
@@ -122,23 +121,23 @@ module "gke" {
 
   node_pools_metadata = {
     all = {}
-    /*
+    
     first-node-pool = {
       node-pool-metadata-custom-value = "my-node-pool"
     }
-    */
+    
   }
 
   node_pools_taints = {
     all = []
-    /* 
+     
     first-node-pool = [
       {
         key    = "default-node-pool"
         value  = true
         effect = "PREFER_NO_SCHEDULE"
       },
-    ]*/
+    ]
     spot-node-pool = [
       {
         key    = "spot-node-pool"
@@ -151,10 +150,10 @@ module "gke" {
 
   node_pools_tags = {
     all = []
-    /*
+    
     first-node-pool = [
       "first-node-pool",
     ]
-    */
+    
   }
 }
