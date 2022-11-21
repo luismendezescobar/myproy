@@ -57,7 +57,7 @@ module "gke" {
   #]
 
   node_pools = [
-    {
+    /*{
       name                      = "first-node-pool"
       machine_type              = "e2-small"   #"e2-standard-2"
       node_locations            = "us-east1-b" #"us-east1-b,us-east1-c,us-east1-d"
@@ -76,6 +76,7 @@ module "gke" {
       preemptible               = false
       initial_node_count        = 0
     },
+    */
     {
       name                      = "spot-node-pool"
       machine_type              = "e2-standard-2"
@@ -106,10 +107,12 @@ module "gke" {
 
   node_pools_labels = {
     all = {}
+    /*
     first-node-pool = {
       first-node-pool = "true",
       role            = "general"
     }
+    */
     spot-node-pool ={
       spot-node-pool = "true",
       role           = "devops"
@@ -119,10 +122,11 @@ module "gke" {
 
   node_pools_metadata = {
     all = {}
-
+    /*
     first-node-pool = {
       node-pool-metadata-custom-value = "my-node-pool"
     }
+    */
   }
 
   node_pools_taints = {
@@ -147,9 +151,10 @@ module "gke" {
 
   node_pools_tags = {
     all = []
-
+    /*
     first-node-pool = [
       "first-node-pool",
     ]
+    */
   }
 }
