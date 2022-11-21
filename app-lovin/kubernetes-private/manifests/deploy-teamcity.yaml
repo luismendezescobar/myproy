@@ -40,6 +40,20 @@ spec:
         - name: teamcitydata
           persistentVolumeClaim:
             claimName: teamcitydataclaim
+      tolerations:
+      - key: spot-node-pool
+        value: true
+        effect: NoSchedule
+        operator: Equal
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: role
+                operator: In
+                values:
+                - devops
 ---
 apiVersion: v1
 kind: Service
