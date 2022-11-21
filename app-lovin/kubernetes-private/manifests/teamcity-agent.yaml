@@ -24,9 +24,9 @@ spec:
             value: http://10.76.13.46:8111
           volumeMounts:
             - mountPath: "/data/teamcity_agent/conf"
-              name: teamcitydata_agent
+              name: teamcitydata-agent
       volumes:
-        - name: teamcitydata_agent
+        - name: teamcitydata-agent
           emptyDir: {}      
       tolerations:
       - key: "spot-node-pool"
