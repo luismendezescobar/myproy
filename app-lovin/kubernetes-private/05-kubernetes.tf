@@ -61,7 +61,7 @@ module "gke" {
       name                      = "first-node-pool"
       machine_type              = "e2-small"   #"e2-standard-2"
       node_locations            = "us-east1-b" #"us-east1-b,us-east1-c,us-east1-d"
-      min_count                 = 1
+      min_count                 = 0
       max_count                 = 3
       local_ssd_count           = 0
       spot                      = false
@@ -74,11 +74,11 @@ module "gke" {
       auto_upgrade              = true
       //service_account           = "k8s-cluster-account@${var.project_id}.iam.gserviceaccount.com" #resource.google_service_account.default.email
       preemptible               = false
-      initial_node_count        = 1
+      initial_node_count        = 0
     },
     {
       name                      = "spot-node-pool"
-      machine_type              = "e2-small"
+      machine_type              = "e2-standard-2"
       node_locations            = "us-east1-c"#"us-east1-b,us-east1-c,us-east1-d"
       min_count                 = 1
       max_count                 = 3
