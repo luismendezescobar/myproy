@@ -41,8 +41,8 @@ spec:
           persistentVolumeClaim:
             claimName: teamcitydataclaim
       tolerations:
-      - key: spot-node-pool
-        value: true
+      - key: "spot-node-pool"
+        value: "true"
         effect: NoSchedule
         operator: Equal
       affinity:
