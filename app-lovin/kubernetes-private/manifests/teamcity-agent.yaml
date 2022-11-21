@@ -24,11 +24,10 @@ spec:
             value: http://10.76.13.46:8111
           volumeMounts:
             - mountPath: "/data/teamcity_agent/conf"
-              name: teamcitydata
+              name: teamcitydata_agent
       volumes:
-        - name: teamcitydata
-          persistentVolumeClaim:
-            claimName: teamcitydataclaim
+        - name: teamcitydata_agent
+          emptyDir: {}      
       tolerations:
       - key: "spot-node-pool"
         value: "true"
