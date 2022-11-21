@@ -135,7 +135,7 @@ module "gke" {
       {
         key    = "spot-node-pool"
         value  = "true"
-        effect = "NO_SCHEDULE"
+        effect = "NO_SCHEDULE"  #"NO_EXECUTE"
       },
     ]
 
