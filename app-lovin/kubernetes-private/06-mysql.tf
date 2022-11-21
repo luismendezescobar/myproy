@@ -50,8 +50,7 @@ resource "google_sql_database_instance" "mysql" {
 #gcloud beta secrets create teamcity-admin-pass --locations us-east1 --replication-policy user-managed
 #echo -n "Passw0rd" | gcloud beta secrets versions add teamcity-admin-pass --data-file=-
 
-/*
-we are going to use the other lab*/
+
 data "google_secret_manager_secret_version" "teamcity-admin-user-password" {
   secret = "teamcity-admin-pass"
 }
@@ -65,7 +64,6 @@ resource "google_sql_user" "teamcity_sql_user" {
   name = "teamcity-sql-admin"
   instance = google_sql_database_instance.mysql.name
   password = data.google_secret_manager_secret_version.teamcity-admin-user-password.secret_data
-  #password = "Passw0rd"
 }
 
 output "cloud-sql-connection-name" {
