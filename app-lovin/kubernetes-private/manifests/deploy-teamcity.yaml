@@ -15,8 +15,9 @@ kind: Deployment
 metadata:
   name: teamcity-deployment
 spec:
-  matchLabels:
-    app: teamcity
+  selector:
+    matchLabels:
+      app: teamcity
   strategy:
     type: Recreate
   template:
