@@ -25,6 +25,8 @@ spec:
       labels:
         app: teamcity
     spec:
+      securityContext:
+        runAsUser: 1000
       containers:
         - name: teamcity
           image: jetbrains/teamcity-server:2022.10-linux
