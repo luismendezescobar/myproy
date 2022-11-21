@@ -1,6 +1,6 @@
 variable "project_id" {    
   type=string
-  default = "triggering-a-198-9ce4078d"
+  default = "playground-s-11-fe523968"
 }
 
 variable "region" {

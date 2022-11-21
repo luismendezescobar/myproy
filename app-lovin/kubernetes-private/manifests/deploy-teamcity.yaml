@@ -31,6 +31,9 @@ spec:
       containers:
         - name: teamcity
           image: jetbrains/teamcity-server:2022.10-linux
+          ports:
+          - containerPort: 8111
+            name: teamcity        
           volumeMounts:
             - mountPath: "/data/teamcity_server/datadir"
               name: teamcitydata

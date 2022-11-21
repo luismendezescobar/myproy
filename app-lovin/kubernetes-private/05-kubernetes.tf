@@ -2,10 +2,12 @@ data "google_client_config" "this" {
   #get the project id and region from the provider
 }
 
+/* we are not using the service account, so that we can use the lab more time
 resource "google_service_account" "default" {
   account_id   = "k8s-cluster-account"
   display_name = "Service Account for kubernetes cluster"
 }
+*/
 /*we should use this one
 resource "google_project_iam_member" "service-a" {
   project = "devops-v4"
@@ -13,6 +15,7 @@ resource "google_project_iam_member" "service-a" {
   member  = "serviceAccount:${google_service_account.service-a.email}"
 }
 */
+/*we are not going to use the service account, so that we can use the lab more time
 resource "google_project_iam_binding" "binding" {  
   project= data.google_client_config.this.project
   count=length(var.roles_for_gke_service_account)
@@ -21,6 +24,7 @@ resource "google_project_iam_binding" "binding" {
     "serviceAccount:${resource.google_service_account.default.email}"
   ]     
 }
+*/
 
 module "gke" {
   source                     = "terraform-google-modules/kubernetes-engine/google//modules/private-cluster"
@@ -68,7 +72,7 @@ module "gke" {
       enable_gvnic              = false
       auto_repair               = true
       auto_upgrade              = true
-      service_account           = "k8s-cluster-account@${var.project_id}.iam.gserviceaccount.com" #resource.google_service_account.default.email
+      //service_account           = "k8s-cluster-account@${var.project_id}.iam.gserviceaccount.com" #resource.google_service_account.default.email
       preemptible               = false
       initial_node_count        = 1
     },
@@ -87,7 +91,7 @@ module "gke" {
       enable_gvnic              = false
       auto_repair               = true
       auto_upgrade              = true
-      service_account           = "k8s-cluster-account@${var.project_id}.iam.gserviceaccount.com"
+      //service_account           = "k8s-cluster-account@${var.project_id}.iam.gserviceaccount.com"
       preemptible               = true
       initial_node_count        = 1
     },
