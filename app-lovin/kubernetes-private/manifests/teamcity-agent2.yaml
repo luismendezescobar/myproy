@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teamcity-agent2
+spec:
+  selector:
+    matchLabels:
+      app: teamcity-agent2
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: teamcity-agent2
+    spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: teamcity-agent2
+          image: jetbrains/teamcity-agent:2022.10-linux        
+          env:
+          - name: SERVER_URL
+            value: http://teamcity:8080
+          volumeMounts:
+            - mountPath: "/data/teamcity_agent/conf"
+              name: teamcitydata-agent
+      volumes:
+        - name: teamcitydata-agent
+          emptyDir: {}      
+      tolerations:
+      - key: "spot-node-pool"
+        value: "true"
+        effect: NoSchedule
+        operator: Equal
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: role
+                operator: In
+                values:
+                - devops
+---
