@@ -1,7 +1,4 @@
 {
     "project_bindings": {
-        "roles/compute.admin": [            
-            "group:gcp-devops-group@luismendeze.com"
-        ]
     }
-    }
+}
