@@ -1,6 +1,7 @@
 variable "project_id" {    
   type=string
-  default = "playground-s-11-43db1e5a"
+  #default = "playground-s-11-43db1e5a"
+  default = ""
 }
 
 variable "region" {
