@@ -1,8 +1,10 @@
 locals {
     json_files = fileset("${path.module}/files-iam","*.*")  
     json_data= { for file_name in local.json_files :
-                file_name=>jsondecode(file("${path.module}/files-iam/${file_name}"))} 
+                replace(file_name, ".json", "")=>jsondecode(file("${path.module}/files-iam/${file_name}"))} 
 }
+
+
 /*
 module "organization-iam-bindings" {
   source   = "terraform-google-modules/iam/google//modules/projects_iam"
