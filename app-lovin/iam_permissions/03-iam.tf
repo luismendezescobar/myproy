@@ -28,6 +28,17 @@ module "organization-iam-bindings" {
 }
 */
 
+module "project-iam-bindings" {
+  source   = "terraform-google-modules/iam/google//modules/projects_iam"
+  version = "7.4.1"
+  for_each = local.json_data
+  projects = toset(each.key)         #convert the project string to list, it's requred that way in the project.
+  mode          = "additive"
+
+  bindings = each.value.bindings
+}
+
+
 output "bindings" {
   value= {for key,value in local.json_data:key=>value} 
 }
