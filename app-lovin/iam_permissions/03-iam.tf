@@ -1,8 +1,8 @@
 locals {
     json_files = fileset("${path.module}/files-iam","*.*")  
-    json_data= { for file_name in local.json_files :
+  /*  json_data= { for file_name in local.json_files :
                 file_name=>jsondecode(file("${path.module}/files-iam/${file_name}"))} 
-
+*/
 }
 /*
 module "organization-iam-bindings" {
@@ -26,7 +26,8 @@ module "organization-iam-bindings" {
   }
 }
 */
-
+/*
 output "bindings" {
   value= {for key,value in local.json_data:key=>value} 
 }
+*/
