@@ -1,6 +1,6 @@
 module "organization-iam-bindings" {
   source        = "terraform-google-modules/iam/google//modules/organizations_iam"
-  #organizations = ["my-organization_one", "my-organization_two"]
+  organizations = ["luismendeze.com"]
   mode          = "authoritative"
 
   bindings = {
