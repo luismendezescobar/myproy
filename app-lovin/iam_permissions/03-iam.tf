@@ -35,7 +35,7 @@ module "project-iam-bindings" {
   projects = toset([each.key])         #convert the project string to list, it's requred that way in the project.
   mode          = "additive"
 
-  bindings = each.value.bindings
+  bindings = each.value.project_bindings
 }
 
 
