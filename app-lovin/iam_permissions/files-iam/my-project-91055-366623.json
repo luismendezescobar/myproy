@@ -1,5 +1,4 @@
 {
-"iam_project_id": "b2c-lloydsirl-dev-9d31",
 "project_bindings": {
     "roles/analyticshub.viewer": [
         "serviceAccount:sa-for-myproject@my-project-91055-366623.iam.gserviceaccount.com",
@@ -10,5 +9,4 @@
         "user:devops-user01@luismendeze.com"
     ]
 }
-
 }
