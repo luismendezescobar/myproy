@@ -1,7 +1,6 @@
 {
     "project_bindings": {
-        "roles/compute.admin": [
-            "serviceAccount:sa-for-myproject@my-project-91055-366623.iam.gserviceaccount.com",
+        "roles/compute.admin": [            
             "group:gcp-devops-group@luismendeze.com"
         ]
     }
