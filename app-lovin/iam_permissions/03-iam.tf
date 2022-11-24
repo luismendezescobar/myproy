@@ -1,6 +1,6 @@
 module "organization-iam-bindings" {
   source        = "terraform-google-modules/iam/google//modules/organizations_iam"
-  organizations = ["luismendeze.com"]
+  organizations = ["my-project-91055-366623"]
   mode          = "additive"
 
   bindings = {
