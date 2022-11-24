@@ -3,10 +3,6 @@
         "roles/compute.admin": [
             "serviceAccount:sa-for-myproject@my-project-91055-366623.iam.gserviceaccount.com",
             "group:gcp-devops-group@luismendeze.com"
-        ],
-        "roles/bigquery.admin": [
-            "serviceAccount:my-service-account@prod-project-369617.iam.gserviceaccount.com",
-            "user:devops-user01@luismendeze.com"
         ]
     }
     }
