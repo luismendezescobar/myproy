@@ -1,7 +1,7 @@
 module "organization-iam-bindings" {
   source        = "terraform-google-modules/iam/google//modules/organizations_iam"
   organizations = ["luismendeze.com"]
-  mode          = "authoritative"
+  mode          = "additive"
 
   bindings = {
     "roles/analyticshub.viewer" = [
