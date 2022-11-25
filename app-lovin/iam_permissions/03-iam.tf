@@ -52,8 +52,7 @@ resource "google_service_account_iam_binding" "admin-account-iam" {
 output "bindings" {
   value= {for key,value in local.json_data:key=>value} 
 }
-/*
+
 output "map_output" {
   value= {for key,value in local.json_data:key=>value.map_to_sa} 
 }
-*/
