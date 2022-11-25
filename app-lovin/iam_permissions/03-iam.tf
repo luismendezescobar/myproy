@@ -21,15 +21,15 @@ module "project-iam-bindings" {
   bindings = each.value.project_bindings
 }
 */
-/*
-resource "google_service_account_iam_binding" "admin-account-iam" {
-  for_each = local.json_data
-  service_account_id = "projects/${each.key}/ServiceAcounts/${each.value.map_to_sa}"
-  role               = each.value.map_to_sa.principal
 
-  members = each.value.map_to_sa.principal
+resource "google_service_account_iam_binding" "admin-account-iam" {
+  for_each = local.all_maps
+  service_account_id = "projects/${each.value.iam_project_id}/ServiceAcounts/${each.value.sa}"
+  role               = each.value.role
+
+  members = each.value.principal
 }
-*/
+
 
 output "bindings" {
   value= {for key,value in local.json_data:key=>value} 
