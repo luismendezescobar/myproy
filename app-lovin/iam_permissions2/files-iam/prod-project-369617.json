@@ -1,0 +1,21 @@
+{
+    "project_bindings": {
+    },
+    "map_to_sa": [
+      {
+        "sa":"my-service-account@prod-project-369617.iam.gserviceaccount.com",	
+        "role": "roles/iam.serviceAccountUser",	
+        "principal": [	
+                "user:devops-user01@luismendeze.com"	
+            ]	
+      },
+      {        
+        "sa":"my-service-account@prod-project-369617.iam.gserviceaccount.com",	
+        "role": "roles/iam.serviceAccountTokenCreator",	
+        "principal": [	
+                "user:devops-user01@luismendeze.com"	
+            ]	
+      }
+
+    ]
+}
