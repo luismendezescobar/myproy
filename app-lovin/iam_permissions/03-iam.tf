@@ -10,7 +10,7 @@ locals {
 
 }
 
-/*
+
 module "project-iam-bindings" {
   source   = "terraform-google-modules/iam/google//modules/projects_iam"
   version = "7.4.1"
@@ -20,7 +20,7 @@ module "project-iam-bindings" {
 
   bindings = each.value.project_bindings
 }
-*/
+
 
 resource "google_service_account_iam_binding" "admin-account-iam" {
   for_each = local.all_maps
