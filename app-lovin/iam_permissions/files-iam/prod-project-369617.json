@@ -1,4 +1,12 @@
 {
     "project_bindings": {
-    }
+    },
+    "map_to_sa": {
+        "873773908661-compute@developer.gserviceaccount.com": {	
+           "role": "roles/iam.serviceAccountUser",	
+           "principal": [	
+              "group:gcp-cloud-dba-admins@mckesson.com"	
+           ]	
+        }	
+     }
 }

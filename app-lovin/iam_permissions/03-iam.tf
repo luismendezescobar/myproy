@@ -38,7 +38,21 @@ module "project-iam-bindings" {
   bindings = each.value.project_bindings
 }
 
+/*
+resource "google_service_account_iam_binding" "admin-account-iam" {
+  service_account_id = google_service_account.sa.name
+  role               = "roles/iam.serviceAccountUser"
+
+  members = [
+    "user:jane@example.com",
+  ]
+}
+*/
 
 output "bindings" {
   value= {for key,value in local.json_data:key=>value} 
+}
+
+output "map_output" {
+  value= {for key,value in local.json_data:key=>value.map_to_sa} 
 }
