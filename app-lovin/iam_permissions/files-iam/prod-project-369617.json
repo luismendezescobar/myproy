@@ -2,10 +2,10 @@
     "project_bindings": {
     },
     "map_to_sa": {
-        "873773908661-compute@developer.gserviceaccount.com": {	
+        "my-service-account@prod-project-369617.iam.gserviceaccount.com": {	
            "role": "roles/iam.serviceAccountUser",	
            "principal": [	
-              "group:gcp-cloud-dba-admins@mckesson.com"	
+              "user:devops-user01@luismendeze.com"	
            ]	
         }	
      }
