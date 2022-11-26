@@ -1,7 +1,7 @@
 {
     "project_bindings": {
         "roles/analyticshub.viewer": [
-            "user:test@luismendeze.com"
+            
         ]
     },
     "map_to_sa": [
