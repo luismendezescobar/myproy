@@ -1,12 +1,21 @@
 {
     "project_bindings": {
-        "roles/compute.admin": [
-            "serviceAccount:sa-for-myproject@my-project-91055-366623.iam.gserviceaccount.com",
-            "group:gcp-devops-group@luismendeze.com"
-        ],
-        "roles/bigquery.admin": [
-            "serviceAccount:my-service-account@prod-project-369617.iam.gserviceaccount.com",
-            "user:devops-user01@luismendeze.com"
-        ]
-    }
-    }
+    },
+    "map_to_sa": [
+      {
+        "sa":"my-service-account@prod-project-369617.iam.gserviceaccount.com",	
+        "role": "roles/iam.serviceAccountUser",	
+        "members": [	
+                "user:devops-user01@luismendeze.com"	
+            ]	
+      },
+      {        
+        "sa":"my-service-account@prod-project-369617.iam.gserviceaccount.com",	
+        "role": "roles/iam.serviceAccountTokenCreator",	
+        "members": [	
+                "user:devops-user01@luismendeze.com"	
+            ]	
+      }
+
+    ]
+}

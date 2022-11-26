@@ -10,6 +10,15 @@
         ]
     },
     "map_to_sa": [
+        {
+            "sa":"sa-for-myproject@my-project-91055-366623.iam.gserviceaccount.com",	
+            "role": "roles/iam.serviceAccountUser",	
+            "members": [	
+                    "user:devops-user01@luismendeze.com",
+                    "group:gcp-devops-group@luismendeze.com",
+                    "serviceAccount:my-service-account@prod-project-369617.iam.gserviceaccount.com"	
+                ]	
+        }
     ]
 }
 
