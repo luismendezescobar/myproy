@@ -35,7 +35,7 @@ module "project-iam-bindings" {
 
 resource "google_service_account_iam_binding" "admin-account-iam" {
   for_each = local.map_sa3
-  service_account_id = "projects/${each.key}/serviceAccounts/${each.value.sa}"
+  service_account_id = "projects/${each.value.project_id}/serviceAccounts/${each.value.sa}"
   role               = each.value.role
 
   members = each.value.principal
