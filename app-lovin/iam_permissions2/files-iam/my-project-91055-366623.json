@@ -13,7 +13,7 @@
         {
             "sa":"sa-for-myproject@my-project-91055-366623.iam.gserviceaccount.com",	
             "role": "roles/iam.serviceAccountUser",	
-            "principal": [	
+            "members": [	
                     "user:devops-user01@luismendeze.com",
                     "group:gcp-devops-group@luismendeze.com"	
                 ]	

@@ -5,14 +5,14 @@
       {
         "sa":"my-service-account@prod-project-369617.iam.gserviceaccount.com",	
         "role": "roles/iam.serviceAccountUser",	
-        "principal": [	
+        "members": [	
                 "user:devops-user01@luismendeze.com"	
             ]	
       },
       {        
         "sa":"my-service-account@prod-project-369617.iam.gserviceaccount.com",	
         "role": "roles/iam.serviceAccountTokenCreator",	
-        "principal": [	
+        "members": [	
                 "user:devops-user01@luismendeze.com"	
             ]	
       }
