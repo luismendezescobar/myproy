@@ -1,4 +1,4 @@
-# IAM Module to apply permissions for all the projects in peoplefun.com environment.
+# IAM Module to apply permissions for all the projects in GCP for peoplefun.com environment.
 
 1)First create a new file in the **files-iam** folder. 
 the name of the file must be the same as the **project_id** of the project where you want to apply the permissions with the **.json** extension. 
