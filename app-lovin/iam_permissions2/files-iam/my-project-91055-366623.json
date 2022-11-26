@@ -1,7 +1,6 @@
 {
     "project_bindings": {
         "roles/analyticshub.viewer": [
-            "serviceAccount:sa-for-myproject@my-project-91055-366623.iam.gserviceaccount.com",
             "user:test@luismendeze.com"
         ]
     },
