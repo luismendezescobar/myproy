@@ -7,7 +7,7 @@ map_to_vpc_non_prod = {
   central-gcp-vpc-non-prod-37070-vpc-mgmt-non-prod = {
     project_id       = "central-gcp-vpc-non-prod-37070"
     network_name     = "vpc-mgmt-non-prod"
-    shared_vpc_host  = true
+    shared_vpc_host  = false         #It's only needed for first one.
   },
 
 
