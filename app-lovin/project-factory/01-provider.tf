@@ -14,6 +14,10 @@ terraform {
       source = "hashicorp/google"
       version = "~>4.43"       //this is the hashicorp modules version
     }
+    gsuite = {
+      source = "DeviaVir/gsuite"
+      version = "0.1.62"
+    }  
   }
 }
 provider "google" {
