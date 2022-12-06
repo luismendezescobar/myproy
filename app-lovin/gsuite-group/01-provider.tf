@@ -24,3 +24,13 @@ provider "google-beta" {
   project = var.project_id
   region  = var.region
 }
+
+
+provider "gsuite" {  
+  oauth_scopes = [
+    "https://www.googleapis.com/auth/admin.directory.group",
+    "https://www.googleapis.com/auth/apps.groups.settings",
+    "https://www.googleapis.com/auth/admin.directory.user",
+    "https://www.googleapis.com/auth/admin.directory.userschema",
+  ]
+}
