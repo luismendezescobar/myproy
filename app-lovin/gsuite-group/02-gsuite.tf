@@ -20,6 +20,6 @@ module "group" {
   description  = "Example group"
   domain       = "luismendeze.com"
   owners       = ["luis@luismendeze.com"]
-  managers     = ["luis@luismendeze.com"]
-  members      = []
+  managers     = []
+  members      = ["luis@luismendeze.com"]
 }
