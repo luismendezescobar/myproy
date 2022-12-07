@@ -21,5 +21,5 @@ module "group" {
   domain       = "luismendeze.com"
   owners       = ["luis@luismendeze.com"]
   managers     = []
-  members      = ["test@luismendeze.com"]
+  members      = ["test@luismendeze.com","devops-user01@luismendeze.com"]
 }
