@@ -11,7 +11,7 @@ map_to_vpc_subnets_non_prod = {
         },
         {
             subnet_name           = "subnet-02"
-            subnet_ip             = "10.10.20.0/24"
+            subnet_ip             = "10.10.11.0/24"
             subnet_region         = "us-central1"
             subnet_private_access = "true"
             subnet_flow_logs      = "true"
