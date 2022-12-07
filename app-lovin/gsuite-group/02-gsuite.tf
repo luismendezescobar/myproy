@@ -23,3 +23,12 @@ module "group" {
   managers     = []
   members      = ["test@luismendeze.com","devops-user01@luismendeze.com"]
 }
+
+/*some links
+https://gmusumeci.medium.com/how-to-manage-google-groups-users-and-service-accounts-in-gcp-using-terraform-fadf472e574a
+https://medium.com/google-cloud/local-remote-authentication-with-google-cloud-platform-afe3aa017b95
+https://jryancanty.medium.com/stop-downloading-google-cloud-service-account-keys-1811d44a97d9
+https://medium.com/google-cloud/create-google-groups-via-terraform-de99524f92e0
+GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-pipeline-iam@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform apply
+GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=${SERVICE_ACCOUNT} auth print-access-token)" terraform apply -var-file=02-terraform.tfvars
+*/
