@@ -15,8 +15,8 @@ module "group" {
   source  = "terraform-google-modules/group/google"
   version = "~> 0.1"
 
-  id           = "example-group@luismendeze.com"
-  display_name = "example-group"
+  id           = "service-pf-test-1@luismendeze.com"
+  display_name = "service-pf-test-1"
   description  = "Example group"
   domain       = "luismendeze.com"
   owners       = ["luis@luismendeze.com"]

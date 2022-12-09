@@ -26,8 +26,3 @@ provider "google-beta" {
   region  = var.region
 }
 
-provider "google-beta" {
-  user_project_override = true
-  billing_project       = "devops-369900"
-  alias       = "provider-for-groups"
-}

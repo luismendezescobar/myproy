@@ -1,21 +1,3 @@
-
-
-module "group" {
-  source  = "terraform-google-modules/group/google"
-  version = "~> 0.1"
-  providers = {google-beta=google-beta.provider-for-groups}
-
-  id           = "service-pf-test-1@luismendeze.com"
-  display_name = "service-pf-test-1"
-  description  = "group for service group"
-  domain       = "luismendeze.com"
-  owners       = ["luis@luismendeze.com"]
-  managers     = []
-  members      = ["test@luismendeze.com","devops-user01@luismendeze.com"]
-}
-
-
-
 module "project-factory" {
   source = "terraform-google-modules/project-factory/google"
   version = "~> 14.1"
