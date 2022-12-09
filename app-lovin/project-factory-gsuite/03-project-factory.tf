@@ -6,11 +6,10 @@ module "project-factory" {
 
   name               = each.value.name
   random_project_id  = true
-  random_project_id_length =4  
   org_id             = each.value.org_id
   billing_account    = each.value.billing_account
   svpc_host_project_id= each.value.svpc_host_project_id
-  shared_vpc_subnets = each.value.shared_vpc_subnets
+  shared_vpc          = each.value.shared_vpc_subnets
 
 
 
@@ -23,7 +22,7 @@ module "project-factory" {
   
   
   sa_group           = each.value.sa_group
-  shared_vpc         = each.value.shared_vpc
+
     
 }
 
