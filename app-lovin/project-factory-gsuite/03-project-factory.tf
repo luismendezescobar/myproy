@@ -22,7 +22,7 @@ module "project-factory" {
   folder_id          = each.value.folder_id 
   
   
-  sa_group           = each.value.sa_group
+  #sa_group           = each.value.sa_group
 
     
 }
@@ -30,4 +30,8 @@ module "project-factory" {
 /*
 GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-project-factory@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform init
 GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-project-factory@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform apply
+
+see the required permissions here:
+https://github.com/terraform-google-modules/terraform-google-project-factory
+
 */
