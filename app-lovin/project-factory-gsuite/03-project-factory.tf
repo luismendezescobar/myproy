@@ -1,6 +1,6 @@
 
 module "project-factory" {
-  source = "terraform-google-modules/project-factory/google"
+  source = "terraform-google-modules/project-factory/google//modules/gsuite_enabled"
   version = "~> 14.1"
   for_each = var.map_for_project_factory
 
@@ -26,3 +26,8 @@ module "project-factory" {
   shared_vpc         = each.value.shared_vpc
     
 }
+
+/*
+GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-project-factory@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform init
+GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-project-factory@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform apply
+*/
