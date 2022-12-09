@@ -8,10 +8,11 @@ module "project-factory" {
   random_project_id  = true
   org_id             = each.value.org_id
   billing_account    = each.value.billing_account
-  svpc_host_project_id= each.value.svpc_host_project_id
-  shared_vpc          = each.value.shared_vpc_subnets
+  #svpc_host_project_id= each.value.svpc_host_project_id
+  shared_vpc          = each.value.shared_vpc
 
 
+  shared_vpc_subnets = each.value.shared_vpc_subnets
 
   group_name         = each.value.group_name
   group_role         = each.value.group_role
