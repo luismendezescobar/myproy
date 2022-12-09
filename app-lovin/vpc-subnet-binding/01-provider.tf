@@ -14,6 +14,10 @@ terraform {
       source = "hashicorp/google"
       version = "~>4.43"       //this is the hashicorp modules version
     }
+    gsuite = {
+      source = "DeviaVir/gsuite"
+      version = "0.1.62"
+    }  
   }
 }
 provider "google" {
@@ -26,8 +30,11 @@ provider "google-beta" {
   region  = var.region
 }
 
-provider "google-beta" {
-  user_project_override = true
-  billing_project       = "devops-369900"
-  alias       = "provider-for-groups"
+provider "gsuite" {  
+  oauth_scopes = [
+    "https://www.googleapis.com/auth/admin.directory.group",
+    "https://www.googleapis.com/auth/apps.groups.settings",
+    "https://www.googleapis.com/auth/admin.directory.user",
+    "https://www.googleapis.com/auth/admin.directory.userschema",
+  ]
 }

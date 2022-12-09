@@ -11,13 +11,13 @@ variable "region" {
 variable "map_for_project_factory" {
   type = map(object({
     name              = string
-    org_id            = string    
     billing_account   = string
+    create_group      = bool
     folder_id         = string
-    svpc_host_project_id = string
-
     group_name        = string
-    group_role        = string        
+    group_role        = string    
+    org_id            = string
+    random_project_id = bool
     sa_group          = string
     shared_vpc        = string
     shared_vpc_subnets= list(string)
