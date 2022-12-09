@@ -38,8 +38,8 @@ GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=${SERVICE_ACCO
 GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-project-factory@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform init
 GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-project-factory@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform apply
 
-SA account, only requires the following permissions:
-at project level
+for group creation the SA account, only requires the following permissions:
+at project level (where the SA was created)
 "roles/serviceusage.serviceUsageConsumer" : [
     "serviceAccount:sa-project-factory@devops-369900.iam.gserviceaccount.com"
 ]      

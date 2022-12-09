@@ -15,9 +15,9 @@ variable "map_for_project_factory" {
     billing_account   = string
     folder_id         = string
     svpc_host_project_id = string
-    group_name        = string    
-    group_role        = string
-            
+
+    group_name        = string
+    group_role        = string        
     sa_group          = string
     shared_vpc        = string
     shared_vpc_subnets= list(string)
