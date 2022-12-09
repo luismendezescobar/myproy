@@ -22,7 +22,7 @@ module "project-factory" {
   folder_id          = each.value.folder_id 
   
   
-  #sa_group           = each.value.sa_group
+  sa_group           = each.value.sa_group
 
     
 }
