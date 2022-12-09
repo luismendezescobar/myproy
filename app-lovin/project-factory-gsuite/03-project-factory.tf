@@ -4,6 +4,7 @@ module "project-factory" {
   version = "~> 14.1"
   for_each = var.map_for_project_factory
 
+  create_group      = true
   name               = each.value.name
   random_project_id  = true
   org_id             = each.value.org_id
