@@ -17,9 +17,8 @@ variable "map_for_project_factory" {
     svpc_host_project_id = string
     group_name        = string    
     group_role        = string
-            
+
     sa_group          = string
-    shared_vpc        = string
     shared_vpc_subnets= list(string)
   }))
   default ={}

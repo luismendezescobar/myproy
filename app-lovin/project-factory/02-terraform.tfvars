@@ -8,7 +8,8 @@ map_for_project_factory = {
     billing_account   = ""
     
     billing_account   = ""
-    svpc_host_project_id ="central-gcp-vpc-non-prod-37070"
+    #svpc_host_project_id ="central-gcp-vpc-non-prod-37070"
+    svpc_host_project_id =""
     group_name        = "service-pf-test-1"
     group_role        = "roles/viewer"    
 
@@ -17,12 +18,12 @@ map_for_project_factory = {
     folder_id         = "250869018475"
     
     sa_group          = "service-pf-test-1@luismendeze.com"
-    shared_vpc        = "central-gcp-vpc-non-prod-37070"
+    /*
     shared_vpc_subnets = [
         "projects/central-gcp-vpc-non-prod-37070/regions/us-west1/subnetworks/subnet-01",
         "projects/central-gcp-vpc-non-prod-37070/regions/us-central1/subnetworks/subnet-02",
-    ]
-
+    ]*/
+    shared_vpc_subnets =[]
   },
   
 
