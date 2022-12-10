@@ -7,7 +7,6 @@ map_for_project_factory = {
     #billing_account   = "016AE0-A1405C-5DF4D8"
     billing_account   = ""
     
-    billing_account   = ""
     #svpc_host_project_id ="central-gcp-vpc-non-prod-37070"
     svpc_host_project_id =""
     group_name        = "service-pf-test-1"

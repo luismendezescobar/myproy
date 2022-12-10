@@ -1,32 +1,26 @@
-/*
-resource "gsuite_group" "example" {
-  email       = "test_group@luismendeze.com"
-  name        = "test_group@luismendeze.com"
-  description = "Example group"
-}
-*/
 
-provider "google-beta" {
-  user_project_override = true
-  billing_project       = "devops-369900"
-}
 
 module "group" {
   source  = "terraform-google-modules/group/google"
   version = "~> 0.1"
 
-  id           = "service-pf-test-1@luismendeze.com"
-  display_name = "service-pf-test-1"
-  description  = "Example group"
-  domain       = "luismendeze.com"
-  owners       = ["luis@luismendeze.com"]
-  managers     = []
-  members      = ["test@luismendeze.com","devops-user01@luismendeze.com"]
+  for_each = var.map_for_groups
+  id           = "${each.key}@${each.value.domain}"
+  display_name = each.key
+  description  = each.value.description
+  domain       = each.value.domain
+  owners       = each.value.owners
+  managers     = each.value.managers
+  members      = each.value.members
 }
 
 output "group_output" {
   value = module.group
 }
+
+
+
+
 /*some links
 https://gmusumeci.medium.com/how-to-manage-google-groups-users-and-service-accounts-in-gcp-using-terraform-fadf472e574a
 https://medium.com/google-cloud/local-remote-authentication-with-google-cloud-platform-afe3aa017b95

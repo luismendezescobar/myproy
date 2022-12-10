@@ -19,18 +19,8 @@ provider "google" {
   project = var.project_id
   region  = var.region
 }
-/*
 provider "google-beta" {
-  project = var.project_id
-  region  = var.region
+  user_project_override = true
+  billing_project       = "devops-369900"
 }
-*/
 
-provider "gsuite" {  
-  oauth_scopes = [
-    "https://www.googleapis.com/auth/admin.directory.group",
-    "https://www.googleapis.com/auth/apps.groups.settings",
-    "https://www.googleapis.com/auth/admin.directory.user",
-    "https://www.googleapis.com/auth/admin.directory.userschema",
-  ]
-}
