@@ -10,7 +10,6 @@ module "group" {
   description  = each.value.description
   domain       = each.value.domain
   owners       = each.value.owners
-  managers     = each.value.managers
   members      = each.value.members
 }
 

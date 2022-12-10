@@ -30,7 +30,6 @@ variable "map_for_groups" {
     domain       = string
     description  = string
     owners       = list(string)
-    managers     = list(string)
     members      = list(string)
   }))
 }
