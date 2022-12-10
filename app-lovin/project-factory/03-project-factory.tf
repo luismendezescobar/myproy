@@ -8,6 +8,9 @@ module "project-factory" {
   random_project_id_length =4  
   org_id             = each.value.org_id
   billing_account    = each.value.billing_account
+  auto_create_network = true
+
+
   svpc_host_project_id= each.value.svpc_host_project_id
   shared_vpc_subnets = each.value.shared_vpc_subnets
   group_name         = each.value.group_name
