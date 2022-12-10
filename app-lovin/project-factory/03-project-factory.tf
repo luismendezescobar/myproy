@@ -1,15 +1,17 @@
 
 
+data "google_organization" "org" {
+  domain = "luismendeze.com"
+}
 
-
-
+/*
 data "google_cloud_identity_group" "group" {
   name="new-luis"
 }
-
+*/
 
 output "bucket" {
-  value = data.google_cloud_identity_group.group
+  value = data.google_organization.org
 }
 
 /*
