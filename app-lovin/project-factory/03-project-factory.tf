@@ -15,9 +15,7 @@ module "project-factory" {
   folder_id          = each.value.folder_id 
   
   
-  sa_group           = each.value.sa_group
-  shared_vpc         = each.value.shared_vpc
-  depends_depends_on = [
-    module.group
-  ]  
+  #sa_group           = each.value.sa_group
+  #shared_vpc         = each.value.shared_vpc
+
 }
