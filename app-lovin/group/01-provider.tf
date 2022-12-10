@@ -36,6 +36,7 @@ provider "gsuite" {
   ]
 }
 */
+/*
 provider "gsuite" {  
   impersonated_user_email = "luis@luismendeze.com"
   oauth_scopes = [
@@ -43,3 +44,4 @@ provider "gsuite" {
   "https://www.googleapis.com/auth/admin.directory.user"
 ]
 }
+*/
