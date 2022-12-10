@@ -9,6 +9,7 @@ module "project-factory" {
   org_id             = each.value.org_id
   billing_account    = each.value.billing_account
   auto_create_network = true
+  activate_apis       = []
 
 
   svpc_host_project_id= each.value.svpc_host_project_id
