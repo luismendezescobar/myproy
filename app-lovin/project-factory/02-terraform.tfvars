@@ -5,11 +5,13 @@ map_for_project_factory = {
     name              = "service-pf-test-1"
     org_id            = "65202286851"
     #billing_account   = "016AE0-A1405C-5DF4D8"
+    auto_create_network = true
     billing_account   = ""
     svpc_host_project_id ="central-gcp-vpc-non-prod-37070"
     group_name        = "service-pf-test-1"
     group_role        = "roles/viewer"    
 
+    
 
     folder_id         = "250869018475"
     
