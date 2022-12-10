@@ -15,6 +15,7 @@ terraform {
     }
   }
 }
+
 provider "google" {
   project = var.project_id
   region  = var.region
@@ -36,7 +37,6 @@ provider "gsuite" {
 }
 */
 provider "gsuite" {  
-  project = var.project_id
   impersonated_user_email = "luis@luismendeze.com"
   oauth_scopes = [
   "https://www.googleapis.com/auth/admin.directory.group",
