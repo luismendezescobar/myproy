@@ -22,6 +22,7 @@ def create_service():
 from urllib.parse import urlencode
 
 def search_google_groups(service, customer_id):
+  
   search_query = urlencode({
           "query": "parent=='customerId/{}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels".format(customer_id)
   })
