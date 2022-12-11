@@ -37,6 +37,6 @@ def search_google_groups(service, customer_id):
 service= create_service()
 print(service)
 
-#response=search_google_groups(service,"C04hqny6x")
+response=search_google_groups(service,"C04hqny6x")
 
-#print(response)
+print(response)
