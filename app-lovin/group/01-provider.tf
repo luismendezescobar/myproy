@@ -26,6 +26,9 @@ provider "google-beta" {
   region  = var.region
 }
 
+locals {
+ terraform_service_account = "luis@luismendeze.com"
+}
 
 provider "gsuite" {  
   alias ="impersonation"
@@ -38,15 +41,12 @@ provider "gsuite" {
 }
 
 data "google_service_account_access_token" "default" {
- provider                   = google.impersonation
+ provider                   = gsuite.impersonation
  target_service_account     = local.terraform_service_account
  scopes                     = ["userinfo-email", "cloud-platform"]
  lifetime                   = "1200s"
 }
 
-locals {
- terraform_service_account = "luis@luismendeze.com"
-}
 
 provider "gsuite" {
  project        = var.project_id
