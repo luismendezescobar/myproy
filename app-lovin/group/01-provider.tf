@@ -28,6 +28,7 @@ provider "google-beta" {
 
 
 provider "gsuite" {  
+  impersonated_user_email="luis@luismendeze.com"
   oauth_scopes = [
     "https://www.googleapis.com/auth/admin.directory.group",
     "https://www.googleapis.com/auth/apps.groups.settings",
