@@ -18,7 +18,7 @@ output "output-value" {
   value = data.google_organization.org
 }
 
-/*
+
 module "project-factory" {
   source = "terraform-google-modules/project-factory/google"
   version = "~> 14.1"
@@ -43,7 +43,7 @@ module "project-factory" {
   #shared_vpc         = each.value.shared_vpc
 
 }
-*/
+
 /*
 GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-project-factory@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform apply -var-file=02-terraform.tfvars
 */
