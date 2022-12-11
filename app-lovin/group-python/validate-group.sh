@@ -1,4 +1,4 @@
-GROUP_NAME="new-luis@luismendeze.com"
+GROUP_NAME="new-lui@luismendeze.com"
 RESULT_GROUP=$(gcloud identity groups search --labels="cloudidentity.googleapis.com/groups.discussion_forum" --organization=luismendeze.com |sed -n "/$GROUP_NAME/p")
 
 if [[ ${#RESULT_GROUP} -gt 0 ]]; then
