@@ -10,7 +10,11 @@ data "google_cloud_identity_group" "group" {
 }
 */
 
-output "bucket" {
+
+
+
+
+output "output-value" {
   value = data.google_organization.org
 }
 
