@@ -1,3 +1,12 @@
+FILE=./files-projects/*.json
+if [ -f "$FILE" ]; then
+    echo "$FILE exists."
+    exit
+else 
+    echo "$FILE does not exist."
+    export GROUP_FOUND=0
+    exit
+fi
 
 
 for file in ./files-projects/*.json; do   #loop to extract the group name from all the json files in the directory:
