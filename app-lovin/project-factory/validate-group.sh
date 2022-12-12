@@ -15,7 +15,7 @@ for file in ./*.json; do
     else
       echo "I could not found the group called $GROUP_NAME"
       GROUP_FOUND=0
-      exit 0
+      break
 
     fi
 done
