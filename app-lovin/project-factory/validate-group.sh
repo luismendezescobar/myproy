@@ -25,3 +25,6 @@ echo "this is the final value of GROUP_FOUND: $GROUP_FOUND"
 
 
 
+#https://stackoverflow.com/questions/57903836/how-to-fail-a-job-in-github-actions
+#https://stackoverflow.com/questions/70689512/terraform-check-if-resource-exists-before-creating-it
+#this script should be called with source ./validate-group

@@ -1,6 +1,6 @@
 variable "project_id" {    
   type=string
-  default = ""
+  default = "devops-369900"
 }
 
 variable "region" {
