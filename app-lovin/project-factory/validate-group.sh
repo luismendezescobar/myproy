@@ -4,7 +4,7 @@ count=`ls -1 ./files-projects/*.json 2>/dev/null | wc -l`
 if [ $count == 0 ]
 then 
 echo "there are no files of .json type in the files-project directory"
-GROUP_FOUND=0
+GROUP_FOUND=1
 else 
 
   for file in ./files-projects/*.json; do   #loop to extract the group name from all the json files in the directory:
