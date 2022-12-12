@@ -25,10 +25,7 @@ map_for_project_factory = {
     shared_vpc_subnets =[]
   },
   
-
-
 }
-
 
 
 

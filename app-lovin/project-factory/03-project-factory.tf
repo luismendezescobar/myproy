@@ -17,10 +17,6 @@ locals {
 */
 }
 
-output "group_output" {
-  value = module.group
-}
-
 
 module "project-factory" {
   source = "terraform-google-modules/project-factory/google"

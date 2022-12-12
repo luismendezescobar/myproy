@@ -7,7 +7,7 @@ variable "region" {
   type=string
   default = "us-central1"
 }
-
+/*
 variable "map_for_project_factory" {
   type = map(object({
     name              = string
@@ -25,3 +25,4 @@ variable "map_for_project_factory" {
   description = "An object mapping of project factory assignment"
 }
 
+*/
