@@ -2,19 +2,7 @@ locals {
     json_files = fileset("${path.module}/files-projects","*.json")  
     json_data= { for file_name in local.json_files :
                 replace(file_name, ".json", "")=>jsondecode(file("${path.module}/files-projects/${file_name}"))} 
-/*
-    map_sa1={for key, value in local.json_data: key =>value.map_to_sa}
-    map_sa2 = flatten([ for key, value in local.map_sa1:[
-                            for item in value:{
-                                project_id=key
-                                members=item.members
-                                role=item.role
-                                sa=item.sa
-                            }
-                          ]
-                      ])
-    map_sa3 = {for x in local.map_sa2:join("-",[x.project_id,x.sa,x.role]) => x}
-*/
+
 }
 
 
