@@ -4,7 +4,8 @@ GROUP_NAME="gcp-new-lui@luismendeze.com"
 
 for file in ./*.json; do
     echo "$(basename "$file")"
-    jq '.group_name' $file
+    GROUP_NAME=$(jq '.group_name' $file)
+    echo "this is the group name $GROUP_NAME"
 done
 
 
