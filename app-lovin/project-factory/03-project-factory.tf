@@ -17,30 +17,23 @@ locals {
 */
 }
 
-
-
-
-
-
-/*
 module "group" {
   source  = "terraform-google-modules/group/google"
   version = "~> 0.1"
-
-  for_each = var.map_for_groups
-  id           = "${each.key}@${each.value.domain}"
-  display_name = each.key
-  description  = each.value.description
-  domain       = each.value.domain
-  owners       = each.value.owners
-  members      = each.value.members
+  for_each     = local.json_data
+  id           = "${each.value.group_name}@luismendeze.com"
+  display_name = each.value.group_name
+  description  = "Group to be used the in the gcp project name ${each.value.name}"
+  domain       = "luismendeze.com"
+  owners       = each.value.group_owners
+  members      = each.value.group_members
 }
 
 output "group_output" {
   value = module.group
 }
 
-
+/*
 module "project-factory" {
   source = "terraform-google-modules/project-factory/google"
   version = "~> 14.1"

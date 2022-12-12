@@ -1,11 +1,11 @@
 variable "project_id" {    
   type=string
-  default = ""
+  default = "devops-369900"
 }
 
 variable "region" {
   type=string
-  default = "us-east1"
+  default = "us-central1"
 }
 
 variable "map_for_project_factory" {
