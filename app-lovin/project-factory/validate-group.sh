@@ -4,7 +4,7 @@ GROUP_NAME="gcp-new-lui@luismendeze.com"
 
 for file in ./*.json; do
     echo "$(basename "$file")"
-    $file|sed -n "/group_name/p"
+    jq '.group_name' $file
 done
 
 
