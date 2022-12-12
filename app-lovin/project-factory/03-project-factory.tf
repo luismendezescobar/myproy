@@ -21,7 +21,7 @@ locals {
 module "project-factory" {
   source = "terraform-google-modules/project-factory/google"
   version = "~> 14.1"
-  for_each = var.json_data
+  for_each = local.json_data
 
   name               = each.value.name
   random_project_id  = true
