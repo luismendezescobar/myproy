@@ -1,4 +1,4 @@
-
+#!/bin/bash
 #validate if a file exists
 count=`ls -1 ./files-projects/*.json 2>/dev/null | wc -l`
 if [ $count == 0 ]
