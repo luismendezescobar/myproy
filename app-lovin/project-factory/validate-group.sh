@@ -4,7 +4,8 @@ GROUP_NAME="gcp-new-lui@luismendeze.com"
 
 for file in ./*.json; do
     echo "$(basename "$file")"
-    GROUP_NAME=$(jq '.group_name' $file)
+    GROUP_NAME="$(jq '.group_name' $file)@luismendeze.com"
+
     echo "this is the group name $GROUP_NAME"
 
     RESULT_GROUP=$(gcloud identity groups search --labels="cloudidentity.googleapis.com/groups.discussion_forum" --organization=luismendeze.com |sed -n "/$GROUP_NAME/p")
