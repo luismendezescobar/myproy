@@ -41,9 +41,6 @@ module "project-factory" {
   group_role         = each.value.group_role
   folder_id          = each.value.folder_id 
   
-  depends_on = [
-    module.group
-  ]
 
 }
 
