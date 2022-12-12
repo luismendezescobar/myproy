@@ -1,6 +1,6 @@
 
 
-for file in ./*.json; do   #loop to extract the group name from all the json files in the directory:
+for file in ./files-projects/*.json; do   #loop to extract the group name from all the json files in the directory:
     #echo "$(basename "$file")"   
     GROUP_NAME=$(jq '.group_name' $file)  #we use jq to extract the file name from the field called group_name inside the json file
     v1=${GROUP_NAME::-1}      #remove last character

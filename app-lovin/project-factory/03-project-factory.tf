@@ -17,27 +17,15 @@ locals {
 */
 }
 
-module "group" {
-  source  = "terraform-google-modules/group/google"
-  version = "~> 0.1"
-  for_each     = local.json_data
-  id           = "${each.value.group_name}@luismendeze.com"
-  display_name = each.value.group_name
-  description  = "Group to be used the in the gcp project name ${each.value.name}"
-  domain       = "luismendeze.com"
-  owners       = each.value.group_owners
-  members      = each.value.group_members
-}
-
 output "group_output" {
   value = module.group
 }
 
-/*
+
 module "project-factory" {
   source = "terraform-google-modules/project-factory/google"
   version = "~> 14.1"
-  for_each = var.map_for_project_factory
+  for_each = var.json_data
 
   name               = each.value.name
   random_project_id  = true
@@ -53,6 +41,9 @@ module "project-factory" {
   group_role         = each.value.group_role
   folder_id          = each.value.folder_id 
   
+  depends_on = [
+    module.group
+  ]
 
 }
 
@@ -67,7 +58,7 @@ data "google_organization" "org" {
 output "output-value" {
   value = data.google_organization.org
 }
-*/
+
 
 /*
 GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-project-factory@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform apply -var-file=02-terraform.tfvars

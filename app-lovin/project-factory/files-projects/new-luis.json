@@ -5,8 +5,6 @@
     "svpc_host_project_id": "",        
     "group_name": "gcp-new-luis",    
     "group_role": "roles/viewer",
-    "group_owners" : ["luis@luismendeze.com"],
-    "group_members": ["test@luismendeze.com","devops-user01@luismendeze.com"],
     "folder_id": "250869018475",    
     "sa_group" : "gcp-new-luis@luismendeze.com",
     "labels" : {"project-owner" :"luis","cost-center": "123456", "tech-owner" :"pedro" },

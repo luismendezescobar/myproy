@@ -42,8 +42,19 @@ Organization Viewer
 
 at gsuite (worskpace level)
 add the account to the group admin level
+*/
 
 
-
-
+/*
+module "group" {
+  source  = "terraform-google-modules/group/google"
+  version = "~> 0.1"
+  for_each     = local.json_data
+  id           = "${each.value.group_name}@luismendeze.com"
+  display_name = each.value.group_name
+  description  = "Group to be used the in the gcp project name ${each.value.name}"
+  domain       = "luismendeze.com"
+  owners       = each.value.group_owners
+  members      = each.value.group_members
+}
 */
