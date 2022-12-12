@@ -20,10 +20,10 @@ for file in ./*.json; do
       echo "I could not found the group called $GROUP_NAME"
       GROUP_FOUND=0
       break
-
-    fi
+    fi    
 done
 
+echo "this is the final valud of GROUP_FOUND: $GROUP_FOUND"
 
 
 
