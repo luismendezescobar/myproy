@@ -1,5 +1,5 @@
 map_for_groups = {
-  new-luis = {
+  gcp-new-luis = {
     domain       = "luismendeze.com"
     description  = "group for text new-luis"
     owners       = ["luis@luismendeze.com"]

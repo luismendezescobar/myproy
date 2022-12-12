@@ -1,5 +1,6 @@
-GROUP_NAME="new-lui@luismendeze.com"
+GROUP_NAME="gcp-new-lui@luismendeze.com"
 
+#extract the group name:
 
 
 RESULT_GROUP=$(gcloud identity groups search --labels="cloudidentity.googleapis.com/groups.discussion_forum" --organization=luismendeze.com |sed -n "/$GROUP_NAME/p")
