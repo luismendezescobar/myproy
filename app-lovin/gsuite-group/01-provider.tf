@@ -7,12 +7,13 @@ terraform {
   required_providers { 
     google = {
       source = "hashicorp/google"
-      version = "~>4.43"       //this is the hashicorp modules version
+      version = ">4.43, <=5"       //this is the hashicorp modules version
     }
-    gsuite = {
+/*    gsuite = {
       source = "DeviaVir/gsuite"
       version = "0.1.62"
     }
+    */
   }
 }
 provider "google" {

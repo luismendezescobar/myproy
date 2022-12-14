@@ -11,6 +11,13 @@ map_for_groups = {
     owners       = ["luis@luismendeze.com"]
     members      = ["test@luismendeze.com","devops-user01@luismendeze.com"]
   },
+  gcp-test-group01 = {
+    domain       = "luismendeze.com"
+    description  = "group for project new-luis"
+    owners       = ["luis@luismendeze.com"]
+    members      = ["test@luismendeze.com","devops-user01@luismendeze.com"]
+  },
+
   
 }
 
