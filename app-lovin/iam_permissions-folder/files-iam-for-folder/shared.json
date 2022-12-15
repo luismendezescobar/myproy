@@ -1,6 +1,6 @@
 {
     "folder_bindings": {
-        "roles/analyticshub.viewer": [
+        "roles/browser": [
             "user:test@luismendeze.com"
         ]
     }
