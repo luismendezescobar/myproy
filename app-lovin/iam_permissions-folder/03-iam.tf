@@ -8,9 +8,9 @@ module "folder-iam" {
   source   = "terraform-google-modules/iam/google//modules/folders_iam"
   version = ">=7.4.1,<=8"  
   for_each = local.json_data
+
   folders = toset([each.key])         #convert the folder string to list, it's required that way for terraform.
   mode          = "additive" 
-
   bindings = each.value.folder_bindings
 }
 
