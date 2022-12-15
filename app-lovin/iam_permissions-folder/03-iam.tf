@@ -14,3 +14,7 @@ module "folder-iam" {
   bindings = each.value.folder_bindings
 }
 
+
+/*
+GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-pipeline-iam@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform apply -var-file=02-terraform.tfvars
+*/
