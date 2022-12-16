@@ -9,7 +9,7 @@ echo 1 > ./folder_found.txt
 echo "last file" > ./folder_details.txt
 else 
 
-  for file in ../files-iam-for-folder/*.json; do   #loop to extract the group name from all the json files in the directory:      
+  for file in ./files-iam-for-folder/*.json; do   #loop to extract the group name from all the json files in the directory:      
       echo "folder name again: $file"
       FOLDER_NAME=$(basename -s .json $file)         #this is to remove the extension in the file name
 
