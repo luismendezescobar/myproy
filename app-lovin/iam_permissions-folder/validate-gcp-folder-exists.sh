@@ -22,7 +22,7 @@ else
         echo "this is what I found $RESULT_FOLDER"
         FOLDER_FOUND=1
         echo 1 > ./folder_found.txt
-        echo "group found" > ./folder_details.txt
+        echo "folder found" > ./folder_details.txt
       else
         echo "I could not found the folder called $FOLDER_NAME" > ./folder_details.txt
         FOLDER_FOUND=0
