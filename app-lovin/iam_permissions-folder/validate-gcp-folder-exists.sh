@@ -1,6 +1,6 @@
 #!/bin/bash
 #validate if a file exists
-count=`ls -1 ../files-iam-for-folder/*.json 2>/dev/null | wc -l`
+count=`ls -1 ./files-iam-for-folder/*.json 2>/dev/null | wc -l`
 if [ $count == 0 ]
 then 
 echo "there are no files of .json type in the files-project directory"
