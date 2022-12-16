@@ -5,7 +5,7 @@ if [ $count == 0 ]
 then 
 echo "there are no files of .json type in the files-project directory"
 FOLDER_FOUND=1  # we assing 1 because if we want to delete the last project in the folder
-echo 1 > ./terra-module/folder_found.txt
+echo 1 > ./folder_found.txt
 echo "last file" > ./terra-module/folder_details.txt
 else 
 
@@ -20,12 +20,12 @@ else
       if [[ ${#RESULT_FOLDER} -gt 0 ]]; then
         echo "this is what I found $RESULT_FOLDER"
         FOLDER_FOUND=1
-        echo 1 > ./terra-module/folder_found.txt
-        echo "group found" > ./terra-module/folder_details.txt
+        echo 1 > ./folder_found.txt
+        echo "group found" > ./folder_details.txt
       else
-        echo "I could not found the folder called $FOLDER_NAME" > ./terra-module/folder_details.txt
+        echo "I could not found the folder called $FOLDER_NAME" > ./folder_details.txt
         FOLDER_FOUND=0
-        echo 0 > ./terra-module/folder_found.txt
+        echo 0 > ./folder_found.txt
         break
       fi    
   done
