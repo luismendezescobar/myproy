@@ -1,7 +1,0 @@
-{
-    "folder_bindings": {
-        "roles/browser": [
-            "user:test@luismendeze.com"
-        ]
-    }
-}

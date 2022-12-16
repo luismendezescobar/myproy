@@ -4,6 +4,12 @@ locals {
                 replace(file_name, ".json", "")=>jsondecode(file("${path.module}/files-iam-for-folder/${file_name}"))} 
 }
 
+data "google_folder" "example" {
+  display_name = "example-folder"
+}
+
+
+
 module "folder-iam" {
   source   = "terraform-google-modules/iam/google//modules/folders_iam"
   version = ">=7.4.1,<=8"  
