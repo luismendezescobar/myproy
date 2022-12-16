@@ -6,7 +6,7 @@ then
 echo "there are no files of .json type in the files-project directory"
 FOLDER_FOUND=1  # we assing 1 because if we want to delete the last project in the folder
 echo 1 > ./folder_found.txt
-echo "last file" > ./terra-module/folder_details.txt
+echo "last file" > ./folder_details.txt
 else 
 
   for file in ../files-iam-for-folder/*.json; do   #loop to extract the group name from all the json files in the directory:      
