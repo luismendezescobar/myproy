@@ -1,5 +1,5 @@
 
-module "project-factory" {
+module "firewall-rules" {
   source = "terraform-google-modules/network/google//modules/firewall-rules"
   version = "~> 6.0"  
   

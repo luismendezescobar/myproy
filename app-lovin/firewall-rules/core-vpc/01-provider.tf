@@ -14,6 +14,7 @@ terraform {
       version = "~>4.43"       //this is the hashicorp modules version
     }
   }
+  
 }
 provider "google" {
   project = var.project_id
