@@ -3,9 +3,14 @@ variable "project_id" {
   default = "central-gcp-vpc-non-prod-37070"
 }
 
-variable "prod_core_network_name" {
+variable "network_name" {
   type=string
   default = "vpc-core-non-prod"
+}
+
+variable "region" {
+  type=string
+  default = "us-central1"
 }
 
 variable "rules" {
