@@ -2,7 +2,7 @@
 #   pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
 
 # Import the necessary modules
-from google.oauth2.credentials import Credentials
+from google.oauth2.credentials import credentials
 from googleapiclient.discovery import build
 
 # Set the project ID and service account email
@@ -10,7 +10,7 @@ project_id = 'central-tech-gcp-resources'
 service_account_email = 'centraltech-gcp-iam-pipeline@central-tech-gcp-resources.iam.gserviceaccount.com'
 
 # Use the service account credentials to authenticate
-creds = Credentials.from_service_account_info({
+creds = credentials.from_service_account_info({
     'project_id': project_id,
     'client_email': service_account_email,
     'token_uri': 'https://oauth2.googleapis.com/token',
