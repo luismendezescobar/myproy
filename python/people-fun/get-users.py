@@ -10,7 +10,7 @@ project_id = 'central-tech-gcp-resources'
 service_account_email = 'centraltech-gcp-iam-pipeline@central-tech-gcp-resources.iam.gserviceaccount.com'
 
 # Use the service account credentials to authenticate
-creds = credentials.from_service_account_info({
+creds = credentials.from_authorized_user_info({
     'project_id': project_id,
     'client_email': service_account_email,
     'token_uri': 'https://oauth2.googleapis.com/token',
