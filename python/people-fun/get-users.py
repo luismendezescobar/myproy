@@ -18,12 +18,14 @@ def hello(jdata, project):
 
 
 project = sys.argv[1]
+print(project)
 data = sys.stdin.read()
+print(data)
 #data = data.encode("ascii", "replace")
 data = data.replace("u\'", "\"")
 data = data.replace("\'", "\"")
-print(data)
-print(project)
+
+
 jdata = json.loads(data)
 hello(jdata, project)
 
