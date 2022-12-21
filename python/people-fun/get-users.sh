@@ -3,7 +3,7 @@
 # Author - Rajathithan Rajasekar - 03/03/2020
 
 echo 'project-name,roles/rolename,user:username-and-serviceaccounts' > iamlist.csv
-prjs=( $(gcloud projects list | tail -n +2 | awk {'print $1'}) )
+prjs=( $(gcloud projects list | sed -n "/PROJECT_ID/p"|awk {'print $2'}) )
 for i in "${prjs[@]}"
 	do
 		echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
