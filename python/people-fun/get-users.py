@@ -27,4 +27,4 @@ jdata = json.loads(data)
 hello(jdata, project)
 
 
-#GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-vpc-landing-pipe@devops-369900.iam.gserviceaccount.com auth print-access-token)" python3 get-users.py central-tech-gcp-resources
+#GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-pipeline-iam@devops-369900.iam.gserviceaccount.com auth print-access-token)" python3 get-users.py central-tech-gcp-resources
