@@ -18,9 +18,9 @@ def hello(jdata, project):
 
 
 project = sys.argv[1]
-print(project)
+#print(project)
 data = sys.stdin.read()
-print(data)
+#print(data)
 #data = data.encode("ascii", "replace")
 data = data.replace("u\'", "\"")
 data = data.replace("\'", "\"")
