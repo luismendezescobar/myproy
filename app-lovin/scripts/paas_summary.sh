@@ -4,6 +4,7 @@
 # Created by : Luis Mendez
 # Desciption : Script to fetch info from all the project.
 # Info       : Project Name,Project ID,BAP,Environment,Project Owner EID,Project Owner Email,Technical owner EID,Technical owner Email,Project Creation Date,Atos_Onboarding,Atos_Onboarding_Date,Project_Country,GCE Used?,GAE Used?,Dataproc,Dataflow,kafka,GKE,Cloud SQL,Cloud Function,PubSub,Cloud Storage,BigQuery,Cloud Run.
+#GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-scripts@devops-369900.iam.gserviceaccount.com auth print-access-token)" ./paas_summary.sh
 #************************************************************************************************************************************
 echo "**************************"
 version=8
