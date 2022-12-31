@@ -1,7 +1,7 @@
 
 #!/usr/bin/env python
 # Python script to reformat IAM json data
-# Rajathithan Rajasekar - 03/03/2020
+# Luis Mendez - 12/22/2022
 import json,ast,sys
 
 data = []

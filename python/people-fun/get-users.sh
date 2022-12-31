@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script to retrieve GCP IAM roles, users and serviceaccounts
-# Author - Rajathithan Rajasekar - 03/03/2020
+# Author - Luis Mendez - 12/22/2022
 
 echo 'project-name,roles/rolename,user:username-and-serviceaccounts' > iamlist.csv
 prjs=( $(gcloud projects list | sed -n "/PROJECT_ID/p"|awk {'print $2'}) )
