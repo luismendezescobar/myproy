@@ -5,7 +5,7 @@ module "group" {
   version = "~> 0.1"
 
   for_each = var.map_for_groups
-  id           = "${each.key}@${each.value.domain}"
+  id           = "${each.key}@${var.domain_name}"
   display_name = each.key
   #description  = each.value.description
   domain       = var.domain_name
