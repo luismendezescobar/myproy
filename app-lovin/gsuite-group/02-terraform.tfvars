@@ -18,6 +18,12 @@ map_for_groups = {
     members      = ["test01@luismendeze.com",
                     "test02@luismendeze.com"]
   },
+  grp-gcp-prod-project-369617-data-engineer = {
+    domain       = "luismendeze.com"
+    description  = "group for project prod-project-369617"
+    owners       = []
+    members      = ["test04@luismendeze.com"]
+  },
   grp-gcp-prod-project-369617-read-only ={
     domain       = "luismendeze.com"
     description  = "group for project prod-project-369617"
