@@ -14,14 +14,14 @@ map_for_groups = {
   grp-gcp-prod-project-369617-developer = {
     domain       = "luismendeze.com"
     description  = "group for project prod-project-369617"
-    owners       = ["owner01@luismendeze.com"]
+    owners       = []
     members      = ["test01@luismendeze.com",
                     "test02@luismendeze.com"]
   },
   grp-gcp-prod-project-369617-read-only ={
     domain       = "luismendeze.com"
     description  = "group for project prod-project-369617"
-    owners       = ["owner01@luismendeze.com"]
+    owners       = []
     members      = ["test03@luismendeze.com"]
   }
   
