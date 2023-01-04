@@ -8,6 +8,11 @@ variable "region" {
   default = "us-central1"
 }
 
+variable "domain_name" {
+  type=string
+  default = "luismendeze.com"
+}
+
 variable "map_for_project_factory" {
   type = map(object({
     name              = string
