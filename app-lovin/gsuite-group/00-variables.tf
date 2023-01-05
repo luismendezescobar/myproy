@@ -14,7 +14,7 @@ variable "map_for_groups" {
     owners       = optional(list(string))
     managers     = optional(list(string))
     description  = optional(string)
-    members      = list(string)
+    members      = optional(list(string))
   }))
 }
 
