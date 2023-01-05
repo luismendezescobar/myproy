@@ -7,9 +7,10 @@ module "group" {
   for_each = var.map_for_groups
   id           = "${each.key}@${var.domain_name}"
   display_name = each.key
-  #description  = each.value.description
-  domain       = var.domain_name
+  description  = each.value.description
+  domain       = each.value.domain
   owners       = each.value.owners
+  managers     = each.value.managers
   members      = each.value.members
 }
 

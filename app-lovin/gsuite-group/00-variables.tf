@@ -8,14 +8,12 @@ variable "region" {
   default = "us-central1"
 }
 
-variable "domain_name" {
-  type=string
-  default = "luismendeze.com"
-}
-
 variable "map_for_groups" {
-  type = map(object ( {
-    owners       = list(string)
+  type = map(object ( {    
+    domain       = optional(string,"luismendeze.com")
+    owners       = optional(list(string))
+    managers     = optional(list(string))
+    description  = optional(string)
     members      = list(string)
   }))
 }
