@@ -9,8 +9,8 @@ module "group" {
   display_name = each.key
   description  = each.value.description
   domain       = each.value.domain
-  owners       = each.value.owners
-  managers     = each.value.managers
+  owners       = each.value.owners != null ? each.value.owners : [] 
+  managers     = each.value.managers != null ? each.value.managers : []
   members      = each.value.members
 }
 
