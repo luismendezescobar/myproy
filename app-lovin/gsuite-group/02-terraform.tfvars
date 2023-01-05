@@ -17,6 +17,8 @@ map_for_groups = {
   grp-gcp-prod-project-369617-read-only ={
     members      = ["test03@luismendeze.com"]
     description  = "adding a description after the fact"
+    owners       = ["owner01@luismendeze.com"]
+    managers     = ["manager01@luismendeze.com"]
   }
   
 }
