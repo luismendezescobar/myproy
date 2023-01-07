@@ -80,36 +80,43 @@ Summary () {
 		gke=0
 #        GCPComputeService=$(gcloud services list --format="value(NAME)" --project=$Project --filter="NAME:compute.googleapis.com")
 #        if [[ $GCPComputeService == "compute.googleapis.com" ]] ; then
-				gcloud compute instances list --project=$Project --format="csv[no-heading](NAME,STATUS,ZONE,MACHINE_TYPE,INTERNAL_IP,EXTERNAL_IP,creationTimestamp)" > $MISCDIR/"Temp.Temp"
-                        if [[ $(cat $MISCDIR/"Temp.Temp" | head -1 ) != "" ]] ; then
-                                count=$(cat $MISCDIR/"Temp.Temp" | grep -v TERMINATED | wc -l )
-								dataproc=$(cat $MISCDIR/"Temp.Temp" | grep -v TERMINATED | grep dataproc | wc -l )
-								dataflow=$(cat $MISCDIR/"Temp.Temp" | grep -v TERMINATED | grep dataflow | wc -l )
-								kafka=$(cat $MISCDIR/"Temp.Temp" | grep -v TERMINATED | grep kafka | wc -l )
-								gke=$(cat $MISCDIR/"Temp.Temp" | grep -v TERMINATED | grep gke | wc -l )
-                                GCEInfo=$count
+		#This command will validate if the service exists before querying it
+	RESULT_SERVICE=$(gcloud services list --enabled --project=$Project | grep compute.googleapis.com|sed 's/^.\{6\}//') #s/^.\{6\}//' Remove the last 4 characters
+	if [[ ${#RESULT_SERVICE} -gt 0 ]]; then
+		gcloud compute instances list --project=$Project --format="csv[no-heading](NAME,STATUS,ZONE,MACHINE_TYPE,INTERNAL_IP,EXTERNAL_IP,creationTimestamp)" > $MISCDIR/"Temp.Temp"
+		if [[ $(cat $MISCDIR/"Temp.Temp" | head -1 ) != "" ]] ; then
+				count=$(cat $MISCDIR/"Temp.Temp" | grep -v TERMINATED | wc -l )
+				dataproc=$(cat $MISCDIR/"Temp.Temp" | grep -v TERMINATED | grep dataproc | wc -l )
+				dataflow=$(cat $MISCDIR/"Temp.Temp" | grep -v TERMINATED | grep dataflow | wc -l )
+				kafka=$(cat $MISCDIR/"Temp.Temp" | grep -v TERMINATED | grep kafka | wc -l )
+				gke=$(cat $MISCDIR/"Temp.Temp" | grep -v TERMINATED | grep gke | wc -l )
+				GCEInfo=$count
 #								for i in $(cat $MISCDIR/"Temp.Temp");
 #								do
 #									echo "$Project,$i" >> $OUTPUTCSVHOST
 #								done
-                         else
-                                GCEInfo="0"
-#								echo "$Project,N/A" >> $OUTPUTCSVHOST
-                        fi
-#        else
-#                        GCEInfo="N"
-#                fi
-#       fi
-	
+		else
+			GCEInfo="0"
+		fi
+	else
+		GCEInfo="0"	
+	fi
+
 	#SQL
 	if [[ $(grep -i "sqladmin.googleapis.com" $MISCDIR/"GCPService" ) == "sqladmin.googleapis.com" ]] || [[ $(grep -i "sql-component.googleapis.com" $MISCDIR/"GCPService" ) == "sql-component.googleapis.com" ]]; then
 		echo "SQL"
-		gcloud sql instances list --project=$Project --format="csv[no-heading](NAME,DATABASE_VERSION,LOCATTION,TIER)" > $MISCDIR/"CSQLinfo"
+		#validate if this service is enabled before doing a query with it
+		RESULT_SERVICE=$(gcloud services list --enabled --project=$Project | grep gcloud.sql.instances.list|sed 's/^.\{6\}//') #s/^.\{6\}//' Remove the last 4 characters
+		if [[ ${#RESULT_SERVICE} -gt 0 ]]; then
+			gcloud sql instances list --project=$Project --format="csv[no-heading](NAME,DATABASE_VERSION,LOCATTION,TIER)" > $MISCDIR/"CSQLinfo"
 			cat $MISCDIR/"CSQLinfo"
 			if [[ $(cat $MISCDIR/"CSQLinfo" | head -1 )  == "" ]]; then
 				CSQLinfo="N"
 			else
 				CSQLinfo="Y"
+			fi
+		else
+			CSQLinfo="N"
 		fi
 	else
 		CSQLinfo="N"
@@ -229,7 +236,7 @@ main () {
 			gcloud projects list --format="csv[no-heading](PROJECT_ID)" > GcpProjectID.txt
 		fi
 		
-        download_git
+        #download_git
         SummaryStart
 		
         FileLen=$(cat GcpProjectID.txt | wc -l)
