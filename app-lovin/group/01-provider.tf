@@ -25,8 +25,32 @@ provider "google-beta" {
   project = var.project_id
   region  = var.region
 }
-
+/*
 provider "googleworkspace" {  
   credentials="service-account-file.json"
   customer_id = "C04hqny6x"
+}
+*/
+
+provider "google" {
+  alias = "impersonate"
+
+  scopes = [
+    "https://www.googleapis.com/auth/cloud-platform",
+    "https://www.googleapis.com/auth/userinfo.email",
+  ]
+}
+
+data "google_service_account_access_token" "default" {
+  provider               = google.impersonate
+  target_service_account = "sa-project-factory@devops-369900.iam.gserviceaccount.com"
+  scopes                 = ["userinfo-email", "cloud-platform", "https://www.googleapis.com/auth/admin.directory.group"]
+  lifetime               = "1200s"
+}
+
+
+
+provider "googleworkspace" {
+  customer_id   = "C04hqny6x"
+  access_token  = data.google_service_account_access_token.default.access_token
 }
