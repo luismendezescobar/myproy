@@ -27,7 +27,7 @@ provider "google-beta" {
 
 provider "googleworkspace" {
   # Configuration options
-  credentials="service-account-file.json"
+  #credentials="service-account-file.json"
   customer_id = "C04hqny6x"
   #impersonated_user_email = "luis@luismendeze.com"
   /*
