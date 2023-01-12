@@ -17,9 +17,22 @@ resource "googleworkspace_group_settings" "sales-settings" {
 }
 
 
+resource "googleworkspace_group_members" "sales" {
+  group_id = googleworkspace_group.sales.id
+
+  members {
+    email = "luis@luismendeze.com"
+    role  = "MANAGER"
+  }
+
+  members {
+    email = "test@luismendeze.com"
+    role  = "MEMBER"
+  }
+}
 
 
 
 
-#GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-project-factory@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform apply
+
 
