@@ -31,22 +31,6 @@ module group_settings {
 
 
 
-resource "googleworkspace_group_settings" "sales-settings" {
-  for_each = var.map_for_groups
-  email = "${each.key}@${each.value.domain}"
-
-  allow_external_members = each.value.allow_external
-
-
-  depends_on = [
-    module.group
-  ]
-
-}
-
-
-
-
 
 
 
