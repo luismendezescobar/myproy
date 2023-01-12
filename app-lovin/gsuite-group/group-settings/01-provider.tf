@@ -1,4 +1,3 @@
-/*
 terraform {
   required_providers {
     googleworkspace = {
@@ -7,9 +6,8 @@ terraform {
     }
   }
 }
-/*
-/*
+
 provider "googleworkspace" {
   # Configuration options
+  customer_id = "C04hqny6x"
 }
-*/
