@@ -28,4 +28,12 @@ provider "google-beta" {
 provider "googleworkspace" {
   # Configuration options
   customer_id = "C04hqny6x"
+  oauth_scopes = [
+  "https://www.googleapis.com/auth/admin.directory.user",
+  "https://www.googleapis.com/auth/admin.directory.userschema",
+  # include scopes as needed
+  "https://www.googleapis.com/auth/admin.directory.group",
+  "https://www.googleapis.com/auth/admin.directory.group.member"
+
+  ]
 }
