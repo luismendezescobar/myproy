@@ -1,5 +1,4 @@
 
-
 module "group" {
   source  = "terraform-google-modules/group/google"
   version = "~> 0.1"
@@ -17,6 +16,7 @@ module "group" {
 output "group_output" {
   value = module.group
 }
+
 
 /*
 module group_settings {
@@ -37,17 +37,13 @@ resource "googleworkspace_group_settings" "sales-settings" {
 
   allow_external_members = each.value.allow_external
 
-  /*
-  who_can_join            = "INVITED_CAN_JOIN"
-  who_can_view_membership = "ALL_MANAGERS_CAN_VIEW"
-  who_can_post_message    = "ALL_MEMBERS_CAN_POST"
-*/
- 
+
   depends_on = [
     module.group
   ]
 
 }
+
 
 
 

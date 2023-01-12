@@ -9,10 +9,10 @@ terraform {
       source = "hashicorp/google"
       version = "~>4.43"       //this is the hashicorp modules version
     }
-    gsuite = {
-      source = "DeviaVir/gsuite"
-      version = "0.1.62"
-    }
+    googleworkspace = {
+      source = "hashicorp/googleworkspace"
+      version = "0.7.0"
+    }    
   }
 }
 
@@ -26,13 +26,19 @@ provider "google-beta" {
   region  = var.region
 }
 
-provider "gsuite" {  
+provider "googleworkspace" {
+  # Configuration options
+  credentials="service-account-file.json"
+  customer_id = "C04hqny6x"
   #impersonated_user_email = "luis@luismendeze.com"
+  /*
   oauth_scopes = [
-    "https://www.googleapis.com/auth/admin.directory.group",
-    "https://www.googleapis.com/auth/apps.groups.settings",
-    "https://www.googleapis.com/auth/admin.directory.user",
-    "https://www.googleapis.com/auth/admin.directory.userschema",
-  ]
-}
+  "https://www.googleapis.com/auth/admin.directory.user",
+  "https://www.googleapis.com/auth/admin.directory.userschema",  
+  "https://www.googleapis.com/auth/admin.directory.group",
+  "https://www.googleapis.com/auth/admin.directory.group.member",
+  "https://www.googleapis.com/auth/apps.groups.settings"
 
+  ]
+  */
+}
