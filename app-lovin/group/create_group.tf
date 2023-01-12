@@ -34,5 +34,8 @@ resource "googleworkspace_group_members" "sales" {
 
 
 
-
-
+resource "googleworkspace_group" "sales" {
+  email       = "sales-team2@luismendeze.com"
+  name        = "Sales2"
+  description = "Sales2 Group"
+}
