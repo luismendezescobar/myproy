@@ -26,19 +26,7 @@ provider "google-beta" {
   region  = var.region
 }
 
-provider "googleworkspace" {
-  # Configuration options
-  #credentials="service-account-file.json"
+provider "googleworkspace" {  
+  credentials="service-account-file.json"
   customer_id = "C04hqny6x"
-  #impersonated_user_email = "luis@luismendeze.com"
-  /*
-  oauth_scopes = [
-  "https://www.googleapis.com/auth/admin.directory.user",
-  "https://www.googleapis.com/auth/admin.directory.userschema",  
-  "https://www.googleapis.com/auth/admin.directory.group",
-  "https://www.googleapis.com/auth/admin.directory.group.member",
-  "https://www.googleapis.com/auth/apps.groups.settings"
-
-  ]
-  */
 }
