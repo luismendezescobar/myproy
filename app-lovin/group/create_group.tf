@@ -13,7 +13,8 @@ resource "googleworkspace_group_settings" "sales-settings" {
   email = googleworkspace_group.sales.email
 
   allow_external_members = true
-
+  
+  lifecycle { ignore_changes = [is_archived] }
 }
 
 
