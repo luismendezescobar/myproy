@@ -18,7 +18,7 @@ output "group_output" {
   value = module.group
 }
 
-
+/*
 module group_settings {
   source = "./group-settings"
   map_for_groups = var.map_for_groups
@@ -27,6 +27,31 @@ module group_settings {
     module.group
   ]
 }
+*/
+
+
+
+resource "googleworkspace_group_settings" "sales-settings" {
+  for_each = var.map_for_groups
+  email = "${each.key}@${each.value.domain}"
+
+  allow_external_members = each.value.allow_external
+
+  /*
+  who_can_join            = "INVITED_CAN_JOIN"
+  who_can_view_membership = "ALL_MANAGERS_CAN_VIEW"
+  who_can_post_message    = "ALL_MEMBERS_CAN_POST"
+*/
+ 
+  depends_on = [
+    module.group
+  ]
+
+}
+
+
+
+
 
 
 
@@ -39,7 +64,7 @@ GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-pipeline-ia
 GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=${SERVICE_ACCOUNT} auth print-access-token)" terraform apply -var-file=02-terraform.tfvars
 
 GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-project-factory@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform init
-GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-project-factory@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform apply
+GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-project-factory@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform apply -var-file=02-terraform.tfvars
 
 for group creation the SA account, only requires the following permissions:
 at project level (where the SA was created)
