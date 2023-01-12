@@ -25,11 +25,20 @@ resource "googleworkspace_group_members" "sales" {
     email = "luis@luismendeze.com"
     role  = "MANAGER"
   }
-
   members {
     email = "test@luismendeze.com"
     role  = "MEMBER"
   }
+  members {
+    email = "luismendeze@hotmail.com"
+    role  = "MEMBER"
+  }
+  members {
+    email = "luismendezescobar@gmail.com"
+    role  = "MEMBER"
+  }
+
+
 }
 
 
