@@ -1,4 +1,4 @@
-terraform {
+/*terraform {
   required_providers {
     googleworkspace = {
       source = "hashicorp/googleworkspace"
@@ -11,3 +11,4 @@ provider "googleworkspace" {
   # Configuration options
   customer_id = "C04hqny6x"
 }
+*/
