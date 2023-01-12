@@ -44,7 +44,9 @@ provider "google" {
 data "google_service_account_access_token" "default" {
   provider               = google.impersonate
   target_service_account = "sa-project-factory@devops-369900.iam.gserviceaccount.com"
-  scopes                 = ["userinfo-email", "cloud-platform", "https://www.googleapis.com/auth/admin.directory.group"]
+  scopes                 = ["userinfo-email", "cloud-platform", 
+                            "https://www.googleapis.com/auth/admin.directory.group",
+                            "https://www.googleapis.com/auth/apps.groups.settings"]
   lifetime               = "1200s"
 }
 
