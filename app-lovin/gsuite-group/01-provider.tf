@@ -29,6 +29,7 @@ provider "googleworkspace" {
   # Configuration options
   credentials="service-account-file.json"
   customer_id = "C04hqny6x"
+  impersonated_user_email = "luis@luismendeze.com"
   /*
   oauth_scopes = [
   "https://www.googleapis.com/auth/admin.directory.user",
