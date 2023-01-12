@@ -77,6 +77,11 @@ Organization Viewer
 
 at gsuite (worskpace level)
 add the account to the group admin level
+
+
+curl \
+        -H "Authorization: Bearer "$GOOGLE_OAUTH_ACCESS_TOKEN \
+        "https://www.googleapis.com/groups/v1/groups/grp-gcp-prod-project-369617-read-only@luismendeze.com"
 */
 
 
