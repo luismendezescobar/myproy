@@ -27,8 +27,9 @@ provider "google-beta" {
 
 provider "googleworkspace" {
   # Configuration options
+  credentials="service-account-file.json"
   customer_id = "C04hqny6x"
-  
+  /*
   oauth_scopes = [
   "https://www.googleapis.com/auth/admin.directory.user",
   "https://www.googleapis.com/auth/admin.directory.userschema",  
@@ -37,5 +38,5 @@ provider "googleworkspace" {
   "https://www.googleapis.com/auth/apps.groups.settings"
 
   ]
-  
+  */
 }
