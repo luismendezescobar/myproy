@@ -27,6 +27,6 @@ provider "google-beta" {
 }
 
 provider "googleworkspace" {  
-  #credentials="service-account-file.json"
+  credentials="service-account-file.json"
   customer_id = "C04hqny6x"
 }
