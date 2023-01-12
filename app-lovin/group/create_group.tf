@@ -11,3 +11,5 @@ resource "googleworkspace_group" "sales" {
   description = "Sales Group"
 
 }
+
+#GOOGLE_OAUTH_ACCESS_TOKEN="$(gcloud --impersonate-service-account=sa-project-factory@devops-369900.iam.gserviceaccount.com auth print-access-token)" terraform apply
