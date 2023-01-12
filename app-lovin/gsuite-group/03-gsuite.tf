@@ -19,6 +19,15 @@ output "group_output" {
 }
 
 
+module group_settings {
+  source = "./group-settings"
+  map_for_groups = var.map_for_groups
+
+  depends_on = [
+    module.group
+  ]
+}
+
 
 
 /*some links
