@@ -53,7 +53,7 @@ resource "googleworkspace_group_members" "group_managers_add" {
     }    
   }
   depends_on = [
-    googleworkspace_group.group_settings
+    resource.googleworkspace_group_settings.group_settings
   ]
 }
 resource "googleworkspace_group_members" "group_owners_add" {
