@@ -43,11 +43,10 @@ resource "googleworkspace_group_members" "group_members_add" {
     }    
   }
 }
-resource "googleworkspace_group_members" "group_managers_add" {
-  count  = var.managers != null ? 1 : 0
+resource "googleworkspace_group_members" "group_managers_add" {  
   group_id = googleworkspace_group.create_group.id
   dynamic "members" {
-    for_each = var.managers
+    for_each = toset(var.managers)
     content {
       email = members.value
       role  = "MANAGER"
