@@ -1,3 +1,4 @@
+/*
 terraform {
   required_providers { 
     google = {
@@ -37,3 +38,4 @@ provider "googleworkspace" {
   customer_id   = "C04hqny6x"
   access_token  = data.google_service_account_access_token.default.access_token
 }
+*/
