@@ -33,7 +33,7 @@ resource "googleworkspace_group_settings" "group_settings" {
   lifecycle { ignore_changes = [is_archived] }
 }
 resource "googleworkspace_group_members" "group_members_add" {
-  count  = var.members != [] ? 1 : 0
+  count  = var.members != null ? 1 : 0
   group_id = googleworkspace_group.create_group.id
   dynamic "members" {
     for_each = var.members

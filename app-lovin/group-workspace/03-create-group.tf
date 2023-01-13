@@ -8,7 +8,7 @@ module "group" {
   domain                         = each.value.domain
   owners                         = each.value.owners != null ? each.value.owners : []
   managers                       = each.value.managers != null ? each.value.managers : []
-  members                        = each.value.members != null ? each.value.members : []
+  members                        = each.value.members != null ? each.value.members : null
   aliases                        = each.value.aliases
   allow_ext                      = each.value.allow_ext
   allow_web_posting              = each.value.allow_web_posting
