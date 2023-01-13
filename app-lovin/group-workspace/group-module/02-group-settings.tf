@@ -55,7 +55,7 @@ resource "googleworkspace_group_members" "group_managers_add" {
 resource "googleworkspace_group_members" "group_owners_add" {
   group_id = googleworkspace_group.create_group.id
   dynamic "members" {
-    for_each = var.OWNERS
+    for_each = var.owners
     content {
       email = members.value
       role  = "OWNER"
