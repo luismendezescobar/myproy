@@ -52,6 +52,9 @@ resource "googleworkspace_group_members" "group_managers_add" {
       role  = "MANAGER"
     }    
   }
+  depends_on = [
+    googleworkspace_group.group_settings
+  ]
 }
 resource "googleworkspace_group_members" "group_owners_add" {
   count  = var.owners != null ? 1 : 0
