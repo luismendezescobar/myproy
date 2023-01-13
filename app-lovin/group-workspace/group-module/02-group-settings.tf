@@ -33,6 +33,7 @@ resource "googleworkspace_group_settings" "group_settings" {
   lifecycle { ignore_changes = [is_archived] }
 }
 resource "googleworkspace_group_members" "group_members_add" {
+  count  = var.members != null ? 1 : 0
   group_id = googleworkspace_group.create_group.id
   dynamic "members" {
     for_each = var.members
@@ -43,6 +44,7 @@ resource "googleworkspace_group_members" "group_members_add" {
   }
 }
 resource "googleworkspace_group_members" "group_managers_add" {
+  count  = var.managers != null ? 1 : 0
   group_id = googleworkspace_group.create_group.id
   dynamic "members" {
     for_each = var.managers
@@ -53,6 +55,7 @@ resource "googleworkspace_group_members" "group_managers_add" {
   }
 }
 resource "googleworkspace_group_members" "group_owners_add" {
+  count  = var.owners != null ? 1 : 0
   group_id = googleworkspace_group.create_group.id
   dynamic "members" {
     for_each = var.owners
