@@ -4,7 +4,7 @@ map_for_groups = {
     members      = ["test@luismendeze.com","devops-user01@luismendeze.com"]
     allow_ext    = false
   },    
-  /*
+  
   gcp-service-project-luis = {
     owners       = ["luis@luismendeze.com"]
     members      = ["test@luismendeze.com","devops-user01@luismendeze.com"]
@@ -21,6 +21,5 @@ map_for_groups = {
   },
   grp-gcp-prod-project-369617-secret-manager = {    
   }
-  */
 }
 
