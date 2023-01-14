@@ -1,8 +1,9 @@
-/*
 locals {
-  members={"members":var.members,"owners":var.owners,"managers":var.managers }
+  map_owners={for x in var.owners:x=>"owners"}
+  map_managers={for x in var.managers:x=>"managers"}
+  map_members={for x in var.members:x=>"members"}
+  map_all=merge(local.map_owners,local.map_managers,local.map_members)
 }
-*/
 # ------------------------------------------------
 # Creating required usrs and groups inside workspace
 #-------------------------------------------------
@@ -41,16 +42,14 @@ resource "googleworkspace_group_members" "group_members_add" {
   count  = var.members != null ? 1 : 0
   group_id = googleworkspace_group.create_group.id
   dynamic "members" {
-    for_each = var.members
+    for_each = local.map_all
     content {
-      email = members.value
-      role  = "MEMBER"
+      email = members.key
+      role  = members.value
     }    
   }
-  depends_on = [
-    resource.googleworkspace_group_settings.group_settings
-  ]
 }
+/*
 resource "googleworkspace_group_members" "group_managers_add" {  
   group_id = googleworkspace_group.create_group.id
   dynamic "members" {
@@ -78,7 +77,7 @@ resource "googleworkspace_group_members" "group_owners_add" {
     resource.googleworkspace_group_members.group_owners_add
   ]
 }
-
+*/
 
 
 
