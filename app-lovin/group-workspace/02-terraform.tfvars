@@ -2,7 +2,7 @@ map_for_groups = {
   gcp-new-luis = {
     owners       = ["luis@luismendeze.com"]
     members      = ["test@luismendeze.com","devops-user01@luismendeze.com"]
-    allow_ext    = false
+    allow_ext    = true
   },    
   
   gcp-service-project-luis = {
