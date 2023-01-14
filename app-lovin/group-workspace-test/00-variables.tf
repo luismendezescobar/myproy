@@ -14,10 +14,10 @@ variable "owners" {
 }
 variable "managers" {
   type=list(string)
-  default=["test@luismendeze.com"]
+  default=[]
 }
 variable "members" {
   type=list(string)
-  default=["devops-user01@luismendeze.com","devops-user02@luismendeze.com"]
+  default=["devops-user01@luismendeze.com","devops-user02@luismendeze.com","test@luismendeze.com"]
 }
 
