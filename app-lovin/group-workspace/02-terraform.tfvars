@@ -1,7 +1,10 @@
 map_for_groups = {
   gcp-new-luis = {
     owners       = ["luis@luismendeze.com"]
-    members      = ["test@luismendeze.com","devops-user01@luismendeze.com"]
+    members      = ["test@luismendeze.com",
+                    "devops-user01@luismendeze.com",
+                    "luismendezescobar@gmail.com"
+                  ]
     allow_ext    = true
   },    
   
