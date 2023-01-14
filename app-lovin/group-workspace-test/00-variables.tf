@@ -18,6 +18,6 @@ variable "managers" {
 }
 variable "members" {
   type=list(string)
-  default=["devops-user01@luismendeze.com"]
+  default=["devops-user01@luismendeze.com","devops-user02@luismendeze.com"]
 }
 
