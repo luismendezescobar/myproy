@@ -1,3 +1,8 @@
+/*
+locals {
+  members={"members":var.members,"owners":var.owners,"managers":var.managers }
+}
+*/
 # ------------------------------------------------
 # Creating required usrs and groups inside workspace
 #-------------------------------------------------
@@ -42,6 +47,9 @@ resource "googleworkspace_group_members" "group_members_add" {
       role  = "MEMBER"
     }    
   }
+  depends_on = [
+    resource.googleworkspace_group_settings.group_settings
+  ]
 }
 resource "googleworkspace_group_members" "group_managers_add" {  
   group_id = googleworkspace_group.create_group.id
@@ -53,7 +61,7 @@ resource "googleworkspace_group_members" "group_managers_add" {
     }    
   }
   depends_on = [
-    resource.googleworkspace_group_settings.group_settings
+    resource.googleworkspace_group_members.group_members_add
   ]
 }
 resource "googleworkspace_group_members" "group_owners_add" {
@@ -66,6 +74,9 @@ resource "googleworkspace_group_members" "group_owners_add" {
       role  = "OWNER"
     }    
   }
+  depends_on = [
+    resource.googleworkspace_group_members.group_owners_add
+  ]
 }
 
 
