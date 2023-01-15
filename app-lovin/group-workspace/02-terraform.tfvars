@@ -24,7 +24,8 @@ map_for_groups = {
   },
   grp-gcp-prod-project-369617-secret-manager = {    
   },
-  gcp-devops-group = {    
+  gcp-devops-group = {
+    members      = ["test03@luismendeze.com"]    
   }
 }
 
