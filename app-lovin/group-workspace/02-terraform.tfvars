@@ -23,6 +23,8 @@ map_for_groups = {
     members      = ["test03@luismendeze.com"]
   },
   grp-gcp-prod-project-369617-secret-manager = {    
+  },
+  grp-gcp-prod-project-369617-data-engineer = {        
   }
 }
 
