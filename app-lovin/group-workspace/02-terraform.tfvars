@@ -24,7 +24,5 @@ map_for_groups = {
   },
   grp-gcp-prod-project-369617-secret-manager = {    
   },
-  grp-gcp-prod-project-369617-secret-manager = {    
-  },
 }
 
