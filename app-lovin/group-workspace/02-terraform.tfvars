@@ -22,7 +22,5 @@ map_for_groups = {
   grp-gcp-prod-project-369617-read-only ={
     members      = ["test03@luismendeze.com"]
   },
-  grp-gcp-prod-project-369617-secret-manager = {    
-  },
 }
 
