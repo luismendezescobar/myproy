@@ -25,8 +25,9 @@ map_for_groups = {
     ]
   },
   gcp-service-project-02 = { #<--------------------------next group name   
-    members        = ["luis.mendez@peoplefun.com",
-                      "luismendezescobar@gmail.com"]  #with external members
+    members        = ["luis.mendez@peoplefun.com", #with external members
+                      "luismendezescobar@gmail.com",
+                      "luis@luismendeze.com"]  
     allow_ext      = true      #to enable external members
   },
 
