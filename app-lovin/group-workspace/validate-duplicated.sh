@@ -1,16 +1,21 @@
 #!/bin/bash
 grep -oP '(?<=^|\n)[^\n]*(?= = )' 02-terraform.tfvars | sort | uniq -d| sed 's/^[ \t]*//' > groups_duplicated.txt
-cont_line=0
 duplicated=0
+declare -a ARRAY_N=()
 while read j
 do 
     cont_line=cont_line+1
     if [[ $j != 'owners' && $j != 'members' && $j != 'managers' ]]; then
         duplicated=1
-        break
+        ARRAY_N+=($j)         
     fi
 done < ./groups_duplicated.txt
 
 rm ./groups_duplicated.txt
-echo "the following group might be duplicated: $j"
+
+if [[ $duplicated == 1 ]]; then
+    echo "the following group(s) might be duplicated: ${ARRAY_N[@]}"
+else
+    echo "no duplicated groups where found, you may continue"
+fi
 

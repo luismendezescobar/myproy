@@ -32,8 +32,3 @@ module "group" {
   who_can_view_group             = each.value.who_can_view_group
   who_can_view_membership        = each.value.who_can_view_membership
 }
-/*
-output "group_output" {
-  value = module.group
-}
-*/
