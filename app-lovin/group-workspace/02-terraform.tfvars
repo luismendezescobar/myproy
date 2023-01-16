@@ -26,5 +26,7 @@ map_for_groups = {
   },
   grp-gcp-prod-project-369617-data-engineer = {        
   }
+  grp-gcp-prod-project-369617-secret-manager = {    
+  },
 }
 
