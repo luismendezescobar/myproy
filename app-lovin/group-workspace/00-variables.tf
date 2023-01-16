@@ -22,7 +22,7 @@ variable "map_for_groups" {
     archive_only                   = optional(bool, false)
     enable_collaborative_inbox     = optional(bool, false)
     include_custom_footer          = optional(bool, false)
-    include_in_global_address_list = optional(bool, true)
+    include_in_global_address_list = optional(bool, false)
     is_archived                    = optional(bool, false)
     members_can_post_as_the_group  = optional(bool, false)
     message_moderation_level       = optional(string, "MODERATE_NONE")
@@ -32,8 +32,8 @@ variable "map_for_groups" {
     who_can_assist_content         = optional(string, "NONE")
     who_can_contact_owner          = optional(string, "ALL_IN_DOMAIN_CAN_CONTACT")
     who_can_discover_group         = optional(string, "ALL_IN_DOMAIN_CAN_DISCOVER")
-    who_can_join                   = optional(string, "ALL_IN_DOMAIN_CAN_JOIN")
-    who_can_leave_group            = optional(string, "ALL_MEMBERS_CAN_LEAVE")
+    who_can_join                   = optional(string, "INVITED_CAN_JOIN")  #this setting is important
+    who_can_leave_group            = optional(string, "NONE_CAN_LEAVE")   #this setting is important
     who_can_moderate_content       = optional(string, "OWNERS_AND_MANAGERS")
     who_can_moderate_members       = optional(string, "OWNERS_AND_MANAGERS")
     who_can_view_group             = optional(string, "ALL_MEMBERS_CAN_VIEW")

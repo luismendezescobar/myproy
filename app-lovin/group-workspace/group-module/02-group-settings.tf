@@ -49,35 +49,3 @@ resource "googleworkspace_group_members" "group_members_add" {
     }    
   }
 }
-/*
-resource "googleworkspace_group_members" "group_managers_add" {  
-  group_id = googleworkspace_group.create_group.id
-  dynamic "members" {
-    for_each = toset(var.managers)
-    content {
-      email = members.value
-      role  = "MANAGER"
-    }    
-  }
-  depends_on = [
-    resource.googleworkspace_group_members.group_members_add
-  ]
-}
-resource "googleworkspace_group_members" "group_owners_add" {
-  count  = var.owners != null ? 1 : 0
-  group_id = googleworkspace_group.create_group.id
-  dynamic "members" {
-    for_each = var.owners
-    content {
-      email = members.value
-      role  = "OWNER"
-    }    
-  }
-  depends_on = [
-    resource.googleworkspace_group_members.group_owners_add
-  ]
-}
-*/
-
-
-
