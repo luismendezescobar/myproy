@@ -14,7 +14,12 @@ done < ./groups_duplicated.txt
 rm ./groups_duplicated.txt
 
 if [[ $duplicated == 1 ]]; then
-    echo "the following group(s) might be duplicated: ${ARRAY_N[@]}"
+    echo "the following group(s) might be duplicated:"
+    # Iterate over the array
+    for item in "${ARRAY_N[@]}"
+    do
+        echo $item
+    done
 else
     echo "no duplicated groups where found, you may continue"
 fi
