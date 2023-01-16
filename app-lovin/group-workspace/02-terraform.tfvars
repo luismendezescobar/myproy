@@ -19,8 +19,5 @@ map_for_groups = {
   },
   grp-gcp-prod-project-369617-data-engineer = {        
   },
-  grp-gcp-prod-project-369617-read-only ={
-    members      = ["test03@luismendeze.com"]
-  },
 }
 
