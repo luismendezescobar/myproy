@@ -28,7 +28,8 @@ map_for_groups = {
     members        = ["luis.mendez@peoplefun.com", #with external members
                       "luismendezescobar@gmail.com",
                       "luis@luismendeze.com",
-                      "test01@luismendeze.com",                   
+                      "test01@luismendeze.com",
+                      "test02@luismendeze.com",                   
                       ]  
     allow_ext      = true      #to enable external members
   },
