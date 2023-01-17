@@ -38,7 +38,7 @@ variable "map_for_groups" {
     who_can_moderate_members       = optional(string, "OWNERS_AND_MANAGERS")
     who_can_view_group             = optional(string, "ALL_MEMBERS_CAN_VIEW")
     who_can_view_membership        = optional(string, "ALL_MEMBERS_CAN_VIEW")
-    who_can_post_message           = optional(string, "OWNERS_AND_MANAGERS") 
+    who_can_post_message           = optional(string, "ALL_MANAGERS_CAN_POST") 
   }))
 }
 
