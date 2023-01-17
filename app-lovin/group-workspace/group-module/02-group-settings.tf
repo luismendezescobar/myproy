@@ -37,7 +37,7 @@ resource "googleworkspace_group_settings" "group_settings" {
   who_can_view_group             = var.who_can_view_group
   who_can_view_membership        = var.who_can_view_membership
   who_can_post_message           = var.who_can_post_message
-  #lifecycle { ignore_changes = [is_archived] }
+  lifecycle { ignore_changes = [is_archived] }
 }
 resource "googleworkspace_group_members" "group_members_add" {
   count  = var.members != null ? 1 : 0
