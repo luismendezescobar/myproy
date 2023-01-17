@@ -113,7 +113,6 @@ variable "who_can_view_membership" {
   description = "who_can_view_membership"
   default     = []
 }
-
 variable "who_can_post_message" {
   description = "who_can_post_message"
   default     = []  

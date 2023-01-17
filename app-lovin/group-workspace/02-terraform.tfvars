@@ -37,7 +37,7 @@ map_for_groups = {
     members      = ["test@luismendeze.com","test01@luismendeze.com",]
   },
   group_to_delete = {
-    members      = ["deleteme@luismendeze.com"]
+    members      = ["deleteme@luismendeze.com","test01@luismendeze.com"]
   }
 
 
