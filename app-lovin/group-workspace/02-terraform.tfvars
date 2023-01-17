@@ -30,6 +30,7 @@ map_for_groups = {
                       "luis@luismendeze.com",
                       "test01@luismendeze.com",
                       "test02@luismendeze.com",                   
+                      "test03@luismendeze.com",
                       ]  
     allow_ext      = true      #to enable external members
   },
