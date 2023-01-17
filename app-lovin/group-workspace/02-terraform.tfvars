@@ -34,6 +34,9 @@ map_for_groups = {
                       ]  
     allow_ext      = true      #to enable external members
   },
+  gcp-new-group-01 = {
+    members      = ["test@luismendeze.com"]
+  }
 
 }
 
