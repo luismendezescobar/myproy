@@ -34,7 +34,7 @@ map_for_groups = {
     allow_ext      = true      #to enable external members
   },
   gcp-new-group-01 = {
-    members      = ["test@luismendeze.com"]
+    members      = ["test@luismendeze.com","test01@luismendeze.com",]
   }
 
 }
