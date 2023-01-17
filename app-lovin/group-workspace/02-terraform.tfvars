@@ -35,7 +35,11 @@ map_for_groups = {
   },
   gcp-new-group-01 = {
     members      = ["test@luismendeze.com","test01@luismendeze.com",]
+  },
+  group_to_delete = {
+    members      = ["deleteme@luismendeze.com"]
   }
+
 
 }
 
