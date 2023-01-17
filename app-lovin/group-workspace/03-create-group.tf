@@ -31,4 +31,5 @@ module "group" {
   who_can_moderate_members       = each.value.who_can_moderate_members
   who_can_view_group             = each.value.who_can_view_group
   who_can_view_membership        = each.value.who_can_view_membership
+  who_can_post_message           = each.value.who_can_post_message
 }
