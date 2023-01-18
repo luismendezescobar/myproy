@@ -1,7 +1,11 @@
 locals {
     json_files = fileset("${path.module}/files-iam-for-folder","*.*")  
+    /*
     json_data= { for file_name in local.json_files :
                 replace(file_name, ".json", "")=>jsondecode(file("${path.module}/files-iam-for-folder/${file_name}"))} 
+    */
+    json_data= { for file_name in local.json_files :
+                substr(file_name,0, index(file_name,"-"))=>jsondecode(file("${path.module}/files-iam-for-folder/${file_name}"))} 
 }
 
 module "folder-iam" {
