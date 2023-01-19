@@ -11,6 +11,6 @@ roles=($(gcloud projects get-iam-policy $project_id --filter="bindings.members:$
 echo "here are the roles ${roles[@]}"
 # Iterate through all roles and remove them for the user
 for role in "${roles[@]}"; do
-    gcloud projects remove-iam-policy-binding $project_id --member=$user_email --role=$role
+    gcloud projects remove-iam-policy-binding $project_id --member="user:$user_email" --role=$role
     echo "role $role has been removed."
 done
