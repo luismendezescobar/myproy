@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the project ID
-project_id=pf-tnt-dev
+project_id="pf-tnt-dev"
 
 # Get the user email from the command line
 user_email=$1
