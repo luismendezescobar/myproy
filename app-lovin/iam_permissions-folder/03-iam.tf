@@ -3,9 +3,13 @@ locals {
     /*
     json_data= { for file_name in local.json_files :
                 replace(file_name, ".json", "")=>jsondecode(file("${path.module}/files-iam-for-folder/${file_name}"))} 
+    
+    json_data= { for file_name in local.json_files :
+                substr(file_name,0,index(file_name,"-"))=>jsondecode(file("${path.module}/files-iam-for-folder/${file_name}"))} 
     */
     json_data= { for file_name in local.json_files :
-                substr(file_name,0, index(file_name,"-"))=>jsondecode(file("${path.module}/files-iam-for-folder/${file_name}"))} 
+                replace(file_name, substr(file_name, strindex(file_name, "-"), length(file_name)), "xyz")=>jsondecode(file("${path.module}/files-iam-for-folder/${file_name}"))} 
+     
 }
 
 module "folder-iam" {
