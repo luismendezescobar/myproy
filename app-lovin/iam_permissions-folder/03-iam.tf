@@ -5,7 +5,7 @@ locals {
                 replace(file_name, ".json", "")=>jsondecode(file("${path.module}/files-iam-for-folder/${file_name}"))} 
     */
     json_data= { for file_name in local.json_files :
-                first(split(file_name, "-"))=>jsondecode(file("${path.module}/files-iam-for-folder/${file_name}"))} 
+                substr(file_name, 0, length(split(file_name, "-")[0]))=>jsondecode(file("${path.module}/files-iam-for-folder/${file_name}"))} 
     
      
 }
