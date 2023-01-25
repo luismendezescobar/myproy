@@ -1,12 +1,12 @@
 import google.auth
 from google.auth.transport.requests import Request
-from google.cloud import iam_v1
+from google.cloud import iam
 
 # Set the project ID
 project_id = "blocks-2"
 
 # Create a client for the IAM service
-client = iam_v1.IamClient()
+client = iam.IamClient()
 
 # Define the list of permissions
 permissions = ["appengine.services.list"]
