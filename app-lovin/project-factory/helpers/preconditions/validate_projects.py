@@ -26,4 +26,4 @@ for filename in os.listdir(directory):
                 sys.exit(1)
             else:
                 print("Child script succeeded.")  
-                sys.exit(0)
+                #sys.exit(0)
