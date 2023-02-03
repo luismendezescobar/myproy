@@ -1,3 +1,0 @@
-is_global = true
-build_property.RootNamespace = BookInfo.Details
-build_property.ProjectDir = c:\repos\personal\myproy\kubernetes\istio\03\demos\src\details-api\
