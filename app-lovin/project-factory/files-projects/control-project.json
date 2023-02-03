@@ -1,0 +1,11 @@
+{
+    "org_id": "65202286851",
+    "billing_account": "016AE0-A1405C-5DF4D8",       
+    "folder_id": "250869018475",        
+    "labels" : {"project-owner" :"luis","cost-center": "123456", "tech-owner" :"pedro" },
+    "auto_create_network": "false",
+    "shared_vpc_subnets": ["projects/central-gcp-vpc-non-prod-37070/regions/us-west1/subnetworks/subnet-01"],        
+    "activate_apis" :["compute.googleapis.com"],
+    "essential_contacts": {"owner_email":["Nicolle.Hanson-Whitlock@luismendeze.com"],"tech_email":["Marc.Raymond@luismendeze.com"] }    
+
+}
