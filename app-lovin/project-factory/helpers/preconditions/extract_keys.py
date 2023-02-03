@@ -2,6 +2,8 @@
 
 import os
 import json
+import subprocess
+
 
 directory = '../../files-projects'
 
@@ -14,3 +16,10 @@ for filename in os.listdir(directory):
             billing_account = data.get('billing_account')
             folder_id = data.get('folder_id')
             print(f"org_id: {org_id}, billing_account: {billing_account}, folder_id: {folder_id}")
+
+            result = subprocess.run(['python', 'preconditions.py','--org_id',org_id,'--billing_account',billing_account,'--folder_id',folder_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            print(f"Exit code: {result.returncode}")
+            if result.returncode != 0:
+                print("Child script failed.")
+            else:
+                print("Child script succeeded.")  
