@@ -3,7 +3,7 @@
 import os
 import json
 
-directory = '/path/to/directory'
+directory = '../../files-projects'
 
 for filename in os.listdir(directory):
     if filename.endswith('.json'):
