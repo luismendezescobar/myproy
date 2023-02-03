@@ -1,12 +1,8 @@
-{
-    "name": "service-project-luis",
+{    
     "org_id": "65202286851",
     "billing_account": "",
     "svpc_host_project_id": "",        
-    "group_name": "gcp-service-project-luis",
-    "group_role": "roles/viewer",
     "folder_id": "250869018475",    
-    "sa_group" : "gcp-service-project-luis@luismendeze.com",
     "labels" : {"project-owner" :"luis","cost-center": "123456", "tech-owner" :"pedro" },
     "auto_create_network": "true",
     "shared_vpc_subnets": [],        
