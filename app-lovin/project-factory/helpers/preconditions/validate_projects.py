@@ -25,5 +25,5 @@ for filename in os.listdir(directory):
                 print(f"Child script failed. Please validate the file:{filename}")
                 sys.exit(1)
             else:
-                print("Child script succeeded.")  
+                print(f"Child script succeeded. Project:{filename}")  
                 #sys.exit(0)
