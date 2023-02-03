@@ -11,22 +11,21 @@ def validate_keys_exists(file_path):
         data = json.load(file)
         org_id = data.get('org_id', None)
         billing_account = data.get('billing_account', None)
-        folder_id = data.get('folder_id', None)
+        svpc_host_project_id = data.get('svpc_host_project_id', None)   
+        folder_id = data.get('folder_id', None)        
+        labels = data.get('labels', None)
+        auto_create_network = data.get('auto_create_network', None)
+        shared_vpc_subnets = data.get('shared_vpc_subnets', None)
+        activate_apis = data.get('activate_apis', None)
+        essential_contacts = data.get('essential_contacts', None)
         
-        if org_id and billing_account and folder_id:
-            print(f"org_id: {org_id}")
-            print(f"billing_account: {billing_account}")
-            print(f"folder_id: {folder_id}")
+        
+        if org_id and billing_account and svpc_host_project_id and folder_id and labels and auto_create_network and shared_vpc_subnets and activate_apis and essential_contacts:
+            #good, all the keys are there..
             return 0
         else:
             #print("One or more keys were not found in the file.")
             return 1
-
-
-
-
-
-
 
 
 directory = '../../files-projects'
@@ -36,8 +35,12 @@ for filename in os.listdir(directory):
         file_path = os.path.join(directory, filename)
         
         if(validate_keys_exists(file_path)):
-            print(f"One or more keys were not found in the file.{filename}")
-            sys.exit(1)
+            with open("file_details.txt", "w") as f:                
+                print(f"One or more keys were not found in the file: {filename}")
+                f.write(f"One or more keys were not found in the file: {filename}")
+                with open("result.txt", "w") as g:
+                    g.write("0")                                
+                sys.exit(1)
 
         
         
