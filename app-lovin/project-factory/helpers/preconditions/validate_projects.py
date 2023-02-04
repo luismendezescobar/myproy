@@ -23,10 +23,7 @@ def validate_keys_exists(file_path):
 
 directory = '../../files-projects'
 ### in this part we iterate over all the directory with the json files
-list_of_files=os.listdir(directory)
-print(list_of_files)
-for filename in list_of_files:
-    print(filename)
+for filename in os.listdir(directory):
     if filename.endswith('.json'):
         #print(filename)
         file_path = os.path.join(directory, filename)
@@ -84,7 +81,7 @@ for filename in list_of_files:
             ## provided to the keys: org_id, billing_account and folder_id exist inside of the google cloud organization
             ## these 3 keys would be validated in initial "if", in the "else" part it will be validated the initial 3 keys
             ## plus the shared vpc host id represented by the variable: svpc_host_project_id
-            '''
+            
             print(f"org_id: {org_id}, billing_account: {billing_account}, folder_id: {folder_id}")
             if svpc_host_project_id=="":            
                 result = subprocess.run(['python', 'preconditions.py','--org_id',org_id,'--billing_account',billing_account,'--folder_id',folder_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -99,8 +96,7 @@ for filename in list_of_files:
                 else:
                     print(f"Child script succeeded. Project:{filename}")  
                     with open("result.txt", "w") as h:
-                        h.write("0")       
-                    sys.exit(0)
+                        h.write("0")               
             else:
                 result = subprocess.run(['python', 'preconditions.py','--org_id',org_id,'--billing_account',billing_account,'--folder_id',folder_id,'--shared_vpc',svpc_host_project_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 if result.returncode != 0:
@@ -114,7 +110,8 @@ for filename in list_of_files:
                     print(f"Child script succeeded. Project:{filename}")  
                     with open("result.txt", "w") as h:
                         h.write("0")       
-            '''
-
+            
+#all good
+#sys.exit(0)
 
 
