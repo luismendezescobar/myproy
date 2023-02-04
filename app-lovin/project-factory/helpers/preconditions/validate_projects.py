@@ -112,6 +112,7 @@ for filename in os.listdir(directory):
                         h.write("0")       
             
 #all good
-#sys.exit(0)
+print("all the file projects are valid")
+
 
 
