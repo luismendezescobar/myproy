@@ -61,7 +61,7 @@ for filename in os.listdir(directory):
                     print(f"auto_create_network is in blank, please enter a valid value like true or false. File:{filename}")
                     g.write(f"folder_id is in blank, please enter a valid folder_id. File:{filename}")                        
                 #special validation only for auto_create_network value, it must be either true or false
-                if auto_create_network!="true" or auto_create_network!="false":
+                if auto_create_network!="true" and auto_create_network!="false":
                     print(f"auto_create_network values must be either: true or false. File:{filename}")
                     g.write(f"auto_create_network values must be either: true or false. File:{filename}")                        
                 
