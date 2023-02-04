@@ -42,7 +42,7 @@ for filename in list_of_files:
         ### here we open each one of the files and validate that keys are not in blank
         ### we only care of 3 keys: org_id, billing_account, folder_id, auto_create_network
         ###
-        '''
+        
         with open(file_path, 'r') as f:
             data = json.load(f)
             org_id = data.get('org_id')
@@ -84,6 +84,7 @@ for filename in list_of_files:
             ## provided to the keys: org_id, billing_account and folder_id exist inside of the google cloud organization
             ## these 3 keys would be validated in initial "if", in the "else" part it will be validated the initial 3 keys
             ## plus the shared vpc host id represented by the variable: svpc_host_project_id
+            '''
             print(f"org_id: {org_id}, billing_account: {billing_account}, folder_id: {folder_id}")
             if svpc_host_project_id=="":            
                 result = subprocess.run(['python', 'preconditions.py','--org_id',org_id,'--billing_account',billing_account,'--folder_id',folder_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
