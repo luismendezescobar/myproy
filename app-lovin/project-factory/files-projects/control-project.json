@@ -2,7 +2,7 @@
     "org_id": "65202286851",
     "billing_account": "016AE0-A1405C-5DF4D8",
     "svpc_host_project_id": "central-gcp-vpc-non-prod-37070",       
-    "folder_id": "250869018476",        
+    "folder_id": "250869018475",        
     "labels" : {"project-owner" :"luis","cost-center": "123456", "tech-owner" :"pedro" },
     "auto_create_network": "false",
     "shared_vpc_subnets": ["projects/central-gcp-vpc-non-prod-37070/regions/us-west1/subnetworks/subnet-01"],        
