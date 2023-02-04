@@ -26,6 +26,7 @@ directory = '../../files-projects'
 list_of_files=os.listdir(directory)
 print(list_of_files)
 for filename in list_of_files:
+    print(filename)
     if filename.endswith('.json'):
         #print(filename)
         file_path = os.path.join(directory, filename)
