@@ -1,5 +1,6 @@
 {    
     "org_id": "65202286851",
+    "billing_account": "",
     "svpc_host_project_id": "",        
     "folder_id": "250869018475",    
     "labels" : {"project-owner" :"luis","cost-center": "123456", "tech-owner" :"pedro" },
