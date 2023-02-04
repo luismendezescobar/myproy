@@ -27,6 +27,7 @@ list_of_files=os.listdir(directory)
 print(list_of_files)
 for filename in list_of_files:
     print(filename)
+    '''
     if filename.endswith('.json'):
         #print(filename)
         file_path = os.path.join(directory, filename)
@@ -112,7 +113,7 @@ for filename in list_of_files:
                     print(f"Child script succeeded. Project:{filename}")  
                     with open("result.txt", "w") as h:
                         h.write("0")       
-
+    '''
 
 
 
