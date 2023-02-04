@@ -9,6 +9,7 @@ import sys
 def validate_keys_exists(file_path):
     with open(file_path, 'r') as file:
         data = json.load(file)
+        '''
         org_id = data.get('org_id', None)
         billing_account = data.get('billing_account', '')
         svpc_host_project_id = data.get('svpc_host_project_id', None)   
@@ -21,16 +22,16 @@ def validate_keys_exists(file_path):
 
         print(f"billing account value:{billing_account}")
         return 1
-        
         '''
-        if org_id and billing_account and svpc_host_project_id and folder_id and labels and auto_create_network and shared_vpc_subnets and activate_apis and essential_contacts:
+        
+        if "org_id" in data and "billing_account" in data and "svpc_host_project_id" in data and "folder_id" in data and "labels" in data and "auto_create_network" in data and "shared_vpc_subnets" in data and "activate_apis" in data and "essential_contacts" in data:
             #good, all the keys are there..
             return 0
         else:
             #print("One or more keys were not found in the file.")
-            print(org_id,billing_account,svpc_host_project_id,folder_id,labels,auto_create_network,shared_vpc_subnets,activate_apis,essential_contacts)
+            #print(org_id,billing_account,svpc_host_project_id,folder_id,labels,auto_create_network,shared_vpc_subnets,activate_apis,essential_contacts)
             return 1
-        '''    
+            
 
 directory = '../../files-projects'
 
