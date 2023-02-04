@@ -27,7 +27,6 @@ list_of_files=os.listdir(directory)
 print(list_of_files)
 for filename in list_of_files:
     print(filename)
-    '''
     if filename.endswith('.json'):
         #print(filename)
         file_path = os.path.join(directory, filename)
@@ -43,6 +42,7 @@ for filename in list_of_files:
         ### here we open each one of the files and validate that keys are not in blank
         ### we only care of 3 keys: org_id, billing_account, folder_id, auto_create_network
         ###
+        '''
         with open(file_path, 'r') as f:
             data = json.load(f)
             org_id = data.get('org_id')
@@ -113,7 +113,7 @@ for filename in list_of_files:
                     print(f"Child script succeeded. Project:{filename}")  
                     with open("result.txt", "w") as h:
                         h.write("0")       
-    '''
+            '''
 
 
 
