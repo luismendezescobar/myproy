@@ -39,7 +39,7 @@ for filename in os.listdir(directory):
                 print(f"One or more keys were not found in the file: {filename}")
                 f.write(f"One or more keys were not found in the file: {filename}")
                 with open("result.txt", "w") as g:
-                    g.write("0")                                
+                    g.write("1")                                
                 sys.exit(1)
 
         
@@ -49,13 +49,20 @@ for filename in os.listdir(directory):
             org_id = data.get('org_id')
             billing_account = data.get('billing_account')
             folder_id = data.get('folder_id')
-            if org_id=="":
-                print(f"org_id is in blank, please enter a valid org_id. File:{filename}")                        
-            if billing_account=="":
-                print(f"billing_account is in blank, please enter a valid billing_account. File:{filename}")                        
-            if folder_id=="":
-                print(f"folder_id is in blank, please enter a valid folder_id. File:{filename}")                        
-
+            
+            with open("file_details.txt", "w") as f: 
+                if org_id=="":
+                    print(f"org_id is in blank, please enter a valid org_id. File:{filename}")
+                    f.write(f"org_id is in blank, please enter a valid org_id. File:{filename}")                        
+                if billing_account=="":
+                    print(f"billing_account is in blank, please enter a valid billing_account. File:{filename}")                        
+                    f.write(f"billing_account is in blank, please enter a valid billing_account. File:{filename}")
+                if folder_id=="":
+                    print(f"folder_id is in blank, please enter a valid folder_id. File:{filename}")
+                    f.write(f"folder_id is in blank, please enter a valid folder_id. File:{filename}")                        
+                with open("result.txt", "w") as g:
+                    g.write("1")                                
+                sys.exit(1)
 
             print(f"org_id: {org_id}, billing_account: {billing_account}, folder_id: {folder_id}")
 
