@@ -4,7 +4,7 @@
     "svpc_host_project_id": "",        
     "folder_id": "",    
     "labels" : {"project-owner" :"luis","cost-center": "123456", "tech-owner" :"pedro" },
-    "auto_create_network": "true",
+    "auto_create_network": "true?",
     "shared_vpc_subnets": [],        
     "activate_apis" :[],
     "essential_contacts": {"owner_email":["Nicolle.Hanson-Whitlock@luismendeze.com"],"tech_email":["Marc.Raymond@luismendeze.com"] }    
