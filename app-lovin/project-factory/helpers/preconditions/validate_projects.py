@@ -38,7 +38,6 @@ for filename in os.listdir(directory):
         ### here we open each one of the files and validate that keys are not in blank
         ### we only care of 3 keys: org_id, billing_account, folder_id, auto_create_network
         ###
-
         with open(file_path, 'r') as f:
             data = json.load(f)
             org_id = data.get('org_id')
@@ -47,27 +46,34 @@ for filename in os.listdir(directory):
             svpc_host_project_id = data.get('svpc_host_project_id')
             auto_create_network=data.get('auto_create_network')
             
+            final_result=0
             with open("file_details.txt", "w") as g: 
                 if org_id=="":
                     print(f"org_id is in blank, please enter a valid org_id. File:{filename}")
                     g.write(f"org_id is in blank, please enter a valid org_id. File:{filename}")                        
+                    final_result=1
                 if billing_account=="":
                     print(f"billing_account is in blank, please enter a valid billing_account. File:{filename}")                        
                     g.write(f"billing_account is in blank, please enter a valid billing_account. File:{filename}")
+                    final_result=1
                 if folder_id=="":
                     print(f"folder_id is in blank, please enter a valid folder_id. File:{filename}")
                     g.write(f"folder_id is in blank, please enter a valid folder_id. File:{filename}")                        
+                    final_result=1
                 if auto_create_network=="":
                     print(f"auto_create_network is in blank, please enter a valid value like true or false. File:{filename}")
                     g.write(f"folder_id is in blank, please enter a valid folder_id. File:{filename}")                        
+                    final_result=1
                 #special validation only for auto_create_network value, it must be either true or false
                 if auto_create_network!="true" and auto_create_network!="false":
                     print(f"auto_create_network values must be either: true or false. File:{filename}")
-                    g.write(f"auto_create_network values must be either: true or false. File:{filename}")                        
+                    g.write(f"auto_create_network values must be either: true or false. File:{filename}")
+                    final_result=1                        
                 
-                with open("result.txt", "w") as h:
-                    h.write("1")                                
-                sys.exit(1)
+                if final_result==1:
+                    with open("result.txt", "w") as h:
+                        h.write("1")                                
+                    sys.exit(1)
 
             ## from here is where we are going to run the other script that is going to validate if the values
             ## provided to the keys: org_id, billing_account and folder_id exist inside of the google cloud organization
