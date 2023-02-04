@@ -23,8 +23,9 @@ def validate_keys_exists(file_path):
 
 directory = '../../files-projects'
 ### in this part we iterate over all the directory with the json files
-for filename in os.listdir(directory):
-    print(os.listdir(directory))
+list_of_files=os.listdir(directory)
+print(list_of_files)
+for filename in list_of_files:
     if filename.endswith('.json'):
         #print(filename)
         file_path = os.path.join(directory, filename)
