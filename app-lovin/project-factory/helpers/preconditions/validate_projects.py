@@ -25,6 +25,7 @@ def validate_keys_exists(file_path):
             return 0
         else:
             #print("One or more keys were not found in the file.")
+            print(org_id,billing_account,svpc_host_project_id,folder_id,labels,auto_create_network,shared_vpc_subnets,activate_apis,essential_contacts)
             return 1
 
 
