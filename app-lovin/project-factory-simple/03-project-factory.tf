@@ -10,7 +10,7 @@ module "project-factory" {
   source                = "./modules/core_project_factory"  
   
   for_each              = local.json_data
-  name                  = each.value.key
+  name                  = each.key
   project_id            = each.value.project_id
   org_id                = each.value.org_id
   billing_account       = each.value.billing_account
