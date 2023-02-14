@@ -1,9 +1,9 @@
 resource "google_project" "main" {
   name                = var.name
-  project_id          = local.temp_project_id
-  org_id              = local.project_org_id
+  project_id          = var.project_id
+  org_id              = var.org_id
   billing_account     = var.billing_account
-  folder_id           = local.project_folder_id  
+  folder_id           = var.folder_id  
   auto_create_network = var.auto_create_network
   labels              = var.labels
 }
