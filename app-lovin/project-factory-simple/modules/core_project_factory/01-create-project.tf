@@ -7,21 +7,9 @@ resource "google_project" "main" {
   auto_create_network = var.auto_create_network
   labels              = var.labels
 }
-
-
 /******************************************
   APIs configuration
  *****************************************/
-/*
-module "project_services" {
-  source = "../project_services"
-
-  project_id                  = google_project.main.project_id
-  activate_apis               = var.activate_apis
-  disable_services_on_destroy = var.disable_services_on_destroy
-  disable_dependent_services  = var.disable_dependent_services
-}
-*/
 resource "google_project_service" "project_services" {
   for_each                   = toset(var.activate_apis)
   project                    = google_project.main.project_id
