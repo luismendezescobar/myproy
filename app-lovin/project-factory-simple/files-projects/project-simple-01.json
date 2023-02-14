@@ -1,0 +1,9 @@
+{    
+    "project_id" : "project-simple-01",
+    "org_id": "65202286851",
+    "billing_account": "016AE0-A1405C-5DF4D8",    
+    "folder_id": "250869018475",    
+    "labels" : {"project-owner" :"luis","tech-owner" :"pedro" },
+    "auto_create_network": "true",    
+    "activate_apis" :["compute.googleapis.com"]    
+}
