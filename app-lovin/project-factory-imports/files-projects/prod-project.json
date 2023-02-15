@@ -5,5 +5,5 @@
     "folder_id": "646893177009",    
     "labels" : {},
     "auto_create_network": "true",    
-    "activate_apis" :["compute.googleapis.com","bigquery.googleapis.com"]    
+    "activate_apis" :["compute.googleapis.com","bigquery.googleapis.com","compute.googleapis.com"]    
 }
