@@ -8,21 +8,12 @@ variable "region" {
   default = "us-east1"
 }
 
-variable "map_for_project_factory" {
+variable "map_to_subnet" {
   type = map(object({
-    name              = string
-    billing_account   = string
-    create_group      = bool
-    folder_id         = string
-    group_name        = string
-    group_role        = string    
-    org_id            = string
-    random_project_id = bool
-    sa_group          = string
-    shared_vpc        = string
-    shared_vpc_subnets= list(string)
+    project       = string
+    subnet        = string
+    subnet_region = string
+    principal     = list(string)
   }))
-  default ={}
-  description = "An object mapping of project factory assignment"
+  description = "An object mapping of IAM assignment on a subnet"
 }
-

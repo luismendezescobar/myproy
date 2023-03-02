@@ -1,0 +1,21 @@
+npm -i          //to install locally a library
+
+npm -g          //to install globally a library, it will be available in any
+                //directory of your computer no matter where you install it.
+                //this is usefull for frontend libraries , example react or gatsby
+                //try to avoid them as much as possible!! because introduces
+                //bugs and it's hard to find them
+
+npm start       //to start nodemon that is listed in the scripts section 
+                //of the package.json file
+                     "scripts": {
+                            "start": "nodemon app.js",
+                            "dev": "nodemon app.js"
+                        }, 
+
+
+npm install     //this will install all the libraries that are listed in the
+                //dependencies section of the package.json file , this is
+                //usefull when running the program in a clean environment that is used
+                /for another developer or a new container, that way you don't need
+                //to push all the modules(libraries) to github

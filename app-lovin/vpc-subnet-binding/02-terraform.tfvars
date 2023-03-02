@@ -1,33 +1,25 @@
-
-map_for_project_factory = {
-
-  service_project01 = {
-    name              = "service-pf-test-1"
-    billing_account   = "016AE0-A1405C-5DF4D8"
-    create_group      = true
-    folder_id         = "250869018475"
-    group_name        = "service-pf-test-1"
-    group_role        = "roles/viewer"
-    org_id            = "65202286851"
-    random_project_id = true
-    sa_group          = "service-pf-test-1@luismendeze.com"
-    shared_vpc        = "central-gcp-vpc-non-prod-37070"
-    shared_vpc_subnets = [
-        "projects/central-gcp-vpc-non-prod-37070/regions/us-west1/subnetworks/subnet-01",
-        "projects/central-gcp-vpc-non-prod-37070/regions/us-central1/subnetworks/subnet-02",
+map_to_subnet = {
+  /*
+  subnet-name-10-x-x-x-20 = {
+    project       = "shared-vpc-project"
+    subnet        = "subnet-name-10-x-x-x-20"
+    subnet_region = "us-central"
+    principal = [
+      "serviceAccount:service-172474694@dataflow-service-producer-prod.iam.gserviceaccount.com",
     ]
-
   },
-  
+  */
+  subnet-02 = {
+    project       = "central-gcp-vpc-non-prod-37070"
+    subnet        = "subnet-02"
+    subnet_region = "us-central1"
+    principal = [
+      "serviceAccount:410553540498-compute@developer.gserviceaccount.com",
+    ]
+  },
 
 
 }
-
-
-
-
-
-
 
 
 
