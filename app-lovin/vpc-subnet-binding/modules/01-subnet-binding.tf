@@ -3,7 +3,7 @@ https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/c
 */
 resource "google_compute_subnetwork_iam_binding" "binding" {
   project = var.project
-  region = var.region
+  region = var.subnet_region
   subnetwork = var.subnet
   role = "roles/compute.networkUser"
   members = var.principal

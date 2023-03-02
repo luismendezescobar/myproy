@@ -5,7 +5,7 @@ module "subnet_iam" {
   
   project       = each.value.project
   subnet        = each.value.subnet
-  subnet_region = each.value.region
+  subnet_region = each.value.subnet_region
   principal     = each.value.principal
 
 }
