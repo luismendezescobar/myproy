@@ -18,6 +18,7 @@ map_to_subnet = {
       "serviceAccount:sa-test@new-luis-id.iam.gserviceaccount.com",
     ]
   },
+  /*
   subnet-us-central1-10-10-20-0-24 = {
     project       = "net-shared-vpc-prod-a72t"
     subnet        = "subnet-us-central1-10-10-20-0-24"
@@ -26,7 +27,7 @@ map_to_subnet = {
       "serviceAccount:638944924927-compute@developer.gserviceaccount.com",      
     ]
   },
-
+*/
 }
 
 
