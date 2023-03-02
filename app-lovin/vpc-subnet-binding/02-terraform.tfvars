@@ -3,7 +3,7 @@ map_to_subnet = {
   subnet-name-10-x-x-x-20 = {
     project       = "shared-vpc-project"
     subnet        = "subnet-name-10-x-x-x-20"
-    subnet_region = "us-central"
+    subnet_region = "us-central1"
     principal = [
       "serviceAccount:service-172474694@dataflow-service-producer-prod.iam.gserviceaccount.com",
     ]
@@ -15,6 +15,7 @@ map_to_subnet = {
     subnet_region = "us-central1"
     principal = [
       "serviceAccount:410553540498-compute@developer.gserviceaccount.com",
+      "serviceAccount:sa-test@new-luis-id.iam.gserviceaccount.com",
     ]
   },
 
