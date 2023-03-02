@@ -26,7 +26,7 @@ map_vpc_config ={
                 ip_cidr_range = "192.168.80.0/24"
             },
         ]
-        subnet-us-west1-10.10.21.0-24 = []
+        subnet-us-west1-10-10-21-0-24 = []
     }    
     routes = []
   },  
