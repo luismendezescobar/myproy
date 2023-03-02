@@ -2,7 +2,7 @@
 https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork_iam
 */
 
-/*
+
 resource "google_compute_subnetwork_iam_binding" "binding" {
   project = var.project
   region = var.subnet_region
@@ -10,8 +10,8 @@ resource "google_compute_subnetwork_iam_binding" "binding" {
   role = "roles/compute.networkUser"
   members = var.principal
 }
-*/
 
+/*
 resource "google_compute_subnetwork_iam_member" "service_shared_vpc_subnet_users" {
   for_each = toset(var.principal)
   project = var.project
@@ -20,7 +20,7 @@ resource "google_compute_subnetwork_iam_member" "service_shared_vpc_subnet_users
   role = "roles/compute.networkUser"
   member = each.value
 }
-
+*/
 /*
 resource "google_compute_subnetwork_iam_member" "binding" {  
   project = var.project
