@@ -19,3 +19,12 @@ https://github.com/terraform-google-modules/terraform-google-network/tree/master
 https://github.com/terraform-google-modules/terraform-google-network/tree/master/modules/subnets
 https://cloud.google.com/architecture/best-practices-vpc-design#general_principles_and_first_steps
 */
+
+map_to_vpc_prod = {
+  net-shared-vpc-prod-a72t-vpc-core-prod = {
+    project_id       = "net-shared-vpc-prod-a72t"
+    network_name     = "vpc-core-prod"
+    shared_vpc_host  = false   //this needs to be removed
+  },  
+
+}
