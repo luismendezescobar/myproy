@@ -21,11 +21,20 @@ resource "google_compute_subnetwork_iam_member" "service_shared_vpc_subnet_users
   member = each.value
 }
 */
-
+/*
 resource "google_compute_subnetwork_iam_member" "service_shared_vpc_subnet_users" {  
   project = var.project
   region = var.subnet_region
   subnetwork = var.subnet
   role = "roles/compute.networkUser"
   member = "serviceAccount:sa-test@new-luis-id.iam.gserviceaccount.com"
+}
+*/
+
+resource "google_compute_subnetwork_iam_binding" "service_shared_vpc_subnet_users" {  
+  project = var.project
+  region = var.subnet_region
+  subnetwork = var.subnet
+  role = "roles/compute.networkUser"
+  members = ["serviceAccount:sa-test@new-luis-id.iam.gserviceaccount.com"]
 }
