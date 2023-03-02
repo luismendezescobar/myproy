@@ -12,3 +12,5 @@ module "map_to_vpc_non_prod_module" {
     network_name = each.value.network_name
     shared_vpc_host = each.value.shared_vpc_host
 }
+
+
