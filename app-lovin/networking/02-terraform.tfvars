@@ -11,7 +11,7 @@ map_vpc_config ={
             subnet_private_access = "true"
         },
         {
-            subnet_name           = "subnet-us-west1-10.10.21.0-24"
+            subnet_name           = "subnet-us-west1-10-10-21-0-24"
             subnet_ip             = "10.10.21.0/24"
             subnet_region         = "us-west1"
             subnet_private_access = "true"
