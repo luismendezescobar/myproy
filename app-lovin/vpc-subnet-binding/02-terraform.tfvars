@@ -27,6 +27,15 @@ map_to_subnet = {
       "serviceAccount:638944924927-compute@developer.gserviceaccount.com",      
     ]
   },
+  subnet-us-west1-10-10-21-0-24 = {
+    project       = "net-shared-vpc-prod-a72t"
+    subnet        = "subnet-us-west1-10-10-21-0-24"
+    subnet_region = "us-central1"
+    principal = [
+      "serviceAccount:638944924927-compute@developer.gserviceaccount.com",      
+    ]
+  },
+
 
 }
 

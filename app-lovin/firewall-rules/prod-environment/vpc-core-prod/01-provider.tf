@@ -5,7 +5,7 @@ https://github.com/terraform-google-modules/terraform-google-project-factory/blo
 terraform {
   backend "gcs" {
     bucket  = "app-lovin-tf-states"
-    prefix  = "firewall-prod-environment"
+    prefix  = "firewall-vpc-core-prod"
   }  
   
   required_providers { 
