@@ -1,11 +1,11 @@
 variable "project_id" {
   type=string
-  default = "central-gcp-vpc-non-prod-37070"
+  default = "net-shared-vpc-prod-a72t"
 }
 
-variable "network_name" {
+variable "vpc_name" {
   type=string
-  default = "vpc-core-non-prod"
+  default = "vpc-core-prod"
 }
 
 variable "region" {
