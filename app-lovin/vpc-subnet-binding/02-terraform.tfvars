@@ -30,7 +30,7 @@ map_to_subnet = {
   subnet-us-west1-10-10-21-0-24 = {
     project       = "net-shared-vpc-prod-a72t"
     subnet        = "subnet-us-west1-10-10-21-0-24"
-    subnet_region = "us-central1"
+    subnet_region = "us-west1"
     principal = [
       "serviceAccount:638944924927-compute@developer.gserviceaccount.com",      
     ]
