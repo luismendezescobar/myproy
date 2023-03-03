@@ -25,6 +25,7 @@ map_to_subnet = {
     subnet_region = "us-central1"
     principal = [
       "serviceAccount:638944924927-compute@developer.gserviceaccount.com",      
+      "user:test@luismendeze.com"
     ]
   },
   subnet-us-west1-10-10-21-0-24 = {
