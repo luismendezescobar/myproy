@@ -1,7 +1,7 @@
 
 rules = [
   {
-    name                    = "core-vpc-allow-ssh-ingress"
+    name                    = "vpc-core-prod-allow-ssh-ingress"
     description             = null
     direction               = "INGRESS"
     priority                = null
@@ -20,7 +20,7 @@ rules = [
     }
   },
   {
-    name                    = "core-vpc-allow-https-ingress"
+    name                    = "vpc-core-prod-allow-https-ingress"
     description             = null
     direction               = "INGRESS"
     priority                = null
