@@ -15,5 +15,9 @@ steps:
   - '--platform'
   - 'managed'
   - '--allow-unauthenticated'
+  - '--memory'
+  - '4G'
+  - '--cpu'
+  - '--2'
 images:
 - 'gcr.io/$PROJECT_ID/pets-adopt:$COMMIT_SHA'
