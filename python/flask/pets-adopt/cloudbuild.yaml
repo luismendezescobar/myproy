@@ -21,5 +21,7 @@ steps:
   - '2'
   - '--max-instances'
   - '1'
+  - '--port'
+  - '80'
 images:
 - 'gcr.io/$PROJECT_ID/pets-adopt:$COMMIT_SHA'
