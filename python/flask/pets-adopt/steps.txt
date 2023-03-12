@@ -53,3 +53,6 @@ over the compute engine account (is the default being used by cloud run)
 
 
 
+gcloud builds submit --tag gcr.io/${DEVSHELL_PROJECT_ID}/pets-adopt-white:01 pets-adopt/
+gcloud builds submit --tag gcr.io/${DEVSHELL_PROJECT_ID}/pets-adopt-dodge:01 pets-adopt-02/
+gcloud builds submit --tag gcr.io/${DEVSHELL_PROJECT_ID}/pets-adopt-powder:01 pets-adopt-03/
