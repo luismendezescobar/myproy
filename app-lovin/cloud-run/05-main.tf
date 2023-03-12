@@ -44,15 +44,13 @@ resource "google_compute_global_address" "external_ip" {
   address_type = "EXTERNAL"
   ip_version   = "IPV4"
 }
-
-/*
 module "lb-http" {
   source            = "GoogleCloudPlatform/lb-http/google//modules/serverless_negs"
   version           = "~> 7.0"
 
   project = var.project_id
   name    = "external_lb"
-  address = resource.google_compute_global_address.external_ip.ip
+  address = resource.google_compute_global_address.external_ip.address
   use_ssl_certificates            = false
   certificate                     = "../helpers/certificates/certificate.crt"
   private_key                     = "../helpers/certificates/private.key"
@@ -93,4 +91,3 @@ module "lb-http" {
     }
   }
 }
-*/
