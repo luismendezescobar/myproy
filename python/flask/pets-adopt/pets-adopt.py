@@ -16,7 +16,7 @@ def index():
   '''
 
 @app.route('/white')
-def index():
+def index2():
   return f'''
   <h1>Adopt a Pet!</h1>
   <p>Browse through the links below to find your new furry friend:</p>
