@@ -65,7 +65,12 @@ module "lb-http" {
     pets-adopt-white = {
       description            = "backend-pets-adopt-white"
       enable_cdn             = true
+      compression_mode       = null
       custom_request_headers = null
+      protocol                        = "HTTPS"
+      port                            = 443
+      port_name                       = "https"
+
 
       log_config = {
         enable      = true
