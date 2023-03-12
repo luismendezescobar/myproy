@@ -29,7 +29,7 @@ module "cloud_run" {
 
 }
 resource "google_compute_region_network_endpoint_group" "default" {
-  for_each = output.cloud_run_ouputs
+  for_each = local.cloud_run_services
 
   name                  = "neg-${each.value.service_name}"
   network_endpoint_type = "SERVERLESS"
