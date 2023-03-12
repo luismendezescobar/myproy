@@ -19,6 +19,7 @@ cloud_run_map = {
     service_account_email = "301548115191-compute@developer.gserviceaccount.com"
     service_annotations = {
       "run.googleapis.com/ingress"       = "internal-and-cloud-load-balancing"            
+      "autoscaling.knative.dev/maxScale" = "2"
       "run.googleapis.com/max-instances" = "1"
       "run.googleapis.com/cpu"           = "2"
       "run.googleapis.com/memory"        = "2Gi"
