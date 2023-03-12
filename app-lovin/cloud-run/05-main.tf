@@ -67,6 +67,7 @@ module "lb-http" {
       enable_cdn             = true
       compression_mode       = null
       custom_request_headers = null
+      custom_response_headers= null
       protocol                        = "HTTPS"
       port                            = 443
       port_name                       = "https"
