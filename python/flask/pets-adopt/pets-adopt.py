@@ -3,7 +3,7 @@ from helper import pets
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/white')
 def index():
   return f'''
   <h1>Adopt a Pet!</h1>

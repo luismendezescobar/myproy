@@ -33,11 +33,23 @@ docker pull \
 
 
 #----------------------------------------------------------------------
-or with this way
+#or with this way
+#creates and uploads the container to google containe registry
 gcloud builds submit --tag gcr.io/${DEVSHELL_PROJECT_ID}/pets-adopt:01 pets-adopt/
+
+#deploys the container to cloud run
+gcloud run deploy pets-adopt --image gcr.io/$PROJECT_ID/pets-adopt:02 --region us-central1 \
+--platform managed --allow-unauthenticated --memory 2Gi --cpu 2 --max-instances 1 \
+--port 80
+
+gcr.io/playground-s-11-9508b0fe/pets-adopt
+
 
 or with cloud build
 permisions required
 1. iam account user for the cloud build account, example 866336209015@cloudbuild.gserviceaccount.com
 over the compute engine account (is the default being used by cloud run)
 2. cloud run admin over the cluid build account
+
+
+
