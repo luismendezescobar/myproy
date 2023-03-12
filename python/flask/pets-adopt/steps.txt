@@ -38,7 +38,7 @@ docker pull \
 gcloud builds submit --tag gcr.io/${DEVSHELL_PROJECT_ID}/pets-adopt:01 pets-adopt/
 
 #deploys the container to cloud run
-gcloud run deploy pets-adopt --image gcr.io/$PROJECT_ID/pets-adopt:02 --region us-central1 \
+gcloud run deploy pets-adopt --image gcr.io/$DEVSHELL_PROJECT_ID/pets-adopt:02 --region us-central1 \
 --platform managed --allow-unauthenticated --memory 2Gi --cpu 2 --max-instances 1 \
 --port 80
 
