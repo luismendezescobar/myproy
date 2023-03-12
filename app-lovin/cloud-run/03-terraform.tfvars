@@ -2,7 +2,7 @@ project_id = "qwiklabs-gcp-03-0b1189567774"
 region     = "us-central1"
 
 cloud_run_map = {
-  "pets-adopt" = {
+  "pets-adopt-white" = {
     generate_revision_name = true
     image = "gcr.io/qwiklabs-gcp-03-0b1189567774/pets-adopt-white:01"
     limits = {
