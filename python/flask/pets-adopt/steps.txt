@@ -56,3 +56,18 @@ over the compute engine account (is the default being used by cloud run)
 gcloud builds submit --tag gcr.io/${DEVSHELL_PROJECT_ID}/pets-adopt-white:01 pets-adopt/
 gcloud builds submit --tag gcr.io/${DEVSHELL_PROJECT_ID}/pets-adopt-dodge:01 pets-adopt-02/
 gcloud builds submit --tag gcr.io/${DEVSHELL_PROJECT_ID}/pets-adopt-powder:01 pets-adopt-03/
+
+
+gcloud run deploy test --image gcr.io/$DEVSHELL_PROJECT_ID/pets-adopt-dodge:01 --region us-central1 \
+--platform managed --allow-unauthenticated --memory 2Gi --cpu 2 --max-instances 1 \
+--port 8080
+
+
+gcloud run deploy test-powder --image gcr.io/$DEVSHELL_PROJECT_ID/pets-adopt-powder:01 --region us-central1 \
+--platform managed --allow-unauthenticated --memory 2Gi --cpu 2 --max-instances 1 \
+--port 8080
+
+
+gcloud run deploy test-white-again --image gcr.io/$DEVSHELL_PROJECT_ID/pets-adopt-white:01 --region us-central1 \
+--platform managed --allow-unauthenticated --memory 2Gi --cpu 2 --max-instances 1 \
+--port 8080
