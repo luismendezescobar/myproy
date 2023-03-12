@@ -3,10 +3,10 @@ from helper import pets
 
 app = Flask(__name__)
 
-@app.route('/bluestrong')
+@app.route('/silver')
 def index():
   return f'''
-  <body style="background-color:blue;">
+  <body style="background-color:silver;">
   <h1>Adopt a Pet!</h1>
   <p>Browse through the links below to find your new furry friend:</p>
   <ul>
