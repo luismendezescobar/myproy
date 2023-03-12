@@ -3,7 +3,7 @@ from helper import pets
 
 app = Flask(__name__)
 
-@app.route('/blue/something')
+@app.route('/blue')
 def index():
   return f'''
   <body style="background-color:powderblue;">
