@@ -45,7 +45,7 @@ resource "google_compute_global_address" "external_ip" {
   ip_version   = "IPV4"
 }
 
-
+/*
 module "lb-http" {
   source            = "GoogleCloudPlatform/lb-http/google//modules/serverless_negs"
   version           = "~> 7.0"
@@ -93,3 +93,4 @@ module "lb-http" {
     }
   }
 }
+*/
