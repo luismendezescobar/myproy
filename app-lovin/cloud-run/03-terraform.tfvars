@@ -27,7 +27,7 @@ cloud_run_map = {
     }
     traffic_split = []
   },
-  "pets-adopt-dodge" = {
+  "pets-adopt-dodger" = {
     generate_revision_name = true
     image = "gcr.io/qwiklabs-gcp-03-0b1189567774/pets-adopt-dodge:01"
     limits = {

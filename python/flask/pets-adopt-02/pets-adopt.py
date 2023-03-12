@@ -7,7 +7,7 @@ app = Flask(__name__)
 def index():
   return f'''
   <body style="background-color:DodgerBlue;">
-  <h1>Adopt a Pet!</h1>
+  <h1>Adopt a Pet (blue dodger version)!</h1>
   <p>Browse through the links below to find your new furry friend:</p>
   <ul>
     <li><a href="/animals/dogs">Dogs</a></li>
