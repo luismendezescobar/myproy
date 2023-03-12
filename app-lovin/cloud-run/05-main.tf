@@ -52,7 +52,7 @@ module "lb-http" {
 
   project = var.project_id
   name    = "external_lb"
-  address = resource.google_compute_global_address.external_ip
+  address = resource.google_compute_global_address.external_ip.ip
   use_ssl_certificates            = false
   certificate                     = "../helpers/certificates/certificate.crt"
   private_key                     = "../helpers/certificates/private.key"
