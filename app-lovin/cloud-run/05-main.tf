@@ -123,7 +123,7 @@ module "lb-http" {
 resource "google_compute_url_map" "urlmap" {
   name        = "urlmap"
   description = "a description for url map"
-  #default_service = module.lb-http.backend_services["default"].self_link
+  default_service = module.lb-http.backend_services["default"].self_link
 
   host_rule {
     hosts        = ["luismendeze.com"]
@@ -131,7 +131,7 @@ resource "google_compute_url_map" "urlmap" {
   }
   path_matcher {
       name            = "luismendeze"
-      default_service = module.lb-http.backend_services["default"].self_link
+      #default_service = module.lb-http.backend_services["default"].self_link
 
       path_rule {
         paths   = ["/white"]
