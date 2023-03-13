@@ -4,6 +4,3 @@ output "cloud_run_ouputs" {
   }
 }
 
-output "external_ip_output" {
-  value = resource.google_compute_global_address.external_ip
-}
