@@ -73,7 +73,7 @@ module "lb-http" {
 
       groups = [        
         {
-          group = "projects/qwiklabs-gcp-01-bfc21df9e136/regions/us-central1/networkEndpointGroups/neg-pets-adopt-white"
+          group = "projects/${var.project_id}/regions/us-central1/networkEndpointGroups/neg-pets-adopt-white"
         }
       ]
 
