@@ -51,6 +51,8 @@ module "lb-http" {
   private_key                     = "../helpers/certificates/private.key"  
   https_redirect                  = false
   load_balancing_scheme           = "EXTERNAL_MANAGED"
+  protocol                        = HTTPS
+  port                            = 443
 
 
   backends = {
