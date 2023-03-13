@@ -131,7 +131,7 @@ resource "google_compute_url_map" "urlmap" {
   }
   path_matcher {
       name            = "luismendeze"
-      #default_service = module.lb-http.backend_services["default"].self_link
+      default_service = module.lb-http.backend_services["default"].self_link
 
       path_rule {
         paths   = ["/white"]
