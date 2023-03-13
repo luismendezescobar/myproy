@@ -38,20 +38,19 @@ resource "google_compute_region_network_endpoint_group" "default" {
     service = each.value.service_name
   }
 }
-/*
+
 module "lb-http" {
-  source            = "GoogleCloudPlatform/lb-http/google"
-  version           = "~> 7.0"
+  source            = "GoogleCloudPlatform/lb-http/google//modules/serverless_negs"
+  version           = "~> 4.4"
 
   project = var.project_id
-  name    = "externallb"
+  name    = "extlb"
   #address = "external_lb_ip"
   use_ssl_certificates            = false
   certificate                     = "../helpers/certificates/certificate.crt"
   private_key                     = "../helpers/certificates/private.key"  
   https_redirect                  = false
 
- 
 
   backends = {
     pets-adopt-white = {
@@ -62,23 +61,6 @@ module "lb-http" {
       custom_response_headers= null
       protocol                        = "HTTPS"
       port                            = 443
-      port_name                       = null
-      
-      affinity_cookie_ttl_sec =null
-      connection_draining_timeout_sec = null
-      health_check =  {
-        check_interval_sec  = null
-        timeout_sec         = null
-        healthy_threshold   = null
-        unhealthy_threshold = null
-        request_path        = "/"
-        port                = 80
-        host                = null
-        logging             = null
-      }
-      session_affinity= null
-      timeout_sec = null
-
 
 
 
@@ -90,16 +72,6 @@ module "lb-http" {
       groups = [        
         {
           group = "projects/qwiklabs-gcp-01-bfc21df9e136/regions/us-central1/networkEndpointGroups/neg-pets-adopt-white"
-          balancing_mode               = null
-          capacity_scaler              = null
-          description                  = null
-          max_connections              = null
-          max_connections_per_instance = null
-          max_connections_per_endpoint = null
-          max_rate                     = null
-          max_rate_per_instance        = null
-          max_rate_per_endpoint        = null
-          max_utilization              = null
         }
       ]
 
@@ -112,4 +84,3 @@ module "lb-http" {
     }
   }
 }
-*/
