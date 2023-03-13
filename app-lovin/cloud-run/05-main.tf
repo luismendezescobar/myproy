@@ -87,11 +87,38 @@ module "lb-http" {
       }
       security_policy = null
     }
+    backend-pets-adopt-dodger = {
+      description            = "backend-pets-adopt-blue-dodger"
+      enable_cdn             = true
+      compression_mode       = null
+      custom_request_headers = null
+      custom_response_headers= null
+      protocol                        = "HTTPS"
+      port                            = 443
+      port_name             =null
+      log_config = {
+        enable      = true
+        sample_rate = 1.0
+      }
+      groups = [        
+        {
+          group = "projects/${var.project_id}/regions/us-central1/networkEndpointGroups/neg-pets-adopt-dodger"
+        }
+      ]
+      iap_config = {
+        enable               = false
+        oauth2_client_id     = null
+        oauth2_client_secret = null
+      }
+      security_policy = null
+    }
+
   }
   depends_on = [
     google_compute_region_network_endpoint_group.default
   ]
 }
+#https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_url_map
 resource "google_compute_url_map" "urlmap" {
   name        = "urlmap"
   description = "a description for url map"
@@ -108,6 +135,10 @@ resource "google_compute_url_map" "urlmap" {
       path_rule {
         paths   = ["/white"]
         service = module.lb-http.backend_services["default"].self_link
+      }
+      path_rule {
+        paths   = ["/dodger"]
+        service = module.lb-http.backend_services["backend-pets-adopt-dodger"].self_link
       }
 
   }
