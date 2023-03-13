@@ -88,12 +88,15 @@ module "lb-http" {
       security_policy = null
     }
   }
+  depends_on = [
+    google_compute_region_network_endpoint_group.default
+  ]
 }
 resource "google_compute_url_map" "urlmap" {
   name        = "urlmap"
   description = "a description for url map"
   default_service = module.lb-http.backend_services["default"].self_link
-  
+
   host_rule {
     hosts        = ["luismendeze.com"]
     path_matcher = "luismendeze"
