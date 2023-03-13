@@ -1,10 +1,10 @@
-project_id = "qwiklabs-gcp-02-9f28d1b7fbc7"
+project_id = "qwiklabs-gcp-04-e7c3fde376de"
 region     = "us-central1"
 
 cloud_run_map = {
   "pets-adopt-white" = {
     generate_revision_name = true
-    image = "gcr.io/qwiklabs-gcp-02-9f28d1b7fbc7/pets-adopt-white:01"
+    image = "gcr.io/qwiklabs-gcp-04-e7c3fde376de/pets-adopt-white:01"
     limits = {
         cpu    = "1000m"
         memory = "512M"
@@ -15,8 +15,8 @@ cloud_run_map = {
       name = "http1"
       port = 8080
     }
-    project_id = "qwiklabs-gcp-02-9f28d1b7fbc7"
-    service_account_email = "471844873820-compute@developer.gserviceaccount.com"
+    project_id = "qwiklabs-gcp-04-e7c3fde376de"
+    service_account_email = "1033237126335-compute@developer.gserviceaccount.com"
     service_annotations = {
       "run.googleapis.com/ingress"       = "internal-and-cloud-load-balancing"            
       "run.googleapis.com/max-instances" = "2"            
@@ -28,7 +28,7 @@ cloud_run_map = {
   },
   "pets-adopt-dodger" = {
     generate_revision_name = true
-    image = "gcr.io/qwiklabs-gcp-02-9f28d1b7fbc7/pets-adopt-dodge:01"
+    image = "gcr.io/qwiklabs-gcp-04-e7c3fde376de/pets-adopt-dodge:01"
     limits = {
         cpu    = "1000m"
         memory = "512M"
@@ -39,8 +39,8 @@ cloud_run_map = {
       name = "http1"
       port = 8080
     }
-    project_id = "qwiklabs-gcp-02-9f28d1b7fbc7"
-    service_account_email = "471844873820-compute@developer.gserviceaccount.com"
+    project_id = "qwiklabs-gcp-04-e7c3fde376de"
+    service_account_email = "1033237126335-compute@developer.gserviceaccount.com"
     service_annotations = {
       "run.googleapis.com/ingress"       = "internal-and-cloud-load-balancing"            
       "run.googleapis.com/max-instances" = "3"            

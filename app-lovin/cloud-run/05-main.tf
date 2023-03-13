@@ -53,25 +53,16 @@ resource "google_compute_ssl_certificate" "default" {
 module "lb-http" {
   source            = "GoogleCloudPlatform/lb-http/google//modules/serverless_negs"
   version           = "~> 7.0"
-
   project = var.project_id
   name    = "extlb"  
   ssl                             = true
   use_ssl_certificates            = true
   ssl_certificates                = [resource.google_compute_ssl_certificate.default.self_link]
-
-
-  https_redirect                  = false
+    https_redirect                  = false
   http_forward                    = false
-
-
-
   load_balancing_scheme           = "EXTERNAL_MANAGED"
-
-
-
   backends = {
-    pets-adopt-white = {
+    default = {
       description            = "backend-pets-adopt-white"
       enable_cdn             = true
       compression_mode       = null
@@ -80,20 +71,15 @@ module "lb-http" {
       protocol                        = "HTTPS"
       port                            = 443
       port_name             =null
-
-
-
       log_config = {
         enable      = true
         sample_rate = 1.0
       }
-
       groups = [        
         {
           group = "projects/${var.project_id}/regions/us-central1/networkEndpointGroups/neg-pets-adopt-white"
         }
       ]
-
       iap_config = {
         enable               = false
         oauth2_client_id     = null
@@ -102,4 +88,26 @@ module "lb-http" {
       security_policy = null
     }
   }
+}
+resource "google_compute_url_map" "urlmap" {
+  name        = "urlmap"
+  description = "a description for url map"
+  default_service = module.lb-http.backend_services["default"].self_link
+  
+  host_rule {
+    hosts        = ["luismendeze.com"]
+    path_matcher = "luismendeze"
+  }
+  path_matcher {
+      name            = "luismendeze"
+      default_service = module.lb-http.backend_services["default"].self_link
+
+      path_rule {
+        paths   = ["/white"]
+        service = module.lb-http.backend_services["default"].self_link
+      }
+
+  }
+
+
 }
