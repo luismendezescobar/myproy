@@ -81,6 +81,16 @@ module "lb-http" {
       groups = [        
         {
           group = "projects/qwiklabs-gcp-01-bfc21df9e136/regions/us-central1/networkEndpointGroups/neg-pets-adopt-white"
+          balancing_mode               = null
+          capacity_scaler              = null
+          description                  = null
+          max_connections              = null
+          max_connections_per_instance = null
+          max_connections_per_endpoint = null
+          max_rate                     = null
+          max_rate_per_instance        = null
+          max_rate_per_endpoint        = null
+          max_utilization              = null
         }
       ]
 
