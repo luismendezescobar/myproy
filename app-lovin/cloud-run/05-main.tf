@@ -54,11 +54,12 @@ module "lb-http" {
   source            = "GoogleCloudPlatform/lb-http/google//modules/serverless_negs"
   version           = "~> 7.0"
   project = var.project_id
-  name    = "extlb"  
+  name    = "extlb"
+
   ssl                             = true
   use_ssl_certificates            = true
   ssl_certificates                = [resource.google_compute_ssl_certificate.default.self_link]
-    https_redirect                  = false
+  https_redirect                  = true
   http_forward                    = false
   load_balancing_scheme           = "EXTERNAL_MANAGED"
   backends = {
