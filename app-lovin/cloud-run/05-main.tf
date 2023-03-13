@@ -56,13 +56,13 @@ module "lb-http" {
 
   project = var.project_id
   name    = "extlb"  
-  #ssl                             = true
+  ssl                             = true
   use_ssl_certificates            = true
   ssl_certificates                = [resource.google_compute_ssl_certificate.default.self_link]
 
 
   https_redirect                  = false
-  
+  http_forward                    = false
 
 
 
