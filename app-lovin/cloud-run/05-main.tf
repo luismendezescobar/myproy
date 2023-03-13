@@ -38,14 +38,7 @@ resource "google_compute_region_network_endpoint_group" "default" {
     service = each.value.service_name
   }
 }
-/*
-resource "google_compute_global_address" "external_ip" {
-  project      = var.project_id # Replace this with your service project ID in quotes
-  name         = "lb-address"
-  address_type = "EXTERNAL"
-  ip_version   = "IPV4"
-}
-*/
+
 module "lb-http" {
   source            = "GoogleCloudPlatform/lb-http/google//modules/serverless_negs"
   version           = "~> 7.0"
