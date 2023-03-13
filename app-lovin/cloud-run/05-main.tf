@@ -49,7 +49,7 @@ module "lb-http" {
   certificate                     = "../helpers/certificates/certificate.crt"
   private_key                     = "../helpers/certificates/private.key"
   
-  https_redirect                  = true
+  https_redirect                  = false
 
  
 
