@@ -39,17 +39,33 @@ resource "google_compute_region_network_endpoint_group" "default" {
   }
 }
 
+resource "google_compute_ssl_certificate" "default" {
+  name_prefix = "my-certificate-"
+  description = "a description"
+  private_key = file("../helpers/certificates/private.key")
+  certificate = file("../helpers/certificates/certificate.crt")
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 module "lb-http" {
   source            = "GoogleCloudPlatform/lb-http/google//modules/serverless_negs"
   version           = "~> 7.0"
 
   project = var.project_id
-  name    = "extlb"
-  #address = "external_lb_ip"
-  use_ssl_certificates            = false
-  certificate                     = "../helpers/certificates/certificate.crt"
-  private_key                     = "../helpers/certificates/private.key"  
+  name    = "extlb"  
+  #ssl                             = true
+  use_ssl_certificates            = true
+  ssl_certificates                = [resource.google_compute_ssl_certificate.default.self_link]
+
+
   https_redirect                  = false
+  
+
+
+
   load_balancing_scheme           = "EXTERNAL_MANAGED"
 
 
