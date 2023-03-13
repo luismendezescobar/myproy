@@ -42,8 +42,8 @@ resource "google_compute_region_network_endpoint_group" "default" {
 resource "google_compute_ssl_certificate" "default" {
   name_prefix = "my-certificate-"
   description = "a description"
-  private_key = file("../helpers/certificates/private.key")
-  certificate = file("../helpers/certificates/certificate.crt")
+  private_key = file("./helpers/certificates/private.key")
+  certificate = file("./helpers/certificates/certificate.crt")
 
   lifecycle {
     create_before_destroy = true
