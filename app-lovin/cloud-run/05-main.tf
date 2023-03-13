@@ -66,7 +66,16 @@ module "lb-http" {
       
       affinity_cookie_ttl_sec =null
       connection_draining_timeout_sec = null
-      health_check = null
+      health_check =  {
+        check_interval_sec  = null
+        timeout_sec         = null
+        healthy_threshold   = null
+        unhealthy_threshold = null
+        request_path        = "/"
+        port                = 80
+        host                = null
+        logging             = null
+      }
       session_affinity= null
       timeout_sec = null
 
