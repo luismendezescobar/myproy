@@ -62,6 +62,7 @@ module "lb-http" {
       custom_response_headers= null
       protocol                        = "HTTPS"
       port                            = 443
+      port_name             =null
 
 
 
