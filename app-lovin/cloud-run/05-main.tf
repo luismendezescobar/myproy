@@ -41,7 +41,7 @@ resource "google_compute_region_network_endpoint_group" "default" {
 
 module "lb-http" {
   source            = "GoogleCloudPlatform/lb-http/google//modules/serverless_negs"
-  version           = "~> 4.4"
+  version           = "~> 7.0"
 
   project = var.project_id
   name    = "extlb"
