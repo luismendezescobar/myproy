@@ -48,8 +48,7 @@ module "lb-http" {
   #address = "external_lb_ip"
   use_ssl_certificates            = false
   certificate                     = "../helpers/certificates/certificate.crt"
-  private_key                     = "../helpers/certificates/private.key"
-  
+  private_key                     = "../helpers/certificates/private.key"  
   https_redirect                  = false
 
  
@@ -64,6 +63,14 @@ module "lb-http" {
       protocol                        = "HTTPS"
       port                            = 443
       port_name                       = null
+      
+      affinity_cookie_ttl_sec =null
+      connection_draining_timeout_sec = null
+      health_check = null
+      session_affinity= null
+      timeout_sec = null
+
+
 
 
       log_config = {
