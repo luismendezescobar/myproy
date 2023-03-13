@@ -59,9 +59,12 @@ module "lb-http" {
   ssl                             = true
   use_ssl_certificates            = true
   ssl_certificates                = [resource.google_compute_ssl_certificate.default.self_link]
-  https_redirect                  = true
+  https_redirect                  = false
   http_forward                    = false
   load_balancing_scheme           = "EXTERNAL_MANAGED"
+  
+  #we need to test this option tomorrow
+  url_map                         = google_compute_url_map.urlmap.self_link
   backends = {
     default = {
       description            = "backend-pets-adopt-white"
@@ -120,6 +123,7 @@ module "lb-http" {
   ]
 }
 #https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_url_map
+#https://github.com/terraform-google-modules/terraform-google-lb-http/blob/v7.0.0/examples/multi-backend-multi-mig-bucket-https-lb/main.tf
 resource "google_compute_url_map" "urlmap" {
   name        = "urlmap"
   description = "a description for url map"
