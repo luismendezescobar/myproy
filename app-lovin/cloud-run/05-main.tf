@@ -38,7 +38,7 @@ resource "google_compute_region_network_endpoint_group" "default" {
     service = each.value.service_name
   }
 }
-
+/*
 module "lb-http" {
   source            = "GoogleCloudPlatform/lb-http/google"
   version           = "~> 7.0"
@@ -112,3 +112,4 @@ module "lb-http" {
     }
   }
 }
+*/
