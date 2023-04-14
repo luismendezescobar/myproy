@@ -52,7 +52,7 @@ resource "google_compute_url_map" "url-map" {
 }
 
 resource "google_compute_ssl_certificate" "default" {
-  name_prefix = "my-certificate-"
+  name_prefix = "my-certificate"
   description = "a description"
   private_key = file("./helpers/private.key")
   certificate = file("./helpers/certificate.crt")

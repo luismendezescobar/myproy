@@ -5,7 +5,7 @@ https://github.com/terraform-google-modules/terraform-google-project-factory/blo
 terraform {
   backend "gcs" {
     bucket  = "central-tech-gcp-tf-states"
-    prefix  = "central-tech-gcp-external-lb-neg-dev-01"
+    prefix  = "central-tech-gcp-external-lb-neg-dev-02"
   }  
   
   required_providers {
