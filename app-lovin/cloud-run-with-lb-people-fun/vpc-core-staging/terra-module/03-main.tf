@@ -1,5 +1,4 @@
-resource "random_string" "random" {
-  count   = var.notebook_name == "" ? 1 : 0
+resource "random_string" "random" {  
   length  = 16
   special = false
 }
