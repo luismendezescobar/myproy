@@ -6,7 +6,7 @@ resource "google_compute_region_network_endpoint_group" "default" {
   for_each = {for item in var.map_services: 
               item.service_name => item}
 
-  name                  = lower("${each.value.service_name}-${resource.random_string.result}")
+  name                  = lower("${each.value.service_name}-${resource.random_string.random.result}")
   network_endpoint_type = "SERVERLESS"
   region                = var.region
   project               = var.project_id
@@ -26,7 +26,7 @@ resource "google_compute_region_network_endpoint_group" "default" {
 }
 
 resource "google_compute_url_map" "url-map" {
-  name        = lower("dev-url-map-${resource.random_string.result}")
+  name        = lower("dev-url-map-${resource.random_string.random.result}")
   description = "dev url mapping for ${var.domain}"
   project     = var.project_id
   default_service = module.lb-http.backend_services["default"].self_link
