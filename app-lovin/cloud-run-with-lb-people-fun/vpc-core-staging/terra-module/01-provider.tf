@@ -6,8 +6,8 @@ terraform {
   /*backend "gcs" {
     bucket  = "central-tech-gcp-tf-states"
     prefix  = "central-tech-gcp-external-lb-neg-dev-02"
-    */
-  }  
+    
+  } */ 
   
   required_providers {
     google = {
