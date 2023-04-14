@@ -55,10 +55,11 @@ resource "google_compute_ssl_certificate" "default" {
   description = "a description"
   private_key = file("./helpers/private.key")
   certificate = file("./helpers/certificate.crt")
-
+/*
   lifecycle {
     create_before_destroy = true
   }
+  */
 }
 data "google_compute_global_address" "service-lb-ip" {
   name = "dev-lb-ip"
