@@ -3,9 +3,10 @@
 https://github.com/terraform-google-modules/terraform-google-project-factory/blob/master/modules/gsuite_enabled/README.md
 */
 terraform {
-  backend "gcs" {
+  /*backend "gcs" {
     bucket  = "central-tech-gcp-tf-states"
     prefix  = "central-tech-gcp-external-lb-neg-dev-02"
+    */
   }  
   
   required_providers {
