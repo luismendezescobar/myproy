@@ -1,8 +1,13 @@
+resource "random_string" "random" {
+  count   = var.notebook_name == "" ? 1 : 0
+  length  = 16
+  special = false
+}
 resource "google_compute_region_network_endpoint_group" "default" {
   for_each = {for item in var.map_services: 
               item.service_name => item}
 
-  name                  = each.value.service_name
+  name                  = lower("${each.value.service_name}-${resource.random_string.random[0].result}")
   network_endpoint_type = "SERVERLESS"
   region                = var.region
   project               = var.project_id
@@ -16,10 +21,13 @@ resource "google_compute_region_network_endpoint_group" "default" {
       #tag     = cloud_run.value.tag
     }
   }
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "google_compute_url_map" "url-map" {
-  name        = "dev-url-map"
+  name        = lower("dev-url-map-${resource.random_string.random[0].result}")
   description = "dev url mapping for ${var.domain}"
   project     = var.project_id
   default_service = module.lb-http.backend_services["default"].self_link
@@ -37,6 +45,9 @@ resource "google_compute_url_map" "url-map" {
         service = module.lb-http.backend_services[path_rule.value.service_name].self_link
       }
     }
+  }
+  lifecycle {
+    create_before_destroy = true
   }
 }
 
