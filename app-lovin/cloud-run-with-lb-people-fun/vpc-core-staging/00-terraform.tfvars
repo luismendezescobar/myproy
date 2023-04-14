@@ -18,7 +18,6 @@ map_services= [
     "path"                = "/service2"
     "path_prefix_rewrite" = "/"
   },
-  /*
   {
     "service_name"        = "cloud-run-test-luis"
     "service"             = "test-luis"
@@ -27,7 +26,5 @@ map_services= [
     "path"                = "/service3"
     "path_prefix_rewrite" = "/"
   }
- */
-
-
+ 
 ]

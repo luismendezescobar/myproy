@@ -1,12 +1,15 @@
+/*
 resource "random_string" "random" {  
   length  = 8
   special = false
 }
+*/
 resource "google_compute_region_network_endpoint_group" "default" {
   for_each = {for item in var.map_services: 
               item.service_name => item}
 
-  name                  = lower("${each.value.service_name}-${resource.random_string.random.result}")
+  #name                  = lower("${each.value.service_name}-${resource.random_string.random.result}")
+  name                  = each.value.service_name
   network_endpoint_type = "SERVERLESS"
   region                = var.region
   project               = var.project_id
@@ -26,7 +29,8 @@ resource "google_compute_region_network_endpoint_group" "default" {
 }
 
 resource "google_compute_url_map" "url-map" {
-  name        = lower("dev-url-map-${resource.random_string.random.result}")
+  #name        = lower("dev-url-map-${resource.random_string.random.result}")
+  name        = "dev-url-map"
   description = "dev url mapping for ${var.domain}"
   project     = var.project_id
   default_service = module.lb-http.backend_services["default"].self_link
@@ -55,11 +59,6 @@ resource "google_compute_ssl_certificate" "default" {
   description = "a description"
   private_key = file("./helpers/private.key")
   certificate = file("./helpers/certificate.crt")
-/*
-  lifecycle {
-    create_before_destroy = true
-  }
-  */
 }
 data "google_compute_global_address" "service-lb-ip" {
   name = "dev-lb-ip"
