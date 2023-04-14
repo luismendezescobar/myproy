@@ -11,7 +11,7 @@ map_services= [
     "path_prefix_rewrite" = "/"    
   },
   {
-    "service_name"        = "test-luis"
+    "service_name"        = "cloud-run-test"
     "service"             = "test-luis"
     "tag"                 = ""
     "type"                = "cloud_run"
