@@ -17,15 +17,14 @@ map_services= [
     "type"                = "cloud_run"
     "path"                = "/service2"
     "path_prefix_rewrite" = "/"
-  },
-  /*
+  },  
   {
     "service_name"        = "cloud-run-test-luis"
-    "service"             = "test-luis"
+    "service"             = "hello"
     "tag"                 = ""
     "type"                = "cloud_run"
     "path"                = "/service3"
     "path_prefix_rewrite" = "/"
   }
- */
+
 ]
