@@ -27,3 +27,6 @@ site with interesting tasks for locust
 https://github.com/prashanth-sams/locust-boilerplate
 
 
+cd load-testing/
+gcloud config set project pt-services-dev-wepg
+gcloud builds submit --tag us-docker.pkg.dev/pt-services-dev-wepg/platform-tech/locust:identity .
