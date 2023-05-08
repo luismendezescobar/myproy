@@ -1,0 +1,29 @@
+https://locust.io/
+https://docs.locust.io/en/stable/running-in-docker.html
+https://www.youtube.com/watch?v=52nSa6UFeng
+https://cloud.google.com/run/docs/about-load-testing
+https://www.youtube.com/watch?v=52nSa6UFeng&t=458s
+https://www.youtube.com/watch?v=Z4lrcyQGTIY        good article
+https://www.youtube.com/watch?v=SOu6hgklQRA     part 1
+https://www.youtube.com/watch?v=bLwXhL7ZOFw     part 2
+https://www.youtube.com/watch?v=7CRN7oLk6kw     longer course
+https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/
+
+
+
+in boost for partners
+Distributed Load Testing Using Kubernetes
+
+
+virtual environment instructions
+cd locustvenv
+source env/bin/activate
+deactivate
+
+run the test:
+locust -f src/test.py
+
+site with interesting tasks for locust
+https://github.com/prashanth-sams/locust-boilerplate
+
+
