@@ -30,3 +30,13 @@ https://github.com/prashanth-sams/locust-boilerplate
 cd load-testing/
 gcloud config set project pt-services-dev-wepg
 gcloud builds submit --tag us-docker.pkg.dev/pt-services-dev-wepg/platform-tech/locust:identity .
+
+enabling identity aware proxy, steps
+https://cloud.google.com/iap/docs/enabling-cloud-run
+https://cloud.google.com/iap/docs/load-balancer-howto#enable-iap
+https://medium.com/google-cloud/cloud-iap-on-cloud-run-2b97ee9cd47a
+
+how to deploy with terraform
+https://ruanmartinelli.com/posts/terraform-cloud-run
+use this one to deploy
+https://github.com/peoplefun/pt-common/blob/main/infra/modules/cloud-run/main.tf
