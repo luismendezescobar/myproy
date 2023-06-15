@@ -1,6 +1,3 @@
-application: miapp-gae
-version: 1
-threadsafe: true
 runtime: python39
 runtime_config:
   python_version: 3
