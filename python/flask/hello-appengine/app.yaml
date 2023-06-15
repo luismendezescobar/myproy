@@ -1,4 +1,1 @@
 runtime: python39
-runtime_config:
-  python_version: 3
-entrypoint: gunicorn -b :$PORT main:app
