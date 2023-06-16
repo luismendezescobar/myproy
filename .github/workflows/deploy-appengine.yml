@@ -5,7 +5,7 @@ on:
     branches:
     - 'master'
     paths:
-    - './python/flask/hello-appengine'
+    - './python/flask/hello-appengine/*'
 
 env:
   PROJECT: creating-and-150-6d052db3
