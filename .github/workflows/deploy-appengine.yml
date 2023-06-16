@@ -8,7 +8,7 @@ on:
     - './python/flask/hello-appengine'
 
 env:
-  PROJECT: playground-s-11-db588a1d
+  PROJECT: creating-and-150-6d052db3
   WORKING_DIR: python/flask/hello-appengine
 
 permissions:
@@ -36,7 +36,7 @@ jobs:
         with:
           project_id: ${{ env.PROJECT }}
           working_directory:  ${{ env.WORKING_DIR }}
-          deliverables: "app.yaml tournament.yaml"
+          deliverables: "app.yaml"
           version: ${{ steps.vars.outputs.sha_short }}
           promote: false
 
@@ -45,6 +45,6 @@ jobs:
         with:
           project_id: ${{ env.PROJECT }}
           working_directory:  ${{ env.WORKING_DIR }}
-          deliverables: "app.yaml tournament.yaml"
+          deliverables: "app.yaml"
           version: dev
           promote: false
