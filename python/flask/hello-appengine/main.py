@@ -8,7 +8,7 @@ app = Flask(__name__)
 def home():
     return f'''    
     <h1>Hello, World!</h1> 
-    <h1>This a new version with github actions </h1> 
+    <h1>This a new version with github actions part 2</h1> 
     <a href=/article/this-is-an-article>Go to the article page</a>   
 
     <h1></h1>
