@@ -1,0 +1,50 @@
+name: deploy-dev
+
+on:
+  push:
+    branches:
+    - 'main'
+    paths:
+    - './python/flask/hello-appengine'
+
+env:
+  PROJECT: playground-s-11-db588a1d
+  WORKING_DIR: python/flask/hello-appengine
+
+permissions:
+  contents: 'read'
+  id-token: 'write'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set outputs
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: ${{ secrets.GCP_PROVIDER_NAME }}
+          service_account: ${{ secrets.GCP_SA_EMAIL }}
+
+      - name: 'deploy'
+        uses: 'google-github-actions/deploy-appengine@v1'
+        with:
+          project_id: ${{ env.PROJECT }}
+          working_directory:  ${{ env.WORKING_DIR }}
+          deliverables: "app.yaml tournament.yaml"
+          version: ${{ steps.vars.outputs.sha_short }}
+          promote: false
+
+      - name: 'dev version deploy'
+        uses: 'google-github-actions/deploy-appengine@v1'
+        with:
+          project_id: ${{ env.PROJECT }}
+          working_directory:  ${{ env.WORKING_DIR }}
+          deliverables: "app.yaml tournament.yaml"
+          version: dev
+          promote: false
