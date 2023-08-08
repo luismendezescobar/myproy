@@ -1,0 +1,97 @@
+name: deploy-dev
+
+on:
+  push:
+    tags:
+      - 'dev-v*'
+
+env:
+  PROJECT: pf-inbloom-dev-server
+  WORKING_DIR: src
+  SERVICE_1: default
+  SERVICE_2: tournament
+#  SERVICE_URL: 'https://www.facebook.com/wordflowers.game/'  
+  SERVICE_URL: '-dot-default-dot-pf-inbloom-dev-server.uc.r.appspot.com/'  
+  SERVICE_URL_T: '-dot-tournament-dot-pf-inbloom-dev-server.uc.r.appspot.com/'  
+  TEST_RESULT: 0
+
+permissions:
+  contents: 'read'
+  id-token: 'write'
+  pull-requests: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set outputs
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: ${{ secrets.GCP_PROVIDER_NAME }}
+          service_account: ${{ secrets.GCP_SA_EMAIL }}
+      
+      - name: 'Install Google Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1.1.1'
+        with:
+          version: 'latest'
+      
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'       
+
+      - name: 'deploy the new version'
+        uses: 'google-github-actions/deploy-appengine@v1'
+        with: 
+          project_id: ${{ env.PROJECT }}
+          working_directory:  ${{ env.WORKING_DIR }}          
+          deliverables: "app.yaml tournament.yaml"
+          version: ${{ steps.vars.outputs.sha_short }}
+          promote: false
+
+      - name: run some tests over the new deployed version
+        id: test
+        run: |
+          echo "Running some tests over the url: https://${{ steps.vars.outputs.sha_short }}${{ env.SERVICE_URL }}"          
+          python3 ./tests/client_calls/test_client_calls.py https://${{ steps.vars.outputs.sha_short }}${{ env.SERVICE_URL }}
+      
+      - name: Set Exit Code
+        if: failure()
+        run: |          
+          echo "There was an error in the script tests"
+          echo "step test output: ${{ steps.test.outputs[0] }}"
+        env:
+          TEST_RESULT: 1
+
+      #since there was error in the testing the new version will be deleted.
+#      - name: delete the app engine deployed version
+#        id: delete_appengine_version
+#        if: failure()
+#        run: |
+#          gcloud app versions delete ${{ steps.vars.outputs.sha_short }} --service=${{ env.SERVICE_1 }} --project=${{ env.PROJECT }}
+#          gcloud app versions delete ${{ steps.vars.outputs.sha_short }} --service=${{ env.SERVICE_2 }} --project=${{ env.PROJECT }}
+                
+      - name: 'Create comment in github'
+        if: failure()
+        uses: actions/github-script@v6.3.3
+        with:
+          script: |
+            core.setFailed('**Failure, There was a problem running the tests. ❌😕** \n **The new versions were not deployed**\n**more details here:**\n**https://github.com/peoplefun/central-tech-gcp-iam/actions**')  
+
+      - name: Install dependencies for slack
+        if: failure()
+        run: pip install slack-sdk
+    
+      - name: 'Create failure comment in slack'
+        if: failure()
+        env:
+          SLACK_API_TOKEN: ${{ secrets.SLACK_API_TOKEN }}
+        run: |
+          python ./tests/client_calls/send_slack_message.py '#classic-notice-alerts' 'test-message-please-ignore-it'
+
+ 
