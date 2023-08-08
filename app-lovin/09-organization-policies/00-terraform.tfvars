@@ -1,4 +1,5 @@
 project_policies = {
+  /*
     prod-project-369617 = {
       policy_for        = "project"
       project_id        = "prod-project-369617"
@@ -15,5 +16,5 @@ project_policies = {
       deny_list_length  = "2"
       deny              = ["TLS_VERSION_1","TLS_VERSION_1_1"]
     }
-    
+    */
 }
