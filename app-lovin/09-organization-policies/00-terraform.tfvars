@@ -17,4 +17,13 @@ gcp_policies = {
       deny              = ["TLS_VERSION_1","TLS_VERSION_1_1"]
     }
 */    
+    org-tls-disable = {
+      policy_for        = "organization"      
+      organization_id   = "65202286851"
+      constraint        = "constraints/gcp.restrictTLSVersion"
+      policy_type       = "list"
+      deny_list_length  = "2"
+      deny              = ["TLS_VERSION_1","TLS_VERSION_1_1"]
+    }
+
 }
