@@ -18,12 +18,12 @@ terraform {
   
 }
 provider "google" {
-  project = var.project_id
-  region  = var.region
+  project = "prod-project-369617"
+  region  = "us-central1"
 }
 
 provider "google-beta" {
-  project = var.project_id
-  region  = var.region
+  project = "prod-project-369617"
+  region  = "us-central1"
 }
 
