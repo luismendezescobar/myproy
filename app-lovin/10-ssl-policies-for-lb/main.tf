@@ -9,5 +9,5 @@ module "create_ssl_policy" {
 
 
 output "name" {
-  value=module.create_ssl_policy.ssl_policy  
+  value=module.create_ssl_policy.ssl_policy.self_link  
 }
