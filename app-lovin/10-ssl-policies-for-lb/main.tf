@@ -1,5 +1,5 @@
 module "create_ssl_policy" {
-  source                      = "module/"
+  source                      = "./module/"
   name            = "ssl_policy"  
   project_id      = var.project_id
   profile         = "MODERN"
