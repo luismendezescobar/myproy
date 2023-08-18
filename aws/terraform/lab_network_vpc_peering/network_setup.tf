@@ -68,7 +68,7 @@ resource "aws_vpc_peering_connection_accepter" "accept_peering" {
   vpc_peering_connection_id = aws_vpc_peering_connection.useast1-uswest-2.id
   auto_accept               = true
 }
-/*
+
 #Create route table in us-east-1
 resource "aws_route_table" "internet_route" {
   provider = aws.region-master
@@ -85,10 +85,10 @@ resource "aws_route_table" "internet_route" {
     ignore_changes = all
   }
   tags = {
-    Name = "Master-Region-RT"
+    Name = "Master-Region-RT-east-1"
   }
 }
-
+/*
 #Overwrite default route table of VPC(Master) with our route table entries
 resource "aws_main_route_table_association" "set-master-default-rt-assoc" {
   provider       = aws.region-master
