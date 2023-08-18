@@ -131,6 +131,9 @@ resource "aws_subnet" "subnet_1_oregon" {
   provider   = aws.region-worker
   vpc_id     = aws_vpc.vpc_uswest.id
   cidr_block = "192.168.1.0/24"
+  tags = {
+    Name = "unique-subnet"
+  }
 }
 /*
 #Create route table in us-west-2
