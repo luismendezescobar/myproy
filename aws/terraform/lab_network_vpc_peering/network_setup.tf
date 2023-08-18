@@ -90,6 +90,8 @@ resource "aws_route_table" "internet_route" {
 }
 
 #Overwrite default route table of VPC(Master) with our route table entries
+#this one is going to replace the default route table (the one that is created when the vpc
+#is created) with the one that we created in the previous step
 resource "aws_main_route_table_association" "set-master-default-rt-assoc" {
   provider       = aws.region-master
   vpc_id         = aws_vpc.vpc_useast.id
@@ -100,7 +102,7 @@ data "aws_availability_zones" "azs" {
   provider = aws.region-master
   state    = "available"
 }
-/*
+
 #Create subnet # 1 in us-east-1
 resource "aws_subnet" "subnet_1" {
   provider          = aws.region-master
@@ -117,7 +119,7 @@ resource "aws_subnet" "subnet_2" {
   cidr_block        = "10.0.2.0/24"
 }
 
-
+/*
 #Create subnet in us-west-2
 resource "aws_subnet" "subnet_1_oregon" {
   provider   = aws.region-worker
