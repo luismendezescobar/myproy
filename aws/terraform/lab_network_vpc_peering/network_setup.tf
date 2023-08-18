@@ -48,12 +48,18 @@ resource "aws_vpc_peering_connection" "useast1-uswest-2" {
 resource "aws_internet_gateway" "igw" {
   provider = aws.region-master
   vpc_id   = aws_vpc.vpc_useast.id
+    tags = {
+    Name = "igw-east-1"
+  }
 }
 
 #Create IGW in us-west-2
 resource "aws_internet_gateway" "igw-oregon" {
   provider = aws.region-worker
   vpc_id   = aws_vpc.vpc_uswest.id
+  tags = {
+    Name = "igw-west-2"
+  }
 }
 /*
 #Accept VPC peering request in us-west-2 from us-east-1
