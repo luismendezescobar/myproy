@@ -166,7 +166,7 @@ resource "aws_main_route_table_association" "set-worker-default-rt-assoc" {
   route_table_id = aws_route_table.internet_route_oregon.id
 }
 
-/*
+
 #Create SG for allowing TCP/8080 from * and TCP/22 from your IP in us-east-1
 resource "aws_security_group" "jenkins-sg" {
   provider    = aws.region-master
@@ -201,7 +201,7 @@ resource "aws_security_group" "jenkins-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
+/*
 #Create SG for LB, only TCP/80,TCP/443 and access to jenkins-sg
 resource "aws_security_group" "lb-sg" {
   provider    = aws.region-master
