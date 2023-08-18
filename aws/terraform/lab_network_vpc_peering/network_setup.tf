@@ -135,7 +135,6 @@ resource "aws_subnet" "subnet_1_oregon" {
     Name = "unique-subnet"
   }
 }
-/*
 #Create route table in us-west-2
 resource "aws_route_table" "internet_route_oregon" {
   provider = aws.region-worker
@@ -148,14 +147,18 @@ resource "aws_route_table" "internet_route_oregon" {
     cidr_block                = "10.0.1.0/24"
     vpc_peering_connection_id = aws_vpc_peering_connection.useast1-uswest-2.id
   }
+  route {
+    cidr_block                = "10.0.2.0/24"
+    vpc_peering_connection_id = aws_vpc_peering_connection.useast1-uswest-2.id
+  }
   lifecycle {
     ignore_changes = all
   }
   tags = {
-    Name = "Worker-Region-RT"
+    Name = "Worker-Region-RT-us-west-2"
   }
 }
-
+/*
 #Overwrite default route table of VPC(Worker) with our route table entries
 resource "aws_main_route_table_association" "set-worker-default-rt-assoc" {
   provider       = aws.region-worker
