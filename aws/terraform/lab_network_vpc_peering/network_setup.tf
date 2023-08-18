@@ -61,14 +61,14 @@ resource "aws_internet_gateway" "igw-oregon" {
     Name = "igw-west-2"
   }
 }
-/*
+
 #Accept VPC peering request in us-west-2 from us-east-1
 resource "aws_vpc_peering_connection_accepter" "accept_peering" {
   provider                  = aws.region-worker
   vpc_peering_connection_id = aws_vpc_peering_connection.useast1-uswest-2.id
   auto_accept               = true
 }
-
+/*
 #Create route table in us-east-1
 resource "aws_route_table" "internet_route" {
   provider = aws.region-master
