@@ -33,7 +33,7 @@ resource "aws_vpc" "vpc_uswest" {
   }
 
 }
-/*
+
 #Initiate Peering connection request from us-east-1
 resource "aws_vpc_peering_connection" "useast1-uswest-2" {
   provider    = aws.region-master
@@ -43,7 +43,7 @@ resource "aws_vpc_peering_connection" "useast1-uswest-2" {
   peer_region = var.region-worker
 
 }
-
+/*
 #Create IGW in us-east-1
 resource "aws_internet_gateway" "igw" {
   provider = aws.region-master
