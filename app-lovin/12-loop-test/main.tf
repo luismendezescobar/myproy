@@ -1,5 +1,5 @@
 locals {
-  endpoints=var.map_lb.end_points
+  endpoints=var.map_lb["pt-lb-dev"].end_points
 }
 
 
