@@ -9,3 +9,4 @@ variable "map_lb" {
       region_endpoint = string      
     }))
   }))
+}
