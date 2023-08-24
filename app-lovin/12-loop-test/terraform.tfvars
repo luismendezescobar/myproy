@@ -6,13 +6,13 @@ map_lb = {
             {
             service_name            = "pt-backend-cr-identity-dev"
             service                 = "pt-identity"
-            tag                     = ""
+            tag                     = "tag_01"
             region_endpoint         = "us-central1"
             },
             {
                 service_name        = "pt-backend-cr-analytics-dev"
                 service             = "pt-analytics"
-                tag                 = ""
+                tag                 = "tag_02"
                 region_endpoint     = "us-central1"
             }
         ]
