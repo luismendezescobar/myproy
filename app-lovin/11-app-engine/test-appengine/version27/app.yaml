@@ -1,0 +1,6 @@
+runtime: python27
+service: default
+threadsafe: false
+handlers:
+- url: /.*
+  script: auto
