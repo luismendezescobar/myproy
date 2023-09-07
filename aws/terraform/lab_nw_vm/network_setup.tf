@@ -13,8 +13,7 @@ here are the steps:
 2. Click on the "Security credentials" tab for the selected IAM user. 
 3. Under "Access keys," you'll see the option to create or manage access keys for the user
 4. select command line interface (cli)
-AKIAVFCGBPIHUS7YRBUP
-9M36Rdlm1BGuJkroepjGB35VxlYhknhYNtEAcgSe
+here are going to be the keys
 then in the cloud shell run the below command and copy paste the keys
 aws configure
 us-east-1
@@ -171,11 +170,6 @@ resource "aws_instance" "example_server" {
     volume_size = 30
     volume_type = "gp2"
   }
-
-  user_data = <<EOF
-    #!/bin/bash
-    sudo apt-get install -y mysql-server
-    EOF
 
   tags = {
     Name = "teamcity1"
