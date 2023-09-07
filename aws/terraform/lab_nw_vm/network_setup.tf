@@ -22,11 +22,17 @@ then in the cloud shell run the below command and copy paste the keys
 aws configure
 us-east-1
 
+sudo apt-get update -y
+sudo apt-get install -y mysql-server
 sudo mysql
 create database teamcity;
 create user 'teamcity'@'localhost' identified by '123';
 grant all privileges on teamcity.* to 'teamcity'@'localhost';
 
+
+lets try with this one the next time 
+sudo apt-get install openjdk-11-jdk
+sudo apt-get install openjdk-17-jdk
 
 sudo apt-get install openjdk-8-jdk
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
@@ -34,6 +40,15 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 download team city
 wget -q -O teamcity.tar.gz https://download.jetbrains.com/teamcity/TeamCity-2023.05.3.tar.gz?_ga=2.200321255.816681806.1694052592-75192545.1694052592&_gl=1*1q8l9qt*_ga*NzUxOTI5NDA1MjU5Mg..*_ga_9J976DJZ68*MTY5NDA1MjU5MS4xLjEuMTY5NDA1MjYyNC41OS4wLjA
 tar -xzf teamcity.tar.gz
+
+cd teamcity/bin
+sh ./teamcity-server.sh start
+
+Super user
+cd ..
+cd logs
+vim teamcity-server.log
+/Super user
 
 */
 
@@ -173,7 +188,7 @@ Finally, to use the key pair with an Amazon EC2 instance, you must add the publi
 resource "aws_instance" "example_server" {
   ami                    = "ami-053b0d53c279acc90"
   subnet_id              = aws_subnet.subnet_1.id
-  instance_type          = "t2.medium"
+  instance_type          = "t2.micro"
   vpc_security_group_ids = [ aws_security_group.lb-sg.id,aws_security_group.teamcity-sg.id ]
   #key_name               = "teamcity_server"
 
@@ -185,7 +200,7 @@ resource "aws_instance" "example_server" {
 */
   associate_public_ip_address = true
   root_block_device {
-    volume_size = 30
+    volume_size = 8
     volume_type = "gp2"
   }
 
