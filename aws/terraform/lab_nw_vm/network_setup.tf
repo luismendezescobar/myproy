@@ -1,8 +1,12 @@
 /*
 run in aws shell
+
+git clone https://github.com/luismendezescobar/myproy.git
+
 1. install terraform
 wget https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.zip
-mv terraform /usr/local/bin/
+unzip terraform_1.5.6_linux_amd64.zip
+sudo mv terraform /usr/local/bin/
 terraform -version
 cd /home/cloudshell-user/myproy/aws/terraform/lab_nw_vm
 
@@ -158,7 +162,7 @@ resource "aws_instance" "example_server" {
   subnet_id              = aws_subnet.subnet_1.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [ aws_security_group.lb-sg.id,aws_security_group.teamcity-sg.id ]
-  key_name               = "teamcity_server"
+  #key_name               = "teamcity_server"
 
  /*
   network_interface {
