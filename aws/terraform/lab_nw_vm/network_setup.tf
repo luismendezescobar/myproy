@@ -159,6 +159,7 @@ resource "aws_instance" "example_server" {
   subnet_id              = aws_subnet.subnet_1.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [ aws_security_group.lb-sg.id,aws_security_group.teamcity-sg.id ]
+  key_name               = "teamcity_server"
 
  /*
   network_interface {
@@ -173,8 +174,6 @@ resource "aws_instance" "example_server" {
 
   user_data = <<EOF
     #!/bin/bash
-    echo "Copying the SSH Key to the server"
-    echo -e "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDZmQ4bvOTDTtsbSehf/uPSKccos1sPUJagADk4SgCpWiJ/bDGzvQ+VTbDrahf0vMYii6Y+E6y9oe8vzItrWiuWMvwf/48jnppf3ScgFoK65rdcYmjSczV7TAlNv9tikqVgjT5hMwkUeCoGbqkCNBAzcNiSpl20esTTeJzj6GHBEVLT6hs3pONT7Dh59nIZ9wZB7gXfe3/mC1hxYma8PlBbQRlTLKtaez5CS8PqkY+uDGT1sif82qcZiQU6D9d0AlQc9ROttbnQkEBlgEljtVfMzRmXMBigCW0yONissdZKXGFFp0pyB8pX2592P1H8xcc5IFe1p2VrGbF5aqRyiWac476Nu/5+4yLLuVBH0PNLbDDWFCPWCgARO/cCmu5oCQFgqwl4xKJnr2vmbsZxmV6QJjpzWYguOzkBIX/9A+dlOa3keKbGHcwskass/wSIQHrUcOtT+YLywCcdFKaaAuhVxvA7UiF6DfZQUMmBAQ70VRdzt7y4XGXrMUo8jB88D+51+Y1gOMBEeMFN3u0JiOSTT3BgAg1RzVdD/QvaxXIepGXbjjg4rN49FwwTz2Kfw3Gsz5CBTeVeGAZB7VubWUzpz4ldKhlDQeI9Phym20Y44qrdQ4k5g5thXurxVUbn3UG2qUKh04gfthV/o0Df2VlWHO8nl9vY8pLLgiEeOdSsZw== luis@EPMXGUAW2045" >> /home/ubuntu/.ssh/authorized_keys
     sudo apt-get install -y mysql-server
     EOF
 
