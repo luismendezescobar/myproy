@@ -5,6 +5,20 @@ wget https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.
 mv terraform /usr/local/bin/
 terraform -version
 cd /home/cloudshell-user/myproy/aws/terraform/lab_nw_vm
+
+you need to generate a Access Key ID and Secret Access Key pair
+here are the steps:
+0. go the iam console, then click on Users
+1.Create or Select an IAM User
+2. Click on the "Security credentials" tab for the selected IAM user. 
+3. Under "Access keys," you'll see the option to create or manage access keys for the user
+4. select command line interface (cli)
+AKIAVFCGBPIHUS7YRBUP
+9M36Rdlm1BGuJkroepjGB35VxlYhknhYNtEAcgSe
+then in the cloud shell run the below command and copy paste the keys
+aws configure
+us-east-1
+
 */
 
 provider "aws" {
@@ -141,7 +155,7 @@ Finally, to use the key pair with an Amazon EC2 instance, you must add the publi
 */
 
 resource "aws_instance" "example_server" {
-  ami                    = "ami-04e914639d0cca79a"
+  ami                    = "ami-053b0d53c279acc90"
   subnet_id              = aws_subnet.subnet_1.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [ aws_security_group.lb-sg.id,aws_security_group.teamcity-sg.id ]
