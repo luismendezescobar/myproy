@@ -146,11 +146,12 @@ resource "aws_instance" "example_server" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = [ aws_security_group.lb-sg.id,aws_security_group.teamcity-sg.id ]
 
+ /*
   network_interface {
     network_interface_id = "network_id_from_aws"
     device_index         = 0
   }
-
+*/
   root_block_device {
     volume_size = 30
     volume_type = "gp2"
