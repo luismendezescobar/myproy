@@ -191,7 +191,7 @@ resource "aws_instance" "example_server" {
   subnet_id              = aws_subnet.subnet_1.id
   instance_type          = "t2.medium"
   vpc_security_group_ids = [ aws_security_group.lb-sg.id,aws_security_group.teamcity-sg.id ]
-  key_name               = "aws-personal"
+  #key_name               = "aws-personal"
 
  /*
   network_interface {
