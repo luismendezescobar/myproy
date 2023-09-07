@@ -13,7 +13,7 @@ here are the steps:
 2. Click on the "Security credentials" tab for the selected IAM user. 
 3. Under "Access keys," you'll see the option to create or manage access keys for the user
 4. select command line interface (cli)
-here are going to be the keys
+here are going to
 then in the cloud shell run the below command and copy paste the keys
 aws configure
 us-east-1
@@ -170,6 +170,13 @@ resource "aws_instance" "example_server" {
     volume_size = 30
     volume_type = "gp2"
   }
+
+  user_data = <<EOF
+    #!/bin/bash
+    echo "Copying the SSH Key to the server"
+    echo -e "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDZmQ4bvOTDTtsbSehf/uPSKccos1sPUJagADk4SgCpWiJ/bDGzvQ+VTbDrahf0vMYii6Y+E6y9oe8vzItrWiuWMvwf/48jnppf3ScgFoK65rdcYmjSczV7TAlNv9tikqVgjT5hMwkUeCoGbqkCNBAzcNiSpl20esTTeJzj6GHBEVLT6hs3pONT7Dh59nIZ9wZB7gXfe3/mC1hxYma8PlBbQRlTLKtaez5CS8PqkY+uDGT1sif82qcZiQU6D9d0AlQc9ROttbnQkEBlgEljtVfMzRmXMBigCW0yONissdZKXGFFp0pyB8pX2592P1H8xcc5IFe1p2VrGbF5aqRyiWac476Nu/5+4yLLuVBH0PNLbDDWFCPWCgARO/cCmu5oCQFgqwl4xKJnr2vmbsZxmV6QJjpzWYguOzkBIX/9A+dlOa3keKbGHcwskass/wSIQHrUcOtT+YLywCcdFKaaAuhVxvA7UiF6DfZQUMmBAQ70VRdzt7y4XGXrMUo8jB88D+51+Y1gOMBEeMFN3u0JiOSTT3BgAg1RzVdD/QvaxXIepGXbjjg4rN49FwwTz2Kfw3Gsz5CBTeVeGAZB7VubWUzpz4ldKhlDQeI9Phym20Y44qrdQ4k5g5thXurxVUbn3UG2qUKh04gfthV/o0Df2VlWHO8nl9vY8pLLgiEeOdSsZw== luis@EPMXGUAW2045" >> /home/ubuntu/.ssh/authorized_keys
+    sudo apt-get install -y mysql-server
+    EOF
 
   tags = {
     Name = "teamcity1"
