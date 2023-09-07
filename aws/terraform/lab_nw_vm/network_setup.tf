@@ -22,6 +22,19 @@ then in the cloud shell run the below command and copy paste the keys
 aws configure
 us-east-1
 
+sudo mysql
+create database teamcity;
+create user 'teamcity'@'localhost' identified by '123';
+grant all privileges on teamcity.* to 'teamcity'@'localhost';
+
+
+sudo apt-get install openjdk-8-jdk
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
+download team city
+wget -q -O teamcity.tar.gz https://download.jetbrains.com/teamcity/TeamCity-2023.05.3.tar.gz?_ga=2.200321255.816681806.1694052592-75192545.1694052592&_gl=1*1q8l9qt*_ga*NzUxOTI5NDA1MjU5Mg..*_ga_9J976DJZ68*MTY5NDA1MjU5MS4xLjEuMTY5NDA1MjYyNC41OS4wLjA
+tar -xzf teamcity.tar.gz
+
 */
 
 provider "aws" {
@@ -160,7 +173,7 @@ Finally, to use the key pair with an Amazon EC2 instance, you must add the publi
 resource "aws_instance" "example_server" {
   ami                    = "ami-053b0d53c279acc90"
   subnet_id              = aws_subnet.subnet_1.id
-  instance_type          = "t2.micro"
+  instance_type          = "t2.xlarge"
   vpc_security_group_ids = [ aws_security_group.lb-sg.id,aws_security_group.teamcity-sg.id ]
   #key_name               = "teamcity_server"
 
@@ -180,6 +193,7 @@ resource "aws_instance" "example_server" {
     #!/bin/bash
     echo "Copying the SSH Key to the server"
     echo -e "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDZmQ4bvOTDTtsbSehf/uPSKccos1sPUJagADk4SgCpWiJ/bDGzvQ+VTbDrahf0vMYii6Y+E6y9oe8vzItrWiuWMvwf/48jnppf3ScgFoK65rdcYmjSczV7TAlNv9tikqVgjT5hMwkUeCoGbqkCNBAzcNiSpl20esTTeJzj6GHBEVLT6hs3pONT7Dh59nIZ9wZB7gXfe3/mC1hxYma8PlBbQRlTLKtaez5CS8PqkY+uDGT1sif82qcZiQU6D9d0AlQc9ROttbnQkEBlgEljtVfMzRmXMBigCW0yONissdZKXGFFp0pyB8pX2592P1H8xcc5IFe1p2VrGbF5aqRyiWac476Nu/5+4yLLuVBH0PNLbDDWFCPWCgARO/cCmu5oCQFgqwl4xKJnr2vmbsZxmV6QJjpzWYguOzkBIX/9A+dlOa3keKbGHcwskass/wSIQHrUcOtT+YLywCcdFKaaAuhVxvA7UiF6DfZQUMmBAQ70VRdzt7y4XGXrMUo8jB88D+51+Y1gOMBEeMFN3u0JiOSTT3BgAg1RzVdD/QvaxXIepGXbjjg4rN49FwwTz2Kfw3Gsz5CBTeVeGAZB7VubWUzpz4ldKhlDQeI9Phym20Y44qrdQ4k5g5thXurxVUbn3UG2qUKh04gfthV/o0Df2VlWHO8nl9vY8pLLgiEeOdSsZw== luis@EPMXGUAW2045" >> /home/ubuntu/.ssh/authorized_keys
+    sudo apt-get update -y
     sudo apt-get install -y mysql-server
     EOF
 
