@@ -1,3 +1,12 @@
+/*
+run in aws shell
+1. install terraform
+wget https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.zip
+mv terraform /usr/local/bin/
+terraform -version
+cd /home/cloudshell-user/myproy/aws/terraform/lab_nw_vm
+*/
+
 provider "aws" {
   profile = var.profile
   region  = var.region-master
@@ -144,7 +153,7 @@ resource "aws_instance" "example_server" {
 
   root_block_device {
     volume_size = 30
-    volume_type = gp2
+    volume_type = "gp2"
   }
 
   user_data = <<EOF
