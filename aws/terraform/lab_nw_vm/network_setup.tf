@@ -218,7 +218,7 @@ Finally, to use the key pair with an Amazon EC2 instance, you must add the publi
 */
 
 resource "aws_instance" "example_server" {
-  #ami                    = "ami-053b0d53c279acc90"
+  ami                    = "ami-053b0d53c279acc90"
   subnet_id              = aws_subnet.subnet_1.id
   instance_type          = "t2.small"
   vpc_security_group_ids = [ aws_security_group.lb-sg.id,aws_security_group.teamcity-sg.id ]
