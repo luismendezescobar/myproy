@@ -57,12 +57,30 @@ vim teamcity-server.log
 ###################################### install teamcity build agent on ubuntu ###############################
 sudo apt-get update
 sudo apt-get install openjdk-11-jdk
+external ip of the team city server
+wget http://18.215.234.132:8111/update/buildAgentFull.zip
+sudo apt install unzip
+unzip buildAgentFull.zip -d buildAgent
+cd buildAgent/conf
+cp buildAgent.dist.properties buildAgent.properties
+sudo vim buildAgent.properties
+change ip for the ip of your server.
+cd ..
+cd bin
+sh ./agent.sh start
+#########################################backup sql
+mysqldump -u teamcity -p teamcity > dump_file.sql --no-tablespaces
+aws s3 cp somefile  s3://mybucket-9-7-2023-01
+donwoad the file
+
+upload the file
+
+Restore the backup to a local database server - the mysql command will let you take the contents of a .sql file backup, and restore it directly to a database. This is the syntax for the command:
 
 
+mysql -u [username] –p[password] [database_name] < [dump_file.sql]
 
-
-
-
+ 
 
 */
 
