@@ -22,6 +22,7 @@ then in the cloud shell run the below command and copy paste the keys
 aws configure
 us-east-1
 
+###################configure team city ##################################################
 sudo apt-get update -y
 sudo apt-get install -y mysql-server
 sudo mysql
@@ -32,10 +33,12 @@ grant all privileges on teamcity.* to 'teamcity'@'localhost';
 
 lets try with this one the next time 
 sudo apt-get install openjdk-11-jdk
+
 sudo apt-get install openjdk-17-jdk
 
 sudo apt-get install openjdk-8-jdk
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 
 download team city
@@ -50,6 +53,16 @@ cd ..
 cd logs
 vim teamcity-server.log
 /Super user
+
+###################################### install teamcity build agent on ubuntu ###############################
+sudo apt-get update
+sudo apt-get install openjdk-11-jdk
+
+
+
+
+
+
 
 */
 
@@ -215,5 +228,35 @@ resource "aws_instance" "example_server" {
 
   tags = {
     Name = "teamcity1"
+  }
+}
+
+
+resource "aws_instance" "teamcity_build_agent" {
+  ami                    = "ami-053b0d53c279acc90"
+  subnet_id              = aws_subnet.subnet_1.id
+  instance_type          = "t2.medium"
+  vpc_security_group_ids = [ aws_security_group.lb-sg.id,aws_security_group.teamcity-sg.id ]
+  #key_name               = "aws-personal"
+
+ /*
+  network_interface {
+    network_interface_id = "network_id_from_aws"
+    device_index         = 0
+  }
+*/
+  associate_public_ip_address = true
+  root_block_device {
+    volume_size = 30
+    volume_type = "gp2"
+  }
+
+  user_data = <<EOF
+    #!/bin/bash    
+    sudo apt-get update -y    
+    EOF
+
+  tags = {
+    Name = "build_agent"
   }
 }
