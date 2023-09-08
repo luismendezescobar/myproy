@@ -22,7 +22,7 @@ then in the cloud shell run the below command and copy paste the keys
 aws configure
 us-east-1
 
-###################configure team city ##################################################
+###################configure team city server ##################################################
 sudo apt-get update -y
 sudo apt-get install -y mysql-server
 sudo mysql
@@ -78,7 +78,7 @@ upload the file
 Restore the backup to a local database server - the mysql command will let you take the contents of a .sql file backup, and restore it directly to a database. This is the syntax for the command:
 
 
-mysql -u [username] –p[password] [database_name] < [dump_file.sql]
+mysql -u teamcity –p teamcity < dump_file.sql
 
  
 
@@ -216,7 +216,7 @@ You will be prompted to enter a passphrase for the key pair. This is optional bu
 The ssh-keygen command will generate two files: a private key file and a public key file. The private key file should be kept secure and never shared with anyone. The public key file can be shared with Amazon EC2 instances to allow SSH access.
 Finally, to use the key pair with an Amazon EC2 instance, you must add the public key to the instance when you configure it with Terraform.
 */
-
+/*
 resource "aws_instance" "example_server" {
   ami                    = "ami-053b0d53c279acc90"
   subnet_id              = aws_subnet.subnet_1.id
@@ -224,12 +224,6 @@ resource "aws_instance" "example_server" {
   vpc_security_group_ids = [ aws_security_group.lb-sg.id,aws_security_group.teamcity-sg.id ]
   #key_name               = "aws-personal"
 
- /*
-  network_interface {
-    network_interface_id = "network_id_from_aws"
-    device_index         = 0
-  }
-*/
   associate_public_ip_address = true
   root_block_device {
     volume_size = 30
@@ -248,12 +242,12 @@ resource "aws_instance" "example_server" {
     Name = "teamcity1"
   }
 }
-
+*/
 
 resource "aws_instance" "teamcity_build_agent" {
   ami                    = "ami-053b0d53c279acc90"
   subnet_id              = aws_subnet.subnet_1.id
-  instance_type          = "t2.small"
+  instance_type          = "t2.micro"
   vpc_security_group_ids = [ aws_security_group.lb-sg.id,aws_security_group.teamcity-sg.id ]
   #key_name               = "aws-personal"
 
