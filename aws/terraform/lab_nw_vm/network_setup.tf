@@ -247,7 +247,7 @@ resource "aws_instance" "example_server" {
 resource "aws_instance" "teamcity_build_agent" {
   ami                    = "ami-053b0d53c279acc90"
   subnet_id              = aws_subnet.subnet_1.id
-  instance_type          = "t2.micro"
+  instance_type          = "t2.medium"
   vpc_security_group_ids = [ aws_security_group.lb-sg.id,aws_security_group.teamcity-sg.id ]
   #key_name               = "aws-personal"
 
