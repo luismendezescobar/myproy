@@ -47,9 +47,9 @@ map_lb = {
         default_service = "hello1"	                    
         end_point_maps = {
           priority-1= {
-            prefixMatch          = "/api/v1/announcement"
+            prefix_match          = "/api/v1/announcement"
             priority             = 1 
-            weightedBEServices   = [
+            weighted_be_services   = [
               {
                 service_name  = "hello1"
                 weight        = 0          
@@ -61,9 +61,9 @@ map_lb = {
             ]
           }
           priority-2= {
-            prefixMatch          = "/api/v1/announcement2"
+            prefix_match          = "/api/v1/announcement2"
             priority             = 2
-            weightedBEServices   = [
+            weighted_be_Services   = [
               {
                 service_name = "hello1"
                 weight       = 100          
@@ -83,9 +83,9 @@ map_lb = {
         prefix_match     = "/api/v1/announcement"	            
         end_point_maps = {
           priority-1= {
-            prefixMatch          = "/api/v1/announcement"
+            prefix_match          = "/api/v1/announcement"
             priority             = 1 
-            weightedBEServices   = [
+            weighted_be_services   = [
               {
                 service_name  = "hello1"
                 weight        = 0          

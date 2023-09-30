@@ -81,7 +81,7 @@ variable "url_map" {
       #weight              = number
       priority              = optional(number)
       prefix_match          = optional(string)
-      weightedBEServices    = optional(list(object({
+      weighted_be_services    = optional(list(object({
         service_name        = string
         weight              = number          
       })))

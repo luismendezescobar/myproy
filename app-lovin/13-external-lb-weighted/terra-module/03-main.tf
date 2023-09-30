@@ -57,7 +57,7 @@ resource "google_compute_url_map" "url_map" {
           }  
           route_action {
             dynamic "weighted_backend_services" {
-              for_each = route_rules.value.weightedBEServices
+              for_each = route_rules.value.weighted_be_services
               content {
                 backend_service = module.lb-http.backend_services[weighted_backend_services.value.service_name].self_link
                 weight          = weighted_backend_services.value.weight
