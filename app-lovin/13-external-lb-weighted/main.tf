@@ -1,6 +1,6 @@
 
 module "create_lb_wordscapes_qa" {
-  source                = "terra-module/"
+  source                = "./terra-module"
   for_each              = var.map_lb
   project_id            = var.project_id
   lb_name               = each.value.lb_name  
