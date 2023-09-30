@@ -48,17 +48,26 @@ tar -xzf teamcity.tar.gz
 cd TeamCity/bin
 sh ./teamcity-server.sh start
 
+
+cd TeamCity/bin
+sh ./teamcity-server.sh stop
+
 Super user
 cd ..
 cd logs
 vim teamcity-server.log
 /Super user
 
+to stop it
+cd TeamCity/bin
+sh ./teamcity-server.sh stop
+shutdown now
+
 ###################################### install teamcity build agent on ubuntu ###############################
 sudo apt-get update
 sudo apt-get install openjdk-11-jdk
 external ip of the team city server
-wget http://18.215.234.132:8111/update/buildAgentFull.zip
+wget http://34.134.64.138:8111/update/buildAgentFull.zip
 sudo apt install unzip
 unzip buildAgentFull.zip -d buildAgent
 cd buildAgent/conf
@@ -68,6 +77,42 @@ change ip for the ip of your server.
 cd ..
 cd bin
 sh ./agent.sh start
+############ install build agent in mac ######################
+1.install the version 17 from the browser
+2.download the team city angent installer from the browser
+http://35.232.77.80/:8111/update/buildAgentFull.zip
+
+
+
+
+unpack it from the gui
+
+in the termninal run the following
+cd ~/Downloads
+cd ~/buildAgentFull/conf
+sudo vim buildAgent.properties
+
+cd ~/buildAgentFull-2/conf
+sudo vim buildAgent.properties
+
+cp buildAgent.dist.properties buildAgent.properties
+sudo vim buildAgent.properties
+change ip for the ip of your server.
+cd ..
+
+cd ~/buildAgentFull/bin
+./agent.sh start
+
+cd ~/buildAgentFull/bin
+./agent.sh stop
+
+
+cd ~/buildAgentFull-2/bin
+./agent.sh start
+
+cd ~/buildAgentFull-2/bin
+./agent.sh stop
+
 #########################################backup sql
 mysqldump -u teamcity -p teamcity > dump_file.sql --no-tablespaces
 aws s3 cp somefile  s3://mybucket-9-7-2023-01
@@ -79,6 +124,15 @@ Restore the backup to a local database server - the mysql command will let you t
 
 
 mysql -u teamcity –p teamcity < dump_file.sql
+
+######################## troubleshooting
+sudo mysql
+use teamcity;
+select task_type from node_tasks where long_arg1=201;
+delete from node_tasks where long_arg1=201 and task_type = 'stopBuild';
+exit 
+sudo reboot now
+
 
  
 
