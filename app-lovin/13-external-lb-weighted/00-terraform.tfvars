@@ -73,7 +73,7 @@ map_lb = {
         end_point_maps = {
           gae-dot = {
             service_name        = "hello2"
-            path                = "/"
+            path                = ["/"]
             path_prefix_rewrite = ""
             weight              = 0
           }
