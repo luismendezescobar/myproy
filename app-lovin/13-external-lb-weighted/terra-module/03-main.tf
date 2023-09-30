@@ -54,16 +54,16 @@ resource "google_compute_url_map" "url_map" {
           priority     = route_rules.value.priority
           match_rules {                                    
             prefix_match = route_rules.value.prefix_match            
-            route_action {
-              dynamic "weighted_backend_services" {
-                for_each = route_rules.value.weightedBEServices
-                content {
-                  backend_service = module.lb-http.backend_services[weighted_backend_services.value.service_name].self_link
-                  weight          = weighted_backend_services.value.weight
-                }
+          }  
+          route_action {
+            dynamic "weighted_backend_services" {
+              for_each = route_rules.value.weightedBEServices
+              content {
+                backend_service = module.lb-http.backend_services[weighted_backend_services.value.service_name].self_link
+                weight          = weighted_backend_services.value.weight
               }
-            }            
-          }    
+            }
+          }                    
         }
       }
       dynamic "path_rule" {
