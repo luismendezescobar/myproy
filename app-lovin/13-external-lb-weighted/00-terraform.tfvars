@@ -1,4 +1,4 @@
-project_id = "pt-services-dev-wepg"
+project_id = "qwiklabs-gcp-01-ed310dad10f8"
 
 
 map_lb = {
