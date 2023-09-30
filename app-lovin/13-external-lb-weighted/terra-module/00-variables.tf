@@ -78,7 +78,13 @@ variable "url_map" {
       service_name        = string
       path                = list(string)
       path_prefix_rewrite = string
-      weight              = number
+      #weight              = number
+      priority              = optional(number)
+      prefix_match          = optional(string)
+      weightedBEServices    = optional(list(object({
+        service_name        = string
+        weight              = number          
+      })))
     }))
   }))
 }

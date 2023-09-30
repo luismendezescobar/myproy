@@ -1,12 +1,12 @@
-project_id = "qwiklabs-gcp-01-ed310dad10f8"
+project_id = "qwiklabs-gcp-00-7bb0877c9192"
 
 
 map_lb = {
   wordscapes-lb-qa = {
     lb_name               = "wordscapes-lb-qa"
     prefix_match          = "/"
-    paths_class           = true
-    weighted_class        = false
+    paths_class           = false
+    weighted_class        = true
     ipv4_name             = "wordscapes-lb-ipv4-qa"
     ipv4_project          = "pf-wordscapes-qa-server"
     enable_ipv6           = true
@@ -42,40 +42,59 @@ map_lb = {
     }
     url_map = {
       main = {
-        path_matcher  = "main"
-        domain        = "somedomain.com"
-        default_service       = "hello1"	            
+        path_matcher    = "main"
+        domain          = "somedomain.com"
+        default_service = "hello1"	                    
         end_point_maps = {
-          run-v1 = {
-            service_name        = "hello1"
-            path                = ["/api/v1/*"]
-            path_prefix_rewrite = ""
-            weight              = 0
+          priority-1= {
+            prefixMatch          = "/api/v1/announcement"
+            priority             = 1 
+            weightedBEServices   = [
+              {
+                service_name  = "hello1"
+                weight        = 0          
+              }
+	            {
+                service_name  = "hello2"
+                weight        = 100              
+              }
+            ]
           }
-          run-swagger = {
-            service_name        = "hello1"
-            path                = ["/swagger/*"]
-            path_prefix_rewrite = ""
-            weight              = 0
-          }
-          run-announce = {
-            service_name        = "hello1"
-            path                = ["/api/v1/announcement"]
-            path_prefix_rewrite = ""
-            weight              = 0
-          }
-        }
+          priority-2= {
+            prefixMatch          = "/api/v1/announcement2"
+            priority             = 2
+            weightedBEServices   = [
+              {
+                service_name = "hello1"
+                weight       = 100          
+              }
+	            {
+                service_name = "hello2"
+                weight       = 0              
+              }
+            ]
+          }  
+        }        
       }      
       second = {
-        path_matcher  = "second"
-        domain        = "some-other-domain.com"
-        default_service       = "hello2"	            
+        path_matcher     = "second"
+        domain           = "some-other-domain.com"
+        default_service  = "hello2"
+        prefix_match     = "/api/v1/announcement"	            
         end_point_maps = {
-          gae-dot = {
-            service_name        = "hello2"
-            path                = ["/"]
-            path_prefix_rewrite = ""
-            weight              = 0
+          priority-1= {
+            prefixMatch          = "/api/v1/announcement"
+            priority             = 1 
+            weightedBEServices   = [
+              {
+                service_name  = "hello1"
+                weight        = 0          
+              }
+	            {
+                service_name  = "hello2"
+                weight2       = 100              
+              }
+            ]
           }
         }
       }

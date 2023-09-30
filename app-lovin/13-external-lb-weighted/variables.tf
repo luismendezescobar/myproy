@@ -41,10 +41,17 @@ variable "map_lb" {
       domain          = string
       default_service = string
       end_point_maps = map(object({
-        service_name        = string
-        path                = list(string)
-        path_prefix_rewrite = string
-        weight              = number
+        service_name          = optional(string)
+        path                  = optional(list(string))
+        path_prefix_rewrite   = optional(string)
+        #weight               = optional(number)
+        priority              = optional(number)
+        prefix_match          = optional(string)
+        weightedBEServices    = optional(list(object({
+          service_name        = string
+          weight              = number          
+        })))
+
       }))
     }))
   }))
