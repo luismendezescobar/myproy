@@ -28,9 +28,11 @@ variable "ipv6_name" {
 variable "ipv6_project" {
   type = string
 }
+/*
 variable "certificates" {
   type = list(string)
 }
+*/
 variable "https_redirect" {
   type = bool
 }
