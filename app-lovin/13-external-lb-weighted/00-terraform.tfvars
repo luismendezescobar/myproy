@@ -63,7 +63,7 @@ map_lb = {
           priority-2= {
             prefix_match          = "/api/v1/announcement2"
             priority             = 2
-            weighted_be_Services   = [
+            weighted_be_services   = [
               {
                 service_name = "hello1"
                 weight       = 100          
