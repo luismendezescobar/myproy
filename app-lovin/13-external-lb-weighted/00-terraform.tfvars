@@ -52,11 +52,11 @@ map_lb = {
             weighted_be_services   = [
               {
                 service_name  = "hello1"
-                weight        = 10          
+                weight        = 0          
               },
 	            {
                 service_name  = "hello2"
-                weight        = 90              
+                weight        = 100              
               }
             ]
           }
@@ -66,11 +66,11 @@ map_lb = {
             weighted_be_services   = [
               {
                 service_name = "hello1"
-                weight       = 90          
+                weight       = 100          
               },
 	            {
                 service_name = "hello2"
-                weight       = 10              
+                weight       = 0              
               }
             ]
           }  
@@ -88,11 +88,11 @@ map_lb = {
             weighted_be_services   = [
               {
                 service_name  = "hello1"
-                weight        = 10          
+                weight        = 0          
               },
 	            {
                 service_name  = "hello2"
-                weight        = 90              
+                weight        = 100              
               }
             ]
           }
