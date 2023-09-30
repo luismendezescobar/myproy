@@ -49,23 +49,20 @@ resource "google_compute_url_map" "url_map" {
       name            = path_matcher.value.path_matcher
       default_service = module.lb-http.backend_services[path_matcher.value.default_service].self_link
       dynamic "route_rules" {
-        for_each = var.weighted_class == true ? [1] : []
+        for_each = var.weighted_class == true ? path_matcher.value.end_point_maps: []
         content {          
-          dynamic "match_rules" {
-            for_each=path_matcher.value.end_point_maps
-            content {
-              priority     = match_rules.value.priority
-              prefix_match = match_rules.value.prefix_match            
-              route_action {
-                dynamic "weighted_backend_services" {
-                  for_each = match_rules.value.weightedBEServices
-                  content {
-                    backend_service = module.lb-http.backend_services[weighted_backend_services.value.service_name].self_link
-                    weight          = weighted_backend_services.value.weight
-                  }
+          match_rules {                        
+            priority     = route_rules.value.priority
+            prefix_match = route_rules.value.prefix_match            
+            route_action {
+              dynamic "weighted_backend_services" {
+                for_each = route_rules.value.weightedBEServices
+                content {
+                  backend_service = module.lb-http.backend_services[weighted_backend_services.value.service_name].self_link
+                  weight          = weighted_backend_services.value.weight
                 }
               }
-            }
+            }            
           }    
         }
       }
