@@ -51,8 +51,8 @@ resource "google_compute_url_map" "url_map" {
       dynamic "route_rules" {
         for_each = var.weighted_class == true ? path_matcher.value.end_point_maps: []
         content {          
-          match_rules {                        
-            priority     = route_rules.value.priority
+          priority     = route_rules.value.priority
+          match_rules {                                    
             prefix_match = route_rules.value.prefix_match            
             route_action {
               dynamic "weighted_backend_services" {
