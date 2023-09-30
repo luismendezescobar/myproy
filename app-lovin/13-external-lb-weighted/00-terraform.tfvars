@@ -18,18 +18,18 @@ map_lb = {
     default_service       = "gae-service"
     load_balancing_scheme = "EXTERNAL_MANAGED"
     end_points   = {
-      gae-service = {
-        service_name            = "gae-service"
-        service                 = "default"
+      hello1 = {
+        service_name            = "hello1"
+        service                 = "hello1"
         tag                     = ""
         version                 = "testflush4"
-        type                    = "app_engine"
+        type                    = "cloud_run"
         region_endpoint         = "us-central1"
         iap                     = {}
         security_policy         = null          
       }        
-      game-wordscapes-server	  = {
-        service_name            = "game-wordscapes-server"
+      hello2	  = {
+        service_name            = "hello2"
         service                 = "game-wordscapes-server"
         tag                     = ""
         version                 = ""
@@ -44,49 +44,41 @@ map_lb = {
       main = {
         path_matcher  = "main"
         domain        = "somedomain.com"
-        default_service       = "gae-service"	            
+        default_service       = "hello1"	            
         end_point_maps = {
-          /*
-          gae-announce = {
-            service_name        = "gae-service"
-            path                = ["/*"]
-            path_prefix_rewrite = ""
-            weight              = 0
-          }*/
           run-v1 = {
-            service_name        = "game-wordscapes-server"
+            service_name        = "hello1"
             path                = ["/api/v1/*"]
             path_prefix_rewrite = ""
             weight              = 0
           }
           run-swagger = {
-            service_name        = "game-wordscapes-server"
+            service_name        = "hello1"
             path                = ["/swagger/*"]
             path_prefix_rewrite = ""
             weight              = 0
           }
           run-announce = {
-            service_name        = "game-wordscapes-server"
+            service_name        = "hello1"
             path                = ["/api/v1/announcement"]
             path_prefix_rewrite = ""
             weight              = 0
           }
         }
-      }
-      /*
+      }      
       second = {
         path_matcher  = "second"
-        domain        = "dev-dot-wordscapes-api.peoplefungames-qa.com"
-        default_service       = "gae-service"	            
+        domain        = "some-other-domain.com"
+        default_service       = "hello2"	            
         end_point_maps = {
           gae-dot = {
-            service_name        = "gae-service"
+            service_name        = "hello2"
             path                = "/"
             path_prefix_rewrite = ""
             weight              = 0
           }
         }
-      }*/
+      }
     }
   }
 }
