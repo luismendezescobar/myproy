@@ -92,7 +92,7 @@ map_lb = {
               },
 	            {
                 service_name  = "hello2"
-                weight2       = 100              
+                weight        = 100              
               }
             ]
           }
