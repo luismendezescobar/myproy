@@ -49,7 +49,7 @@ resource "google_compute_url_map" "url_map" {
       name            = path_matcher.value.path_matcher
       default_service = module.lb-http.backend_services[path_matcher.value.default_service].self_link
       dynamic "route_rules" {
-        for_each = var.weighted_class == true ? path_matcher.value.end_point_maps: []
+        for_each = var.weighted_class == true ? path_matcher.value.end_point_maps: {}
         content {          
           priority     = route_rules.value.priority
           match_rules {                                    
