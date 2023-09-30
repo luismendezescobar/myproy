@@ -87,6 +87,7 @@ resource "google_compute_url_map" "url_map" {
     create_before_destroy = true
   }
 }
+/*
 data "google_compute_global_address" "service-lb-ipv4" {
   name    = var.ipv4_name
   project = var.ipv4_project
@@ -96,13 +97,14 @@ data "google_compute_global_address" "service-lb-ipv6" {
   name    = var.ipv6_name
   project = var.ipv6_project
 }
+*/
 module "lb-http" {
   source = "GoogleCloudPlatform/lb-http/google//modules/serverless_negs"
 
   version              = "~> 8.0.0"
   name                 = var.lb_name
   project              = var.project_id
-  address              = data.google_compute_global_address.service-lb-ipv4.address
+  #address              = data.google_compute_global_address.service-lb-ipv4.address
   #enable_ipv6          = var.enable_ipv6
   #ipv6_address         = var.enable_ipv6 ? data.google_compute_global_address.service-lb-ipv6[0].address : null
   #create_address       = false
