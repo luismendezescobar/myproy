@@ -1,4 +1,4 @@
-project_id = "playground-s-11-6807923a"
+project_id = "cloud-run-da-196-72e974cb"
 
 
 map_lb = {
@@ -21,7 +21,7 @@ map_lb = {
     storage   = {
       default-backend = {          
         backend_name                = "default-backend"
-        bucket_name                 = "default-backend-10-7-2023"
+        bucket_name                 = "default-backend-10-7-2023-01"
         enable_cdn                  = true
         bucket_location             = "us-central1"
         uniform_bucket_level_access = true
