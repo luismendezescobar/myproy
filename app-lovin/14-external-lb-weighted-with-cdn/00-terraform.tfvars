@@ -1,4 +1,4 @@
-project_id = "qwiklabs-gcp-03-ecc22dee170c"
+project_id = "qwiklabs-gcp-03-234cf5e32b39"
 
 
 map_lb = {
