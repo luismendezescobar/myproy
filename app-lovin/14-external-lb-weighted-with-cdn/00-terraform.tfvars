@@ -65,7 +65,7 @@ map_lb = {
     url_map = {
       main = {
         path_matcher    = "main"
-        domain          = "somedomain.com"
+        domain          = "luismendeze.com"
         default_service = "hello1"	                    
         end_point_maps = {
           priority-1= {
@@ -86,7 +86,7 @@ map_lb = {
       }      
       second = {
         path_matcher     = "second"
-        domain           = ""
+        domain           = "domain2.com"
         default_service  = "hello2"
         prefix_match     = "/api/v1/announcement"	            
         end_point_maps = {
