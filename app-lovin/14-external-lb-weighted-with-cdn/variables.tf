@@ -20,6 +20,28 @@ variable "map_lb" {
     log_config_enable     = bool
     default_service       = string
     load_balancing_scheme = string
+##########variables for cdn for load balancer #########
+    create_storage        = bool
+    storage = map(object({
+      backend_name        = string
+      bucket_name         = string
+      enable_cdn          = bool
+      bucket_location     = string
+      uniform_bucket_level_access = string
+      storage_class       = string
+      force_destroy       = string	
+      description         = string
+      member              = string
+    }))
+    cdn_policy = optional(object({
+      cache_mode                   = optional(string)      
+      client_ttl                   = optional(number)
+      default_ttl                  = optional(number)
+      max_ttl                      = optional(number)      
+      negative_caching             = optional(bool)
+      serve_while_stale            = optional(number)
+    }))
+
     end_points = map(object({
       service_name    = string
       service         = string

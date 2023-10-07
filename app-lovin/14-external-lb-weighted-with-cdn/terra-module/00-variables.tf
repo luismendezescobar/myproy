@@ -95,3 +95,32 @@ variable "ssl_policy" {
   type    = string
   default = null
 }                
+################variables for cdn
+variable "create_storage" {
+  type = bool
+  
+}
+variable "storage" {
+  type = map(object({
+    backend_name                = string
+    bucket_name                 = string
+    enable_cdn                  = bool
+    bucket_location             = string
+    uniform_bucket_level_access = string
+    storage_class               = string
+    force_destroy               = string
+    description                 = string
+    member                      = string
+  }))
+  description = "An object mapping between backend services"
+}
+variable "cdn_policy" {
+  type = object({
+    cache_mode        = optional(string)
+    client_ttl        = optional(number)
+    default_ttl       = optional(number)
+    max_ttl           = optional(number)
+    negative_caching  = optional(bool)
+    serve_while_stale = optional(number)
+  })
+}

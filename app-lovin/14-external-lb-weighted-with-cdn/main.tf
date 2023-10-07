@@ -21,4 +21,8 @@ module "create_lb_wordscapes_qa" {
   end_points            = each.value.end_points
   url_map               = each.value.url_map
   #ssl_policy            = module.create_ssl_policy.ssl_policy.self_link
+  create_storage        = each.value.create_storage
+  storage               = each.value.storage
+  cdn_policy            = each.value.cdn_policy
+
 }

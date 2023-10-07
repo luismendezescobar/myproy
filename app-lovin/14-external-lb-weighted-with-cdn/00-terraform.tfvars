@@ -15,8 +15,30 @@ map_lb = {
     https_redirect        = true
     enable_cdn            = false
     log_config_enable     = true
-    default_service       = "hello1"
+    default_service       = "default-backend"
     load_balancing_scheme = "EXTERNAL_MANAGED"
+    create_storage        = true
+    storage   = {
+      default_backend = {          
+        backend_name                = "default-backend"
+        bucket_name                 = "default-backend-10-6-2023"
+        enable_cdn                  = true
+        bucket_location             = "us-central1"
+        uniform_bucket_level_access = true
+        storage_class               = "STANDARD"
+        force_destroy               = true
+        description                 = "storage for space breaker dev"     
+        member                      = "allUsers"
+      }
+    }
+    cdn_policy = {
+      cache_mode                   = "CACHE_ALL_STATIC"
+      client_ttl                   = 3600
+      default_ttl                  = 3600
+      max_ttl                      = 86400
+      negative_caching             = false
+      serve_while_stale            = 0
+    }    
     end_points   = {
       hello1 = {
         service_name            = "hello1"
