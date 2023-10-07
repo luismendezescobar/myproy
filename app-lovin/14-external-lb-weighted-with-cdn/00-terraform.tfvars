@@ -1,9 +1,9 @@
-project_id = "qwiklabs-gcp-00-7bb0877c9192"
+project_id = "qwiklabs-gcp-03-ecc22dee170c"
 
 
 map_lb = {
   wordscapes-lb-qa = {
-    lb_name               = "wordscapes-lb-qa"
+    lb_name               = "test-lb"
     #prefix_match          = "/"
     paths_class           = false
     weighted_class        = true
