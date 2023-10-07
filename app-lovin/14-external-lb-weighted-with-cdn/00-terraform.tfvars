@@ -1,4 +1,4 @@
-project_id = "qwiklabs-gcp-03-234cf5e32b39"
+project_id = "qwiklabs-gcp-02-c828f9f56425"
 
 
 map_lb = {
@@ -74,33 +74,19 @@ map_lb = {
             weighted_be_services   = [
               {
                 service_name  = "hello1"
-                weight        = 0          
+                weight        = 100          
               },
 	            {
                 service_name  = "hello2"
-                weight        = 100              
+                weight        = 0              
               }
             ]
           }
-          priority-2= {
-            prefix_match          = "/api/v1/announcement2"
-            priority             = 2
-            weighted_be_services   = [
-              {
-                service_name = "hello1"
-                weight       = 100          
-              },
-	            {
-                service_name = "hello2"
-                weight       = 0              
-              }
-            ]
-          }  
         }        
       }      
       second = {
         path_matcher     = "second"
-        domain           = "some-other-domain.com"
+        domain           = ""
         default_service  = "hello2"
         prefix_match     = "/api/v1/announcement"	            
         end_point_maps = {

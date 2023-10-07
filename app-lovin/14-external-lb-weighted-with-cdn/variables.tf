@@ -21,8 +21,8 @@ variable "map_lb" {
     default_service       = string
     load_balancing_scheme = string
 ##########variables for cdn for load balancer #########
-    create_storage        = bool
-    storage = map(object({
+    create_storage        = optional(bool,false)
+    storage = optional(map(object({
       backend_name        = string
       bucket_name         = string
       enable_cdn          = bool
@@ -32,7 +32,7 @@ variable "map_lb" {
       force_destroy       = string	
       description         = string
       member              = string
-    }))
+    })))
     cdn_policy = optional(object({
       cache_mode                   = optional(string)      
       client_ttl                   = optional(number)
