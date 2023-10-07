@@ -1,4 +1,4 @@
-project_id = "qwiklabs-gcp-02-c828f9f56425"
+project_id = "playground-s-11-02b9c3e0"
 
 
 map_lb = {
