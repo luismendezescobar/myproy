@@ -1,4 +1,4 @@
-project_id = "cloud-run-da-196-cdbde0a9"
+project_id = "cloud-run-da-196-2dbe0793"
 
 
 map_lb = {
@@ -73,11 +73,11 @@ map_lb = {
             weighted_be_services   = [
               {
                 service_name  = "hello1"
-                weight        = 0          
+                weight        = 100          
               },
 	            {
                 service_name  = "hello2"
-                weight        = 100              
+                weight        = 0              
               }
             ]
           }
