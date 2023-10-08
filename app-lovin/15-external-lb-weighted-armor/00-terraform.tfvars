@@ -1,9 +1,9 @@
-project_id = "cloud-run-da-196-72e974cb"
+project_id = "cloud-run-da-196-933d11cb"
 
 
 map_lb = {
   wordscapes-lb-qa = {
-    lb_name               = "test-lb"
+    lb_name               = "wordscapes-lb-qa"
     #prefix_match          = "/"
     paths_class           = false
     weighted_class        = true
@@ -15,30 +15,8 @@ map_lb = {
     https_redirect        = true
     enable_cdn            = false
     log_config_enable     = true
-    default_service       = "default-backend"
+    default_service       = "hello1"
     load_balancing_scheme = "EXTERNAL_MANAGED"
-    create_storage        = true
-    storage   = {
-      default-backend = {          
-        backend_name                = "default-backend"
-        bucket_name                 = "default-backend-10-7-2023-01"
-        enable_cdn                  = true
-        bucket_location             = "us-central1"
-        uniform_bucket_level_access = true
-        storage_class               = "STANDARD"
-        force_destroy               = true
-        description                 = "storage for space breaker dev"     
-        member                      = "allUsers"
-      }
-    }
-    cdn_policy = {
-      cache_mode                   = "CACHE_ALL_STATIC"
-      client_ttl                   = 3600
-      default_ttl                  = 3600
-      max_ttl                      = 86400
-      negative_caching             = false
-      serve_while_stale            = 0
-    }    
     end_points   = {
       hello1 = {
         service_name            = "hello1"
@@ -48,7 +26,7 @@ map_lb = {
         type                    = "cloud_run"
         region_endpoint         = "us-central1"
         iap                     = {}
-        security_policy         = null          
+        security_policy         = "armor-policy"           
       }        
       hello2	  = {
         service_name            = "hello2"
@@ -58,8 +36,7 @@ map_lb = {
         type                    = "cloud_run"
         region_endpoint         = "us-central1"
         iap                     = {}
-        security_policy         = null
-        custom_request_headers  = ["X-Client-Geo-Region: {client_region}", "X-Client-Geo-City: {client_city}", "X-Client-Geo-Subdivision: {client_region_subdivision}"]                  
+        security_policy         = "armor-policy"         
       }       
     }
     url_map = {
@@ -107,5 +84,31 @@ map_lb = {
         }
       }
     }
+  }
+}
+
+map_armor = {
+  first_policy ={
+    name                          = "armor-policy"    
+    layer_7_ddos_defense_config   = false
+    rule_visibility               = "STANDARD"
+    rules = [
+      {
+        action          ="allow"
+        priority        = "2147483647"
+        description     = "default rule that allows all"
+        versioned_expr  = "SRC_IPS_V1"
+        src_ip_ranges   = ["*"]
+        expression      = ""
+      },
+      {
+        action          ="allow"
+        priority        = "9099"
+        description     = "rule to prevent remote code execution"
+        versioned_expr  = ""
+        src_ip_ranges   = []
+        expression      = "evaluatePreconfiguredExpr('rce-stable')"
+      },
+    ]
   }
 }
