@@ -1,4 +1,4 @@
-project_id = "cloud-run-da-196-933d11cb"
+project_id = "cloud-run-da-196-cdbde0a9"
 
 
 map_lb = {
@@ -102,12 +102,22 @@ map_armor = {
         expression      = ""
       },
       {
-        action          ="allow"
-        priority        = "9099"
-        description     = "rule to prevent remote code execution"
+        action          = "deny(403)"   ##3. block all except something 
+        priority        = "10000"       ##that starts with /ftp       
+        description     = "rule to prevent access to *"
+        preview         = false
         versioned_expr  = ""
-        src_ip_ranges   = []
-        expression      = "evaluatePreconfiguredExpr('rce-stable')"
+        src_ip_ranges   = []    
+        expression      = "request.path.matches('/*')" 
+      },
+      {
+        action          = "allow"         ##3. allow certain path
+        priority        = "9900"              
+        description     = "rule to allow access to /api/v1/announcement path"
+        preview         = false
+        versioned_expr  = ""
+        src_ip_ranges   = []    
+        expression      = "request.path.matches('/api/v1/announcement')" 
       },
     ]
   }
