@@ -94,21 +94,12 @@ map_armor = {
     rule_visibility               = "STANDARD"
     rules = [
       {
-        action          ="allow"
+        action          ="deny(403)"
         priority        = "2147483647"
         description     = "default rule that allows all"
         versioned_expr  = "SRC_IPS_V1"
         src_ip_ranges   = ["*"]
         expression      = ""
-      },
-      {
-        action          = "deny(403)"   ##3. block all except something 
-        priority        = "10000"       ##that starts with /ftp       
-        description     = "rule to prevent access to *"
-        preview         = false
-        versioned_expr  = ""
-        src_ip_ranges   = []    
-        expression      = "request.path.matches('/*')" 
       },
       {
         action          = "allow"         ##3. allow certain path
