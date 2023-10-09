@@ -96,12 +96,19 @@ map_armor = {
       {
         action          ="deny(403)"
         priority        = "2147483647"
-        description     = "default rule that allows all"
+        description     = "default rule that blocks all"
         versioned_expr  = "SRC_IPS_V1"
         src_ip_ranges   = ["*"]
         expression      = ""
       },
       {
+        action          ="deny(403)"
+        priority        = "2147483646"
+        description     = "default rule that blocks all"
+        versioned_expr  = ""
+        src_ip_ranges   = []
+        expression      = "request.headers['host'].contains('luismendeze.com')" 
+      },      {
         action          = "allow"         ##3. allow certain path
         priority        = "9900"              
         description     = "rule to allow access to /api/v1/announcement path"
