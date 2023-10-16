@@ -12,7 +12,7 @@ def validate_text_file(file_path):
                 errors.append(f'Duplicate line found at line {line_number}: {line}')
             else:
                 lines.add(line)
-                print(lines)
+                #print(lines)
             
             # Rule 2: Check for correct comma and space placement
             words = line.split(', ')
