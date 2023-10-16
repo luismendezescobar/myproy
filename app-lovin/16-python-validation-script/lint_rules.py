@@ -3,9 +3,9 @@ def validate_text_file(file_path):
     errors = []
 
     with open(file_path, 'r') as file:
-        for line_number, line in enumerate(file, start=1):
-            print(line_number,line)
+        for line_number, line in enumerate(file, start=1):            
             line = line.strip()
+            print(line)
             
             # Rule 1: Check for duplicated lines
             if line in lines:
