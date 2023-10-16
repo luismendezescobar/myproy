@@ -108,14 +108,15 @@ map_armor = {
         versioned_expr  = ""
         src_ip_ranges   = []
         expression      = "request.headers['host'].contains('luismendeze.com')" 
-      },      {
+      },      
+      {
         action          = "allow"         ##3. allow certain path
         priority        = "9900"              
         description     = "rule to allow access to /api/v1/announcement path"
         preview         = false
         versioned_expr  = ""
         src_ip_ranges   = []    
-        expression      = "request.path.matches('/api/v1/announcement')" 
+        expression      = "request.path.matches('/*/v1/announcement')" 
       },
     ]
   }
