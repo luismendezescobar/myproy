@@ -3,16 +3,16 @@ def validate_text_file(file_path):
     errors = []
 
     with open(file_path, 'r') as file:
-        for line_number, line in enumerate(file, start=1):            
-            line = line.strip()
-            print(line)
+        for line_number, line in enumerate(file, start=1):  #get this: 1 152media.info, 152M10, RESELLER
+                                                            #          2 152media.info, 152M312, RESELLER           
+            line = line.strip()     #get the line only: 152media.info, 152M10, RESELLER                        
             
             # Rule 1: Check for duplicated lines
-            if line in lines:
+            if line in lines:                  #
                 errors.append(f'Duplicate line found at line {line_number}: {line}')
             else:
                 lines.add(line)
-                #print(lines)
+                print(lines)
             
             # Rule 2: Check for correct comma and space placement
             words = line.split(', ')
