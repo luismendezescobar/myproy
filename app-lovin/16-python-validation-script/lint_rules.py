@@ -8,14 +8,15 @@ def validate_text_file(file_path):
             line = line.strip()     #get the line only: 152media.info, 152M10, RESELLER                        
             
             # Rule 1: Check for duplicated lines
-            if line in lines:                  #
+            if line in lines: #lines={'152media.info, 152M10, RESELLER', '152media.info, 152M312, RESELLER'}
                 errors.append(f'Duplicate line found at line {line_number}: {line}')
             else:
                 lines.add(line)
-                print(lines)
+                
             
             # Rule 2: Check for correct comma and space placement
             words = line.split(', ')
+            print(words)
             if any(len(word.split()) > 1 for word in words[:-1]):
                 errors.append(f'Invalid comma and space placement at line {line_number}: {line}')
             
