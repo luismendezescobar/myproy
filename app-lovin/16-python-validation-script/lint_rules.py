@@ -4,6 +4,7 @@ def validate_text_file(file_path):
 
     with open(file_path, 'r') as file:
         for line_number, line in enumerate(file, start=1):
+            print(line_number,line)
             line = line.strip()
             
             # Rule 1: Check for duplicated lines
@@ -12,12 +13,12 @@ def validate_text_file(file_path):
             else:
                 lines.add(line)
                 print(lines)
-            '''            
+            
             # Rule 2: Check for correct comma and space placement
             words = line.split(', ')
             if any(len(word.split()) > 1 for word in words[:-1]):
                 errors.append(f'Invalid comma and space placement at line {line_number}: {line}')
-            '''
+            
     '''        
     if errors:
         for error in errors:
