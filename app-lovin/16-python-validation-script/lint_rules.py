@@ -17,7 +17,7 @@ def validate_text_file(file_path):
             # Rule 2: Check for correct comma and space placement
             words = line.split(', ')  #words=['152media.info', '152M324', 'RESELLER']            
 
-            print((word for word in words[:-1]))
+            print([word for word in words[:-1]])
             if any(len(word.split()) > 1 for word in words[:-1]):
                 errors.append(f'Invalid comma and space placement at line {line_number}: {line}')
             
