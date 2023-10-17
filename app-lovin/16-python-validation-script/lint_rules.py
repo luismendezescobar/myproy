@@ -39,14 +39,10 @@ def validate_text_file(file_path):
             #'152media.info,     152M10, RESELLER' ------> error because that line already exists even if the 
             #                                              one that is already there has not so much spaces             
             line_no_spaces = ''.join(line.split())  # Remove spaces by splitting and joining without spaces
-            print(line_no_spaces)
-            normalized_line = ' '.join(line_no_spaces.split(','))  # Normalize spacing
-            print(normalized_line)
-            #print(normalized_line)
+            normalized_line = ' '.join(line_no_spaces.split(','))  # Normalize spacing        
             error=False
             for myline in lines:
-                normalized_dest = ' '.join(myline.split(', '))  # Normalize spacing
-                print(normalized_dest)
+                normalized_dest = ' '.join(myline.split(', '))  # Normalize spacing                
                 if normalized_line == normalized_dest:
                     errors.append(f'Rule 3 Duplicate line found at line {line_number}: {line}')
                     error=True
@@ -65,8 +61,6 @@ def validate_text_file(file_path):
             # example line='152media.info,,152M10,RESELLER'
             comma_count = line.count(',')
             word_count = len(words)
-            print(words)
-            print(word_count)
             if comma_count >= word_count:
                 errors.append(f'Rule 4 Error at line  {line_number}: Comma count ({comma_count}) is equal to or greater than word count ({word_count}): {line}')
                 
@@ -75,7 +69,7 @@ def validate_text_file(file_path):
             # example: line='152media.info, ,  ,152M10,RESELLER'
             if any(not word.strip() for word in words):
                 errors.append(f'Rule 5 Error at line : Contains one or more blank words: {line}')
-                print(errors)
+                
 
 
     if errors:
