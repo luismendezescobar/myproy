@@ -12,7 +12,7 @@ def validate_text_file(file_path):
             # Rule 1: Check for duplicated lines
             if line in lines: 
 #if line='152media.info, 152M324, RESELLER' in lines={'152media.info, 152M10, RESELLER', '152media.info, 152M312, RESELLER'}
-                errors.append(f'Duplicate line found at line {line_number}: {line}')
+                errors.append(f'Rule 1 Duplicate line found at line {line_number}: {line}')
             else:
                 lines.add(line)
                             
@@ -28,7 +28,7 @@ def validate_text_file(file_path):
 
             print([word for word in words[:-1]])
             if any(len(word.split()) > 1 for word in words[:-1]):
-                errors.append(f'Invalid comma and space placement at line {line_number}: {line}')
+                errors.append(f'Rule 2 Invalid comma and space placement at line {line_number}: {line}')
             
             # Rule 3: Check for duplicated lines even if spacing differs        
             # Example if there is this line:
@@ -41,7 +41,7 @@ def validate_text_file(file_path):
             for myline in lines:
                 normalized_dest = ' '.join(myline.split(', '))  # Normalize spacing
                 if normalized_line == normalized_dest:
-                    errors.append(f'Duplicate line found at line {line_number}: {line}')
+                    errors.append(f'Rule 3 Duplicate line found at line {line_number}: {line}')
                     error=True
                     break
                 else:                    
@@ -56,13 +56,13 @@ def validate_text_file(file_path):
             print(words)
             print(word_count)
             if comma_count >= word_count:
-                errors.append(f'Error at line  {line_number}: Comma count ({comma_count}) is equal to or greater than word count ({word_count}): {line}')
+                errors.append(f'Rule 4 Error at line  {line_number}: Comma count ({comma_count}) is equal to or greater than word count ({word_count}): {line}')
                 
 
             # Rule 5: Check for blank words
             # example: line='152media.info, ,  ,152M10,RESELLER'
             if any(not word.strip() for word in words):
-                errors.append(f'Error at line : Contains one or more blank words: {line}')
+                errors.append(f'Rule 5 Error at line : Contains one or more blank words: {line}')
                 print(errors)
 
 
