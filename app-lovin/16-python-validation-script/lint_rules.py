@@ -22,7 +22,6 @@ def validate_text_file(file_path):
             #152media.info,    kk, 152M324, RESELLER  --->valid
             #152media.info,    , 152M324, RESELLER    --->valid
 
-
                                       #line='152media.info, 152M324, RESELLER' 
             words = line.split(', ')  #words=['152media.info', '152M324', 'RESELLER']            
 
@@ -30,6 +29,11 @@ def validate_text_file(file_path):
             if any(len(word.split()) > 1 for word in words[:-1]):
                 errors.append(f'Rule 2 Invalid comma and space placement at line {line_number}: {line}')
             
+
+    with open(file_path, 'r') as file:
+        for line_number, line in enumerate(file, start=1):  #get this: 1 152media.info, 152M10, RESELLER
+                                                            #          2 152media.info, 152M312, RESELLER           
+            line = line.strip()     #get the line only: 152media.info, 152M10, RESELLER                        
             # Rule 3: Check for duplicated lines even if spacing differs        
             # Example if there is this line:
             #'152media.info,     152M10, RESELLER' ------> error because that line already exists even if the 
@@ -52,6 +56,10 @@ def validate_text_file(file_path):
             if not error:
                 lines.add(line)
 
+    with open(file_path, 'r') as file:
+        for line_number, line in enumerate(file, start=1):  #get this: 1 152media.info, 152M10, RESELLER
+                                                            #          2 152media.info, 152M312, RESELLER           
+            line = line.strip()     #get the line only: 152media.info, 152M10, RESELLER                        
             # Rule 4: Check for the count of commas and words in a row, this rule check if there are more commas than words
             # example line='152media.info,,152M10,RESELLER'
             comma_count = line.count(',')
