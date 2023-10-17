@@ -3,7 +3,7 @@ def validate_text_file(file_path):
     errors = []
     output_file_path="./output-errors.txt"
 
-
+    #rules 1 and 2
     with open(file_path, 'r') as file:
         for line_number, line in enumerate(file, start=1):  #get this: 1 152media.info, 152M10, RESELLER
                                                             #          2 152media.info, 152M312, RESELLER           
@@ -28,7 +28,7 @@ def validate_text_file(file_path):
             #print([word for word in words[:-1]])
             if any(len(word.split()) > 1 for word in words[:-1]):
                 errors.append(f'Rule 2 Invalid comma and space placement at line {line_number}: {line}')
-            
+    #Rule 3        
     lines = set()
     with open(file_path, 'r') as file:
         for line_number, line in enumerate(file, start=1):  #get this: 1 152media.info, 152M10, RESELLER
@@ -55,6 +55,7 @@ def validate_text_file(file_path):
                     error=False                    
             if not error:
                 lines.add(line)
+    #Rule 4            
     lines = set()
     with open(file_path, 'r') as file:
         for line_number, line in enumerate(file, start=1):  #get this: 1 152media.info, 152M10, RESELLER
