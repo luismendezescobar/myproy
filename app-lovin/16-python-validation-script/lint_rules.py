@@ -26,7 +26,7 @@ def validate_text_file(file_path):
                                       #line='152media.info, 152M324, RESELLER' 
             words = line.split(', ')  #words=['152media.info', '152M324', 'RESELLER']            
 
-            print([word for word in words[:-1]])
+            #print([word for word in words[:-1]])
             if any(len(word.split()) > 1 for word in words[:-1]):
                 errors.append(f'Rule 2 Invalid comma and space placement at line {line_number}: {line}')
             
@@ -35,11 +35,14 @@ def validate_text_file(file_path):
             #'152media.info,     152M10, RESELLER' ------> error because that line already exists even if the 
             #                                              one that is already there has not so much spaces             
             line_no_spaces = ''.join(line.split())  # Remove spaces by splitting and joining without spaces
+            print(line_no_spaces)
             normalized_line = ' '.join(line_no_spaces.split(','))  # Normalize spacing
+            print(normalized_line)
             #print(normalized_line)
             error=False
             for myline in lines:
                 normalized_dest = ' '.join(myline.split(', '))  # Normalize spacing
+                print(normalized_dest)
                 if normalized_line == normalized_dest:
                     errors.append(f'Rule 3 Duplicate line found at line {line_number}: {line}')
                     error=True
