@@ -60,6 +60,7 @@ def validate_text_file(file_path):
             # Rule 4: Check for the count of commas and words in a row, this rule check if there are more commas than words
             # example line='152media.info,,152M10,RESELLER'
             comma_count = line.count(',')
+            words = line.split(', ') 
             word_count = len(words)
             if comma_count >= word_count:
                 errors.append(f'Rule 4 Error at line  {line_number}: Comma count ({comma_count}) is equal to or greater than word count ({word_count}): {line}')
