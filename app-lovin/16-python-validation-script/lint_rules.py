@@ -8,6 +8,11 @@ def validate_text_file(file_path):
         for line_number, line in enumerate(file, start=1):  #get this: 1 152media.info, 152M10, RESELLER
                                                             #          2 152media.info, 152M312, RESELLER           
             line = line.strip()     #get the line only: 152media.info, 152M10, RESELLER                        
+
+           # Ignore lines that start with # because is a comment
+            if line.startswith("#"):
+                continue
+
             
             # Rule 1: Check for duplicated lines
             if line in lines: 
@@ -37,7 +42,11 @@ def validate_text_file(file_path):
             # Rule 3: Check for duplicated lines even if spacing differs        
             # Example if there is this line:
             #'152media.info,     152M10, RESELLER' ------> error because that line already exists even if the 
-            #                                              one that is already there has not so much spaces             
+            #                                              one that is already there has not so much spaces
+            # Ignore lines that start with #
+            if line.startswith("#"):
+                continue
+             
             line_no_spaces = ''.join(line.split())  # Remove spaces by splitting and joining without spaces
             normalized_line = ' '.join(line_no_spaces.split(','))  # Normalize spacing        
             error=False
@@ -59,6 +68,9 @@ def validate_text_file(file_path):
             line = line.strip()     #get the line only: 152media.info, 152M10, RESELLER                        
             # Rule 4: Check for the count of commas and words in a row, this rule check if there are more commas than words
             # example line='152media.info,,152M10,RESELLER'
+            # Ignore lines that start with #
+            if line.startswith("#"):
+                continue
             comma_count = line.count(',')
             words = line.split(', ') 
             word_count = len(words)
@@ -78,8 +90,12 @@ def validate_text_file(file_path):
             for error in errors:
                 output_file.write(error + '\n')
         print(f'{len(errors)} error(s) found in the file. Errors saved to {output_file_path}')
+        with open("result.txt", "w") as result_file:
+            result_file.write("1")  # Write '1' to the result file if errors are found
     else:
         print('File is valid; no errors found.')
+        with open("result.txt", "w") as result_file:
+            result_file.write("0")  # Write '0' to the result file if no errors are found
     
 if __name__ == "__main__":
     file_path = "./app-ads.txt"  # Replace with the path to your text file
