@@ -81,7 +81,7 @@ map_lb = {
         end_point_maps = {
           cdn= {
             service_name         = "default-backend"
-            path                 = ["cdn"]
+            path                 = ["/cdn"]
             path_prefix_rewrite  = ""
             bucket_backend       = true         
           }
