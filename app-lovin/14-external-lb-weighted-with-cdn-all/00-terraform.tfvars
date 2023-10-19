@@ -1,4 +1,4 @@
-project_id = "cloud-run-da-196-72e974cb"
+project_id = "qwiklabs-gcp-01-69c7cad7dbe7"
 
 
 map_lb = {
@@ -21,7 +21,7 @@ map_lb = {
     storage   = {
       default-backend = {          
         backend_name                = "default-backend"
-        bucket_name                 = "default-backend-10-7-2023-01"
+        bucket_name                 = "default-backend-10-18-2023-01"
         enable_cdn                  = true
         bucket_location             = "us-central1"
         uniform_bucket_level_access = true
@@ -44,7 +44,7 @@ map_lb = {
         service_name            = "hello1"
         service                 = "hello1"
         tag                     = ""
-        version                 = "testflush4"
+        version                 = ""
         type                    = "cloud_run"
         region_endpoint         = "us-central1"
         iap                     = {}
@@ -52,14 +52,13 @@ map_lb = {
       }        
       hello2	  = {
         service_name            = "hello2"
-        service                 = "game-wordscapes-server"
+        service                 = "hello2"
         tag                     = ""
         version                 = ""
         type                    = "cloud_run"
         region_endpoint         = "us-central1"
         iap                     = {}
         security_policy         = null
-        custom_request_headers  = ["X-Client-Geo-Region: {client_region}", "X-Client-Geo-City: {client_city}", "X-Client-Geo-Subdivision: {client_region_subdivision}"]                  
       }       
     }
     url_map = {
@@ -68,41 +67,23 @@ map_lb = {
         domain          = "www.luismendeze.com"
         default_service = "hello1"	                    
         end_point_maps = {
-          priority-1= {
-            prefix_match          = "/api/v1/announcement"
-            priority             = 1 
-            weighted_be_services   = [
-              {
-                service_name  = "hello1"
-                weight        = 100          
-              },
-	            {
-                service_name  = "hello2"
-                weight        = 0              
-              }
-            ]
+          cloud-run= {
+            service_name        = "hello1"
+            path                = ["/run"]
+            path_prefix_rewrite = ""
           }
-        }        
-      }      
+        }
+      }
       second = {
         path_matcher     = "second"
         domain           = "luismendeze.com"
-        default_service  = "hello2"
-        prefix_match     = "/api/v1/announcement"	            
+        default_service  = "hello2"    
         end_point_maps = {
-          priority-1= {
-            prefix_match          = "/api/v1/announcement"
-            priority             = 1 
-            weighted_be_services   = [
-              {
-                service_name  = "hello1"
-                weight        = 0          
-              },
-	            {
-                service_name  = "hello2"
-                weight        = 100              
-              }
-            ]
+          cdn= {
+            service_name         = "default-backend"
+            path                 = ["cdn"]
+            path_prefix_rewrite  = ""
+            bucket_backend       = true         
           }
         }
       }
