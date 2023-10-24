@@ -1,7 +1,9 @@
-def validate_text_file(file_path):
+#!/usr/bin/env python3
+
+import sys
+def validate_text_file(file_path, output_file_path,error_file_output):
     lines = set()
-    errors = []
-    output_file_path="./output-errors.txt"
+    errors = []    
 
     #rules 1 and 2
     with open(file_path, 'r') as file:
@@ -90,13 +92,20 @@ def validate_text_file(file_path):
             for error in errors:
                 output_file.write(error + '\n')
         print(f'{len(errors)} error(s) found in the file. Errors saved to {output_file_path}')
-        with open("result.txt", "w") as result_file:
+        with open(error_file_output, "w") as result_file:
             result_file.write("1")  # Write '1' to the result file if errors are found
     else:
         print('File is valid; no errors found.')
-        with open("result.txt", "w") as result_file:
+        with open(error_file_output, "w") as result_file:
             result_file.write("0")  # Write '0' to the result file if no errors are found
     
-if __name__ == "__main__":
-    file_path = "./app-ads.txt"  # Replace with the path to your text file
-    validate_text_file(file_path)
+if __name__ == "__main__":    
+    if len(sys.argv) != 4:
+        print("Usage: python validate_file.py <input_file> <output_file> <error-file>")
+        sys.exit(1)
+
+    file_path = sys.argv[1]
+    output_file_path = sys.argv[2]
+    error_file_output = sys.argv[3]
+
+    validate_text_file(file_path, output_file_path,error_file_output)
