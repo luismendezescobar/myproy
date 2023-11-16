@@ -1,0 +1,23 @@
+name: deploy-dev
+
+on:
+  push:
+    tags:
+      - 'v*'
+env:
+  PROJECT: dev-project
+  WORKING_DIR: python/flask/hello-appengine
+
+permissions:
+  contents: 'read'
+  id-token: 'write'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+            
+      - name: 'print value of error_output.txt file and store values to env variables'
+        run: |
+          echo "hello world!!"
+          echo "This version is supposed to be deployed on prod"
