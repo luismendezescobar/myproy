@@ -31,9 +31,10 @@ def validate_text_file(file_path, output_file_path,error_file_output):
 
                                       #line='152media.info, 152M324, RESELLER' 
             words = line.split(', ')  #words=['152media.info', '152M324', 'RESELLER']            
+            #print(words)
 
             #print([word for word in words[:-1]])
-            if any(len(word.split()) > 1 for word in words[:-1]):
+            if any(len(word.split()) > 1 for word in words):
                 errors.append(f'Rule 2 Invalid comma and space placement at line {line_number}: {line}')
     #Rule 3        
     lines = set()

@@ -2,11 +2,8 @@ name: deploy-dev
 
 on:
   push:
-    branches:
-    - 'master'
-    paths:
-      - 'python/flask/hello-appengine/**'
-
+    tags:
+      - 'v*'
 env:
   PROJECT: creating-and-150-e247e8ba
   WORKING_DIR: python/flask/hello-appengine
