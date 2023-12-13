@@ -33,8 +33,7 @@ gcp_policies = {
     constraint        = "constraints/appengine.runtimeDeploymentExemption"
     policy_type       = "list"
     allow_list_length  = "1"
-    allow              = ["python27"] 
-    enforce            = true
+    allow              = ["python27"]    
   }
 
 }
