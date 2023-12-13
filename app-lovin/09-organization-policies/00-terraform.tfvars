@@ -34,6 +34,7 @@ gcp_policies = {
     policy_type       = "list"
     allow_list_length  = "1"
     allow              = ["python27"] 
+    enforce            = true
   }
 
 }
