@@ -16,6 +16,10 @@ module "project-policy-disable-tls" {
   policy_type       = each.value.policy_type
   deny_list_length  = each.value.deny_list_length
   deny              = each.value.deny
+  allow_list_length = each.value.deny_list_length
+  allow             = each.value.allow
+
+
   exclude_folders   = each.value.exclude_folders
   exclude_projects  = each.value.exclude_projects
   enforce           = each.value.enforce           

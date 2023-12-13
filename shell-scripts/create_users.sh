@@ -1,10 +1,6 @@
 #!/bin/bash
 
-# Script to create users
-# Takes input file with user names
-# on the command line as the first argument
 
-# User name file
 USERFILE=$1
 
 if [ "$USERFILE" = "" ]

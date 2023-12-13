@@ -8,10 +8,13 @@ variable "gcp_policies" {
     
     constraint        = optional(string,null)
     policy_type       = optional(string,null)
-    deny_list_length  = optional(string,null)
+    deny_list_length  = optional(number,0)
     deny              = optional(list(string),[])
+    allow_list_length = optional(number,0)
+    allow             = optional(list(string),[])    
     exclude_folders   = optional(list(string),[])
     exclude_projects  = optional(list(string),[])
     enforce           = optional(bool,null)
+
   }))
 }

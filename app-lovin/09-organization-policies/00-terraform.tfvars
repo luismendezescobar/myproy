@@ -27,4 +27,13 @@ gcp_policies = {
       deny              = ["TLS_VERSION_1","TLS_VERSION_1_1"]
     }
 */
+  wordscapes-dev-appengine-runtimeDeploymentExemption = {
+    policy_for        = "project"
+    project_id        = "prod-project-369617"
+    constraint        = "constraints/appengine.runtimeDeploymentExemption"
+    policy_type       = "list"
+    allow_list_length  = "1"
+    allow              = ["python27"] 
+  }
+
 }
