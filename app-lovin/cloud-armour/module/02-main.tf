@@ -41,6 +41,7 @@ resource "google_compute_security_policy" "policy" {
           ban_duration_sec = rule.value.ban_duration_sec
           conform_action   = rule.value.conform_action
           exceed_action    = rule.value.exceed_action
+          enforce_on_key   = rule.value.enforce_on_key_type
           /*
           enforce_on_key_configs {
             enforce_on_key_type = rule.value.enforce_on_key_type
