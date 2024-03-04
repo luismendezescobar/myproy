@@ -1,3 +1,5 @@
+
+/*
 module "security_policy" {
   source = "GoogleCloudPlatform/cloud-armor/google"
   version = "~> 2.0"
@@ -33,4 +35,15 @@ module "security_policy" {
     }
   }
     
+}
+*/
+
+module "create_cloud_armor_policy" {
+  source                      = "/module/"
+  for_each                    = var.map_armor
+  name                        = each.value.name
+  project_id                  = each.value.project_id
+  layer_7_ddos_defense_config = each.value.layer_7_ddos_defense_config  
+  rule_visibility             = each.value.rule_visibility
+  rules                       = each.value.rules  
 }
