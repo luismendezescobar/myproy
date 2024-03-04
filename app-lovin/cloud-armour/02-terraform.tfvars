@@ -16,8 +16,8 @@
           action              = "throttle"
           priority            = "9990"
           description         = "rule to allow access to path"                    
-          #expression          = "request.path.matches('/tournament')" 
-          expression          = "true" 
+          expression          = "request.path.matches('/tournament')" 
+          #expression          = "true" 
           rate_limit          = true
           conform_action      = "allow"
           exceed_action       = "deny(502)"
