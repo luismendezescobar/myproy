@@ -18,7 +18,7 @@ module "security_policy" {
       action        = "throttle"
       priority      = 1100
       description   = "Throttle"
-      src_ip_ranges = ["0.0.0.0/0"]
+      src_ip_ranges = ["true"]
 
       rate_limit_options = {
         exceed_action                        = "deny(502)"
