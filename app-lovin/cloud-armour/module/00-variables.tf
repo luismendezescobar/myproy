@@ -25,6 +25,6 @@ variable "rules" {
     exceed_action       = optional(string,"deny(502)")
     enforce_on_key_type = optional(string,"ALL")
     rate_limit_count    = optional(number,0)
-    interval_sec        = optional(number,0)    
+    rate_interval_sec        = optional(number,0)    
   }))
 }
