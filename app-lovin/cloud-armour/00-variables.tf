@@ -1,6 +1,6 @@
 variable "project_id" {    
   type=string
-  default = "qwiklabs-gcp-01-63a73f90b46d"
+  default = "qwiklabs-gcp-02-357dfee406f4"
 }
 
 variable "region" {

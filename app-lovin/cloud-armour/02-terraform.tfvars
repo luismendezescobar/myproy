@@ -1,7 +1,7 @@
   map_armor = {
     first_policy ={
       name                          = "armor-dev-policy"
-      project_id                    = ""
+      project_id                    = "qwiklabs-gcp-02-357dfee406f4"
       layer_7_ddos_defense_config   = false
       rule_visibility               = "STANDARD"
       rules = [
