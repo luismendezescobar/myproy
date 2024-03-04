@@ -13,7 +13,7 @@
           src_ip_ranges   = ["*"]          
         },
         {
-          action              = "allow"
+          action              = "throttle"
           priority            = "9990"
           description         = "rule to allow access to path"                    
           expression          = "request.path.matches('/*')" 
