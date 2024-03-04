@@ -39,7 +39,7 @@ module "security_policy" {
 */
 
 module "create_cloud_armor_policy" {
-  source                      = "/module/"
+  source                      = "./module/"
   for_each                    = var.map_armor
   name                        = each.value.name
   project_id                  = each.value.project_id
