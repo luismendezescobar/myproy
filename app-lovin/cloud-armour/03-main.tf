@@ -17,13 +17,13 @@ module "security_policy" {
     "throttle_project" = {
       action        = "throttle"
       priority      = 1100
-      description   = "Throttle "
+      description   = "Throttle"
       #src_ip_ranges = [""]
 
       rate_limit_options = {
         exceed_action                        = "deny(502)"
         rate_limit_http_request_count        = 10
-        rate_limit_http_request_interval_sec = 60
+        rate_limit_http_request_interval_sec = 30
         enforce_on_key_configs = [
           {
             enforce_on_key_type = "ALL"
